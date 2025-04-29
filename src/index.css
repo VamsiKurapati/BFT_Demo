@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Font family definitions */
+@layer base {
+  .font-goudy {
+    font-family: 'Goudy Bookletter 1911', serif;
+  }
+  
+  .font-poppins {
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .font-dela-gothic {
+    font-family: 'Dela Gothic One', cursive;
+  }
+  
+  .font-baloo-bhai {
+    font-family: 'Baloo Bhai 2', cursive;
+  }
+  
+  .font-archivo-black {
+    font-family: 'Archivo Black', sans-serif;
+  }
+  
+  .font-titan-one {
+    font-family: 'Titan One', cursive;
+  }
+  
+  .font-sofia {
+    font-family: 'Sofia', cursive;
+  }
+}
