@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocation } from "react-router-dom";
+import { BiLeftArrow } from "react-icons/bi";
+import {FaArrowLeft, FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
 
 // ImageCarousel component for showing one image at a time with fade transition
 const ImageCarousel = ({ images, alt }) => {
@@ -145,10 +147,10 @@ export default function AdventureSteps() {
       image: "/India/Nature.jpg",
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
-          <h3 className="text-[24px] font-bold mb-2 text-amber-600 text-center w-full">Nature Unleashed</h3>
+          <h3 className="font-titan font-weight-400 text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Nature Unleashed</h3>
           <div className="flex flex-row flex-grow">
             <div className="w-1/2">
-              <ul className="list-disc pl-5 space-y-1 text-[14px]">
+              <ul className="list-disc pl-[30px] space-y-1 font-sofia font-weight-400 text-[13px] text-[#FFFFFF]">
                 <li>Coastal / Beach</li>
                 <li>Mountains</li>
                 <li>Forest / Jungle</li>
@@ -183,10 +185,10 @@ export default function AdventureSteps() {
       image: "/India/Adrenaline.jpg",
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
-          <h3 className="text-[24px] font-bold mb-2 text-amber-600 text-center w-full">Adventure & Activities</h3>
+          <h3 className="font-titan font-weight-400 text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Adventure & Activities</h3>
           <div className="flex flex-row flex-grow">
             <div className="w-1/2">
-              <ul className="list-disc pl-5 space-y-1 text-[14px]">
+              <ul className="list-disc pl-[30px] space-y-1 font-sofia font-weight-400 text-[13px] text-[#FFFFFF]">
                 <li>Trekking / Hiking</li>
                 <li>Camping</li>
                 <li>Skiing / Snow Adevntures</li>
@@ -221,10 +223,10 @@ export default function AdventureSteps() {
       image: "/India/Culture.jpg",
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
-          <h3 className="text-[24px] font-bold mb-2 text-orange-500 text-center w-full">Cultural & Historical</h3>
+          <h3 className="font-titan font-weight-400 text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Cultural & Historical</h3>
           <div className="flex flex-row flex-grow">
             <div className="w-1/2">
-              <ul className="list-disc pl-5 space-y-1 text-[14px]">
+              <ul className="list-disc pl-[30px] space-y-1 font-sofia font-weight-400 text-[13px] text-[#FFFFFF]">
                 <li>Heritage & Historical Tours</li>
                 <li>Devotional / Pilgrimage</li>
                 <li>Rural / Village Tourism</li>
@@ -257,10 +259,10 @@ export default function AdventureSteps() {
       image: "/India/Taste.jpg",
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
-          <h3 className="text-[24px] font-bold mb-2 text-amber-600 text-center w-full">Taste The Culture</h3>
+          <h3 className="font-titan font-weight-400 text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Taste The Culture</h3>
           <div className="flex flex-row flex-grow">
             <div className="w-1/2">
-              <ul className="list-disc pl-5 space-y-1 text-[14px]">
+              <ul className="list-disc pl-[30px] space-y-1 font-sofia font-weight-400 text-[13px] text-[#FFFFFF]">
                 <li>Culinary Tours / Food Trails</li>
                 <li>Wine Tasting / Vineyard Tours</li>
                 <li>Cooking Classes</li>
@@ -291,10 +293,10 @@ export default function AdventureSteps() {
       image: "/India/City.jpg",
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
-          <h3 className="text-[24px] font-bold mb-2 text-amber-600 text-center w-full">Urban & Entertainment</h3>
+          <h3 className="font-titan font-weight-400 text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Urban & Entertainment</h3>
           <div className="flex flex-row flex-grow">
             <div className="w-1/2">
-              <ul className="list-disc pl-5 space-y-1 text-[14px]">
+              <ul className="list-disc pl-[30px] space-y-1 font-sofia font-weight-400 text-[13px] text-[#FFFFFF]">
                 <li>Party & Nightlife</li>
                 <li>City Tours / Urban Escapes</li>
                 <li>Luxury Travel</li>
@@ -324,10 +326,10 @@ export default function AdventureSteps() {
       image: "/India/Festive.jpg",
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
-          <h3 className="text-[24px] font-bold mb-2 text-amber-600 text-center w-full">Festive Trails</h3>
+          <h3 className="font-titan font-weight-400 text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Festive Trails</h3>
           <div className="flex flex-row flex-grow">
             <div className="w-1/2">
-              <ul className="list-disc pl-5 space-y-1 text-[14px]">
+              <ul className="list-disc pl-[30px] space-y-1 font-sofia font-weight-400 text-[13px] text-[#FFFFFF]">
                 <li>Honeymoon / Romantic</li>
                 <li>Winter Travel</li>
                 <li>Summer Getaways</li>
@@ -359,10 +361,10 @@ export default function AdventureSteps() {
       image: "/India/Squad.jpg",
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
-          <h3 className="text-[24px] font-bold mb-2 text-amber-600 text-center w-full">Squad Getaways</h3>
+          <h3 className="font-titan font-weight-400 text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Squad Getaways</h3>
           <div className="flex flex-row flex-grow">
             <div className="w-1/2">
-              <ul className="list-disc pl-5 space-y-1 text-[14px]">
+              <ul className="list-disc pl-[30px] space-y-1 font-sofia font-weight-400 text-[13px] text-[#FFFFFF]">
                 <li>Family-Friendly Trips</li>
                 <li>Kids' Adventures</li>
                 <li>Group Tours</li>
@@ -393,10 +395,10 @@ export default function AdventureSteps() {
       image: "/India/Awakening.jpg",
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
-          <h3 className="text-[24px] font-bold mb-2 text-amber-600 text-center w-full">Spiritual & Self-Discovery</h3>
+          <h3 className="font-titan font-weight-400 text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Spiritual & Self-Discovery</h3>
           <div className="flex flex-row flex-grow">
             <div className="w-1/2">
-              <ul className="list-disc pl-5 space-y-1 text-[14px]">
+              <ul className="list-disc pl-[30px] space-y-1 font-sofia font-weight-400 text-[13px] text-[#FFFFFF]">
                 <li>Devotional / Pilgrimage</li>
                 <li>Yoga & Meditation Retreats</li>
                 <li>Mindfulness Journeys</li>
@@ -428,9 +430,9 @@ export default function AdventureSteps() {
       image: "/home.jpg",
       detailContent: (
         <div className="p-6">
-          <h3 className="text-[24px] font-bold mb-2 text-amber-600">Nature Unleashed</h3>
+          <h3 className="font-titan font-weight-400 text-[24px] text-[#EC8305E5] mb-2">Nature Unleashed</h3>
           <p className="mb-4">Experience the world's most breathtaking natural wonders.</p>
-          <ul className="list-disc pl-5 space-y-1 text-[14px]">
+          <ul className="list-disc pl-[30px] space-y-1 font-sofia font-weight-400 text-[13px] text-[#FFFFFF]">
             <li>Amazon Rainforest adventures</li>
             <li>Safari in Serengeti National Park</li>
             <li>Explore the Grand Canyon</li>
@@ -446,9 +448,9 @@ export default function AdventureSteps() {
       image: "/home.jpg",
       detailContent: (
         <div className="p-6">
-          <h3 className="text-[24px] font-bold mb-2 text-amber-600">Adrenaline Fix</h3>
+          <h3 className="font-titan font-weight-400 text-[24px] text-[#EC8305E5] mb-2">Adrenaline Fix</h3>
           <p className="mb-4">Chase worldwide thrills that will leave you breathless.</p>
-          <ul className="list-disc pl-5 space-y-1 text-[14px]">
+          <ul className="list-disc pl-[30px] space-y-1 font-sofia font-weight-400 text-[13px] text-[#FFFFFF]">
             <li>Skydiving in Dubai</li>
             <li>Bungee jumping in New Zealand</li>
             <li>Volcano boarding in Nicaragua</li>
@@ -464,14 +466,14 @@ export default function AdventureSteps() {
       image: "/home.jpg",
       detailContent: (
         <div className="p-6 text-white">
-          <h3 className="text-[24px] font-bold mb-2 text-orange-500">Cultural & Historical</h3>
+          <h3 className="font-titan font-weight-400 text-[24px] text-[#EC8305E5] mb-2">Cultural & Historical</h3>
           <ul className="space-y-1 text-[14px]">
-            <li>• Ancient Wonder Tours</li>
-            <li>• World Heritage Explorations</li>
-            <li>• Indigenous Community Visits</li>
-            <li>• Historical City Tours</li>
-            <li>• Cultural Immersion Programs</li>
-            <li>• Festival Celebrations Worldwide</li>
+            <li>Ancient Wonder Tours</li>
+            <li>World Heritage Explorations</li>
+            <li>Indigenous Community Visits</li>
+            <li>Historical City Tours</li>
+            <li>Cultural Immersion Programs</li>
+            <li>Festival Celebrations Worldwide</li>
           </ul>
         </div>
       )
@@ -483,9 +485,9 @@ export default function AdventureSteps() {
       image: "/home.jpg",
       detailContent: (
         <div className="p-6">
-          <h3 className="text-[24px] font-bold mb-2 text-amber-600">Gastronomic Journey</h3>
+          <h3 className="font-titan font-weight-400 text-[24px] text-[#EC8305E5] mb-2">Gastronomic Journey</h3>
           <p className="mb-4">Travel through taste with culinary adventures worldwide.</p>
-          <ul className="list-disc pl-5 space-y-1 text-[14px]">
+          <ul className="list-disc pl-[30px] space-y-1 font-sofia font-weight-400 text-[13px] text-[#FFFFFF]">
             <li>Pasta making in Italy</li>
             <li>Street food tours in Thailand</li>
             <li>Wine tasting in France</li>
@@ -524,35 +526,69 @@ export default function AdventureSteps() {
     }
   };
 
+  // Check if we can move left or right
+  const canMoveLeft = indiaStartIndex > 0;
+  const canMoveRight = indiaStartIndex < indiaGems.length - 3;
+
+
   // Get visible gems for each section
   const visibleIndiaGems = indiaGems.slice(indiaStartIndex, indiaStartIndex + 3);
   const visibleGlobalGems = globalGems.slice(globalStartIndex, globalStartIndex + 3);
 
-  // Animation variants with sliding effect
+  // // Animation variants with sliding effect
+  // const cardVariants = {
+  //   hidden: (direction) => ({
+  //     x: direction === "right" ? 300 : -300,
+  //     opacity: 0
+  //   }),
+  //   visible: {
+  //     x: 0,
+  //     opacity: 1,
+  //     transition: {
+  //       x: { type: "spring", stiffness: 300, damping: 30 },
+  //       opacity: { duration: 0.2 }
+  //     }s
+  //   },
+  //   exit: (direction) => ({
+  //     x: direction === "right" ? -300 : 300,
+  //     opacity: 0,
+  //     transition: {
+  //       x: { type: "spring", stiffness: 300, damping: 30 },
+  //       opacity: { duration: 0.2 }
+  //     }
+  //   })
+  // };
+
+  // Function to toggle FAQ items
+  
   const cardVariants = {
     hidden: (direction) => ({
-      x: direction === "right" ? 300 : -300,
-      opacity: 0
+      x: direction === "right" ? 100 : -100,
+      opacity: 0,
+      transition: {
+        duration: 0.0,
+        ease: "easeInOut"
+      }
     }),
     visible: {
       x: 0,
       opacity: 1,
       transition: {
-        x: { type: "spring", stiffness: 300, damping: 30 },
-        opacity: { duration: 0.2 }
+        duration: 0.0,
+        ease: "easeInOut"
       }
     },
     exit: (direction) => ({
-      x: direction === "right" ? -300 : 300,
+      x: direction === "right" ? -100 : 100,
       opacity: 0,
       transition: {
-        x: { type: "spring", stiffness: 300, damping: 30 },
-        opacity: { duration: 0.2 }
+        duration: 0.0,
+        ease: "easeInOut"
       }
     })
   };
+  
 
-  // Function to toggle FAQ items
   const toggleFaq = (id) => {
     if (activeFaq === id) {
       setActiveFaq(null); // Close if already open
@@ -592,7 +628,7 @@ export default function AdventureSteps() {
           <div className="container mx-auto px-4 py-8 flex justify-between items-center pl-[66px] relative z-10">
             {/* Logo */}
             <div className="text-white text-2xl font-bold">
-              <img src="/Main_logo.png" alt="Logo" className="h-16" />
+              <img src="/logo.png" alt="Logo" className="h-16" />
             </div>
 
             {/* Desktop Navigation */}
@@ -694,7 +730,11 @@ export default function AdventureSteps() {
         </section>
 
         {/* Unwrap The Mystery Section */}
-        <section className="bg-white py-12 pl-[72px]">
+        {/* <section className="relative py-12 pl-[72px]">
+            <div 
+                className="absolute inset-0 bg-contain opacity-25" 
+                style={{backgroundImage: "url('/unwrap.jpg')"}}
+            ></div>
             <div className="container mx-auto">
                 <div className="md:w-[95%]">
                     <h2 className="text-[40px] font-archivo-black font-weight-400 text-[#003566E5]">Unwrap The Mystery</h2>
@@ -710,10 +750,36 @@ export default function AdventureSteps() {
                     </div>
                 </div>
             </div>
+        </section> */}
+        <section
+          className="relative py-12 pl-[72px]"
+          style={{
+            background: "linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, #FFFFFF 100%)"
+          }}
+        >
+          <div 
+            className="absolute inset-0 bg-contain opacity-25 z-0" 
+            style={{ backgroundImage: "url('/unwrap.jpg')" }}
+          ></div>
+          <div className="container mx-auto z-10">
+            <div className="md:w-[95%]">
+              <h2 className="text-[40px] font-archivo-black font-weight-400 text-[#003566E5]">Unwrap The Mystery</h2>
+              <p className="text-[#00474CBF] text-[24px] font-baloo-bhai font-bold font-weight-400">Know How it Works</p>
+              
+              <div className="mt-6">
+                <p className="text-[#000000A6] text-[20px] font-poppins font-weight-300 leading-8">
+                  Blind Fold Trips is a mystery travel platform where your destination remains a secret until you arrive at the 
+                  airport! Get ready for a fun, spontaneous, and surprise-filled adventure. It's the ultimate experience for thrill-
+                  seekers and free spirits. Pack your bags, embrace the unknown, and let fate choose your next journey— 
+                  because <span className="text-[#000000] font-weight-500">life is all about the adventure, not just the destination!</span>
+                </p>
+              </div>
+            </div>
+          </div>
         </section>
 
         {/* Your 3 Step Plan Header */}
-        <div className="relative mb-8" style={{ background: "linear-gradient(90deg, rgba(255, 239, 206, 0) 0%, #FFEFCE 50%, rgba(255, 239, 206, 0) 100%)" }}>
+        <div className="relative mt-8 mb-8" style={{ background: "linear-gradient(90deg, rgba(255, 239, 206, 0) 0%, #FFEFCE 50%, rgba(255, 239, 206, 0) 100%)" }}>
             <div className="absolute inset-0 bg-[#0000002B]"></div>
             <div className="container mx-auto relative">
                 <h2 className="text-[32px] font-titan font-weight-400 text-[#00474CBF] text-center">Your 3 step Plan</h2>
@@ -724,7 +790,9 @@ export default function AdventureSteps() {
 
         {/* Adventure Steps Section */}
         <section className="relative min-h-screen bg-cover bg-center overflow-hidden"
-            style={{backgroundImage: "url('/map.jpeg')"}}
+            style={{backgroundImage: "url('/mountain.jpg')",
+              opacity: 0.8,
+            }}
         >
             {/* SVG Path with stroke */}
             <svg
@@ -800,24 +868,31 @@ export default function AdventureSteps() {
 
         {/* Explore hidden gems Section */}
         <section className="relative py-16 px-12">
-            {/* Background image with opacity */}
-            <div 
-                className="absolute inset-0 z-0 bg-cover opacity-20" 
-                style={{backgroundImage: "url('/explore.jpg')"}}
-            ></div>
-            
+          <div
+            className="absolute inset-0 z-0 bg-cover bg-center"
+            style={{ backgroundImage: "url('/explore.jpg')" }}
+          >
+            <div className="w-full h-full bg-white/80"></div>
+          </div>
+
+          {/* Main content container with rounded edges and styling */}
+          <div
+            className="relative z-10 rounded-[50px] border-y-[6px] border-[#FFBE55] 
+            shadow-[0px_21px_47px_#00000021,0px_85px_85px_#0000001C,0px_192px_115px_#00000012,0px_341px_136px_#00000005,0px_532px_149px_#00000000]
+            bg-gradient-to-b from-white/0 to-white/90 overflow-hidden px-8 py-12"
+          >
             {/* Explore hidden gems of India Section */}
             <div className="container mx-auto relative z-10">
-                <h2 className="text-4xl font-bold text-[#003366]">Explore hidden gems of India</h2>
-                <p className="text-xl text-[#003366] mb-8">Choose Your Adventure</p>
+                <h2 className="font-archivo-black font-weight-400 text-[40px] text-[#003566E5]">India Uncovered: Explore the Unexpected</h2>
+                <p className="font-baloo-bhai font-weight-400 text-[24px] text-[#00474CBF] mb-8">Choose Your Adventure</p>
                 
                 <div className="relative">
-                    <div className="flex flex-wrap gap-6 mb-4 relative overflow-hidden">
+                    <div className="flex flex-wrap gap-4 mb-4 -mr-4 relative overflow-hidden">
                         <AnimatePresence custom={slideDirection} mode="popLayout">
                             {visibleIndiaGems.map((gem) => (
                                 <motion.div 
                                     key={gem.id}
-                                    className={`w-[calc(33.33%-1rem)] rounded-xl overflow-hidden shadow-lg cursor-pointer transition-all duration-300 ${activeCard === gem.id ? 'scale-105' : 'hover:-translate-y-2'}`}
+                                    className={`w-[calc(33.33%-1rem)] rounded-2xl overflow-hidden shadow-lg cursor-pointer transition-all duration-300 ${activeCard === gem.id ? 'scale-105' : 'hover:-translate-y-2'}`}
                                     onClick={() => handleCardClick(gem.id)}
                                     variants={cardVariants}
                                     initial="hidden"
@@ -850,18 +925,27 @@ export default function AdventureSteps() {
                     </div>
                     
                     <div className="absolute right-4 mt-2 flex space-x-2">
-                        <button 
-                            className="w-[77px] h-[42px] rounded-lg bg-gray-200 flex items-center justify-center shadow-md hover:bg-gray-300 transition"
-                            onClick={() => moveCards('india', -1)}
-                        >
-                            <span className="text-2xl">←</span>
-                        </button>
-                        <button 
-                            className="w-[77px] h-[42px] rounded-lg bg-gray-200 flex items-center justify-center shadow-md hover:bg-gray-300 transition"
-                            onClick={() => moveCards('india', 1)}
-                        >
-                            <span className="text-2xl">→</span>
-                        </button>
+                      {/* Left Button */}
+                      <button
+                        disabled={!canMoveLeft}
+                        onClick={() => canMoveLeft && moveCards('india', -1)}
+                        className={`w-[77px] h-[42px] rounded-lg flex items-center justify-center shadow-md transition 
+                          ${canMoveLeft ? 'bg-[#003566]' : 'bg-[#003566BF]'} text-[#FCD2B1] text-[32px] border border-0.94px border-[#FCD2B1]`}
+                        // title={!canMoveLeft ? "No more cards" : ""}
+                      >
+                        <FaArrowLeftLong className="absolute w-[28px] h-[21px]" />
+                      </button>
+
+                      {/* Right Button */}
+                      <button
+                        disabled={!canMoveRight}
+                        onClick={() => canMoveRight && moveCards('india', 1)}
+                        className={`w-[77px] h-[42px] rounded-lg flex items-center justify-center shadow-md transition 
+                          ${canMoveRight ? 'bg-[#003566]' : 'bg-[#003566BF]'} text-[#FCD2B1] text-[32px] border border-0.94px border-[#FCD2B1]`}
+                        // title={!canMoveRight ? "No more cards" : ""}
+                      >
+                        <FaArrowRightLong className="absolute w-[28px] h-[21px]" />
+                      </button>
                     </div>
                 </div>
             </div>
@@ -925,6 +1009,7 @@ export default function AdventureSteps() {
                     </div>
                 </div>
             </div>
+          </div>
         </section>
 
         {/* Why Us Section */}
@@ -951,80 +1036,114 @@ export default function AdventureSteps() {
             <div className="relative flex flex-col justify-center items-center h-full font-">
                 <h2 className="font-archivo-black font-weight-400 text-[#FCD2B1] text-[40px]">Why Us?</h2>
                 <p className="font-baloo-bhai font-weight-400 text-[#FCD2B1] text-[24px]">The answer lies in the journey</p>
+                <a href="/why_us" className="mt-4 px-5 py-1 text-[#FFFFFF] text-lg rounded-full transition-all flex items-center"
+                  style={{
+                    background: "linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.4) 40%)",
+                    boxShadow: `
+                      0px 2px 5px 0px #00000042,
+                      0px 9px 9px 0px #0000003B,
+                      0px 20px 12px 0px #00000021,
+                      0px 36px 14px 0px #0000000A,
+                      0px 56px 16px 0px #00000000
+                    `
+                  }}
+                >
+                  Know More
+                  <span className="ml-2 inline-block transform -rotate-45">→</span>
+                </a>
             </div>
         </section>
 
         {/* See What They Say - Happy Explorer Stories Section */}
-        <section className="py-12 bg-[#EEF6F9]">
-            <div className="container mx-auto pl-[72px]">
-                <div className="mb-8">
-                    <h2 className="text-4xl font-bold text-[#003366]">See What They Say</h2>
-                    <p className="text-xl text-[#003366]">Happy Explorer Stories</p>
+        <section className="relative py-12">
+          <div
+            className="absolute inset-0 bg-cover bg-center z-0"
+            style={{ backgroundImage: "url('/map.jpg')" }}
+          >
+            <div className="absolute inset-0 bg-white/40"></div>
+          </div>
+
+          {/* Top-right decorative images */}
+          <img
+            src="/cloud.png"
+            alt="Cloud"
+            className="absolute top-1 right-20 w-[35%] z-10"
+          />
+          <img
+            src="/flight.png"
+            alt="Flight"
+            className="absolute top-6 -right-32 w-[25%] z-10 rotate-[10deg]"
+          />
+
+          <div className="container relative mx-auto z-20 pl-[72px]">
+            <div className="mb-8">
+                <h2 className="font-archivo-black font-weight-400 text-[32px] text-[#003566E5]">See What They Say</h2>
+                <p className="font-baloo-bhai font-weight-400 text-[24px] text-[#00474CBF]">Happy Explorer Stories</p>
+            </div>
+            
+            {/* Grid of explorer images */}
+            <div className="flex flex-wrap justify-center gap-2 mb-12">
+              {feedbacks.map((item) => (
+                <div
+                  key={item.id}
+                  className="group relative transition-all duration-300 ease-in-out w-[175px] hover:w-[270px] h-[399px] rounded-xl overflow-hidden"
+                >
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    className="object-cover w-full h-full rounded-xl"
+                  />
+                  <div className="absolute inset-0 bg-[#003566] opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl flex flex-col p-4 border border-[#FFBE55] border-4">
+                    <h3 className="font-titan font-weight-400 text-[48px] text-[#FFBE55] text-center">{item.name}</h3>
+                    <p className="font-goudy font-weight-400 text-[24px] text-[#FFBE55] text-right -mt-2 mb-4">{item.role}</p>
+                    <p className="text-[#FFFFFFCC] text-[16px] font-poppins font-weight-400 leading-snug">{item.text}</p>
+                  </div>
                 </div>
-                
-                {/* Grid of explorer images */}
-                <div className="flex flex-wrap justify-center gap-2 mb-12">
-                  {feedbacks.map((item) => (
-                    <div
-                      key={item.id}
-                      className="group relative transition-all duration-300 ease-in-out w-[175px] hover:w-[270px] h-[399px] rounded-xl overflow-hidden"
-                    >
-                      <img
-                        src={item.image}
-                        alt={item.name}
-                        className="object-cover w-full h-full rounded-xl"
-                      />
-                      <div className="absolute inset-0 bg-[#003566] opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl flex flex-col p-4 border border-[#FFBE55] border-4">
-                        <h3 className="font-titan font-weight-400 text-[48px] text-[#FFBE55] text-center">{item.name}</h3>
-                        <p className="font-goudy font-weight-400 text-[24px] text-[#FFBE55] text-right -mt-2 mb-4">{item.role}</p>
-                        <p className="text-[#FFFFFFCC] text-[16px] font-poppins font-weight-400 leading-snug">{item.text}</p>
-                      </div>
+              ))}
+            </div>
+            
+            {/* FAQ Section */}
+            <div className="mt-16 z-10">                    
+                <div className="flex flex-wrap items-center">
+                    {/* Left side - Image */}
+                    <div className="w-full md:w-1/3 pr-8">
+                      <img src="/Travel.jpg" alt="Travel" className="relative w-[320px] h-[280px] rounded-xl mb-4 justify-center" />
                     </div>
-                  ))}
-                </div>
-                
-                {/* FAQ Section */}
-                <div className="mt-16">                    
-                    <div className="flex flex-wrap items-center">
-                        {/* Left side - Image */}
-                        <div className="w-full md:w-1/3 pr-8">
-                          <img src="/Travel.jpg" alt="Travel" className="relative w-[320px] h-[280px] rounded-xl mb-4 justify-center" />
+                    
+                    {/* Right side - FAQ */}
+                    <div className="w-full md:w-2/3 pl-12 pr-24 pt-2">
+                        <div className="mb-6 flex flex-col items-end">
+                            <h2 className="text-[32px] font-archivo-black font-weight-400 text-[#003566E5]">Got Questions? We've Got Answers</h2>
+                            <p className="text-[24px] font-baloo-bhai font-weight-400 text-[#00474CBF]">Know Before You Go</p>
                         </div>
-                        
-                        {/* Right side - FAQ */}
-                        <div className="w-full md:w-2/3 pl-12 pr-24 pt-2">
-                            <div className="mb-6 flex flex-col items-end">
-                                <h2 className="text-3xl font-bold text-[#003366]">Got Questions? We've Got Answers</h2>
-                                <p className="text-lg text-[#003366] pr-6">Know Before You Go</p>
-                            </div>
-                            {faqItems.map((faq) => (
-                                <div key={faq.id} className="mb-4">
-                                    <div 
-                                        className={`p-4 rounded-lg shadow-sm cursor-pointer overflow-hidden transition-colors duration-300 ${activeFaq === faq.id ? 'bg-[#003566] text-white' : 'bg-[#FFFFFF99] text-gray-700'}`}
-                                        onClick={() => toggleFaq(faq.id)}
-                                    >
-                                        <div className="flex justify-between items-center">
-                                              <h3 className={`text-[20px] font-poppins font-weight-400 ${activeFaq === faq.id ? 'text-[#FFFFFFBF' : 'text-[#000000BF]'}`}>{faq.question}</h3>
-                                              <span className="text-2xl transition duration-300">
-                                                {activeFaq === faq.id ? '−' : '+'}
-                                              </span>
-                                        </div>
-                                        
-                                        {activeFaq === faq.id && (
-                                            <div className="pt-1">
-                                                <p className="font-poppins font-weight-300 text-[16px] text-[#FFFFFF99]">{faq.answer}</p>
-                                            </div>
-                                        )}
+                        {faqItems.map((faq) => (
+                            <div key={faq.id} className="mb-4">
+                                <div 
+                                    className={`p-4 rounded-lg shadow-sm cursor-pointer overflow-hidden transition-colors duration-300 ${activeFaq === faq.id ? 'bg-[#003566] text-white' : 'bg-[#FFFFFF99] text-gray-700'}`}
+                                    onClick={() => toggleFaq(faq.id)}
+                                >
+                                    <div className="flex justify-between items-center">
+                                          <h3 className={`text-[20px] font-poppins font-weight-400 ${activeFaq === faq.id ? 'text-[#FFFFFFBF' : 'text-[#000000BF]'}`}>{faq.question}</h3>
+                                          <span className="text-2xl transition duration-300">
+                                            {activeFaq === faq.id ? '−' : '+'}
+                                          </span>
                                     </div>
+                                    
+                                    {activeFaq === faq.id && (
+                                        <div className="pt-1">
+                                            <p className="font-poppins font-weight-300 text-[16px] text-[#FFFFFF99]">{faq.answer}</p>
+                                        </div>
+                                    )}
                                 </div>
-                            ))}
-                            <div className="mt-6">
-                              <p className="font-poppins font-weight-300 text-[20px] text-[#000000]">Still wondering? Find answers in our <span className="text-[#003566] font-weight-700">FAQs!</span></p>
                             </div>
+                        ))}
+                        <div className="mt-6">
+                          <p className="font-poppins font-weight-300 text-[20px] text-[#000000]">Still wondering? Find answers in our <span className="text-[#003566] font-weight-700">FAQs!</span></p>
                         </div>
                     </div>
                 </div>
             </div>
+          </div>
         </section>
 
         {/* Footer Section */}
@@ -1033,7 +1152,7 @@ export default function AdventureSteps() {
                 <div className="flex flex-wrap justify-between">
                     {/* Logo and Info */}
                     <div className="w-full md:w-1/4 mb-6 md:mb-0">
-                        <img src="/Main_logo.png" alt="BlindFold Trips Logo" className="h-12 mb-4" />
+                        <img src="/logo.png" alt="BlindFold Trips Logo" className="h-12 mb-4" />
                         <img src="Footer.png" alt="Footer Image" className="h-[222px] w-[332px] -scale-x-100" />
                     </div>
                     
