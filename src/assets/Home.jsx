@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocation } from "react-router-dom";
-import { BiLeftArrow } from "react-icons/bi";
-import {FaArrowLeft, FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
+import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
+import Footer from "./Footer";
 
 // ImageCarousel component for showing one image at a time with fade transition
 const ImageCarousel = ({ images, alt }) => {
@@ -730,27 +730,6 @@ export default function AdventureSteps() {
         </section>
 
         {/* Unwrap The Mystery Section */}
-        {/* <section className="relative py-12 pl-[72px]">
-            <div 
-                className="absolute inset-0 bg-contain opacity-25" 
-                style={{backgroundImage: "url('/unwrap.jpg')"}}
-            ></div>
-            <div className="container mx-auto">
-                <div className="md:w-[95%]">
-                    <h2 className="text-[40px] font-archivo-black font-weight-400 text-[#003566E5]">Unwrap The Mystery</h2>
-                    <p className="text-[#00474CBF] text-[24px] font-baloo-Bhai font-weight-400">Know How it Works</p>
-                    
-                    <div className="mt-6">
-                        <p className="text-[#000000A6] text-[20px] font-poppins font-weight-300 leading-8">
-                            Blind Fold Trips is a mystery travel platform where your destination remains a secret until you arrive at the 
-                            airport! Get ready for a fun, spontaneous, and surprise-filled adventure. It's the ultimate experience for thrill-
-                            seekers and free spirits. Pack your bags, embrace the unknown, and let fate choose your next journey—
-                            because <span className="text-[#000000] font-weight-500">life is all about the adventure, not just the destination!</span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section> */}
         <section
           className="relative py-12 pl-[72px]"
           style={{
@@ -1072,7 +1051,7 @@ export default function AdventureSteps() {
           <img
             src="/flight.png"
             alt="Flight"
-            className="absolute top-6 -right-32 w-[25%] z-10 rotate-[10deg]"
+            className="absolute top-2 right-4 w-[25%] z-10 rotate-[10deg]"
           />
 
           <div className="container relative mx-auto z-20 pl-[72px]">
@@ -1146,53 +1125,7 @@ export default function AdventureSteps() {
           </div>
         </section>
 
-        {/* Footer Section */}
-        <footer className="bg-[#00474CE5] text-[#FFFFFF] py-10">
-            <div className="container mx-auto px-12">
-                <div className="flex flex-wrap justify-between">
-                    {/* Logo and Info */}
-                    <div className="w-full md:w-1/4 mb-6 md:mb-0">
-                        <img src="/logo.png" alt="BlindFold Trips Logo" className="h-12 mb-4" />
-                        <img src="Footer.png" alt="Footer Image" className="h-[222px] w-[332px] -scale-x-100" />
-                    </div>
-                    
-                    {/* Quick Links */}
-                    <div className="w-full md:w-1/5 mb-6 md:mb-0">
-                        <h4 className="font-archivo-black font-weight-400 text-[24px] mb-4">Quick Links</h4>
-                        <ul className="space-y-2 text-[18px] font-goudy font-weight-400">
-                            <li><a href="/how_it_works" className="hover:text-red-200">How It Works?</a></li>
-                            <li><a href="/why_us" className="hover:text-red-200">Why Us?</a></li>
-                            <li><a href="/contact" className="hover:text-red-200">Contact Us</a></li>
-                        </ul>
-                    </div>
-                    
-                    {/* Legal Information */}
-                    <div className="w-full md:w-1/5 mb-6 md:mb-0">
-                        <h4 className="font-archivo-black font-weight-400 text-[24px] mb-4">Legal Information</h4>
-                        <ul className="space-y-2 text-[18px] font-goudy font-weight-400">
-                            <li><a href="/terms_of_service" className="hover:text-red-200">Terms of Service</a></li>
-                            <li><a href="/refund_policy" className="hover:text-red-200">Refund Policy</a></li>
-                            <li><a href="/privacy_policy" className="hover:text-red-200">Privacy Policy</a></li>
-                        </ul>
-                    </div>
-                    
-                    {/* Contact */}
-                    <div className="w-full md:w-1/4">
-                        <h4 className="font-archivo-black font-weight-400 text-[24px] mb-4">Contact</h4>
-                        <ul className="space-y-2 text-[18px] font-goudy font-weight-400">
-                            <li>Email: contact@blindfoldtrips.com</li>
-                            <li>Phone: +1 (234) 567-8901</li>
-                            <li>Address: 123-45, 1st Main, NE Galaxy, Republic</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                {/* Copyright */}
-                <div className="mt-4 text-center text-[16px] font-goudy font-weight-400">
-                    <p>© 2025 BlindFold Trips. All rights reserved.</p>
-                </div>
-            </div>
-        </footer>
+        <Footer />
     </section>
   );
 }
