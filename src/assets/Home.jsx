@@ -530,12 +530,29 @@ export default function AdventureSteps() {
   const canMoveLeft = indiaStartIndex > 0;
   const canMoveRight = indiaStartIndex < indiaGems.length - 3;
 
+  const [itemsToShow, setItemsToShow] = useState(1);
+  
+  useEffect(() => {
+    const updateItemsToShow = () => {
+      const width = window.innerWidth;
+      if (width >= 1200) {
+        setItemsToShow(3); // lg
+      } else if (width >= 900) {
+        setItemsToShow(2); // md
+      } else {
+        setItemsToShow(1); // sm
+      }
+    };
+
+    updateItemsToShow();
+    window.addEventListener("resize", updateItemsToShow);
+
+    return () => window.removeEventListener("resize", updateItemsToShow);
+  }, []);
 
   // Get visible gems for each section
-  const visibleIndiaGems = indiaGems.slice(indiaStartIndex, indiaStartIndex + 3);
+  const visibleIndiaGems = indiaGems.slice(indiaStartIndex, indiaStartIndex + itemsToShow);
   const visibleGlobalGems = globalGems.slice(globalStartIndex, globalStartIndex + 3);
-
-  // // Animation variants with sliding effect
   // const cardVariants = {
   //   hidden: (direction) => ({
   //     x: direction === "right" ? 300 : -300,
@@ -620,12 +637,12 @@ export default function AdventureSteps() {
     <section className="w-full font-goudy">
         {/* Background Image and Navigation */}
         <section
-          className="relative h-[750px] bg-cover bg-center bg-no-repeat overflow-hidden"
+          className="relative min-h-screen md:h-[750px] bg-cover bg-center bg-no-repeat overflow-hidden"
           style={{ backgroundImage: "url('/home.jpg')" }}
         >
           <div className="absolute inset-0 bg-[#00000080] z-0"></div>
 
-          <div className="container mx-auto px-4 py-8 flex justify-between items-center pl-[66px] relative z-10">
+          <div className="container mx-auto px-4 py-8 flex justify-between items-center lg:pl-[48px] relative z-10">
             {/* Logo */}
             <div className="text-white text-2xl font-bold">
               <img src="/logo.png" alt="Logo" className="h-16" />
@@ -684,7 +701,7 @@ export default function AdventureSteps() {
                 initial={{ height: 0, opacity: 0 }}
                 animate={{ height: "auto", opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
-                className="absolute top-[100px] right-0 w-1/3 bg-[#FCD2B1] flex flex-col items-center py-6 z-20 lg:hidden overflow-hidden"
+                className="absolute top-[100px] right-0 w-2/3 bg-[#FCD2B1] flex flex-col items-center py-6 z-20 lg:hidden overflow-hidden"
               >
                 {navLinks.map((link) => (
                   <a
@@ -710,7 +727,7 @@ export default function AdventureSteps() {
           </AnimatePresence>
 
           {/* Hero Content */}
-          <div className="container mx-auto px-8 mt-24 pl-[72px] relative z-10">
+          <div className="container mx-auto px-8 mt-24 lg:pl-[60px] relative z-10">
             <div className="max-w-xl">
               <h2 className="text-4xl md:text-[56px] font-delta-gothic font-weight-400 text-white">
                 No Clues, No Ties—Just Pure Surprise!
@@ -731,19 +748,19 @@ export default function AdventureSteps() {
 
         {/* Unwrap The Mystery Section */}
         <section
-          className="relative py-12 pl-[72px]"
+          className="relative py-12 px-8 mx-auto lg:pl-[72px]"
           style={{
             background: "linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, #FFFFFF 100%)"
           }}
         >
           <div 
-            className="absolute inset-0 bg-contain opacity-25 z-0" 
+            className="absolute inset-0 bg-contain opacity-15 z-0" 
             style={{ backgroundImage: "url('/unwrap.jpg')" }}
           ></div>
-          <div className="container mx-auto z-10">
-            <div className="md:w-[95%]">
-              <h2 className="text-[40px] font-archivo-black font-weight-400 text-[#003566E5]">Unwrap The Mystery</h2>
-              <p className="text-[#00474CBF] text-[24px] font-baloo-bhai font-bold font-weight-400">Know How it Works</p>
+          <div className="container mx-auto md:px-8 z-10">
+            <div className="md:w-[90%]">
+              <h2 className="text-[32px] sm:text-[40px] font-archivo-black font-weight-400 text-[#003566E5] text-center sm:text-left">Unwrap The Mystery</h2>
+              <p className="text-[#00474CBF] text-[24px] font-baloo-bhai font-bold font-weight-400 text-center sm:text-left">Know How it Works</p>
               
               <div className="mt-6">
                 <p className="text-[#000000A6] text-[20px] font-poppins font-weight-300 leading-8">
@@ -758,13 +775,29 @@ export default function AdventureSteps() {
         </section>
 
         {/* Your 3 Step Plan Header */}
-        <div className="relative mt-8 mb-8" style={{ background: "linear-gradient(90deg, rgba(255, 239, 206, 0) 0%, #FFEFCE 50%, rgba(255, 239, 206, 0) 100%)" }}>
-            <div className="absolute inset-0 bg-[#0000002B]"></div>
-            <div className="container mx-auto relative">
-                <h2 className="text-[32px] font-titan font-weight-400 text-[#00474CBF] text-center">Your 3 step Plan</h2>
-                <div className="absolute right-32 top-1/2 transform -translate-y-1/2 h-[24px] w-1 bg-[#00474C]"></div>
-                <p className="text-[20px] text-[#00474CCC] font-sofia font-weight-400 absolute right-12 top-1/2 transform -translate-y-1/2">Progress</p>
+        <div
+          className="relative mt-8 mb-8"
+          style={{
+            background:
+              "linear-gradient(90deg, rgba(255, 239, 206, 0) 0%, #FFEFCE 50%, rgba(255, 239, 206, 0) 100%)",
+          }}
+        >
+          <div className="absolute inset-0 bg-[#0000002B]"></div>
+
+          <div className="container mx-auto relative z-10">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-2">
+              <h2 className="text-[32px] font-titan font-weight-400 text-[#00474CBF] text-center sm:text-left">
+                Your 3 step Plan
+              </h2>
+
+              <div className="flex items-center align-right gap-2">
+                <div className="h-[24px] w-1 bg-[#00474C]"></div>
+                <p className="text-[20px] text-[#00474CCC] font-sofia font-weight-400">
+                  Progress
+                </p>
+              </div>
             </div>
+          </div>
         </div>
 
         {/* Adventure Steps Section */}
@@ -838,7 +871,7 @@ export default function AdventureSteps() {
             ))}
 
             {/* CTA Button */}
-            <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2">
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2">
                 <button className="mt-12 px-8 py-3 bg-[#a02726] text-white text-lg rounded-full shadow-md hover:bg-[#821d1d] transition-all flex items-center">
                 Know your destination <span className="ml-2">→</span>
                 </button>
@@ -871,7 +904,7 @@ export default function AdventureSteps() {
                             {visibleIndiaGems.map((gem) => (
                                 <motion.div 
                                     key={gem.id}
-                                    className={`w-[calc(33.33%-1rem)] rounded-2xl overflow-hidden shadow-lg cursor-pointer transition-all duration-300 ${activeCard === gem.id ? 'scale-105' : 'hover:-translate-y-2'}`}
+                                    className={`w-full md:w-[calc(50%-1rem)] xl:w-[calc(33.33%-1rem)] mx-auto rounded-2xl overflow-hidden shadow-lg cursor-pointer transition-all duration-300 ${activeCard === gem.id ? 'scale-105' : 'hover:-translate-y-2'}`}
                                     onClick={() => handleCardClick(gem.id)}
                                     variants={cardVariants}
                                     initial="hidden"
@@ -1054,7 +1087,7 @@ export default function AdventureSteps() {
             className="absolute top-2 right-4 w-[25%] z-10 rotate-[10deg]"
           />
 
-          <div className="container relative mx-auto z-20 pl-[72px]">
+          <div className="container relative mx-auto z-20 lg:pl-[72px]">
             <div className="mb-8">
                 <h2 className="font-archivo-black font-weight-400 text-[32px] text-[#003566E5]">See What They Say</h2>
                 <p className="font-baloo-bhai font-weight-400 text-[24px] text-[#00474CBF]">Happy Explorer Stories</p>
