@@ -360,14 +360,15 @@ export default function Contact() {
                 {/* Contact Form Section */}
                 <section className="bg-[#FFFFFF] pt-6 pb-6">
                     <div className="w-[90%] border-l-4 border-[#FFBE55] px-10 py-10 mx-auto shadow-xl rounded-3xl mt-6 mb-6">
-                        <div className="grid md:grid-cols-2 gap-12 items-start">
+                        <div className="items-center mb-6">
+                            <h2 className="text-2xl md:text-[40px] text-[#003566E5] font-archivo-black font-weight-400 mb-1">Send Us a Message</h2>
+                            <p className="text-[20px] md:text-[24px] text-[#00474CBF] font-baloo-bhai font-weight-400mb-6">
+                                We usually reply within 24 hours. Faster if we've had our coffee ☕
+                            </p>
+                        </div>
+                        <div className="grid md:grid-cols-2 gap-14 items-start">
                             {/* Left: Form */}
                             <div>
-                                <h2 className="text-2xl md:text-[40px] text-[#003566E5] font-archivo-black font-weight-400 mb-1">Send Us a Message</h2>
-                                <p className="text-[20px] md:text-[24px] text-[#00474CBF] font-baloo-bhai font-weight-400mb-6">
-                                    We usually reply within 24 hours. Faster if we've had our coffee ☕
-                                </p>
-
                                 <form className="space-y-4">
                                     <div>
                                     <label className="block text-[17.53px] mb-1" htmlFor="name">Name *</label>
