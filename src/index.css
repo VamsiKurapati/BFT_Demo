@@ -32,3 +32,21 @@
     font-family: 'Sofia', cursive;
   }
 }
+
+/* Custom low-opacity scrollbar */
+.slider::-webkit-scrollbar {
+  height: 8px;
+}
+
+.slider::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.slider::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2); /* Lower opacity */
+  border-radius: 10px;
+}
+
+.slider {
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent; /* Firefox */
+}

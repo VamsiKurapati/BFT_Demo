@@ -88,7 +88,7 @@ const feedbacks = [
   },
 ];
 
-export default function AdventureSteps() {
+export default function Home() {
   const [activeCard, setActiveCard] = useState(null);
   const [indiaStartIndex, setIndiaStartIndex] = useState(0);
   const [globalStartIndex, setGlobalStartIndex] = useState(0);
@@ -427,17 +427,37 @@ export default function AdventureSteps() {
       id: "nature-global",
       title: "Nature Unleashed",
       description: "Epic trails, roaring rivers, and wild air.",
-      image: "/home.jpg",
+      image: "/India/Nature.jpg",
       detailContent: (
-        <div className="p-6">
-          <h3 className="font-titan font-weight-400 text-[24px] text-[#EC8305E5] mb-2">Nature Unleashed</h3>
-          <p className="mb-4">Experience the world's most breathtaking natural wonders.</p>
-          <ul className="list-disc pl-[30px] space-y-1 font-sofia font-weight-400 text-[13px] text-[#FFFFFF]">
-            <li>Amazon Rainforest adventures</li>
-            <li>Safari in Serengeti National Park</li>
-            <li>Explore the Grand Canyon</li>
-            <li>Northern Lights expedition in Norway</li>
-          </ul>
+        <div className="p-4 flex flex-col h-full text-white">
+          <h3 className="font-titan font-weight-400 text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Nature Unleashed</h3>
+          <div className="flex flex-row flex-grow">
+            <div className="w-1/2">
+              <ul className="list-disc pl-[30px] space-y-1 font-sofia font-weight-400 text-[13px] text-[#FFFFFF]">
+                <li>Coastal / Beach</li>
+                <li>Mountains</li>
+                <li>Forest / Jungle</li>
+                <li>Lakes & Rivers</li>
+                <li>Waterfalls</li>
+                <li>National Parks</li>
+                <li>Wildlife & Safari</li>
+              </ul>
+            </div>
+            <div className="w-1/2">
+              <ImageCarousel 
+                images={[
+                  "/India/1_1_1.jpg", 
+                  "/India/1_1_2.jpg", 
+                  "/India/1_1_3.jpg", 
+                  "/India/1_1_4.jpg",
+                  "/India/1_1_5.jpg",
+                  "/India/1_1_6.jpg",
+                  "/India/1_1_7.jpg"
+                ]} 
+                alt="Nature" 
+              />
+            </div>
+          </div>
         </div>
       )
     },
@@ -445,57 +465,244 @@ export default function AdventureSteps() {
       id: "adrenaline-global",
       title: "Adrenaline Fix",
       description: "Fuel your thrill with every chill.",
-      image: "/home.jpg",
+      image: "/India/Adrenaline.jpg",
       detailContent: (
-        <div className="p-6">
-          <h3 className="font-titan font-weight-400 text-[24px] text-[#EC8305E5] mb-2">Adrenaline Fix</h3>
-          <p className="mb-4">Chase worldwide thrills that will leave you breathless.</p>
-          <ul className="list-disc pl-[30px] space-y-1 font-sofia font-weight-400 text-[13px] text-[#FFFFFF]">
-            <li>Skydiving in Dubai</li>
-            <li>Bungee jumping in New Zealand</li>
-            <li>Volcano boarding in Nicaragua</li>
-            <li>Shark cage diving in South Africa</li>
-          </ul>
+        <div className="p-4 flex flex-col h-full text-white">
+          <h3 className="font-titan font-weight-400 text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Adventure & Activities</h3>
+          <div className="flex flex-row flex-grow">
+            <div className="w-1/2">
+              <ul className="list-disc pl-[30px] space-y-1 font-sofia font-weight-400 text-[13px] text-[#FFFFFF]">
+                <li>Trekking / Hiking</li>
+                <li>Camping</li>
+                <li>Skiing / Snow Adevntures</li>
+                <li>Scuba Diving / Snorkeling</li>
+                <li>Paragliding / Skydiving</li>
+                <li>Rock Climbing</li>
+                <li>Biking / Motorbiking Tours</li>
+              </ul>
+            </div>
+            <div className="w-1/2">
+              <ImageCarousel 
+                images={[
+                  "/India/1_2_1.jpg", 
+                  "/India/1_2_2.jpg", 
+                  "/India/1_2_3.jpg", 
+                  "/India/1_2_4.jpg",
+                  "/India/1_2_5.jpg",
+                  "/India/1_2_6.jpg",
+                  "/India/1_2_7.jpg"
+                ]} 
+                alt="Adrenaline" 
+              />
+            </div>
+          </div>
         </div>
       )
     },
     {
       id: "culture-global",
-      title: "Cultural & Historical",
+      title: "Culture Unlocked",
       description: "Traditions, temples, and tales with a twist.",
-      image: "/home.jpg",
+      image: "/India/Culture.jpg",
       detailContent: (
-        <div className="p-6 text-white">
-          <h3 className="font-titan font-weight-400 text-[24px] text-[#EC8305E5] mb-2">Cultural & Historical</h3>
-          <ul className="space-y-1 text-[14px]">
-            <li>Ancient Wonder Tours</li>
-            <li>World Heritage Explorations</li>
-            <li>Indigenous Community Visits</li>
-            <li>Historical City Tours</li>
-            <li>Cultural Immersion Programs</li>
-            <li>Festival Celebrations Worldwide</li>
-          </ul>
+        <div className="p-4 flex flex-col h-full text-white">
+          <h3 className="font-titan font-weight-400 text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Cultural & Historical</h3>
+          <div className="flex flex-row flex-grow">
+            <div className="w-1/2">
+              <ul className="list-disc pl-[30px] space-y-1 font-sofia font-weight-400 text-[13px] text-[#FFFFFF]">
+                <li>Heritage & Historical Tours</li>
+                <li>Devotional / Pilgrimage</li>
+                <li>Rural / Village Tourism</li>
+                <li>Architecture & Monuments</li>
+                <li>Archaeological Sites</li>
+                <li>Cultural Festivals</li>
+              </ul>
+            </div>
+            <div className="w-1/2">
+              <ImageCarousel 
+                images={[
+                  "/India/1_3_1.jpg", 
+                  "/India/1_3_2.jpg", 
+                  "/India/1_3_3.jpg", 
+                  "/India/1_3_4.jpg",
+                  "/India/1_3_5.jpg",
+                  "/India/1_3_6.jpg"
+                ]} 
+                alt="Culture" 
+              />
+            </div>
+          </div>
         </div>
       )
     },
     {
-      id: "gastronomy-global",
-      title: "Gastronomic Journey",
-      description: "Taste the world, one flavor at a time.",
-      image: "/home.jpg",
+      id: "taste-global",
+      title: "Taste the Culture",
+      description: "Dine like a local, live like one too.",
+      image: "/India/Taste.jpg",
       detailContent: (
-        <div className="p-6">
-          <h3 className="font-titan font-weight-400 text-[24px] text-[#EC8305E5] mb-2">Gastronomic Journey</h3>
-          <p className="mb-4">Travel through taste with culinary adventures worldwide.</p>
-          <ul className="list-disc pl-[30px] space-y-1 font-sofia font-weight-400 text-[13px] text-[#FFFFFF]">
-            <li>Pasta making in Italy</li>
-            <li>Street food tours in Thailand</li>
-            <li>Wine tasting in France</li>
-            <li>Chocolate workshops in Belgium</li>
-          </ul>
+        <div className="p-4 flex flex-col h-full text-white">
+          <h3 className="font-titan font-weight-400 text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Taste The Culture</h3>
+          <div className="flex flex-row flex-grow">
+            <div className="w-1/2">
+              <ul className="list-disc pl-[30px] space-y-1 font-sofia font-weight-400 text-[13px] text-[#FFFFFF]">
+                <li>Culinary Tours / Food Trails</li>
+                <li>Wine Tasting / Vineyard Tours</li>
+                <li>Cooking Classes</li>
+                <li>Shopping Destinations</li>
+                <li>Wellness & Spa Retreats</li>
+              </ul>
+            </div>
+            <div className="w-1/2">
+              <ImageCarousel 
+                images={[
+                  "/India/1_4_1.jpg", 
+                  "/India/1_4_2.jpg", 
+                  "/India/1_4_3.jpg", 
+                  "/India/1_4_4.jpg",
+                  "/India/1_4_5.jpg"
+                ]} 
+                alt="Taste" 
+              />
+            </div>
+          </div>
         </div>
       )
     },
+    {
+      id: "city-global",
+      title: "City Beat",
+      description: "Catch the rhythm of rooftops and rush.",
+      image: "/India/City.jpg",
+      detailContent: (
+        <div className="p-4 flex flex-col h-full text-white">
+          <h3 className="font-titan font-weight-400 text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Urban & Entertainment</h3>
+          <div className="flex flex-row flex-grow">
+            <div className="w-1/2">
+              <ul className="list-disc pl-[30px] space-y-1 font-sofia font-weight-400 text-[13px] text-[#FFFFFF]">
+                <li>Party & Nightlife</li>
+                <li>City Tours / Urban Escapes</li>
+                <li>Luxury Travel</li>
+                <li>Cruises</li>
+                <li>Theme Parks</li>
+              </ul>
+            </div>
+            <div className="w-1/2">
+              <ImageCarousel 
+                images={[
+                  "/India/1_5_1.jpg", 
+                  "/India/1_5_2.jpg", 
+                  "/India/1_5_3.jpg", 
+                  "/India/1_5_4.jpg",
+                  "/India/1_5_5.jpg"
+                ]} 
+                alt="City" 
+              />
+            </div>
+          </div>
+        </div>
+      )
+    },{
+      id: "festive-global",
+      title: "Festive Trails",
+      description: "Celebrate, explore, and discover something worth remembering.",
+      image: "/India/Festive.jpg",
+      detailContent: (
+        <div className="p-4 flex flex-col h-full text-white">
+          <h3 className="font-titan font-weight-400 text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Festive Trails</h3>
+          <div className="flex flex-row flex-grow">
+            <div className="w-1/2">
+              <ul className="list-disc pl-[30px] space-y-1 font-sofia font-weight-400 text-[13px] text-[#FFFFFF]">
+                <li>Honeymoon / Romantic</li>
+                <li>Winter Travel</li>
+                <li>Summer Getaways</li>
+                <li>Spring Blossoms</li>
+                <li>Photography Tours</li>
+                <li>Eco-Tourism</li>
+              </ul>
+            </div>
+            <div className="w-1/2">
+              <ImageCarousel 
+                images={[
+                  "/India/1_6_1.jpg", 
+                  "/India/1_6_2.jpg", 
+                  "/India/1_6_3.jpg", 
+                  "/India/1_6_4.jpg",
+                  "/India/1_6_5.jpg"
+                ]} 
+                alt="Festive" 
+              />
+            </div>
+          </div>
+        </div>
+      )
+    },
+    {
+      id: "squad-global",
+      title: "Squad Getaways",
+      description: "One destination. Endless group selfies.",
+      image: "/India/Squad.jpg",
+      detailContent: (
+        <div className="p-4 flex flex-col h-full text-white">
+          <h3 className="font-titan font-weight-400 text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Squad Getaways</h3>
+          <div className="flex flex-row flex-grow">
+            <div className="w-1/2">
+              <ul className="list-disc pl-[30px] space-y-1 font-sofia font-weight-400 text-[13px] text-[#FFFFFF]">
+                <li>Family-Friendly Trips</li>
+                <li>Kids' Adventures</li>
+                <li>Group Tours</li>
+                <li>Solo Travel Friendly</li>
+              </ul>
+            </div>
+            <div className="w-1/2">
+              <ImageCarousel 
+                images={[
+                  "/India/1_7_1.jpg", 
+                  "/India/1_7_2.jpg", 
+                  "/India/1_7_3.jpg", 
+                  "/India/1_7_4.jpg",
+                  "/India/1_7_5.jpg",
+                  "/India/1_7_6.jpg"
+                ]} 
+                alt="Squad" 
+              />
+            </div>
+          </div>
+        </div>
+      )
+    },
+    {
+      id: "awakening-global",
+      title: "Awakening the soul",
+      description: "Discover your true self through spirituality and reflection.",
+      image: "/India/Awakening.jpg",
+      detailContent: (
+        <div className="p-4 flex flex-col h-full text-white">
+          <h3 className="font-titan font-weight-400 text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Spiritual & Self-Discovery</h3>
+          <div className="flex flex-row flex-grow">
+            <div className="w-1/2">
+              <ul className="list-disc pl-[30px] space-y-1 font-sofia font-weight-400 text-[13px] text-[#FFFFFF]">
+                <li>Devotional / Pilgrimage</li>
+                <li>Yoga & Meditation Retreats</li>
+                <li>Mindfulness Journeys</li>
+                <li>Astrology / Mystic Travel</li>
+              </ul>
+            </div>
+            <div className="w-1/2">
+              <ImageCarousel 
+                images={[
+                  "/India/1_8_1.jpg", 
+                  "/India/1_8_2.jpg", 
+                  "/India/1_8_3.jpg", 
+                  "/India/1_8_4.jpg"
+                ]} 
+                alt="Awakening" 
+              />
+            </div>
+          </div>
+        </div>
+      )
+    }
   ];
 
   // Function to handle card click
@@ -535,9 +742,9 @@ export default function AdventureSteps() {
   useEffect(() => {
     const updateItemsToShow = () => {
       const width = window.innerWidth;
-      if (width >= 1200) {
+      if (width >= 1024) {
         setItemsToShow(3); // lg
-      } else if (width >= 900) {
+      } else if (width >= 768) {
         setItemsToShow(2); // md
       } else {
         setItemsToShow(1); // sm
@@ -552,7 +759,7 @@ export default function AdventureSteps() {
 
   // Get visible gems for each section
   const visibleIndiaGems = indiaGems.slice(indiaStartIndex, indiaStartIndex + itemsToShow);
-  const visibleGlobalGems = globalGems.slice(globalStartIndex, globalStartIndex + 3);
+  const visibleGlobalGems = globalGems.slice(globalStartIndex, globalStartIndex + itemsToShow);
   // const cardVariants = {
   //   hidden: (direction) => ({
   //     x: direction === "right" ? 300 : -300,
@@ -785,12 +992,12 @@ export default function AdventureSteps() {
           <div className="absolute inset-0 bg-[#0000002B]"></div>
 
           <div className="container mx-auto relative z-10">
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-2">
-              <h2 className="text-[32px] font-titan font-weight-400 text-[#00474CBF] text-center sm:text-left">
+            <div className="flex flex-col sm:flex-row items-center sm:justify-between gap-2 w-full">
+              <h2 className="text-[32px] font-titan font-weight-400 text-[#00474CBF] text-center w-full">
                 Your 3 step Plan
               </h2>
 
-              <div className="flex items-center align-right gap-2">
+              <div className="flex items-center gap-2 justify-center sm:justify-end w-full sm:w-auto">
                 <div className="h-[24px] w-1 bg-[#00474C]"></div>
                 <p className="text-[20px] text-[#00474CCC] font-sofia font-weight-400">
                   Progress
@@ -806,56 +1013,6 @@ export default function AdventureSteps() {
               opacity: 0.8,
             }}
         >
-            {/* SVG Path with stroke */}
-            <svg
-                viewBox="0 0 1200 800"
-                className="absolute top-0 left-0 w-full h-full pointer-events-none"
-                preserveAspectRatio="none"
-            >
-                <path
-                d="M 450 200 Q 600 100, 900 300"
-                stroke="white"
-                strokeWidth="3"
-                strokeDasharray="10,10"
-                fill="none"
-                />
-                <path
-                d="M 900 420 Q 1000 600, 600 700"
-                stroke="white"
-                strokeWidth="3"
-                strokeDasharray="10,10"
-                fill="none"
-                />
-            </svg>
-
-            {/* Car on the new dashed path */}
-            <motion.div
-                className="absolute"
-                style={{
-                position: "absolute",
-                zIndex: 10,
-                width: "50px",
-                height: "auto",
-                offsetPath: "path('M 520 180 C 600 120, 680 120, 800 300')",
-                offsetRotate: "auto"
-                }}
-                initial={{ offsetDistance: "0%" }}
-                animate={{ offsetDistance: "100%" }}
-                transition={{
-                duration: 8,
-                ease: "linear",
-                repeat: Infinity,
-                repeatType: "loop"
-                }}
-            >
-                <img 
-                src="/car.png" 
-                alt="Car" 
-                width={90} 
-                style={{ filter: "drop-shadow(0 0 3px white)" }} 
-                />
-            </motion.div>
-
             {/* Boxes */}
             {steps.map((step, idx) => (
                 <div
@@ -895,8 +1052,8 @@ export default function AdventureSteps() {
           >
             {/* Explore hidden gems of India Section */}
             <div className="container mx-auto relative z-10">
-                <h2 className="font-archivo-black font-weight-400 text-[40px] text-[#003566E5]">India Uncovered: Explore the Unexpected</h2>
-                <p className="font-baloo-bhai font-weight-400 text-[24px] text-[#00474CBF] mb-8">Choose Your Adventure</p>
+                <h2 className="font-archivo-black font-weight-400 text-[28px] md:text-[40px] text-[#003566E5]">India Uncovered: Explore the Unexpected</h2>
+                <p className="font-baloo-bhai font-weight-400 text-[20px] md:text-[24px] text-[#00474CBF] mb-8">Choose Your Adventure</p>
                 
                 <div className="relative">
                     <div className="flex flex-wrap gap-4 mb-4 -mr-4 relative overflow-hidden">
@@ -904,7 +1061,7 @@ export default function AdventureSteps() {
                             {visibleIndiaGems.map((gem) => (
                                 <motion.div 
                                     key={gem.id}
-                                    className={`w-full md:w-[calc(50%-1rem)] xl:w-[calc(33.33%-1rem)] mx-auto rounded-2xl overflow-hidden shadow-lg cursor-pointer transition-all duration-300 ${activeCard === gem.id ? 'scale-105' : 'hover:-translate-y-2'}`}
+                                    className={`w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.33%-1rem)] mx-auto rounded-2xl overflow-hidden shadow-lg cursor-pointer transition-all duration-300 ${activeCard === gem.id ? 'scale-105' : 'hover:-translate-y-2'}`}
                                     onClick={() => handleCardClick(gem.id)}
                                     variants={cardVariants}
                                     initial="hidden"
@@ -913,9 +1070,11 @@ export default function AdventureSteps() {
                                     custom={slideDirection}
                                 >
                                     {activeCard === gem.id ? (
-                                        <div className={`h-[260px] bg-[#003566]`}>
+                                        <div className="slider h-[260px] bg-[#003566] overflow-y-auto">
+                                          <div className="h-full px-2">
                                             {gem.detailContent}
-                                        </div>
+                                          </div>
+                                        </div>                                      
                                     ) : (
                                         <div className="relative group">
                                             <div 
@@ -963,17 +1122,17 @@ export default function AdventureSteps() {
             </div>
 
             {/* Explore hidden gems Across the Globe Section */}
-            <div className="container mx-auto relative z-10 mt-16">
-                <h2 className="text-4xl font-bold text-[#003366]">Explore hidden gems Across the Globe</h2>
-                <p className="text-xl text-[#003366] mb-8">Choose Your Adventure</p>
+            <div className="container mx-auto relative z-10 mt-20 mb-12">
+                <h2 className="font-archivo-black font-weight-400 text-[28px] md:text-[40px] text-[#003566E5]">Wonders Uncovered: Travel Beyond the Ordinary</h2>
+                <p className="font-baloo-bhai font-weight-400 text-[20px] md:text-[24px] text-[#00474CBF] mb-8">Choose Your Adventure</p>
                 
                 <div className="relative">
-                    <div className="flex flex-wrap gap-6 mb-4 relative overflow-hidden">
+                    <div className="flex flex-wrap gap-4 mb-4 -mr-4 relative overflow-hidden">
                         <AnimatePresence custom={slideDirection} mode="popLayout">
                             {visibleGlobalGems.map((gem) => (
                                 <motion.div 
                                     key={gem.id}
-                                    className={`w-[calc(33.33%-1rem)] rounded-xl overflow-hidden shadow-lg cursor-pointer transition-all duration-300 ${activeCard === gem.id ? 'scale-105' : 'hover:-translate-y-2'}`}
+                                    className={`w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.33%-1rem)] mx-auto rounded-2xl overflow-hidden shadow-lg cursor-pointer transition-all duration-300 ${activeCard === gem.id ? 'scale-105' : 'hover:-translate-y-2'}`}
                                     onClick={() => handleCardClick(gem.id)}
                                     variants={cardVariants}
                                     initial="hidden"
@@ -982,19 +1141,21 @@ export default function AdventureSteps() {
                                     custom={slideDirection}
                                 >
                                     {activeCard === gem.id ? (
-                                        <div className={`h-[240px] ${gem.id.includes('culture') ? 'bg-[#002d62]' : 'bg-white'}`}>
+                                        <div className="slider h-[260px] bg-[#003566] overflow-y-auto">
+                                          <div className="h-full px-2">
                                             {gem.detailContent}
-                                        </div>
+                                          </div>
+                                        </div>                                      
                                     ) : (
                                         <div className="relative group">
                                             <div 
-                                                className="h-[240px] bg-cover bg-center transition-all duration-300"
+                                                className="h-[260px] bg-cover bg-center transition-all duration-300"
                                                 style={{ backgroundImage: `url('${gem.image}')` }}
                                             >
                                                 <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-20 transition-all duration-300">
                                                     <div className="p-6 absolute bottom-0 left-0 text-white transition-all duration-300 group-hover:opacity-0">
-                                                        <h3 className="text-2xl font-bold">{gem.title}</h3>
-                                                        <p className="text-gray-200">{gem.description}</p>
+                                                        <h3 className="text-[24px] font-bold">{gem.title}</h3>
+                                                        <p className="text-gray-200 text-[14px]">{gem.description}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1006,18 +1167,27 @@ export default function AdventureSteps() {
                     </div>
                     
                     <div className="absolute right-4 mt-2 flex space-x-2">
-                        <button 
-                            className="w-[77px] h-[42px] rounded-lg bg-gray-200 flex items-center justify-center shadow-md hover:bg-gray-300 transition"
-                            onClick={() => moveCards('global', -1)}
-                        >
-                            <span className="text-2xl">←</span>
-                        </button>
-                        <button 
-                            className="w-[77px] h-[42px] rounded-lg bg-gray-200 flex items-center justify-center shadow-md hover:bg-gray-300 transition"
-                            onClick={() => moveCards('global', 1)}
-                        >
-                            <span className="text-2xl">→</span>
-                        </button>
+                      {/* Left Button */}
+                      <button
+                        disabled={!canMoveLeft}
+                        onClick={() => canMoveLeft && moveCards('global', -1)}
+                        className={`w-[77px] h-[42px] rounded-lg flex items-center justify-center shadow-md transition 
+                          ${canMoveLeft ? 'bg-[#003566]' : 'bg-[#003566BF]'} text-[#FCD2B1] text-[32px] border border-0.94px border-[#FCD2B1]`}
+                        // title={!canMoveLeft ? "No more cards" : ""}
+                      >
+                        <FaArrowLeftLong className="absolute w-[28px] h-[21px]" />
+                      </button>
+
+                      {/* Right Button */}
+                      <button
+                        disabled={!canMoveRight}
+                        onClick={() => canMoveRight && moveCards('global', 1)}
+                        className={`w-[77px] h-[42px] rounded-lg flex items-center justify-center shadow-md transition 
+                          ${canMoveRight ? 'bg-[#003566]' : 'bg-[#003566BF]'} text-[#FCD2B1] text-[32px] border border-0.94px border-[#FCD2B1]`}
+                        // title={!canMoveRight ? "No more cards" : ""}
+                      >
+                        <FaArrowRightLong className="absolute w-[28px] h-[21px]" />
+                      </button>
                     </div>
                 </div>
             </div>
@@ -1025,7 +1195,7 @@ export default function AdventureSteps() {
         </section>
 
         {/* Why Us Section */}
-        <section className="relative h-[600px] bg-cover bg-center overflow-hidden">
+        <section className="relative h-[400px] md:h-[480px] lg:h-[600px] bg-cover bg-center overflow-hidden">
             <div className="absolute inset-0 z-0">
               <AnimatePresence>
                 <motion.div
@@ -1045,7 +1215,7 @@ export default function AdventureSteps() {
               </AnimatePresence>
             </div>
             <div className="absolute inset-0 bg-[#00000099]"></div>
-            <div className="relative flex flex-col justify-center items-center h-full font-">
+            <div className="relative flex flex-col justify-center items-center h-full z-10 text-center">
                 <h2 className="font-archivo-black font-weight-400 text-[#FCD2B1] text-[40px]">Why Us?</h2>
                 <p className="font-baloo-bhai font-weight-400 text-[#FCD2B1] text-[24px]">The answer lies in the journey</p>
                 <a href="/why_us" className="mt-4 px-5 py-1 text-[#FFFFFF] text-lg rounded-full transition-all flex items-center"
@@ -1087,41 +1257,47 @@ export default function AdventureSteps() {
             className="absolute top-2 right-4 w-[25%] z-10 rotate-[10deg]"
           />
 
-          <div className="container relative mx-auto z-20 lg:pl-[72px]">
+          <div className="container relative mx-auto z-20 pl-[48px] lg:pl-[72px]">
             <div className="mb-8">
-                <h2 className="font-archivo-black font-weight-400 text-[32px] text-[#003566E5]">See What They Say</h2>
-                <p className="font-baloo-bhai font-weight-400 text-[24px] text-[#00474CBF]">Happy Explorer Stories</p>
+                <h2 className="font-archivo-black font-weight-400 text-[28px] md:text-[32px] text-[#003566E5]">See What They Say</h2>
+                <p className="font-baloo-bhai font-weight-400 text-[20px] md:text-[24px] text-[#00474CBF]">Happy Explorer Stories</p>
             </div>
             
             {/* Grid of explorer images */}
-            <div className="flex flex-wrap justify-center gap-2 mb-12">
-              {feedbacks.map((item) => (
-                <div
-                  key={item.id}
-                  className="group relative transition-all duration-300 ease-in-out w-[175px] hover:w-[270px] h-[399px] rounded-xl overflow-hidden"
-                >
-                  <img
-                    src={item.image}
-                    alt={item.name}
-                    className="object-cover w-full h-full rounded-xl"
-                  />
-                  <div className="absolute inset-0 bg-[#003566] opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl flex flex-col p-4 border border-[#FFBE55] border-4">
-                    <h3 className="font-titan font-weight-400 text-[48px] text-[#FFBE55] text-center">{item.name}</h3>
-                    <p className="font-goudy font-weight-400 text-[24px] text-[#FFBE55] text-right -mt-2 mb-4">{item.role}</p>
-                    <p className="text-[#FFFFFFCC] text-[16px] font-poppins font-weight-400 leading-snug">{item.text}</p>
+            <div className="slider relative rounded-xl p-4 overflow-x-auto">
+              <div className="flex gap-2 pb-4 w-max">
+                {feedbacks.map((item) => (
+                  <div
+                    key={item.id}
+                    className="group relative transition-all duration-300 ease-in-out w-[220px] hover:w-[270px] h-[399px] rounded-xl overflow-hidden"
+                  >
+                    <img
+                      src={item.image}
+                      alt={item.name}
+                      className="object-cover w-full h-full rounded-xl"
+                    />
+                    <div className="absolute inset-0 bg-[#003566] opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl flex flex-col p-4 border border-[#FFBE55] border-4">
+                      <h3 className="font-titan font-weight-400 text-[48px] text-[#FFBE55] text-center">{item.name}</h3>
+                      <p className="font-goudy font-weight-400 text-[24px] text-[#FFBE55] text-right -mt-2 mb-4">{item.role}</p>
+                      <p className="text-[#FFFFFFCC] text-[16px] font-poppins font-weight-400 leading-snug">{item.text}</p>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
             
             {/* FAQ Section */}
             <div className="mt-16 z-10">                    
                 <div className="flex flex-wrap items-center">
                     {/* Left side - Image */}
-                    <div className="w-full md:w-1/3 pr-8">
-                      <img src="/Travel.jpg" alt="Travel" className="relative w-[320px] h-[280px] rounded-xl mb-4 justify-center" />
+                    <div className="w-full md:w-1/3 pr-8 text-center md:text-left">
+                      <img
+                        src="/Travel.jpg"
+                        alt="Travel"
+                        className="relative w-[320px] h-[280px] rounded-xl mb-4 mx-auto"
+                      />
                     </div>
-                    
+     
                     {/* Right side - FAQ */}
                     <div className="w-full md:w-2/3 pl-12 pr-24 pt-2">
                         <div className="mb-6 flex flex-col items-end">
