@@ -19,7 +19,7 @@ export default function WhyUs() {
                 {/* Background Image and Navigation */}
                 <section
                   className="relative min-h-screen md:h-[750px] bg-cover bg-center bg-no-repeat overflow-hidden"
-                  style={{ backgroundImage: "url('/contact_us.jpg')" }}
+                  style={{ backgroundImage: "url('/why_us.jpg')" }}
                 >
                   <div className="absolute inset-0 bg-[#00000080] z-0"></div>
         
@@ -111,10 +111,10 @@ export default function WhyUs() {
                   <div className="container mx-auto px-8 mt-48 lg:pl-[60px] relative z-10">
                     <div className="max-w-xl">
                       <h2 className="text-4xl md:text-[56px] font-delta-gothic font-weight-400 text-white">
-                        Contact Us ?
+                        Why Us ? 
                       </h2>
                       <p className="mt-2 text-[#FFFFFFE5] font-goudy font-weight-400 text-[22px]">
-                        We’re Just a Message Away From Your Next Trip
+                        Blind fold trips let you experience a fun, spontaneous, and surprise-filled adventure on your finger toes 
                       </p>
                     </div>
                   </div>
