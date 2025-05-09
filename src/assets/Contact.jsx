@@ -220,7 +220,7 @@ export default function Contact() {
                                 How to Reach Us?
                             </p>
                             {/* Contact Info */}
-                            <div className="space-y-4 font-poppins font-weight-400 text-[20px] text-[#000000]">
+                            <div className="space-y-4 font-poppins font-weight-400 text-[14px] md:text-[20px] text-[#000000]">
                                 <div className="flex items-center gap-3">
                                 <FaEnvelope className="text-[#003566]" />
                                 <span>Email: hello@blindfoldtrips.com</span>
