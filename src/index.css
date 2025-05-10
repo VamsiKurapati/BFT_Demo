@@ -50,3 +50,13 @@
 .slider {
   scrollbar-color: rgba(0, 0, 0, 0.2) transparent; /* Firefox */
 }
+
+/* Only hides horizontal scrollbar, not vertical ones */
+.hide-horizontal-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+
+.hide-horizontal-scrollbar::-webkit-scrollbar {
+  height: 0px;
+}

@@ -749,8 +749,10 @@ export default function Home() {
         setItemsToShow(3); // lg
       } else if (width >= 768) {
         setItemsToShow(2); // md
-      } else {
+      } else if (width >= 640) {
         setItemsToShow(1); // sm
+      } else {
+        setItemsToShow(10); // sm
       }
     };
 
@@ -1059,12 +1061,12 @@ export default function Home() {
                 <p className="font-baloo-bhai font-weight-400 text-[20px] md:text-[24px] text-[#00474CBF] mb-8">Choose Your Adventure</p>
                 
                 <div className="relative">
-                    <div className="flex flex-wrap gap-4 mb-4 -mr-4 relative overflow-hidden">
+                    <div className="flex gap-4 mb-4 -mr-4 mx-auto relative overflow-x-auto sm:overflow-x-visible scroll-smooth snap-x snap-mandatory sm:flex-wrap sm:overflow-hidden hide-horizontal-scrollbar">
                         <AnimatePresence custom={slideDirection} mode="popLayout">
                             {visibleIndiaGems.map((gem) => (
                                 <motion.div 
                                     key={gem.id}
-                                    className={`w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.33%-1rem)] mx-auto rounded-2xl overflow-hidden shadow-lg cursor-pointer transition-all duration-300 ${activeCard === gem.id ? 'scale-105' : 'hover:-translate-y-2'}`}
+                                    className={`shrink-0 snap-start sm:snap-none w-[85%] md:w-[calc(50%-1rem)] lg:w-[calc(33.33%-1rem)] mx-auto rounded-2xl overflow-hidden shadow-lg cursor-pointer transition-all duration-300 ${activeCard === gem.id ? 'scale-105' : 'hover:-translate-y-2'}`}
                                     onClick={() => handleCardClick(gem.id)}
                                     variants={cardVariants}
                                     initial="hidden"
@@ -1098,7 +1100,7 @@ export default function Home() {
                         </AnimatePresence>
                     </div>
                     
-                    <div className="absolute right-4 mt-2 flex space-x-2">
+                    <div className="absolute hidden sm:flex right-4 mt-2 space-x-2">
                       {/* Left Button */}
                       <button
                         disabled={!canMoveLeft}
@@ -1130,12 +1132,13 @@ export default function Home() {
                 <p className="font-baloo-bhai font-weight-400 text-[20px] md:text-[24px] text-[#00474CBF] mb-8">Choose Your Adventure</p>
                 
                 <div className="relative">
-                    <div className="flex flex-wrap gap-4 mb-4 -mr-4 relative overflow-hidden">
+                    <div className="flex gap-4 mb-4 -mr-4 mx-auto relative overflow-x-auto sm:overflow-x-visible scroll-smooth snap-x snap-mandatory sm:flex-wrap sm:overflow-hidden hide-horizontal-scrollbar">
                         <AnimatePresence custom={slideDirection} mode="popLayout">
                             {visibleGlobalGems.map((gem) => (
                                 <motion.div 
                                     key={gem.id}
-                                    className={`w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.33%-1rem)] mx-auto rounded-2xl overflow-hidden shadow-lg cursor-pointer transition-all duration-300 ${activeCard === gem.id ? 'scale-105' : 'hover:-translate-y-2'}`}
+                                    // className={`w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.33%-1rem)] mx-auto rounded-2xl overflow-hidden shadow-lg cursor-pointer transition-all duration-300 ${activeCard === gem.id ? 'scale-105' : 'hover:-translate-y-2'}`}
+                                    className={`shrink-0 snap-start sm:snap-none w-[85%] md:w-[calc(50%-1rem)] lg:w-[calc(33.33%-1rem)] mx-auto rounded-2xl overflow-hidden shadow-lg cursor-pointer transition-all duration-300 ${activeCard === gem.id ? 'scale-105' : 'hover:-translate-y-2'}`}
                                     onClick={() => handleCardClick(gem.id)}
                                     variants={cardVariants}
                                     initial="hidden"
@@ -1169,7 +1172,7 @@ export default function Home() {
                         </AnimatePresence>
                     </div>
                     
-                    <div className="absolute right-4 mt-2 flex space-x-2">
+                    <div className="absolute hidden sm:flex right-4 mt-2 space-x-2">
                       {/* Left Button */}
                       <button
                         disabled={!canMoveLeftGlobal}
