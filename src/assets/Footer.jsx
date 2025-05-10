@@ -38,7 +38,7 @@ export default function Footer() {
                     </div>
 
                     {/* Contact */}
-                    <div className="w-full sm:w-full md:w-1/2 lg:w-1/5 sm:flex sm:flex-col sm:items-center sm:text-center mt-6">
+                    <div className="w-full sm:w-full md:w-1/2 lg:w-1/5 sm:flex sm:flex-col items-center text-center md:mt-6">
                         <h4 className="font-archivo-black font-weight-400 text-[24px] mb-4">Contact</h4>
                         <ul className="space-y-2 text-[18px] font-goudy font-weight-400">
                             <li>Email: contact@blindfoldtrips.com</li>
