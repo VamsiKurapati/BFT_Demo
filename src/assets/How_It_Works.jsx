@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocation } from "react-router-dom";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay } from "swiper/modules";
 import 'swiper/swiper-bundle.css';
 import Footer from "./Footer";
-import { Plane, CalendarCheck, Compass, Luggage, Gift } from 'lucide-react';
 
 export default function HowItWorks() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);

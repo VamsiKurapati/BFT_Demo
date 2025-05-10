@@ -737,6 +737,9 @@ export default function Home() {
   const canMoveLeft = indiaStartIndex > 0;
   const canMoveRight = indiaStartIndex < indiaGems.length - 3;
 
+  const canMoveLeftGlobal = globalStartIndex > 0;
+  const canMoveRightGlobal = globalStartIndex < globalGems.length - 3;
+
   const [itemsToShow, setItemsToShow] = useState(1);
   
   useEffect(() => {
@@ -1169,10 +1172,10 @@ export default function Home() {
                     <div className="absolute right-4 mt-2 flex space-x-2">
                       {/* Left Button */}
                       <button
-                        disabled={!canMoveLeft}
-                        onClick={() => canMoveLeft && moveCards('global', -1)}
+                        disabled={!canMoveLeftGlobal}
+                        onClick={() => canMoveLeftGlobal && moveCards('global', -1)}
                         className={`w-[77px] h-[42px] rounded-lg flex items-center justify-center shadow-md transition 
-                          ${canMoveLeft ? 'bg-[#003566]' : 'bg-[#003566BF]'} text-[#FCD2B1] text-[32px] border border-0.94px border-[#FCD2B1]`}
+                          ${canMoveLeftGlobal ? 'bg-[#003566]' : 'bg-[#003566BF]'} text-[#FCD2B1] text-[32px] border border-0.94px border-[#FCD2B1]`}
                         // title={!canMoveLeft ? "No more cards" : ""}
                       >
                         <FaArrowLeftLong className="absolute w-[28px] h-[21px]" />
@@ -1180,10 +1183,10 @@ export default function Home() {
 
                       {/* Right Button */}
                       <button
-                        disabled={!canMoveRight}
-                        onClick={() => canMoveRight && moveCards('global', 1)}
+                        disabled={!canMoveRightGlobal}
+                        onClick={() => canMoveRightGlobal && moveCards('global', 1)}
                         className={`w-[77px] h-[42px] rounded-lg flex items-center justify-center shadow-md transition 
-                          ${canMoveRight ? 'bg-[#003566]' : 'bg-[#003566BF]'} text-[#FCD2B1] text-[32px] border border-0.94px border-[#FCD2B1]`}
+                          ${canMoveRightGlobal ? 'bg-[#003566]' : 'bg-[#003566BF]'} text-[#FCD2B1] text-[32px] border border-0.94px border-[#FCD2B1]`}
                         // title={!canMoveRight ? "No more cards" : ""}
                       >
                         <FaArrowRightLong className="absolute w-[28px] h-[21px]" />
