@@ -6,6 +6,7 @@ const Home = lazy(() => import("./assets/Home"));
 const Contact = lazy(() => import("./assets/Contact"));
 const WhyUs = lazy(() => import("./assets/Why_Us"));
 const HowItWorks = lazy(() => import("./assets/How_It_Works"));
+const Questionnaire = lazy(() => import("./assets/Questionnaire"));
 
 const App = () => {
     return (
@@ -16,6 +17,7 @@ const App = () => {
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/why_us" element={<WhyUs />} />
                 <Route path="/how_it_works" element={<HowItWorks />} />
+                <Route path="/questionnaire" element={<Questionnaire />} />
                 <Route path="*" element={<Home />} />
           </Routes>
       </Suspense>

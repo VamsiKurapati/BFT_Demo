@@ -18,8 +18,8 @@ export default function Footer() {
                     <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row justify-between items-center md:items-start lg:items-start mt-6">
                         {/* Quick Links */}
                         <div className="w-full sm:w-full md:w-1/2 lg:w-1/4 mb-6 sm:mb-0 flex flex-col items-center text-center">
-                            <h4 className="font-archivo-black font-weight-400 text-[24px] mb-4">Quick Links</h4>
-                            <ul className="space-y-2 text-[18px] font-goudy font-weight-400">
+                            <h4 className="font-archivo-black font-normal text-[24px] mb-4">Quick Links</h4>
+                            <ul className="space-y-2 text-[18px] font-goudy font-normal">
                                 <li><a href="/how_it_works" className="hover:text-red-200">How It Works?</a></li>
                                 <li><a href="/why_us" className="hover:text-red-200">Why Us?</a></li>
                                 <li><a href="/contact" className="hover:text-red-200">Contact Us</a></li>
@@ -28,8 +28,8 @@ export default function Footer() {
                         
                         {/* Legal Information */}
                         <div className="w-full sm:w-full md:w-1/2 lg:w-1/4 mb-6 sm:mb-0 flex flex-col items-center text-center">
-                            <h4 className="font-archivo-black font-weight-400 text-[24px] mb-4">Legal Information</h4>
-                            <ul className="space-y-2 text-[18px] font-goudy font-weight-400">
+                            <h4 className="font-archivo-black font-normal text-[24px] mb-4">Legal Information</h4>
+                            <ul className="space-y-2 text-[18px] font-goudy font-normal">
                                 <li><a href="/terms_of_service" className="hover:text-red-200">Terms of Service</a></li>
                                 <li><a href="/refund_policy" className="hover:text-red-200">Refund Policy</a></li>
                                 <li><a href="/privacy_policy" className="hover:text-red-200">Privacy Policy</a></li>
@@ -39,8 +39,8 @@ export default function Footer() {
 
                     {/* Contact */}
                     <div className="w-full sm:w-full md:w-1/2 lg:w-1/5 sm:flex sm:flex-col items-center text-center md:mt-6">
-                        <h4 className="font-archivo-black font-weight-400 text-[24px] mb-4">Contact</h4>
-                        <ul className="space-y-2 text-[18px] font-goudy font-weight-400">
+                        <h4 className="font-archivo-black font-normal text-[24px] mb-4">Contact</h4>
+                        <ul className="space-y-2 text-[18px] font-goudy font-normal">
                             <li>Email: contact@blindfoldtrips.com</li>
                             <li>Phone: +1 (234) 567-8901</li>
                             <li>Address: 123-45, 1st Main, NE Galaxy, Republic</li>
@@ -48,7 +48,7 @@ export default function Footer() {
                     </div>
                     
                     {/* Copyright */}
-                    <div className="mt-4 text-center text-[16px] font-goudy font-weight-400">
+                    <div className="mt-4 text-center text-[16px] font-goudy font-normal">
                         <p>© 2025 BlindFold Trips. All rights reserved.</p>
                     </div>
                 </div>
@@ -62,8 +62,8 @@ export default function Footer() {
                         
                         {/* Quick Links */}
                         <div className="w-full sm:w-full md:w-1/2 lg:w-1/5 mb-6 sm:mb-0 flex flex-col items-center text-center">
-                            <h4 className="font-archivo-black font-weight-400 text-[24px] mb-4">Quick Links</h4>
-                            <ul className="space-y-2 text-[18px] font-goudy font-weight-400">
+                            <h4 className="font-archivo-black font-normal text-[24px] mb-4">Quick Links</h4>
+                            <ul className="space-y-2 text-[18px] font-goudy font-normal">
                                 <li><a href="/how_it_works" className="hover:text-red-200">How It Works?</a></li>
                                 <li><a href="/why_us" className="hover:text-red-200">Why Us?</a></li>
                                 <li><a href="/contact" className="hover:text-red-200">Contact Us</a></li>
@@ -72,8 +72,8 @@ export default function Footer() {
                         
                         {/* Legal Information */}
                         <div className="w-full sm:w-full md:w-1/2 lg:w-1/5 mb-6 sm:mb-0 flex flex-col items-center text-center">
-                            <h4 className="font-archivo-black font-weight-400 text-[24px] mb-4">Legal Information</h4>
-                            <ul className="space-y-2 text-[18px] font-goudy font-weight-400">
+                            <h4 className="font-archivo-black font-normal text-[24px] mb-4">Legal Information</h4>
+                            <ul className="space-y-2 text-[18px] font-goudy font-normal">
                                 <li><a href="/terms_of_service" className="hover:text-red-200">Terms of Service</a></li>
                                 <li><a href="/refund_policy" className="hover:text-red-200">Refund Policy</a></li>
                                 <li><a href="/privacy_policy" className="hover:text-red-200">Privacy Policy</a></li>
@@ -82,8 +82,8 @@ export default function Footer() {
                         
                         {/* Contact */}
                         <div className="w-full sm:w-full md:w-1/2 lg:w-1/4 sm:flex sm:flex-col items-center text-center">
-                            <h4 className="font-archivo-black font-weight-400 text-[24px] mb-4">Contact</h4>
-                            <ul className="space-y-2 text-[18px] font-goudy font-weight-400">
+                            <h4 className="font-archivo-black font-normal text-[24px] mb-4">Contact</h4>
+                            <ul className="space-y-2 text-[18px] font-goudy font-normal">
                                 <li>Email: contact@blindfoldtrips.com</li>
                                 <li>Phone: +1 (234) 567-8901</li>
                                 <li>Address: 123-45, 1st Main, NE Galaxy, Republic</li>
@@ -92,7 +92,7 @@ export default function Footer() {
                     </div>
                     
                     {/* Copyright */}
-                    <div className="mt-4 text-center text-[16px] font-goudy font-weight-400">
+                    <div className="mt-4 text-center text-[16px] font-goudy font-normal">
                         <p>© 2025 BlindFold Trips. All rights reserved.</p>
                     </div>
                 </div>

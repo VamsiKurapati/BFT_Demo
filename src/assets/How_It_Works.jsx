@@ -200,10 +200,10 @@ export default function HowItWorks() {
                 {/* Hero Content */}
                 <div className="container mx-auto px-8 mt-48 lg:pl-[60px] relative z-10">
                     <div className="max-w-xl">
-                    <h2 className="text-4xl md:text-[56px] font-delta-gothic font-weight-400 text-white">
+                    <h2 className="text-[48px] md:text-[56px] font-delta-gothic font-normal text-white">
                         How it works ? 
                     </h2>
-                    <p className="mt-2 text-[#FFFFFFE5] font-goudy font-weight-400 text-[22px]">
+                    <p className="mt-2 text-[#FFFFFFE5] font-goudy font-normal text-[18px] md:text-[22px]">
                         No planning. No stress. Just pack and go—your surprise adventure awaits!
                     </p>
                     </div>
@@ -314,9 +314,9 @@ export default function HowItWorks() {
 
             {/* Cards Section */}
             <section className="px-6 py-8 md:py-12 text-[#000000BF] pl-[36px] sm:pl-[60px] lg:pl-[72px]">
-                <h2 className="text-[28px] sm:text-[32px] md:text-[36px] text-[40px] font-archivo-black font-weight-400 text-[#003566E5] -mb-2">What’s Included</h2>
-                <p className="text-[16px] sm:text[20px] md:text-[24px] font-baloo-bhai font-weight-400 text-[#00474CBF] sm:mb-6 lg:mb-4">Hover the Cards to know</p>
-                <p className="mb-6 font-poppins font-weight-400 text-[#000000BF] text-[14px] sm:text-[16px] md:text-[20px]">
+                <h2 className="text-[28px] sm:text-[32px] md:text-[36px] text-[40px] font-archivo-black font-normal text-[#003566E5] -mb-2">What’s Included</h2>
+                <p className="text-[16px] sm:text[20px] md:text-[24px] font-baloo-bhai font-normal text-[#00474CBF] sm:mb-6 lg:mb-4">Hover the Cards to know</p>
+                <p className="mb-6 font-poppins font-normal text-[#000000BF] text-[14px] sm:text-[16px] md:text-[20px]">
                     Your Blind Fold Trip is thoughtfully packed with everything you need for a smooth and unforgettable adventure.
                     Here’s what’s part of the magic :
                 </p>
@@ -335,7 +335,7 @@ export default function HowItWorks() {
 
                             {/* Overlay */}
                             <div className="absolute inset-0 bg-black bg-opacity-70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                                <div className="font-weight-400 text-[20px] text-[#FFFFFF] text-center px-2">
+                                <div className="font-normal text-[20px] text-[#FFFFFF] text-center px-2">
                                     <p className="font-archivo-black">{card.title}</p>
                                     <p className="font-sofia text-right px-4">{card.subtitle}</p>
                                     <p className="font-poppins text-[#FFFFFFBF] text-[12px] mt-1">{card.description}</p>
@@ -345,7 +345,7 @@ export default function HowItWorks() {
                     ))}
                 </div>
 
-                <p className="font-poppins font-weight-700 text-[#A11616E5] text-[16px] mb-2">* Hover the Cards to know what's included</p>
+                <p className="font-poppins font-bold text-[#A11616E5] text-[16px] mb-2">* Hover the Cards to know what's included</p>
                 <div className="flex justify-end w-full">
                     <p className="text-[16px] md:text[20px] lg:text-[26px] font-poppins font-bold text-black mb-4 w-full md:w-1/3 pr-12">
                         <span className="text-[#A11616] opacity-90">Everything is taken care </span>
@@ -357,25 +357,25 @@ export default function HowItWorks() {
 
             {/* About Us Section */}
             <section className="px-6 py-8 md:py-12 text-[#000000BF] pl-[36px] sm:pl-[60px] lg:pl-[72px]">
-                <h2 className="text-[28px] sm:text-[32px] md:text-[36px] text-[40px] font-archivo-black font-weight-400 text-[#003566E5] -mb-2">About Us</h2>
-                <p className="text-[16px] sm:text[20px] md:text-[24px] font-baloo-bhai font-weight-400 text-[#00474CBF] sm:mb-6 lg:mb-4">Where mystery meets adventure</p>
+                <h2 className="text-[28px] sm:text-[32px] md:text-[36px] text-[40px] font-archivo-black font-normal text-[#003566E5] -mb-2">About Us</h2>
+                <p className="text-[16px] sm:text[20px] md:text-[24px] font-baloo-bhai font-normal text-[#00474CBF] sm:mb-6 lg:mb-4">Where mystery meets adventure</p>
                 <div className="grid md:grid-cols-2 gap-16 items-center">
-                    <div className="font-poppins font-weight-400 text-[#000000BF] text-[14px] sm:text-[16px] md:text-[20px]">
+                    <div className="font-poppins font-normal text-[#000000BF] text-[14px] sm:text-[16px] md:text-[20px]">
                         <p className="mb-4">
-                            <span className="text-[#A11616E5] font-weight-600">Blind Fold Trips</span> was <span className="text-[#000000] font-weight-600">born out of a love for adventure and the belief that the best travel stories are the ones you never see coming. </span>
-                            <span className="text-[#A11616E5] font-weight-600">
+                            <span className="text-[#A11616E5] font-semibold">Blind Fold Trips</span> was <span className="text-[#000000] font-semibold">born out of a love for adventure and the belief that the best travel stories are the ones you never see coming. </span>
+                            <span className="text-[#A11616E5] font-semibold">
                             Founded by a group of travel-obsessed dreamers, planners, and thrill-seekers,</span><span className="text-[#003566E5]"> our mission is to reignite the wonder of discovery in every journey you take.</span>
                         </p>
 
                         <p className="mb-4">
                             We understand how stressful it can be to plan the perfect trip—juggling dates, budgets, destinations, and
-                            trying to please everyone. So, <span className="font-weight-600 text-[#000000]">we flipped the script</span>. With us, you <span className="font-weight-600 text-[#000000]">just pack your bags and go</span>. We take care of the rest, from
+                            trying to please everyone. So, <span className="font-semibold text-[#000000]">we flipped the script</span>. With us, you <span className="font-semibold text-[#000000]">just pack your bags and go</span>. We take care of the rest, from
                             flights and hotels to curated local experiences. All while keeping your final destination a thrilling
                             surprise until the very last moment.
                         </p>
 
                         <p>
-                            <span className="font-weight-600 text-[#003566E5]">We believe travel should be personal, exciting, and most of all—fun.</span>{" "}
+                            <span className="font-semibold text-[#003566E5]">We believe travel should be personal, exciting, and most of all—fun.</span>{" "}
                             That’s why every trip is tailored to your preferences, quirks, and sense of adventure. Whether you’re
                             celebrating something special, taking a break from routine, or just want to do something bold and different,
                             Blind Fold Trips is your passport to the unexpected.
@@ -384,7 +384,7 @@ export default function HowItWorks() {
 
                     <div className="flex flex-col items-center">
                         <img src="/about_us.jpg" alt="This is not my secret" className="rounded-xl shadow-md w-[468px] h-[400px] mb-4" />
-                        <p className="text-center text-[#000000] text-[16px] sm:text[20px] md:text-[26px] font-poppins font-weight-700">
+                        <p className="text-center text-[#000000] text-[16px] sm:text[20px] md:text-[26px] font-poppins font-bold">
                             <span className="text-[#003566E5]">Adventure doesn’t start at the destination</span>—it starts the moment you decide to take the leap.
                             <span className="text-[#A11616E5]">Let’s make travel magical again.</span>
                         </p>

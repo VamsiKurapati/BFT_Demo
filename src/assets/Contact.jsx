@@ -161,10 +161,10 @@ export default function Contact() {
                   {/* Hero Content */}
                   <div className="container mx-auto px-8 mt-48 lg:pl-[60px] relative z-10">
                     <div className="max-w-xl">
-                      <h2 className="text-4xl md:text-[56px] font-delta-gothic font-weight-400 text-white">
+                      <h2 className="text-[48px] md:text-[56px] font-delta-gothic font-normal text-white">
                         Contact Us ?
                       </h2>
-                      <p className="mt-2 text-[#FFFFFFE5] font-goudy font-weight-400 text-[22px]">
+                      <p className="mt-2 text-[#FFFFFFE5] font-goudy font-normal text-[18px] md:text-[22px]">
                         We’re Just a Message Away From Your Next Trip
                       </p>
                     </div>
@@ -175,10 +175,10 @@ export default function Contact() {
                     <div className="px-16 grid grid-cols-1 md:grid-cols-2 gap-24">
                         {/* 1: Left Content */}
                         <div>
-                            <h2 className="text-3xl md:text-[40px] text-[#003566E5] font-archivo-black font-weight-400 mb-4">
+                            <h2 className="text-[32px] md:text-[40px] text-[#003566E5] font-archivo-black font-normal mb-4">
                                 Let’s Chat Before You Jet!
                             </h2>
-                            <p className="font-poppins font-weight-400 text-[20px] text-[#000000CC] text-center mb-6">
+                            <p className="font-poppins font-normal text-[20px] text-[#000000CC] text-center mb-6">
                                 Got a question, a wild idea, or just want to say hi before your mystery trip? We're here to help—whether you're curious, nervous, or just excited.
                             </p>
                         </div>
@@ -216,11 +216,11 @@ export default function Contact() {
                         
                         {/* 3: How to reach Us */}
                         <div className="self-start">
-                            <p className="font-archivo-black font-weight-400 text-[40px] text-[#003566E5] mb-6">
+                            <p className="font-archivo-black font-normal text-[40px] text-[#003566E5] mb-6">
                                 How to Reach Us?
                             </p>
                             {/* Contact Info */}
-                            <div className="space-y-4 font-poppins font-weight-400 text-[14px] md:text-[20px] text-[#000000]">
+                            <div className="space-y-4 font-poppins font-normal text-[14px] md:text-[20px] text-[#000000]">
                                 <div className="flex items-center gap-3">
                                 <FaEnvelope className="text-[#003566]" />
                                 <span>Email: hello@blindfoldtrips.com</span>
@@ -237,7 +237,7 @@ export default function Contact() {
 
                             {/* Social Icons */}
                             <div className="mt-6">
-                                <p className="font-baloo-bhai font-weight-400 text-[24px] text-[#00474CBF] mb-2 ">Follow us on:</p>
+                                <p className="font-baloo-bhai font-normal text-[24px] text-[#00474CBF] mb-2 ">Follow us on:</p>
                                 <div className="flex space-x-4 text-2xl text-[#003566]">
                                 <a href="#" aria-label="Facebook">
                                     <FaFacebook className="hover:text-blue-700 transition" />
@@ -361,8 +361,8 @@ export default function Contact() {
                 <section className="bg-[#FFFFFF] pt-6 pb-6">
                     <div className="w-[90%] border-l-4 border-[#FFBE55] px-10 py-10 mx-auto shadow-xl rounded-3xl mt-6 mb-6">
                         <div className="items-center mb-6">
-                            <h2 className="text-2xl md:text-[40px] text-[#003566E5] font-archivo-black font-weight-400 mb-1">Send Us a Message</h2>
-                            <p className="text-[20px] md:text-[24px] text-[#00474CBF] font-baloo-bhai font-weight-400mb-6">
+                            <h2 className="text-[32px] md:text-[40px] text-[#003566E5] font-archivo-black font-normal mb-1">Send Us a Message</h2>
+                            <p className="text-[20px] md:text-[24px] text-[#00474CBF] font-baloo-bhai font-normalmb-6">
                                 We usually reply within 24 hours. Faster if we've had our coffee ☕
                             </p>
                         </div>
@@ -451,7 +451,7 @@ export default function Contact() {
 
                                     <button
                                     type="submit"
-                                    className="mt-4 bg-[#A11616E5] font-poppins font-weight-700 text-[#FCD2B1] text-[18px] md:text-[24px] px-12 md:px-20 py-1 rounded-xl shadow transition"
+                                    className="mt-4 bg-[#A11616E5] font-poppins font-bold text-[#FCD2B1] text-[18px] md:text-[24px] px-12 md:px-20 py-1 rounded-xl shadow transition"
                                     >
                                     Submit →
                                     </button>
@@ -466,13 +466,13 @@ export default function Contact() {
                                     className="rounded-xl object-cover w-full h-[300px] md:h-[600px] mb-6"
                                 />
                                 <p className="text-center">
-                                    <span className="font-poppins font-weight-700 text-[25.5px] text-[#003566CC]">
+                                    <span className="font-poppins font-bold text-[25.5px] text-[#003566CC]">
                                     If you're tired of planning every second of your trip
                                     </span>
-                                    <span className="font-poppins font-weight-700 text-[25.5px] text-[#000000]">
+                                    <span className="font-poppins font-bold text-[25.5px] text-[#000000]">
                                         , or just ready to say "yes" to something new—
                                     </span>
-                                    <span className="font-poppins font-weight-700 text-[25.5px] text-[#A11616]">this is for you.</span>
+                                    <span className="font-poppins font-bold text-[25.5px] text-[#A11616]">this is for you.</span>
                                 </p>
                             </div>
                         </div>

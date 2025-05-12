@@ -18,13 +18,13 @@ const ImageCarousel = ({ images, alt }) => {
   }, [images.length]);
 
   return (
-    <div className="relative w-full h-48 overflow-hidden rounded">
+    <div className="relative w-full h-[140px] pl-[6px] overflow-hidden rounded">
       <AnimatePresence mode="wait">
         <motion.img
           key={currentIndex}
           src={images[currentIndex]}
           alt={`${alt} ${currentIndex + 1}`}
-          className="w-full h-[169px] object-cover rounded-xl justify-center items-center"
+          className="w-full h-[120px] object-cover rounded-xl justify-center items-center"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -147,10 +147,10 @@ export default function Home() {
       image: "/India/Nature.jpg",
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
-          <h3 className="font-titan font-weight-400 text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Nature Unleashed</h3>
+          <h3 className="font-titan font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Nature Unleashed</h3>
           <div className="flex flex-row flex-grow">
             <div className="w-1/2">
-              <ul className="list-disc pl-[30px] space-y-1 font-sofia font-weight-400 text-[13px] text-[#FFFFFF]">
+              <ul className="list-disc pl-[12px] md:pl-[24px] space-y-1 font-poppins font-normal text-[12px] sm:text-[16px] md:text-[11.5px] lg:text-[12px] text-[#FFFFFF]">
                 <li>Coastal / Beach</li>
                 <li>Mountains</li>
                 <li>Forest / Jungle</li>
@@ -173,6 +173,11 @@ export default function Home() {
                 ]} 
                 alt="Nature" 
               />
+              <div className="flex items-center justify-center">
+                <button className="text-center px-4 py-2 bg-[#A11616E5] hover:bg-[#00474C] text-[#FCD2B1] border border-0.5 border-[#FCD2B1] rounded-lg font-poppins font-bold text-[7px] sm:text-[8px] md:text-[9px] lg:text-[10px]">
+                  Chase the Adventure <FaArrowRightLong className="inline-block" />
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -185,10 +190,10 @@ export default function Home() {
       image: "/India/Adrenaline.jpg",
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
-          <h3 className="font-titan font-weight-400 text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Adventure & Activities</h3>
+          <h3 className="font-titan font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Adventure & Activities</h3>
           <div className="flex flex-row flex-grow">
             <div className="w-1/2">
-              <ul className="list-disc pl-[30px] space-y-1 font-sofia font-weight-400 text-[13px] text-[#FFFFFF]">
+              <ul className="list-disc pl-[12px] md:pl-[24px] space-y-1 font-poppins font-normal text-[12px] sm:text-[16px] md:text-[11.5px] lg:text-[12px] text-[#FFFFFF]">
                 <li>Trekking / Hiking</li>
                 <li>Camping</li>
                 <li>Skiing / Snow Adevntures</li>
@@ -211,6 +216,11 @@ export default function Home() {
                 ]} 
                 alt="Adrenaline" 
               />
+              <div className="flex items-center justify-center">
+                <button className="text-center px-4 py-2 bg-[#A11616E5] hover:bg-[#00474C] text-[#FCD2B1] border border-0.5 border-[#FCD2B1] rounded-lg font-poppins font-bold text-[7px] sm:text-[8px] md:text-[9px] lg:text-[10px]">
+                  Chase the Adventure <FaArrowRightLong className="inline-block" />
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -223,10 +233,10 @@ export default function Home() {
       image: "/India/Culture.jpg",
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
-          <h3 className="font-titan font-weight-400 text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Cultural & Historical</h3>
+          <h3 className="font-titan font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Cultural & Historical</h3>
           <div className="flex flex-row flex-grow">
             <div className="w-1/2">
-              <ul className="list-disc pl-[30px] space-y-1 font-sofia font-weight-400 text-[13px] text-[#FFFFFF]">
+              <ul className="list-disc pl-[12px] md:pl-[24px] space-y-1 font-poppins font-normal text-[12px] sm:text-[16px] md:text-[11.5px] lg:text-[12px] text-[#FFFFFF]">
                 <li>Heritage & Historical Tours</li>
                 <li>Devotional / Pilgrimage</li>
                 <li>Rural / Village Tourism</li>
@@ -247,6 +257,11 @@ export default function Home() {
                 ]} 
                 alt="Culture" 
               />
+              <div className="flex items-center justify-center">
+                <button className="text-center px-4 py-2 bg-[#A11616E5] hover:bg-[#00474C] text-[#FCD2B1] border border-0.5 border-[#FCD2B1] rounded-lg font-poppins font-bold text-[7px] sm:text-[8px] md:text-[9px] lg:text-[10px]">
+                  Chase the Adventure <FaArrowRightLong className="inline-block" />
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -259,10 +274,10 @@ export default function Home() {
       image: "/India/Taste.jpg",
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
-          <h3 className="font-titan font-weight-400 text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Taste The Culture</h3>
+          <h3 className="font-titan font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Taste The Culture</h3>
           <div className="flex flex-row flex-grow">
             <div className="w-1/2">
-              <ul className="list-disc pl-[30px] space-y-1 font-sofia font-weight-400 text-[13px] text-[#FFFFFF]">
+              <ul className="list-disc pl-[12px] md:pl-[24px] space-y-1 font-poppins font-normal text-[12px] sm:text-[16px] md:text-[11.5px] lg:text-[12px] text-[#FFFFFF]">
                 <li>Culinary Tours / Food Trails</li>
                 <li>Wine Tasting / Vineyard Tours</li>
                 <li>Cooking Classes</li>
@@ -281,6 +296,11 @@ export default function Home() {
                 ]} 
                 alt="Taste" 
               />
+              <div className="flex items-center justify-center">
+                <button className="text-center px-4 py-2 bg-[#A11616E5] hover:bg-[#00474C] text-[#FCD2B1] border border-0.5 border-[#FCD2B1] rounded-lg font-poppins font-bold text-[7px] sm:text-[8px] md:text-[9px] lg:text-[10px]">
+                  Chase the Adventure <FaArrowRightLong className="inline-block" />
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -293,10 +313,10 @@ export default function Home() {
       image: "/India/City.jpg",
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
-          <h3 className="font-titan font-weight-400 text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Urban & Entertainment</h3>
+          <h3 className="font-titan font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Urban & Entertainment</h3>
           <div className="flex flex-row flex-grow">
             <div className="w-1/2">
-              <ul className="list-disc pl-[30px] space-y-1 font-sofia font-weight-400 text-[13px] text-[#FFFFFF]">
+              <ul className="list-disc pl-[12px] md:pl-[24px] space-y-1 font-poppins font-normal text-[12px] sm:text-[16px] md:text-[11.5px] lg:text-[12px] text-[#FFFFFF]">
                 <li>Party & Nightlife</li>
                 <li>City Tours / Urban Escapes</li>
                 <li>Luxury Travel</li>
@@ -315,6 +335,11 @@ export default function Home() {
                 ]} 
                 alt="City" 
               />
+              <div className="flex items-center justify-center">
+                <button className="text-center px-4 py-2 bg-[#A11616E5] hover:bg-[#00474C] text-[#FCD2B1] border border-0.5 border-[#FCD2B1] rounded-lg font-poppins font-bold text-[7px] sm:text-[8px] md:text-[9px] lg:text-[10px]">
+                  Chase the Adventure <FaArrowRightLong className="inline-block" />
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -326,10 +351,10 @@ export default function Home() {
       image: "/India/Festive.jpg",
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
-          <h3 className="font-titan font-weight-400 text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Festive Trails</h3>
+          <h3 className="font-titan font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Festive Trails</h3>
           <div className="flex flex-row flex-grow">
             <div className="w-1/2">
-              <ul className="list-disc pl-[30px] space-y-1 font-sofia font-weight-400 text-[13px] text-[#FFFFFF]">
+              <ul className="list-disc pl-[12px] md:pl-[24px] space-y-1 font-poppins font-normal text-[12px] sm:text-[16px] md:text-[11.5px] lg:text-[12px] text-[#FFFFFF]">
                 <li>Honeymoon / Romantic</li>
                 <li>Winter Travel</li>
                 <li>Summer Getaways</li>
@@ -349,6 +374,11 @@ export default function Home() {
                 ]} 
                 alt="Festive" 
               />
+              <div className="flex items-center justify-center">
+                <button className="text-center px-4 py-2 bg-[#A11616E5] hover:bg-[#00474C] text-[#FCD2B1] border border-0.5 border-[#FCD2B1] rounded-lg font-poppins font-bold text-[7px] sm:text-[8px] md:text-[9px] lg:text-[10px]">
+                  Chase the Adventure <FaArrowRightLong className="inline-block" />
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -361,10 +391,10 @@ export default function Home() {
       image: "/India/Squad.jpg",
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
-          <h3 className="font-titan font-weight-400 text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Squad Getaways</h3>
+          <h3 className="font-titan font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Squad Getaways</h3>
           <div className="flex flex-row flex-grow">
             <div className="w-1/2">
-              <ul className="list-disc pl-[30px] space-y-1 font-sofia font-weight-400 text-[13px] text-[#FFFFFF]">
+              <ul className="list-disc pl-[12px] md:pl-[24px] space-y-1 font-poppins font-normal text-[12px] sm:text-[16px] md:text-[11.5px] lg:text-[12px] text-[#FFFFFF]">
                 <li>Family-Friendly Trips</li>
                 <li>Kids' Adventures</li>
                 <li>Group Tours</li>
@@ -383,6 +413,11 @@ export default function Home() {
                 ]} 
                 alt="Squad" 
               />
+              <div className="flex items-center justify-center">
+                <button className="text-center px-4 py-2 bg-[#A11616E5] hover:bg-[#00474C] text-[#FCD2B1] border border-0.5 border-[#FCD2B1] rounded-lg font-poppins font-bold text-[7px] sm:text-[8px] md:text-[9px] lg:text-[10px]">
+                  Chase the Adventure <FaArrowRightLong className="inline-block" />
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -395,10 +430,10 @@ export default function Home() {
       image: "/India/Awakening.jpg",
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
-          <h3 className="font-titan font-weight-400 text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Spiritual & Self-Discovery</h3>
+          <h3 className="font-titan font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Spiritual & Self-Discovery</h3>
           <div className="flex flex-row flex-grow">
             <div className="w-1/2">
-              <ul className="list-disc pl-[30px] space-y-1 font-sofia font-weight-400 text-[13px] text-[#FFFFFF]">
+              <ul className="list-disc pl-[12px] md:pl-[24px] space-y-1 font-poppins font-normal text-[12px] sm:text-[16px] md:text-[11.5px] lg:text-[12px] text-[#FFFFFF]">
                 <li>Devotional / Pilgrimage</li>
                 <li>Yoga & Meditation Retreats</li>
                 <li>Mindfulness Journeys</li>
@@ -415,6 +450,11 @@ export default function Home() {
                 ]} 
                 alt="Awakening" 
               />
+              <div className="flex items-center justify-center">
+                <button className="text-center px-4 py-2 bg-[#A11616E5] hover:bg-[#00474C] text-[#FCD2B1] border border-0.5 border-[#FCD2B1] rounded-lg font-poppins font-bold text-[7px] sm:text-[8px] md:text-[9px] lg:text-[10px]">
+                  Chase the Adventure <FaArrowRightLong className="inline-block" />
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -430,10 +470,10 @@ export default function Home() {
       image: "/India/Nature.jpg",
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
-          <h3 className="font-titan font-weight-400 text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Nature Unleashed</h3>
+          <h3 className="font-titan font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Nature Unleashed</h3>
           <div className="flex flex-row flex-grow">
             <div className="w-1/2">
-              <ul className="list-disc pl-[30px] space-y-1 font-sofia font-weight-400 text-[13px] text-[#FFFFFF]">
+              <ul className="list-disc pl-[12px] md:pl-[24px] space-y-1 font-poppins font-normal text-[12px] sm:text-[16px] md:text-[11.5px] lg:text-[12px] text-[#FFFFFF]">
                 <li>Coastal / Beach</li>
                 <li>Mountains</li>
                 <li>Forest / Jungle</li>
@@ -468,10 +508,10 @@ export default function Home() {
       image: "/India/Adrenaline.jpg",
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
-          <h3 className="font-titan font-weight-400 text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Adventure & Activities</h3>
+          <h3 className="font-titan font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Adventure & Activities</h3>
           <div className="flex flex-row flex-grow">
             <div className="w-1/2">
-              <ul className="list-disc pl-[30px] space-y-1 font-sofia font-weight-400 text-[13px] text-[#FFFFFF]">
+              <ul className="list-disc pl-[12px] md:pl-[24px] space-y-1 font-poppins font-normal text-[12px] sm:text-[16px] md:text-[11.5px] lg:text-[12px] text-[#FFFFFF]">
                 <li>Trekking / Hiking</li>
                 <li>Camping</li>
                 <li>Skiing / Snow Adevntures</li>
@@ -506,10 +546,10 @@ export default function Home() {
       image: "/India/Culture.jpg",
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
-          <h3 className="font-titan font-weight-400 text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Cultural & Historical</h3>
+          <h3 className="font-titan font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Cultural & Historical</h3>
           <div className="flex flex-row flex-grow">
             <div className="w-1/2">
-              <ul className="list-disc pl-[30px] space-y-1 font-sofia font-weight-400 text-[13px] text-[#FFFFFF]">
+              <ul className="list-disc pl-[12px] md:pl-[24px] space-y-1 font-poppins font-normal text-[12px] sm:text-[16px] md:text-[11.5px] lg:text-[12px] text-[#FFFFFF]">
                 <li>Heritage & Historical Tours</li>
                 <li>Devotional / Pilgrimage</li>
                 <li>Rural / Village Tourism</li>
@@ -542,10 +582,10 @@ export default function Home() {
       image: "/India/Taste.jpg",
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
-          <h3 className="font-titan font-weight-400 text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Taste The Culture</h3>
+          <h3 className="font-titan font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Taste The Culture</h3>
           <div className="flex flex-row flex-grow">
             <div className="w-1/2">
-              <ul className="list-disc pl-[30px] space-y-1 font-sofia font-weight-400 text-[13px] text-[#FFFFFF]">
+              <ul className="list-disc pl-[12px] md:pl-[24px] space-y-1 font-poppins font-normal text-[12px] sm:text-[16px] md:text-[11.5px] lg:text-[12px] text-[#FFFFFF]">
                 <li>Culinary Tours / Food Trails</li>
                 <li>Wine Tasting / Vineyard Tours</li>
                 <li>Cooking Classes</li>
@@ -576,10 +616,10 @@ export default function Home() {
       image: "/India/City.jpg",
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
-          <h3 className="font-titan font-weight-400 text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Urban & Entertainment</h3>
+          <h3 className="font-titan font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Urban & Entertainment</h3>
           <div className="flex flex-row flex-grow">
             <div className="w-1/2">
-              <ul className="list-disc pl-[30px] space-y-1 font-sofia font-weight-400 text-[13px] text-[#FFFFFF]">
+              <ul className="list-disc pl-[12px] md:pl-[24px] space-y-1 font-poppins font-normal text-[12px] sm:text-[16px] md:text-[11.5px] lg:text-[12px] text-[#FFFFFF]">
                 <li>Party & Nightlife</li>
                 <li>City Tours / Urban Escapes</li>
                 <li>Luxury Travel</li>
@@ -609,10 +649,10 @@ export default function Home() {
       image: "/India/Festive.jpg",
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
-          <h3 className="font-titan font-weight-400 text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Festive Trails</h3>
+          <h3 className="font-titan font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Festive Trails</h3>
           <div className="flex flex-row flex-grow">
             <div className="w-1/2">
-              <ul className="list-disc pl-[30px] space-y-1 font-sofia font-weight-400 text-[13px] text-[#FFFFFF]">
+              <ul className="list-disc pl-[12px] md:pl-[24px] space-y-1 font-poppins font-normal text-[12px] sm:text-[16px] md:text-[11.5px] lg:text-[12px] text-[#FFFFFF]">
                 <li>Honeymoon / Romantic</li>
                 <li>Winter Travel</li>
                 <li>Summer Getaways</li>
@@ -644,10 +684,10 @@ export default function Home() {
       image: "/India/Squad.jpg",
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
-          <h3 className="font-titan font-weight-400 text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Squad Getaways</h3>
+          <h3 className="font-titan font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Squad Getaways</h3>
           <div className="flex flex-row flex-grow">
             <div className="w-1/2">
-              <ul className="list-disc pl-[30px] space-y-1 font-sofia font-weight-400 text-[13px] text-[#FFFFFF]">
+              <ul className="list-disc pl-[12px] md:pl-[24px] space-y-1 font-poppins font-normal text-[12px] sm:text-[16px] md:text-[11.5px] lg:text-[12px] text-[#FFFFFF]">
                 <li>Family-Friendly Trips</li>
                 <li>Kids' Adventures</li>
                 <li>Group Tours</li>
@@ -678,10 +718,10 @@ export default function Home() {
       image: "/India/Awakening.jpg",
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
-          <h3 className="font-titan font-weight-400 text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Spiritual & Self-Discovery</h3>
+          <h3 className="font-titan font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Spiritual & Self-Discovery</h3>
           <div className="flex flex-row flex-grow">
             <div className="w-1/2">
-              <ul className="list-disc pl-[30px] space-y-1 font-sofia font-weight-400 text-[13px] text-[#FFFFFF]">
+              <ul className="list-disc pl-[12px] md:pl-[24px] space-y-1 font-poppins font-normal text-[12px] sm:text-[16px] md:text-[11.5px] lg:text-[12px] text-[#FFFFFF]">
                 <li>Devotional / Pilgrimage</li>
                 <li>Yoga & Meditation Retreats</li>
                 <li>Mindfulness Journeys</li>
@@ -941,15 +981,15 @@ export default function Home() {
           {/* Hero Content */}
           <div className="container mx-auto px-8 mt-24 lg:pl-[60px] relative z-10">
             <div className="max-w-xl">
-              <h2 className="text-4xl md:text-[56px] font-delta-gothic font-weight-400 text-white">
+              <h2 className="text-[48px] md:text-[56px] font-delta-gothic font-normal text-white">
                 No Clues, No Ties—Just Pure Surprise!
               </h2>
-              <p className="mt-2 text-white font-goudy font-weight-400 text-[22px] opacity-90">
+              <p className="mt-2 text-white font-goudy font-normal text-[18px] md:text-[22px] opacity-90">
                 Blind fold trips let you experience a fun, spontaneous, and
                 surprise—filled adventure on your finger tips.
               </p>
               <button
-                className="mt-8 bg-[#A11716E5] font-poppins font-weight-700 text-[#FCD2B1] text-[20px] px-6 py-2 rounded-full flex items-center transition border border-1"
+                className="mt-8 bg-[#A11716E5] font-poppins font-bold text-[#FCD2B1] text-[16px] md:text-[20px] px-6 py-2 rounded-full flex items-center transition border border-1"
                 style={{ borderColor: '#FCD2B1' }}
               >
                 Know your destination <span className="ml-2">→</span>
@@ -971,15 +1011,15 @@ export default function Home() {
           ></div>
           <div className="container mx-auto md:px-8 z-10">
             <div className="md:w-[90%]">
-              <h2 className="text-[32px] sm:text-[40px] font-archivo-black font-weight-400 text-[#003566E5] text-center sm:text-left">Unwrap The Mystery</h2>
-              <p className="text-[#00474CBF] text-[24px] font-baloo-bhai font-bold font-weight-400 text-center sm:text-left">Know How it Works</p>
+              <h2 className="text-[32px] sm:text-[40px] font-archivo-black font-normal text-[#003566E5] text-center sm:text-left">Unwrap The Mystery</h2>
+              <p className="text-[#00474CBF] text-[20px] sm:text-[24px] font-baloo-bhai font-bold font-normal text-center sm:text-left">Know How it Works</p>
               
               <div className="mt-6">
-                <p className="text-[#000000A6] text-[20px] font-poppins font-weight-300 leading-8">
+                <p className="text-[#000000A6] text-[16px] sm:text-[20px] font-poppins font-light leading-8">
                   Blind Fold Trips is a mystery travel platform where your destination remains a secret until you arrive at the 
                   airport! Get ready for a fun, spontaneous, and surprise-filled adventure. It's the ultimate experience for thrill-
                   seekers and free spirits. Pack your bags, embrace the unknown, and let fate choose your next journey— 
-                  because <span className="text-[#000000] font-weight-500">life is all about the adventure, not just the destination!</span>
+                  because <span className="text-[#000000] font-medium">life is all about the adventure, not just the destination!</span>
                 </p>
               </div>
             </div>
@@ -998,13 +1038,13 @@ export default function Home() {
 
           <div className="container mx-auto relative z-10">
             <div className="flex flex-col sm:flex-row items-center sm:justify-between gap-2 w-full">
-              <h2 className="text-[32px] font-titan font-weight-400 text-[#00474CBF] text-center w-full">
+              <h2 className="text-[32px] font-titan font-normal text-[#00474CBF] text-center w-full">
                 Your 3 step Plan
               </h2>
 
               <div className="flex items-center gap-2 justify-center sm:justify-end w-full sm:w-auto">
                 <div className="h-[24px] w-1 bg-[#00474C]"></div>
-                <p className="text-[20px] text-[#00474CCC] font-sofia font-weight-400">
+                <p className="text-[20px] text-[#00474CCC] font-sofia font-normal">
                   Progress
                 </p>
               </div>
@@ -1057,8 +1097,8 @@ export default function Home() {
           >
             {/* Explore hidden gems of India Section */}
             <div className="container mx-auto relative z-10">
-                <h2 className="font-archivo-black font-weight-400 text-[28px] md:text-[40px] text-[#003566E5]">India Uncovered: Explore the Unexpected</h2>
-                <p className="font-baloo-bhai font-weight-400 text-[20px] md:text-[24px] text-[#00474CBF] mb-8">Choose Your Adventure</p>
+                <h2 className="font-archivo-black font-normal text-[28px] md:text-[40px] text-[#003566E5]">India Uncovered: Explore the Unexpected</h2>
+                <p className="font-baloo-bhai font-normal text-[20px] md:text-[24px] text-[#00474CBF] mb-8">Choose Your Adventure</p>
                 
                 <div className="relative">
                     <div className="flex gap-4 mb-4 -mr-4 mx-auto relative overflow-x-auto sm:overflow-x-visible scroll-smooth snap-x snap-mandatory sm:flex-wrap sm:overflow-hidden hide-horizontal-scrollbar">
@@ -1075,7 +1115,7 @@ export default function Home() {
                                     custom={slideDirection}
                                 >
                                     {activeCard === gem.id ? (
-                                        <div className="slider h-[260px] bg-[#003566] overflow-y-auto">
+                                        <div className="slider h-[300px] lg:h-[250px] bg-[#003566] overflow-y-auto">
                                           <div className="h-full px-2">
                                             {gem.detailContent}
                                           </div>
@@ -1083,7 +1123,7 @@ export default function Home() {
                                     ) : (
                                         <div className="relative group">
                                             <div 
-                                                className="h-[260px] bg-cover bg-center transition-all duration-300"
+                                                className="h-[300px] lg:h-[250px] bg-cover bg-center transition-all duration-300"
                                                 style={{ backgroundImage: `url('${gem.image}')` }}
                                             >
                                                 <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-20 transition-all duration-300">
@@ -1128,8 +1168,8 @@ export default function Home() {
 
             {/* Explore hidden gems Across the Globe Section */}
             <div className="container mx-auto relative z-10 mt-20 mb-12">
-                <h2 className="font-archivo-black font-weight-400 text-[28px] md:text-[40px] text-[#003566E5]">Wonders Uncovered: Travel Beyond the Ordinary</h2>
-                <p className="font-baloo-bhai font-weight-400 text-[20px] md:text-[24px] text-[#00474CBF] mb-8">Choose Your Adventure</p>
+                <h2 className="font-archivo-black font-normal text-[28px] md:text-[40px] text-[#003566E5]">Wonders Uncovered: Travel Beyond the Ordinary</h2>
+                <p className="font-baloo-bhai font-normal text-[20px] md:text-[24px] text-[#00474CBF] mb-8">Choose Your Adventure</p>
                 
                 <div className="relative">
                     <div className="flex gap-4 mb-4 -mr-4 mx-auto relative overflow-x-auto sm:overflow-x-visible scroll-smooth snap-x snap-mandatory sm:flex-wrap sm:overflow-hidden hide-horizontal-scrollbar">
@@ -1222,8 +1262,8 @@ export default function Home() {
             </div>
             <div className="absolute inset-0 bg-[#00000099]"></div>
             <div className="relative flex flex-col justify-center items-center h-full z-10 text-center">
-                <h2 className="font-archivo-black font-weight-400 text-[#FCD2B1] text-[40px]">Why Us?</h2>
-                <p className="font-baloo-bhai font-weight-400 text-[#FCD2B1] text-[24px]">The answer lies in the journey</p>
+                <h2 className="font-archivo-black font-normal text-[#FCD2B1] text-[40px]">Why Us?</h2>
+                <p className="font-baloo-bhai font-normal text-[#FCD2B1] text-[24px]">The answer lies in the journey</p>
                 <a href="/why_us" className="mt-4 px-5 py-1 text-[#FFFFFF] text-lg rounded-full transition-all flex items-center"
                   style={{
                     background: "linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.4) 40%)",
@@ -1265,8 +1305,8 @@ export default function Home() {
 
           <div className="container relative mx-auto z-20 pl-[48px] lg:pl-[72px]">
             <div className="mb-8">
-                <h2 className="font-archivo-black font-weight-400 text-[28px] md:text-[32px] text-[#003566E5]">See What They Say</h2>
-                <p className="font-baloo-bhai font-weight-400 text-[20px] md:text-[24px] text-[#00474CBF]">Happy Explorer Stories</p>
+                <h2 className="font-archivo-black font-normal text-[28px] md:text-[32px] text-[#003566E5]">See What They Say</h2>
+                <p className="font-baloo-bhai font-normal text-[20px] md:text-[24px] text-[#00474CBF]">Happy Explorer Stories</p>
             </div>
             
             {/* Grid of explorer images */}
@@ -1283,9 +1323,9 @@ export default function Home() {
                       className="object-cover w-full h-full rounded-xl"
                     />
                     <div className="absolute inset-0 bg-[#003566] opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl flex flex-col p-4 border border-[#FFBE55] border-4">
-                      <h3 className="font-titan font-weight-400 text-[48px] text-[#FFBE55] text-center">{item.name}</h3>
-                      <p className="font-goudy font-weight-400 text-[24px] text-[#FFBE55] text-right -mt-2 mb-4">{item.role}</p>
-                      <p className="text-[#FFFFFFCC] text-[16px] font-poppins font-weight-400 leading-snug">{item.text}</p>
+                      <h3 className="font-titan font-normal text-[48px] text-[#FFBE55] text-center">{item.name}</h3>
+                      <p className="font-goudy font-normal text-[24px] text-[#FFBE55] text-right -mt-2 mb-4">{item.role}</p>
+                      <p className="text-[#FFFFFFCC] text-[16px] font-poppins font-normal leading-snug">{item.text}</p>
                     </div>
                   </div>
                 ))}
@@ -1307,8 +1347,8 @@ export default function Home() {
                     {/* Right side - FAQ */}
                     <div className="w-full md:w-2/3 pl-12 pr-24 pt-2">
                         <div className="mb-6 flex flex-col items-end">
-                            <h2 className="text-[32px] font-archivo-black font-weight-400 text-[#003566E5]">Got Questions? We've Got Answers</h2>
-                            <p className="text-[24px] font-baloo-bhai font-weight-400 text-[#00474CBF]">Know Before You Go</p>
+                            <h2 className="text-[32px] font-archivo-black font-normal text-[#003566E5]">Got Questions? We've Got Answers</h2>
+                            <p className="text-[24px] font-baloo-bhai font-normal text-[#00474CBF]">Know Before You Go</p>
                         </div>
                         {faqItems.map((faq) => (
                             <div key={faq.id} className="mb-4">
@@ -1317,7 +1357,7 @@ export default function Home() {
                                     onClick={() => toggleFaq(faq.id)}
                                 >
                                     <div className="flex justify-between items-center">
-                                          <h3 className={`text-[20px] font-poppins font-weight-400 ${activeFaq === faq.id ? 'text-[#FFFFFFBF' : 'text-[#000000BF]'}`}>{faq.question}</h3>
+                                          <h3 className={`text-[20px] font-poppins font-normal ${activeFaq === faq.id ? 'text-[#FFFFFFBF' : 'text-[#000000BF]'}`}>{faq.question}</h3>
                                           <span className="text-2xl transition duration-300">
                                             {activeFaq === faq.id ? '−' : '+'}
                                           </span>
@@ -1325,14 +1365,14 @@ export default function Home() {
                                     
                                     {activeFaq === faq.id && (
                                         <div className="pt-1">
-                                            <p className="font-poppins font-weight-300 text-[16px] text-[#FFFFFF99]">{faq.answer}</p>
+                                            <p className="font-poppins font-light text-[16px] text-[#FFFFFF99]">{faq.answer}</p>
                                         </div>
                                     )}
                                 </div>
                             </div>
                         ))}
                         <div className="mt-6">
-                          <p className="font-poppins font-weight-300 text-[20px] text-[#000000]">Still wondering? Find answers in our <span className="text-[#003566] font-weight-700">FAQs!</span></p>
+                          <p className="font-poppins font-light text-[20px] text-[#000000]">Still wondering? Find answers in our <span className="text-[#003566] font-bold">FAQs!</span></p>
                         </div>
                     </div>
                 </div>
