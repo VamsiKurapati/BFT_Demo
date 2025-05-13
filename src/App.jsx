@@ -18,7 +18,8 @@ const App = () => {
                 <Route path="/why_us" element={<WhyUs />} />
                 <Route path="/how_it_works" element={<HowItWorks />} />
                 <Route path="/questionnaire" element={<Questionnaire />} />
-                <Route path="*" element={<Home />} />
+                {/* Other route redirect to home and change the path to your home page */}
+                <Route path="/*" element={<Home />} />
           </Routes>
       </Suspense>
     );
