@@ -14,6 +14,7 @@ export default function Questionnaire() {
     const navigate = useNavigate();
 
     const [currentPageIndex, setCurrentPageIndex] = useState(0);
+    const [selectedState, setSelectedState] = useState("");
     const [travelerCount, setTravelerCount] = useState(1);
     const [firstName, setFirstName] = useState("");
     const [checkboxValues, setCheckboxValues] = useState({
@@ -84,6 +85,26 @@ export default function Questionnaire() {
         newDestination: false,
         wellness: false,
         specialOccasion: false,
+        totalChill: false,
+        mostlyRelaxed: false,
+        aBitOfBoth: false,
+        prettyActive: false,
+        nonStopAdventure: false,
+        surpriseMe: false,
+        coolerClimate: false,
+        bringOnTheSunshine: false,
+        vibrantUrbanLife: false,
+        creativeArtsyVibes: false,
+        lushGreenLandscapes: false,
+        photogenic: false,
+        budgetFriendlyAdventures: false,
+        mountainous: false,
+        calmSereneEscapes: false,
+        eyeCatchingArchitecture: false,
+        sandyBeaches: false,
+        yes: false,
+        openToAnywhere: false,
+        internationalTrip: false,
     });
 
     const handleTravelerCountChange = (e) => {
@@ -96,7 +117,9 @@ export default function Questionnaire() {
         // updateFormData({ firstName: e.target.value }); // Uncomment if you use form data globally
     };
 
-    const isFormValid = firstName.trim() !== "" && travelerCount > 0;
+    const isFormValid = () =>{
+        return firstName.trim() !== "" && travelerCount > 0;
+    }
 
     const handleCheckboxChange = (event) => {
         const { name, checked } = event.target;
@@ -105,6 +128,16 @@ export default function Questionnaire() {
             [name]: checked,
         }));
     };
+
+    const handlestateSelectionChange = (event) => {
+        const state = event.target.value;
+        setSelectedState(state);
+        // updateFormData({ selectedState }); // Uncomment if you use form data globally
+    };
+
+    const isFormValid1 = () => {
+        return selectedState !== "";
+    }
 
     const handleSave = () => {
         // Here you can save the responses to a backend or store them locally
@@ -231,7 +264,7 @@ export default function Questionnaire() {
                         <input
                             type="checkbox"
                             name="awareOfNothing"
-                            className="mr-4 w-[20px] h-[20px]"
+                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                             checked={checkboxValues.awareOfNothing}
                             onChange={handleCheckboxChange}
                         />
@@ -241,7 +274,7 @@ export default function Questionnaire() {
                         <input
                             type="checkbox"
                             name="unableToDoPhysicalActivities"
-                            className="mr-4 w-[20px] h-[20px]"
+                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                             checked={checkboxValues.unableToDoPhysicalActivities}
                             onChange={handleCheckboxChange}
                         />
@@ -251,7 +284,7 @@ export default function Questionnaire() {
                         <input
                             type="checkbox"
                             name="pregnancy"
-                            className="mr-4 w-[20px] h-[20px]"
+                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                             checked={checkboxValues.pregnancy}
                             onChange={handleCheckboxChange}
                         />
@@ -261,7 +294,7 @@ export default function Questionnaire() {
                         <input
                             type="checkbox"
                             name="fearOfHeights"
-                            className="mr-4 w-[20px] h-[20px]"
+                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                             checked={checkboxValues.fearOfHeights}
                             onChange={handleCheckboxChange}
                         />
@@ -271,7 +304,7 @@ export default function Questionnaire() {
                         <input
                             type="checkbox"
                             name="cantSwim"
-                            className="mr-4 w-[20px] h-[20px]"
+                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                             checked={checkboxValues.cantSwim}
                             onChange={handleCheckboxChange}
                         />
@@ -281,7 +314,7 @@ export default function Questionnaire() {
                         <input
                             type="checkbox"
                             name="seaSickness"
-                            className="mr-4 w-[20px] h-[20px]"
+                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                             checked={checkboxValues.seaSickness}
                             onChange={handleCheckboxChange}
                         />
@@ -291,7 +324,7 @@ export default function Questionnaire() {
                         <input
                             type="checkbox"
                             name="claustrophobia"
-                            className="mr-4 w-[20px] h-[20px]"
+                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                             checked={checkboxValues.claustrophobia}
                             onChange={handleCheckboxChange}
                         />
@@ -301,7 +334,7 @@ export default function Questionnaire() {
                         <input
                             type="checkbox"
                             name="fearOfDogs"
-                            className="mr-4 w-[20px] h-[20px]"
+                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                             checked={checkboxValues.fearOfDogs}
                             onChange={handleCheckboxChange}
                         />
@@ -319,7 +352,7 @@ export default function Questionnaire() {
                 <div className="w-full sm:w-[90%] md:w-[75%] lg:w-[40%] flex flex-col items-center">
                     <p className="font-poppins font-normal text-[20px] text-[#000000BF] text-left mb-4">
                         Every BFT adventure is designed with beginners in mind and guided by seasoned experts. We’ll always factor in any fears, phobias, or medical conditions you’ve shared with us.<br /><br />
-                        We’d love to gently nudge you out of your comfort zone—but are there any <span className="font-bold text-[#000000]">activities that are a definite no for you?</span><span className="text-[#A32626] font-bold"> *</span><br /><br />
+                        We’d love to gently nudge you out of your comfort zone—but are there any <span className="font-bold text-[#000000]">activities that are a definite no for you?</span><br /><br />
                         If you’re unsure about an activity, don't say no to it!
                     </p>
                     <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-poppins">
@@ -327,7 +360,7 @@ export default function Questionnaire() {
                             <input
                             type="checkbox"
                             name="noNatureWalk"
-                            className="mr-4 w-[20px] h-[20px]"
+                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                             checked={checkboxValues.noNatureWalk}
                             onChange={handleCheckboxChange}
                             />
@@ -337,7 +370,7 @@ export default function Questionnaire() {
                             <input
                             type="checkbox"
                             name="noHiking"
-                            className="mr-4 w-[20px] h-[20px]"
+                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                             checked={checkboxValues.noHiking}
                             onChange={handleCheckboxChange}
                             />
@@ -347,7 +380,7 @@ export default function Questionnaire() {
                             <input
                             type="checkbox"
                             name="noBikingSegway"
-                            className="mr-4 w-[20px] h-[20px]"
+                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                             checked={checkboxValues.noBikingSegway}
                             onChange={handleCheckboxChange}
                             />
@@ -357,7 +390,7 @@ export default function Questionnaire() {
                             <input
                             type="checkbox"
                             name="noBoatTrips"
-                            className="mr-4 w-[20px] h-[20px]"
+                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                             checked={checkboxValues.noBoatTrips}
                             onChange={handleCheckboxChange}
                             />
@@ -367,7 +400,7 @@ export default function Questionnaire() {
                             <input
                             type="checkbox"
                             name="noSwimmingSnorkeling"
-                            className="mr-4 w-[20px] h-[20px]"
+                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                             checked={checkboxValues.noSwimmingSnorkeling}
                             onChange={handleCheckboxChange}
                             />
@@ -377,7 +410,7 @@ export default function Questionnaire() {
                             <input
                             type="checkbox"
                             name="noKayakingSUP"
-                            className="mr-4 w-[20px] h-[20px]"
+                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                             checked={checkboxValues.noKayakingSUP}
                             onChange={handleCheckboxChange}
                             />
@@ -387,7 +420,7 @@ export default function Questionnaire() {
                             <input
                             type="checkbox"
                             name="noRafting"
-                            className="mr-4 w-[20px] h-[20px]"
+                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                             checked={checkboxValues.noRafting}
                             onChange={handleCheckboxChange}
                             />
@@ -397,7 +430,7 @@ export default function Questionnaire() {
                             <input
                             type="checkbox"
                             name="noSurfing"
-                            className="mr-4 w-[20px] h-[20px]"
+                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                             checked={checkboxValues.noSurfing}
                             onChange={handleCheckboxChange}
                             />
@@ -407,7 +440,7 @@ export default function Questionnaire() {
                             <input
                             type="checkbox"
                             name="noScubaDiving"
-                            className="mr-4 w-[20px] h-[20px]"
+                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                             checked={checkboxValues.noScubaDiving}
                             onChange={handleCheckboxChange}
                             />
@@ -417,7 +450,7 @@ export default function Questionnaire() {
                             <input
                             type="checkbox"
                             name="noCanyoningCaving"
-                            className="mr-4 w-[20px] h-[20px]"
+                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                             checked={checkboxValues.noCanyoningCaving}
                             onChange={handleCheckboxChange}
                             />
@@ -427,7 +460,7 @@ export default function Questionnaire() {
                             <input
                             type="checkbox"
                             name="noParagliding"
-                            className="mr-4 w-[20px] h-[20px]"
+                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                             checked={checkboxValues.noParagliding}
                             onChange={handleCheckboxChange}
                             />
@@ -437,7 +470,7 @@ export default function Questionnaire() {
                             <input
                             type="checkbox"
                             name="noHorseCamelRiding"
-                            className="mr-4 w-[20px] h-[20px]"
+                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                             checked={checkboxValues.noHorseCamelRiding}
                             onChange={handleCheckboxChange}
                             />
@@ -447,7 +480,7 @@ export default function Questionnaire() {
                             <input
                             type="checkbox"
                             name="noWineTasting"
-                            className="mr-4 w-[20px] h-[20px]"
+                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                             checked={checkboxValues.noWineTasting}
                             onChange={handleCheckboxChange}
                             />
@@ -457,7 +490,7 @@ export default function Questionnaire() {
                             <input
                             type="checkbox"
                             name="noBreweryTour"
-                            className="mr-4 w-[20px] h-[20px]"
+                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                             checked={checkboxValues.noBreweryTour}
                             onChange={handleCheckboxChange}
                             />
@@ -467,7 +500,7 @@ export default function Questionnaire() {
                             <input
                             type="checkbox"
                             name="noSpaContact"
-                            className="mr-4 w-[20px] h-[20px]"
+                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                             checked={checkboxValues.noSpaContact}
                             onChange={handleCheckboxChange}
                             />
@@ -491,7 +524,7 @@ export default function Questionnaire() {
                             <input
                             type="checkbox"
                             name="none"
-                            className="mr-4 w-[20px] h-[20px]"
+                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                             checked={checkboxValues.none}
                             onChange={handleCheckboxChange}
                             />
@@ -501,7 +534,7 @@ export default function Questionnaire() {
                             <input
                             type="checkbox"
                             name="vegeterian"
-                            className="mr-4 w-[20px] h-[20px]"
+                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                             checked={checkboxValues.vegeterian}
                             onChange={handleCheckboxChange}
                             />
@@ -511,7 +544,7 @@ export default function Questionnaire() {
                             <input
                             type="checkbox"
                             name="vegan"
-                            className="mr-4 w-[20px] h-[20px]"
+                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                             checked={checkboxValues.vegan}
                             onChange={handleCheckboxChange}
                             />
@@ -521,7 +554,7 @@ export default function Questionnaire() {
                             <input
                             type="checkbox"
                             name="noAlcohol"
-                            className="mr-4 w-[20px] h-[20px]"
+                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                             checked={checkboxValues.noAlcohol}
                             onChange={handleCheckboxChange}
                             />
@@ -531,7 +564,7 @@ export default function Questionnaire() {
                             <input
                             type="checkbox"
                             name="otherAllergies"
-                            className="mr-4 w-[20px] h-[20px]"
+                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                             checked={checkboxValues.otherAllergies}
                             onChange={handleCheckboxChange}
                             />
@@ -556,7 +589,7 @@ export default function Questionnaire() {
                                 <input
                                 type="checkbox"
                                 name="notInterested"
-                                className="mr-4 w-[20px] h-[20px]"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                                 checked={checkboxValues.notInterested}
                                 onChange={handleCheckboxChange}
                                 />
@@ -566,7 +599,7 @@ export default function Questionnaire() {
                                 <input
                                 type="checkbox"
                                 name="openAndWilling"
-                                className="mr-4 w-[20px] h-[20px]"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                                 checked={checkboxValues.openAndWilling}
                                 onChange={handleCheckboxChange}
                                 />
@@ -576,7 +609,7 @@ export default function Questionnaire() {
                                 <input
                                 type="checkbox"
                                 name="curious"
-                                className="mr-4 w-[20px] h-[20px]"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                                 checked={checkboxValues.curious}
                                 onChange={handleCheckboxChange}
                                 />
@@ -586,7 +619,7 @@ export default function Questionnaire() {
                                 <input
                                 type="checkbox"
                                 name="excited"
-                                className="mr-4 w-[20px] h-[20px]"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                                 checked={checkboxValues.excited}
                                 onChange={handleCheckboxChange}
                                 />
@@ -596,14 +629,14 @@ export default function Questionnaire() {
                                 <input
                                 type="checkbox"
                                 name="superInterested"
-                                className="mr-4 w-[20px] h-[20px]"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                                 checked={checkboxValues.superInterested}
                                 onChange={handleCheckboxChange}
                                 />
                                 Super interested
                             </label>
                         </div>
-                        <img src="/page-8.jpg" alt="Page 8" className="w-[257px] md:w-[337px] h-[174px] md:h-[244px] rounded-lg mt-4 mb-4 bg-[#D9D9D9]" />
+                        <img src="/page-8.jpg" alt="Page 8" className="w-[200px] md:w-[337px] h-[150px] md:h-[244px] rounded-lg mt-4 mb-4 bg-[#D9D9D9]" />
                     </div>
                 </div>
             ),
@@ -623,7 +656,7 @@ export default function Questionnaire() {
                                 <input
                                 type="checkbox"
                                 name="notInterested1"
-                                className="mr-4 w-[20px] h-[20px]"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                                 checked={checkboxValues.notInterested1}
                                 onChange={handleCheckboxChange}
                                 />
@@ -633,7 +666,7 @@ export default function Questionnaire() {
                                 <input
                                 type="checkbox"
                                 name="openAndWilling1"
-                                className="mr-4 w-[20px] h-[20px]"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                                 checked={checkboxValues.openAndWilling1}
                                 onChange={handleCheckboxChange}
                                 />
@@ -643,7 +676,7 @@ export default function Questionnaire() {
                                 <input
                                 type="checkbox"
                                 name="curious1"
-                                className="mr-4 w-[20px] h-[20px]"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                                 checked={checkboxValues.curious1}
                                 onChange={handleCheckboxChange}
                                 />
@@ -653,7 +686,7 @@ export default function Questionnaire() {
                                 <input
                                 type="checkbox"
                                 name="excited1"
-                                className="mr-4 w-[20px] h-[20px]"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                                 checked={checkboxValues.excited1}
                                 onChange={handleCheckboxChange}
                                 />
@@ -663,14 +696,14 @@ export default function Questionnaire() {
                                 <input
                                 type="checkbox"
                                 name="superInterested1"
-                                className="mr-4 w-[20px] h-[20px]"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                                 checked={checkboxValues.superInterested1}
                                 onChange={handleCheckboxChange}
                                 />
                                 Super interested
                             </label>
                         </div>
-                        <img src="/page-9.jpg" alt="Page 9" className="w-[257px] md:w-[337px] h-[174px] md:h-[244px] rounded-lg mt-4 mb-4 bg-[#D9D9D9]" />
+                        <img src="/page-9.jpg" alt="Page 9" className="w-[200px] md:w-[337px] h-[150px] md:h-[244px] rounded-lg mt-4 mb-4 bg-[#D9D9D9]" />
                     </div>
                 </div>
             ),
@@ -690,7 +723,7 @@ export default function Questionnaire() {
                                 <input
                                 type="checkbox"
                                 name="notInterested2"
-                                className="mr-4 w-[20px] h-[20px]"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                                 checked={checkboxValues.notInterested2}
                                 onChange={handleCheckboxChange}
                                 />
@@ -700,7 +733,7 @@ export default function Questionnaire() {
                                 <input
                                 type="checkbox"
                                 name="openAndWilling2"
-                                className="mr-4 w-[20px] h-[20px]"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                                 checked={checkboxValues.openAndWilling2}
                                 onChange={handleCheckboxChange}
                                 />
@@ -710,7 +743,7 @@ export default function Questionnaire() {
                                 <input
                                 type="checkbox"
                                 name="curious2"
-                                className="mr-4 w-[20px] h-[20px]"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                                 checked={checkboxValues.curious2}
                                 onChange={handleCheckboxChange}
                                 />
@@ -720,7 +753,7 @@ export default function Questionnaire() {
                                 <input
                                 type="checkbox"
                                 name="excited2"
-                                className="mr-4 w-[20px] h-[20px]"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                                 checked={checkboxValues.excited2}
                                 onChange={handleCheckboxChange}
                                 />
@@ -730,14 +763,14 @@ export default function Questionnaire() {
                                 <input
                                 type="checkbox"
                                 name="superInterested2"
-                                className="mr-4 w-[20px] h-[20px]"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                                 checked={checkboxValues.superInterested2}
                                 onChange={handleCheckboxChange}
                                 />
                                 Super interested
                             </label>
                         </div>
-                        <img src="/page-10.jpg" alt="Page 10" className="w-[257px] md:w-[337px] h-[174px] md:h-[244px] rounded-lg mt-4 mb-4 bg-[#D9D9D9]" />
+                        <img src="/page-10.jpg" alt="Page 10" className="w-[200px] md:w-[337px] h-[150px] md:h-[244px] rounded-lg mt-4 mb-4 bg-[#D9D9D9]" />
                     </div>
                 </div>
             ),
@@ -757,7 +790,7 @@ export default function Questionnaire() {
                                 <input
                                 type="checkbox"
                                 name="notInterested3"
-                                className="mr-4 w-[20px] h-[20px]"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                                 checked={checkboxValues.notInterested3}
                                 onChange={handleCheckboxChange}
                                 />
@@ -767,7 +800,7 @@ export default function Questionnaire() {
                                 <input
                                 type="checkbox"
                                 name="openAndWilling3"
-                                className="mr-4 w-[20px] h-[20px]"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                                 checked={checkboxValues.openAndWilling3}
                                 onChange={handleCheckboxChange}
                                 />
@@ -777,7 +810,7 @@ export default function Questionnaire() {
                                 <input
                                 type="checkbox"
                                 name="curious3"
-                                className="mr-4 w-[20px] h-[20px]"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                                 checked={checkboxValues.curious3}
                                 onChange={handleCheckboxChange}
                                 />
@@ -787,7 +820,7 @@ export default function Questionnaire() {
                                 <input
                                 type="checkbox"
                                 name="excited3"
-                                className="mr-4 w-[20px] h-[20px]"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                                 checked={checkboxValues.excited3}
                                 onChange={handleCheckboxChange}
                                 />
@@ -797,14 +830,14 @@ export default function Questionnaire() {
                                 <input
                                 type="checkbox"
                                 name="superInterested3"
-                                className="mr-4 w-[20px] h-[20px]"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                                 checked={checkboxValues.superInterested3}
                                 onChange={handleCheckboxChange}
                                 />
                                 Super interested
                             </label>
                         </div>
-                        <img src="/page-11.jpg" alt="Page 11" className="w-[257px] md:w-[337px] h-[174px] md:h-[244px] rounded-lg mt-4 mb-4 bg-[#D9D9D9]" />
+                        <img src="/page-11.jpg" alt="Page 11" className="w-[200px] md:w-[337px] h-[150px] md:h-[244px] rounded-lg mt-4 mb-4 bg-[#D9D9D9]" />
                     </div>
                 </div>
             ),
@@ -824,7 +857,7 @@ export default function Questionnaire() {
                                 <input
                                 type="checkbox"
                                 name="notInterested4"
-                                className="mr-4 w-[20px] h-[20px]"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                                 checked={checkboxValues.notInterested4}
                                 onChange={handleCheckboxChange}
                                 />
@@ -834,7 +867,7 @@ export default function Questionnaire() {
                                 <input
                                 type="checkbox"
                                 name="openAndWilling4"
-                                className="mr-4 w-[20px] h-[20px]"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                                 checked={checkboxValues.openAndWilling4}
                                 onChange={handleCheckboxChange}
                                 />
@@ -844,7 +877,7 @@ export default function Questionnaire() {
                                 <input
                                 type="checkbox"
                                 name="curious4"
-                                className="mr-4 w-[20px] h-[20px]"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                                 checked={checkboxValues.curious4}
                                 onChange={handleCheckboxChange}
                                 />
@@ -854,7 +887,7 @@ export default function Questionnaire() {
                                 <input
                                 type="checkbox"
                                 name="excited4"
-                                className="mr-4 w-[20px] h-[20px]"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                                 checked={checkboxValues.excited4}
                                 onChange={handleCheckboxChange}
                                 />
@@ -864,14 +897,14 @@ export default function Questionnaire() {
                                 <input
                                 type="checkbox"
                                 name="superInterested4"
-                                className="mr-4 w-[20px] h-[20px]"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                                 checked={checkboxValues.superInterested4}
                                 onChange={handleCheckboxChange}
                                 />
                                 Super interested
                             </label>
                         </div>
-                        <img src="/page-12.jpg" alt="Page 12" className="w-[257px] md:w-[337px] h-[174px] md:h-[244px] rounded-lg mt-4 mb-4 bg-[#D9D9D9]" />
+                        <img src="/page-12.jpg" alt="Page 12" className="w-[200px] md:w-[337px] h-[150px] md:h-[244px] rounded-lg mt-4 mb-4 bg-[#D9D9D9]" />
                     </div>
                 </div>
             ),
@@ -891,7 +924,7 @@ export default function Questionnaire() {
                                 <input
                                 type="checkbox"
                                 name="notInterested5"
-                                className="mr-4 w-[20px] h-[20px]"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                                 checked={checkboxValues.notInterested5}
                                 onChange={handleCheckboxChange}
                                 />
@@ -901,7 +934,7 @@ export default function Questionnaire() {
                                 <input
                                 type="checkbox"
                                 name="openAndWilling5"
-                                className="mr-4 w-[20px] h-[20px]"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                                 checked={checkboxValues.openAndWilling5}
                                 onChange={handleCheckboxChange}
                                 />
@@ -911,7 +944,7 @@ export default function Questionnaire() {
                                 <input
                                 type="checkbox"
                                 name="curious5"
-                                className="mr-4 w-[20px] h-[20px]"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                                 checked={checkboxValues.curious5}
                                 onChange={handleCheckboxChange}
                                 />
@@ -921,7 +954,7 @@ export default function Questionnaire() {
                                 <input
                                 type="checkbox"
                                 name="excited5"
-                                className="mr-4 w-[20px] h-[20px]"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                                 checked={checkboxValues.excited5}
                                 onChange={handleCheckboxChange}
                                 />
@@ -931,14 +964,14 @@ export default function Questionnaire() {
                                 <input
                                 type="checkbox"
                                 name="superInterested5"
-                                className="mr-4 w-[20px] h-[20px]"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                                 checked={checkboxValues.superInterested5}
                                 onChange={handleCheckboxChange}
                                 />
                                 Super interested
                             </label>
                         </div>
-                        <img src="/page-13.jpg" alt="Page 13" className="w-[257px] md:w-[337px] h-[174px] md:h-[244px] rounded-lg mt-4 mb-4 bg-[#D9D9D9]" />
+                        <img src="/page-13.jpg" alt="Page 13" className="w-[200px] md:w-[337px] h-[150px] md:h-[244px] rounded-lg mt-4 mb-4 bg-[#D9D9D9]" />
                     </div>
                 </div>
             ),
@@ -958,7 +991,7 @@ export default function Questionnaire() {
                                 <input
                                 type="checkbox"
                                 name="notInterested6"
-                                className="mr-4 w-[20px] h-[20px]"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                                 checked={checkboxValues.notInterested6}
                                 onChange={handleCheckboxChange}
                                 />
@@ -968,7 +1001,7 @@ export default function Questionnaire() {
                                 <input
                                 type="checkbox"
                                 name="openAndWilling6"
-                                className="mr-4 w-[20px] h-[20px]"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                                 checked={checkboxValues.openAndWilling6}
                                 onChange={handleCheckboxChange}
                                 />
@@ -978,7 +1011,7 @@ export default function Questionnaire() {
                                 <input
                                 type="checkbox"
                                 name="curious6"
-                                className="mr-4 w-[20px] h-[20px]"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                                 checked={checkboxValues.curious6}
                                 onChange={handleCheckboxChange}
                                 />
@@ -988,7 +1021,7 @@ export default function Questionnaire() {
                                 <input
                                 type="checkbox"
                                 name="excited6"
-                                className="mr-4 w-[20px] h-[20px]"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                                 checked={checkboxValues.excited6}
                                 onChange={handleCheckboxChange}
                                 />
@@ -998,14 +1031,14 @@ export default function Questionnaire() {
                                 <input
                                 type="checkbox"
                                 name="superInterested6"
-                                className="mr-4 w-[20px] h-[20px]"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                                 checked={checkboxValues.superInterested6}
                                 onChange={handleCheckboxChange}
                                 />
                                 Super interested
                             </label>
                         </div>
-                        <img src="/page-14.jpg" alt="Page 14" className="w-[257px] md:w-[337px] h-[174px] md:h-[244px] rounded-lg mt-4 mb-4 bg-[#D9D9D9]" />
+                        <img src="/page-14.jpg" alt="Page 14" className="w-[200px] md:w-[337px] h-[150px] md:h-[244px] rounded-lg mt-4 mb-4 bg-[#D9D9D9]" />
                     </div>
                 </div>
             ),
@@ -1036,14 +1069,14 @@ export default function Questionnaire() {
             Content: (
                 <div className="w-full flex flex-col items-start px-4 sm:px-8 md:px-32 lg:px-64">
                     <p className="font-poppins font-normal text-[24px] text-[#000000] text-center mb-4">
-                        What’s the <span className="font-bold">#1 thing you’re hoping for from this trip? *</span> how excited are you?
+                        What’s the <span className="font-bold">#1 thing you’re hoping for from this trip? *</span>
                     </p>
                     <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
                         <label className="flex items-center text-left">
                             <input
                             type="checkbox"
                             name="qualityTime"
-                            className="mr-4 w-[20px] h-[20px]"
+                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                             checked={checkboxValues.qualityTime}
                             onChange={handleCheckboxChange}
                             />
@@ -1053,7 +1086,7 @@ export default function Questionnaire() {
                             <input
                             type="checkbox"
                             name="newDestination"
-                            className="mr-4 w-[20px] h-[20px]"
+                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                             checked={checkboxValues.newDestination}
                             onChange={handleCheckboxChange}
                             />
@@ -1063,7 +1096,7 @@ export default function Questionnaire() {
                             <input
                             type="checkbox"
                             name="wellness"
-                            className="mr-4 w-[20px] h-[20px]"
+                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                             checked={checkboxValues.wellness}
                             onChange={handleCheckboxChange}
                             />
@@ -1073,7 +1106,7 @@ export default function Questionnaire() {
                             <input
                             type="checkbox"
                             name="specialOccasion"
-                            className="mr-4 w-[20px] h-[20px]"
+                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                             checked={checkboxValues.specialOccasion}
                             onChange={handleCheckboxChange}
                             />
@@ -1084,14 +1117,340 @@ export default function Questionnaire() {
             ),
             buttonText: "Done"
         },
-
-        ...Array.from({ length: TOTAL_PAGES - 3 }, (_, i) => ({
-            Number: i + 4,
+        {
+            Number: 17,
+            type: "text",
+            Content: (
+                <div className="w-full flex flex-col items-start px-4 sm:px-8 md:px-32 lg:px-64">
+                    <p className="font-poppins font-normal text-[24px] text-[#000000] text-center mb-4">
+                       How <span className="font-bold">active or chill</span> do you want your <span className="font-bold">trip</span> to be?
+                    </p>
+                    <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
+                        <label className="flex items-center text-left">
+                            <input
+                            type="checkbox"
+                            name="totalChill"
+                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                            checked={checkboxValues.totalChill}
+                            onChange={handleCheckboxChange}
+                            />
+                            <div>
+                                Total Chill<br />
+                                <span className="text-[12px] sm:text-[16px] md:text-[20px] text-[#000000BF] text-left font-normal font-poppins">
+                                    - Hammocks, slow strolls, sunset views
+                                </span>
+                            </div>
+                        </label>
+                        <label className="flex items-center text-left">
+                            <input
+                            type="checkbox"
+                            name="mostlyRelaxed"
+                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                            checked={checkboxValues.mostlyRelaxed}
+                            onChange={handleCheckboxChange}
+                            />
+                            <div>
+                                Mostly Relaxed<br />
+                                <span className="text-[12px] sm:text-[16px] md:text-[20px] text-[#000000BF] text-left font-normal font-poppins">
+                                    - Spa days, short walks, beach lounging
+                                </span>
+                            </div>
+                        </label>
+                        <label className="flex items-center text-left">
+                            <input
+                            type="checkbox"
+                            name="aBitOfBoth"
+                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                            checked={checkboxValues.aBitOfBoth}
+                            onChange={handleCheckboxChange}
+                            />
+                            <div>
+                                A Bit of Both<br />
+                                <span className="text-[12px] sm:text-[16px] md:text-[20px] text-[#000000BF] text-left font-normal font-poppins">
+                                    - Easy hikes, local exploring, café hopping
+                                </span>
+                            </div>
+                        </label>
+                        <label className="flex items-center text-left">
+                            <input
+                            type="checkbox"
+                            name="prettyActive"
+                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                            checked={checkboxValues.prettyActive}
+                            onChange={handleCheckboxChange}
+                            />
+                            <div>
+                                Pretty Active<br />
+                                <span className="text-[12px] sm:text-[16px] md:text-[20px] text-[#000000BF] text-left font-normal font-poppins">
+                                    - Long walks, full-day tours, some adventure
+                                </span>
+                            </div>
+                        </label>
+                        <label className="flex items-center text-left">
+                            <input
+                            type="checkbox"
+                            name="nonStopAdventure"
+                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                            checked={checkboxValues.nonStopAdventure}
+                            onChange={handleCheckboxChange}
+                            />
+                            <div className="mb-4">
+                                Non-Stop Adventure<br />
+                                <span className="text-[12px] sm:text-[16px] md:text-[20px] text-[#000000BF] text-left font-normal font-poppins">
+                                    - Trekking, biking, packed itinerary, thrill-packed days
+                                </span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            ),
+            buttonText: "Done"
+        },
+        {
+            Number: 18,
+            type: "text",
+            Content: (
+                <div className="w-full flex flex-col items-start px-4 sm:px-8 md:px-32 lg:px-64">
+                    <div className="flex flex-col items-start mb-4">
+                        <p className="font-poppins font-normal text-[24px] text-[#000000BF] text-left">
+                        Got a <span className="text-[#000000] font-bold">temperature preference</span> for your trip?
+                        </p>
+                        <p className="mt-2 text-[20px]">Warm = Above 15°C / 60°F</p>
+                        <p className="mt-2 text-[20px]">Cool = Below 15°C / 60°F</p>
+                    </div>
+                    <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
+                        <label className="flex items-center text-left">
+                            <input
+                            type="checkbox"
+                            name="surpriseMe"
+                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                            checked={checkboxValues.surpriseMe}
+                            onChange={handleCheckboxChange}
+                            />
+                            Surprise me—I’m easygoing!
+                        </label>
+                        <label className="flex items-center text-left">
+                            <input
+                            type="checkbox"
+                            name="coolerClimate"
+                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                            checked={checkboxValues.coolerClimate}
+                            onChange={handleCheckboxChange}
+                            />
+                            Cooler climates, please!
+                        </label>
+                        <label className="flex items-center text-left mb-4">
+                            <input
+                            type="checkbox"
+                            name="bringOnTheSunshine"
+                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                            checked={checkboxValues.bringOnTheSunshine}
+                            onChange={handleCheckboxChange}
+                            />
+                            Bring on the sunshine!
+                        </label>
+                    </div>
+                    <p className="font-poppins font-normal text-[20px] text-[#000000BF] text-left mb-4">
+                        Sun, snow, or something in between—you’ll be ready for anything!<br /><br />
+                        Two weeks before you jet off, we’ll drop a live weather update and a custom packing list right into your inbox. No guesswork, just great outfits.
+                    </p>
+                </div>
+            ),
+            buttonText: "Done"
+        },
+        {
+            Number: 19,
+            type: "text",
+            Content: (
+                <div className="w-full flex flex-col items-start px-4 sm:px-8 md:px-32 lg:px-64">
+                    <p className="font-poppins font-normal text-[24px] text-[#000000BF] text-left mb-4">
+                        What kind of <span className="text-[#000000] font-bold">vibes</span> are you hoping for in your surprise destination?<br /> <br/>
+                        <span className="text-[20px]">Make between 2 and 5 choices.</span>
+                    </p>
+                    <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
+                        <label className="flex items-center text-left">
+                            <input
+                            type="checkbox"
+                            name="vibrantUrbanLife"
+                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                            checked={checkboxValues.vibrantUrbanLife}
+                            onChange={handleCheckboxChange}
+                            />
+                            Vibrant urban life
+                        </label>
+                        <label className="flex items-center text-left">
+                            <input
+                            type="checkbox"
+                            name="creativeArtsyVibes"
+                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                            checked={checkboxValues.creativeArtsyVibes}
+                            onChange={handleCheckboxChange}
+                            />
+                            Creative and artsy vibes
+                        </label>
+                        <label className="flex items-center text-left">
+                            <input
+                            type="checkbox"
+                            name="lushGreenLandscapes"
+                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                            checked={checkboxValues.lushGreenLandscapes}
+                            onChange={handleCheckboxChange}
+                            />
+                            Lush green landscapes
+                        </label>
+                        <label className="flex items-center text-left">
+                            <input
+                            type="checkbox"
+                            name="photogenic"
+                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                            checked={checkboxValues.photogenic}
+                            onChange={handleCheckboxChange}
+                            />
+                            Photogenic
+                        </label>
+                        <label className="flex items-center text-left">
+                            <input
+                            type="checkbox"
+                            name="budgetFriendlyAdventures"
+                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                            checked={checkboxValues.budgetFriendlyAdventures}
+                            onChange={handleCheckboxChange}
+                            />
+                            Budget-friendly adventures
+                        </label>
+                        <label className="flex items-center text-left">
+                            <input
+                            type="checkbox"
+                            name="mountainous"
+                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                            checked={checkboxValues.mountainous}
+                            onChange={handleCheckboxChange}
+                            />
+                            Mountainous
+                        </label>
+                        <label className="flex items-center text-left">
+                            <input
+                            type="checkbox"
+                            name="calmSereneEscapes"
+                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                            checked={checkboxValues.calmSereneEscapes}
+                            onChange={handleCheckboxChange}
+                            />
+                            Calm and serene escapes
+                        </label>
+                        <label className="flex items-center text-left">
+                            <input
+                            type="checkbox"
+                            name="eyeCatchingArchitecture"
+                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                            checked={checkboxValues.eyeCatchingArchitecture}
+                            onChange={handleCheckboxChange}
+                            />
+                            Eye-catching architecture
+                        </label>
+                        <label className="flex items-center text-left mb-4">
+                            <input
+                            type="checkbox"
+                            name="sandyBeaches"
+                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                            checked={checkboxValues.sandyBeaches}
+                            onChange={handleCheckboxChange}
+                            />
+                            Sandy beaches
+                        </label>
+                    </div>
+                </div>
+            ),
+            buttonText: "Done"
+        },
+        {
+            Number: 20,
+            type: "text",
+            Content: (
+                <div className="w-full flex flex-col items-start px-4 sm:px-8 md:px-32 lg:px-64">
+                    <p className="font-poppins font-normal text-[24px] text-[#000000BF] text-left mb-4">
+                        Is there a <span className="text-[#000000] font-bold">dream destination or state on your list</span> you'd love to land? 
+                    </p>
+                    <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
+                        <label className="flex items-center text-left">
+                            <input
+                            type="checkbox"
+                            name="yes"
+                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                            checked={checkboxValues.yes}
+                            onChange={handleCheckboxChange}
+                            />
+                            Yes
+                        </label>
+                        <label className="flex items-center text-left">
+                            <input
+                            type="checkbox"
+                            name="openToAnywhere"
+                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                            checked={checkboxValues.openToAnywhere}
+                            onChange={handleCheckboxChange}
+                            />
+                            No, I’m open to anywhere
+                        </label>
+                        <label className="flex items-center text-left mb-4">
+                            <input
+                            type="checkbox"
+                            name="internationalTrip"
+                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                            checked={checkboxValues.internationalTrip}
+                            onChange={handleCheckboxChange}
+                            />
+                            International Trip
+                        </label>
+                    </div>
+                </div>
+            ),
+            buttonText: "Done"
+        },
+        {
+            Number: 21,
+            type: "form",
+            Content: (
+                <div className="w-full flex flex-col items-center px-4 sm:px-8 md:px-32 lg:px-64">
+                    <p className="font-poppins font-normal text-[24px] text-[#000000BF] text-center mb-4">
+                        Which <span className="font-bold">States</span> are <span className="text-[#000000] font-bold">on your bucket list?</span> 
+                    </p>
+                    <div className="relative w-[250px]">
+                        <select
+                            value={selectedState}
+                            onChange={handlestateSelectionChange}
+                            className="w-full px-4 py-2 border border-2 border-[#000000B2] rounded-lg appearance-none bg-[#D9D9D966] font-poppins font-bold text-[#000000] text-[20px]"
+                        >
+                            <option value="">Select</option>
+                            {[
+                            "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", "Goa",
+                            "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand", "Karnataka", "Kerala",
+                            "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland",
+                            "Odisha", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura",
+                            "Uttar Pradesh", "Uttarakhand", "West Bengal"
+                            ].map((state, index) => (
+                            <option key={index} value={state}>
+                                {state}
+                            </option>
+                            ))}
+                        </select>
+                        <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                            <svg className="w-5 h-5 text-[#000000]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            ),
+            buttonText: "Done"
+        },
+        ...Array.from({ length: TOTAL_PAGES - 21 }, (_, i) => ({
+            Number: i + 1,
             type: "text",
             Content: (
                 <div className="text-center">
-                    <h2 className="text-2xl font-semibold mb-4 font-poppins">Page {i + 4}</h2>
-                    <p className="text-lg text-gray-700 font-poppins">This is the content for page {i + 4}.</p>
+                    <h2 className="text-2xl font-semibold mb-4 font-poppins">Page {i + 1}</h2>
+                    <p className="text-lg text-gray-700 font-poppins">This is the content for page {i + 1}.</p>
                 </div>
             ),
             buttonText: i === TOTAL_PAGES - 4 ? "Finish" : "Next"
@@ -1127,6 +1486,15 @@ export default function Questionnaire() {
             ease: "power2.out",
         });
     }, [currentPageIndex, lineWidth]);
+
+    const validators = {
+        2: isFormValid,
+        20: isFormValid1,
+        // add more: [pageIndex]: validationFunction
+    };
+
+    const currentValidator = validators[currentPageIndex];
+    const isDisabled = currentValidator ? !currentValidator() : false;
 
     return (
         <div className="min-h-screen flex flex-col bg-white font-poppins">
@@ -1168,7 +1536,8 @@ export default function Questionnaire() {
                 <button
                     onClick={handleNext}
                     className="bg-[#A11616E5] hover:bg-[#003566] text-[#FCD2B1] font-poppins font-bold text-[20px] px-4 md:px-6 lg:px-8 py-2 rounded-full border border-1 border-[#FCD2B1] flex items-center gap-2 transition"
-                    disabled={currentPageIndex === 2 && !isFormValid}
+                    // disabled={(currentPageIndex === 2 && !isFormValid) || (currentPageIndex === 21 && !isFormValid1())}
+                    disabled={isDisabled}
                 >
                     {Pages[currentPageIndex].buttonText}
                     <FaArrowRightLong size={20} />
