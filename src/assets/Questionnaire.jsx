@@ -17,6 +17,7 @@ export default function Questionnaire() {
     const [selectedState, setSelectedState] = useState("");
     const [travelerCount, setTravelerCount] = useState(1);
     const [firstName, setFirstName] = useState("");
+    const [avoidDestination, setAvoidDestination] = useState("");
     const [checkboxValues, setCheckboxValues] = useState({
         awareOfNothing: false,
         unableToDoPhysicalActivities: false,
@@ -133,6 +134,12 @@ export default function Questionnaire() {
         const state = event.target.value;
         setSelectedState(state);
         // updateFormData({ selectedState }); // Uncomment if you use form data globally
+    };
+
+    const handleAvoidDestinationChange = (event) => {
+        const destination = event.target.value;
+        setAvoidDestination(destination);
+        // updateFormData({ avoidDestination }); // Uncomment if you use form data globally
     };
 
     const isFormValid1 = () => {
@@ -1443,6 +1450,86 @@ export default function Questionnaire() {
                 </div>
             ),
             buttonText: "Done"
+        },
+        {
+            Number: 22,
+            type: "form",
+            Content: (
+                <div className="w-full flex flex-col items-center px-4 sm:px-8 md:px-32 lg:px-64">
+                    <p className="font-poppins font-normal text-[24px] text-[#000000BF] text-center mb-4">
+                        Our mission at BFT is to connect people with cultures far from their own. But let’s be clear: <span className="font-bold">your safety is non-negotiable on any of our trips.</span>
+                    </p>
+                    <p className="font-poppins font-normal text-[24px] text-[#000000BF] text-center mb-4">
+                        Any <span className="font-bold">destination types that wouldn’t be safe or suitable for you?</span>
+                    </p>
+                    <div className="relative w-[250px]">
+                        <select
+                            value={selectedState}
+                            onChange={handlestateSelectionChange}
+                            className="w-full px-4 py-2 border border-2 border-[#000000B2] rounded-lg appearance-none bg-[#D9D9D966] font-poppins font-bold text-[#000000] text-[20px]"
+                        >
+                            <option value="">Select</option>
+                            {[
+                            "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", "Goa",
+                            "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand", "Karnataka", "Kerala",
+                            "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland",
+                            "Odisha", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura",
+                            "Uttar Pradesh", "Uttarakhand", "West Bengal"
+                            ].map((state, index) => (
+                            <option key={index} value={state}>
+                                {state}
+                            </option>
+                            ))}
+                        </select>
+                        <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                            <svg className="w-5 h-5 text-[#000000]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            ),
+            buttonText: "Done"
+        },
+        {
+            Number: 23,
+            type: "form",
+            Content: (
+                <div className='w-full sm:w-[90%] md:w-[75%] lg:w-[50%] flex flex-col items-start px-4'>
+                    <div className="w-full mb-8">
+                        <p className='font-poppins font-normal text-[20px] text-[#000000BF] text-left mb-4'>
+                            Where have you already been that you’d <span className="font-bold">prefer not to revisit?</span>
+                        </p>
+                        <input
+                            type="text"
+                            value={avoidDestination}
+                            onChange={handleAvoidDestinationChange}
+                            placeholder="e.g. Paris, France"
+                            className="w-full px-4 py-3 border border-2 border-[#000000B2] bg-[#D9D9D966] rounded-lg font-poppins font-normal text-[24px] text-[#000000]"
+                        />
+                    </div>
+                </div>
+            ),
+            buttonText: "Next"
+        },
+        {
+            Number: 24,
+            type: "text",
+            Content: (
+                <div className="flex flex-col md:flex-row justify-center items-center">
+                    <div className="text-center mr-8">
+                        <p className="font-poppins font-bold text-[40px] text-[#A42828]">
+                            Chapter 3: The Must-Knows
+                        </p>
+                    </div>
+                    <img
+                        src="/chapter-3.png"
+                        alt="Chapter 3"
+                        className="w-[249px] h-[241px] mt-4 mb-4"
+                    />
+                </div>
+            ),
+            buttonText: "Continue"
         },
         ...Array.from({ length: TOTAL_PAGES - 21 }, (_, i) => ({
             Number: i + 1,
