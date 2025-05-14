@@ -40,6 +40,50 @@ export default function Questionnaire() {
         noWineTasting: false,
         noBreweryTour: false,
         noSpaContact: false,
+        none: false,
+        vegeterian: false,
+        vegan: false,
+        noAlcohol: false,
+        otherAllergies: false,
+        notInterested: false,
+        openAndWilling: false,
+        curious: false,
+        excited: false,
+        superInterested: false,
+        notInterested1: false,
+        openAndWilling1: false,
+        curious1: false,
+        excited1: false,
+        superInterested1: false,
+        notInterested2: false,
+        openAndWilling2: false,
+        curious2: false,
+        excited2: false,
+        superInterested2: false,
+        notInterested3: false,
+        openAndWilling3: false,
+        curious3: false,
+        excited3: false,
+        superInterested3: false,
+        notInterested4: false,
+        openAndWilling4: false,
+        curious4: false,
+        excited4: false,
+        superInterested4: false,
+        notInterested5: false,
+        openAndWilling5: false,
+        curious5: false,
+        excited5: false,
+        superInterested5: false,
+        notInterested6: false,
+        openAndWilling6: false,
+        curious6: false,
+        excited6: false,
+        superInterested6: false,
+        qualityTime: false,
+        newDestination: false,
+        wellness: false,
+        specialOccasion: false,
     });
 
     const handleTravelerCountChange = (e) => {
@@ -182,7 +226,7 @@ export default function Questionnaire() {
                         With BFT, the world becomes your playground for adventure and self-discovery.<br /><br />
                         We totally get that <span className="font-bold">fears, phobias, or medical conditions</span> can affect your travel experience. Is there <span className="font-bold">anything we should keep in mind?</span>
                     </p>
-                    <div className="flex flex-col items-start gap-4 text-[24px] text-left font-poppins">
+                    <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-poppins">
                         <label className="flex items-center text-left">
                         <input
                             type="checkbox"
@@ -278,7 +322,7 @@ export default function Questionnaire() {
                         We’d love to gently nudge you out of your comfort zone—but are there any <span className="font-bold text-[#000000]">activities that are a definite no for you?</span><span className="text-[#A32626] font-bold"> *</span><br /><br />
                         If you’re unsure about an activity, don't say no to it!
                     </p>
-                    <div className="flex flex-col items-start gap-4 text-[24px] text-left font-poppins">
+                    <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-poppins">
                         <label className="flex items-center text-left">
                             <input
                             type="checkbox"
@@ -434,6 +478,613 @@ export default function Questionnaire() {
             ),
             buttonText: "Done"
         },
+        {
+            Number: 7,
+            type: "text",
+            Content: (
+                <div className="w-full sm:w-[90%] md:w-[75%] lg:w-[40%] flex flex-col items-center">
+                    <p className="font-poppins font-normal text-[20px] text-[#000000] text-left mb-4">
+                        Do you follow <span className="font-bold">any dietary preferences or restrictions</span> we should consider for foodie stops? *
+                    </p>
+                    <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-poppins">
+                        <label className="flex items-center text-left">
+                            <input
+                            type="checkbox"
+                            name="none"
+                            className="mr-4 w-[20px] h-[20px]"
+                            checked={checkboxValues.none}
+                            onChange={handleCheckboxChange}
+                            />
+                            None
+                        </label>
+                        <label className="flex items-center text-left">
+                            <input
+                            type="checkbox"
+                            name="vegeterian"
+                            className="mr-4 w-[20px] h-[20px]"
+                            checked={checkboxValues.vegeterian}
+                            onChange={handleCheckboxChange}
+                            />
+                            Vegetarian
+                        </label>
+                        <label className="flex items-center text-left">
+                            <input
+                            type="checkbox"
+                            name="vegan"
+                            className="mr-4 w-[20px] h-[20px]"
+                            checked={checkboxValues.vegan}
+                            onChange={handleCheckboxChange}
+                            />
+                            Vegan
+                        </label>
+                        <label className="flex items-center text-left">
+                            <input
+                            type="checkbox"
+                            name="noAlcohol"
+                            className="mr-4 w-[20px] h-[20px]"
+                            checked={checkboxValues.noAlcohol}
+                            onChange={handleCheckboxChange}
+                            />
+                            Don’t Drink Alcohol
+                        </label>
+                        <label className="flex items-center text-left">
+                            <input
+                            type="checkbox"
+                            name="otherAllergies"
+                            className="mr-4 w-[20px] h-[20px]"
+                            checked={checkboxValues.otherAllergies}
+                            onChange={handleCheckboxChange}
+                            />
+                            Other allergies or dietary restrictions
+                        </label>
+                    </div>
+                </div>
+            ),
+            buttonText: "Done"
+        },
+        {
+            Number: 8,
+            type: "text",
+            Content: (
+                <div className="w-full flex flex-col items-center">
+                    <p className="font-poppins font-normal text-[24px] text-[#000000] text-left mr-12 md:mr-20 mb-4">
+                        How much do you enjoy <span className="font-bold">outdoor adventures?</span>
+                    </p>
+                    <div className="flex flex-row items-center gap-4 sm:gap-8 lg:gap-12 mb-4">
+                        <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
+                            <label className="flex items-center text-left">
+                                <input
+                                type="checkbox"
+                                name="notInterested"
+                                className="mr-4 w-[20px] h-[20px]"
+                                checked={checkboxValues.notInterested}
+                                onChange={handleCheckboxChange}
+                                />
+                                Not interested
+                            </label>
+                            <label className="flex items-center text-left">
+                                <input
+                                type="checkbox"
+                                name="openAndWilling"
+                                className="mr-4 w-[20px] h-[20px]"
+                                checked={checkboxValues.openAndWilling}
+                                onChange={handleCheckboxChange}
+                                />
+                                Open & willing
+                            </label>
+                            <label className="flex items-center text-left">
+                                <input
+                                type="checkbox"
+                                name="curious"
+                                className="mr-4 w-[20px] h-[20px]"
+                                checked={checkboxValues.curious}
+                                onChange={handleCheckboxChange}
+                                />
+                                Curious
+                            </label>
+                            <label className="flex items-center text-left">
+                                <input
+                                type="checkbox"
+                                name="excited"
+                                className="mr-4 w-[20px] h-[20px]"
+                                checked={checkboxValues.excited}
+                                onChange={handleCheckboxChange}
+                                />
+                                Excited
+                            </label>
+                            <label className="flex items-center text-left">
+                                <input
+                                type="checkbox"
+                                name="superInterested"
+                                className="mr-4 w-[20px] h-[20px]"
+                                checked={checkboxValues.superInterested}
+                                onChange={handleCheckboxChange}
+                                />
+                                Super interested
+                            </label>
+                        </div>
+                        <img src="/page-8.jpg" alt="Page 8" className="w-[257px] md:w-[337px] h-[174px] md:h-[244px] rounded-lg mt-4 mb-4 bg-[#D9D9D9]" />
+                    </div>
+                </div>
+            ),
+            buttonText: "Done"
+        },
+        {
+            Number: 9,
+            type: "text",
+            Content: (
+                <div className="w-full flex flex-col items-center">
+                    <p className="font-poppins font-normal text-[24px] text-[#000000] text-left mr-14 md:mr-28 mb-4">
+                        How do you feel about being <span className="font-bold">out in nature?</span>
+                    </p>
+                    <div className="flex flex-row items-center gap-4 sm:gap-8 lg:gap-12 mb-4">
+                        <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
+                            <label className="flex items-center text-left">
+                                <input
+                                type="checkbox"
+                                name="notInterested1"
+                                className="mr-4 w-[20px] h-[20px]"
+                                checked={checkboxValues.notInterested1}
+                                onChange={handleCheckboxChange}
+                                />
+                                Not interested
+                            </label>
+                            <label className="flex items-center text-left">
+                                <input
+                                type="checkbox"
+                                name="openAndWilling1"
+                                className="mr-4 w-[20px] h-[20px]"
+                                checked={checkboxValues.openAndWilling1}
+                                onChange={handleCheckboxChange}
+                                />
+                                Open & willing
+                            </label>
+                            <label className="flex items-center text-left">
+                                <input
+                                type="checkbox"
+                                name="curious1"
+                                className="mr-4 w-[20px] h-[20px]"
+                                checked={checkboxValues.curious1}
+                                onChange={handleCheckboxChange}
+                                />
+                                Curious
+                            </label>
+                            <label className="flex items-center text-left">
+                                <input
+                                type="checkbox"
+                                name="excited1"
+                                className="mr-4 w-[20px] h-[20px]"
+                                checked={checkboxValues.excited1}
+                                onChange={handleCheckboxChange}
+                                />
+                                Excited
+                            </label>
+                            <label className="flex items-center text-left">
+                                <input
+                                type="checkbox"
+                                name="superInterested1"
+                                className="mr-4 w-[20px] h-[20px]"
+                                checked={checkboxValues.superInterested1}
+                                onChange={handleCheckboxChange}
+                                />
+                                Super interested
+                            </label>
+                        </div>
+                        <img src="/page-9.jpg" alt="Page 9" className="w-[257px] md:w-[337px] h-[174px] md:h-[244px] rounded-lg mt-4 mb-4 bg-[#D9D9D9]" />
+                    </div>
+                </div>
+            ),
+            buttonText: "Done"
+        },
+        {
+            Number: 10,
+            type: "text",
+            Content: (
+                <div className="w-full flex flex-col items-center">
+                    <p className="font-poppins font-normal text-[24px] text-[#000000] text-left mr-14 md:mr-28 mb-4">
+                        Strolling through <span className="font-bold">charming little towns—</span> love it or leave it? 
+                    </p>
+                    <div className="flex flex-row items-center gap-4 sm:gap-8 lg:gap-12 mb-4">
+                        <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
+                            <label className="flex items-center text-left">
+                                <input
+                                type="checkbox"
+                                name="notInterested2"
+                                className="mr-4 w-[20px] h-[20px]"
+                                checked={checkboxValues.notInterested2}
+                                onChange={handleCheckboxChange}
+                                />
+                                Not interested
+                            </label>
+                            <label className="flex items-center text-left">
+                                <input
+                                type="checkbox"
+                                name="openAndWilling2"
+                                className="mr-4 w-[20px] h-[20px]"
+                                checked={checkboxValues.openAndWilling2}
+                                onChange={handleCheckboxChange}
+                                />
+                                Open & willing
+                            </label>
+                            <label className="flex items-center text-left">
+                                <input
+                                type="checkbox"
+                                name="curious2"
+                                className="mr-4 w-[20px] h-[20px]"
+                                checked={checkboxValues.curious2}
+                                onChange={handleCheckboxChange}
+                                />
+                                Curious
+                            </label>
+                            <label className="flex items-center text-left">
+                                <input
+                                type="checkbox"
+                                name="excited2"
+                                className="mr-4 w-[20px] h-[20px]"
+                                checked={checkboxValues.excited2}
+                                onChange={handleCheckboxChange}
+                                />
+                                Excited
+                            </label>
+                            <label className="flex items-center text-left">
+                                <input
+                                type="checkbox"
+                                name="superInterested2"
+                                className="mr-4 w-[20px] h-[20px]"
+                                checked={checkboxValues.superInterested2}
+                                onChange={handleCheckboxChange}
+                                />
+                                Super interested
+                            </label>
+                        </div>
+                        <img src="/page-10.jpg" alt="Page 10" className="w-[257px] md:w-[337px] h-[174px] md:h-[244px] rounded-lg mt-4 mb-4 bg-[#D9D9D9]" />
+                    </div>
+                </div>
+            ),
+            buttonText: "Done"
+        },
+        {
+            Number: 11,
+            type: "text",
+            Content: (
+                <div className="w-full flex flex-col items-center">
+                    <p className="font-poppins font-normal text-[24px] text-[#000000] text-left mr-14 md:mr-28 mb-4">
+                        Seeing <span className="font-bold">iconic landmarks—</span> must-do or pass?
+                    </p>
+                    <div className="flex flex-row items-center gap-4 sm:gap-8 lg:gap-12 mb-4">
+                        <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
+                            <label className="flex items-center text-left">
+                                <input
+                                type="checkbox"
+                                name="notInterested3"
+                                className="mr-4 w-[20px] h-[20px]"
+                                checked={checkboxValues.notInterested3}
+                                onChange={handleCheckboxChange}
+                                />
+                                Not interested
+                            </label>
+                            <label className="flex items-center text-left">
+                                <input
+                                type="checkbox"
+                                name="openAndWilling3"
+                                className="mr-4 w-[20px] h-[20px]"
+                                checked={checkboxValues.openAndWilling3}
+                                onChange={handleCheckboxChange}
+                                />
+                                Open & willing
+                            </label>
+                            <label className="flex items-center text-left">
+                                <input
+                                type="checkbox"
+                                name="curious3"
+                                className="mr-4 w-[20px] h-[20px]"
+                                checked={checkboxValues.curious3}
+                                onChange={handleCheckboxChange}
+                                />
+                                Curious
+                            </label>
+                            <label className="flex items-center text-left">
+                                <input
+                                type="checkbox"
+                                name="excited3"
+                                className="mr-4 w-[20px] h-[20px]"
+                                checked={checkboxValues.excited3}
+                                onChange={handleCheckboxChange}
+                                />
+                                Excited
+                            </label>
+                            <label className="flex items-center text-left">
+                                <input
+                                type="checkbox"
+                                name="superInterested3"
+                                className="mr-4 w-[20px] h-[20px]"
+                                checked={checkboxValues.superInterested3}
+                                onChange={handleCheckboxChange}
+                                />
+                                Super interested
+                            </label>
+                        </div>
+                        <img src="/page-11.jpg" alt="Page 11" className="w-[257px] md:w-[337px] h-[174px] md:h-[244px] rounded-lg mt-4 mb-4 bg-[#D9D9D9]" />
+                    </div>
+                </div>
+            ),
+            buttonText: "Done"
+        },
+        {
+            Number: 12,
+            type: "text",
+            Content: (
+                <div className="w-full flex flex-col items-center">
+                    <p className="font-poppins font-normal text-[24px] text-[#000000] text-left mr-14 md:mr-28 mb-4">
+                        Exploring <span className="font-bold">places rich in history—</span> your thing? 
+                    </p>
+                    <div className="flex flex-row items-center gap-4 sm:gap-8 lg:gap-12 mb-4">
+                        <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
+                            <label className="flex items-center text-left">
+                                <input
+                                type="checkbox"
+                                name="notInterested4"
+                                className="mr-4 w-[20px] h-[20px]"
+                                checked={checkboxValues.notInterested4}
+                                onChange={handleCheckboxChange}
+                                />
+                                Not interested
+                            </label>
+                            <label className="flex items-center text-left">
+                                <input
+                                type="checkbox"
+                                name="openAndWilling4"
+                                className="mr-4 w-[20px] h-[20px]"
+                                checked={checkboxValues.openAndWilling4}
+                                onChange={handleCheckboxChange}
+                                />
+                                Open & willing
+                            </label>
+                            <label className="flex items-center text-left">
+                                <input
+                                type="checkbox"
+                                name="curious4"
+                                className="mr-4 w-[20px] h-[20px]"
+                                checked={checkboxValues.curious4}
+                                onChange={handleCheckboxChange}
+                                />
+                                Curious
+                            </label>
+                            <label className="flex items-center text-left">
+                                <input
+                                type="checkbox"
+                                name="excited4"
+                                className="mr-4 w-[20px] h-[20px]"
+                                checked={checkboxValues.excited4}
+                                onChange={handleCheckboxChange}
+                                />
+                                Excited
+                            </label>
+                            <label className="flex items-center text-left">
+                                <input
+                                type="checkbox"
+                                name="superInterested4"
+                                className="mr-4 w-[20px] h-[20px]"
+                                checked={checkboxValues.superInterested4}
+                                onChange={handleCheckboxChange}
+                                />
+                                Super interested
+                            </label>
+                        </div>
+                        <img src="/page-12.jpg" alt="Page 12" className="w-[257px] md:w-[337px] h-[174px] md:h-[244px] rounded-lg mt-4 mb-4 bg-[#D9D9D9]" />
+                    </div>
+                </div>
+            ),
+            buttonText: "Done"
+        },
+        {
+            Number: 13,
+            type: "text",
+            Content: (
+                <div className="w-full flex flex-col items-center">
+                    <p className="font-poppins font-normal text-[24px] text-[#000000] text-left mr-12 sm:mr-14 md:mr-48 mb-4">
+                        <span className="font-bold">Art and museum </span> visits—yay or nay?
+                    </p>
+                    <div className="flex flex-row items-center gap-4 sm:gap-8 lg:gap-12 mb-4">
+                        <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
+                            <label className="flex items-center text-left">
+                                <input
+                                type="checkbox"
+                                name="notInterested5"
+                                className="mr-4 w-[20px] h-[20px]"
+                                checked={checkboxValues.notInterested5}
+                                onChange={handleCheckboxChange}
+                                />
+                                Not interested
+                            </label>
+                            <label className="flex items-center text-left">
+                                <input
+                                type="checkbox"
+                                name="openAndWilling5"
+                                className="mr-4 w-[20px] h-[20px]"
+                                checked={checkboxValues.openAndWilling5}
+                                onChange={handleCheckboxChange}
+                                />
+                                Open & willing
+                            </label>
+                            <label className="flex items-center text-left">
+                                <input
+                                type="checkbox"
+                                name="curious5"
+                                className="mr-4 w-[20px] h-[20px]"
+                                checked={checkboxValues.curious5}
+                                onChange={handleCheckboxChange}
+                                />
+                                Curious
+                            </label>
+                            <label className="flex items-center text-left">
+                                <input
+                                type="checkbox"
+                                name="excited5"
+                                className="mr-4 w-[20px] h-[20px]"
+                                checked={checkboxValues.excited5}
+                                onChange={handleCheckboxChange}
+                                />
+                                Excited
+                            </label>
+                            <label className="flex items-center text-left">
+                                <input
+                                type="checkbox"
+                                name="superInterested5"
+                                className="mr-4 w-[20px] h-[20px]"
+                                checked={checkboxValues.superInterested5}
+                                onChange={handleCheckboxChange}
+                                />
+                                Super interested
+                            </label>
+                        </div>
+                        <img src="/page-13.jpg" alt="Page 13" className="w-[257px] md:w-[337px] h-[174px] md:h-[244px] rounded-lg mt-4 mb-4 bg-[#D9D9D9]" />
+                    </div>
+                </div>
+            ),
+            buttonText: "Done"
+        },
+        {
+            Number: 14,
+            type: "text",
+            Content: (
+                <div className="w-full flex flex-col items-center">
+                    <p className="font-poppins font-normal text-[24px] text-[#000000] text-left mr-14 md:mr-28 mb-4">
+                        Sampling <span className="font-bold">delicious local food—</span> how excited are you?
+                    </p>
+                    <div className="flex flex-row items-center gap-4 sm:gap-8 lg:gap-12 mb-4">
+                        <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
+                            <label className="flex items-center text-left">
+                                <input
+                                type="checkbox"
+                                name="notInterested6"
+                                className="mr-4 w-[20px] h-[20px]"
+                                checked={checkboxValues.notInterested6}
+                                onChange={handleCheckboxChange}
+                                />
+                                Not interested
+                            </label>
+                            <label className="flex items-center text-left">
+                                <input
+                                type="checkbox"
+                                name="openAndWilling6"
+                                className="mr-4 w-[20px] h-[20px]"
+                                checked={checkboxValues.openAndWilling6}
+                                onChange={handleCheckboxChange}
+                                />
+                                Open & willing
+                            </label>
+                            <label className="flex items-center text-left">
+                                <input
+                                type="checkbox"
+                                name="curious6"
+                                className="mr-4 w-[20px] h-[20px]"
+                                checked={checkboxValues.curious6}
+                                onChange={handleCheckboxChange}
+                                />
+                                Curious
+                            </label>
+                            <label className="flex items-center text-left">
+                                <input
+                                type="checkbox"
+                                name="excited6"
+                                className="mr-4 w-[20px] h-[20px]"
+                                checked={checkboxValues.excited6}
+                                onChange={handleCheckboxChange}
+                                />
+                                Excited
+                            </label>
+                            <label className="flex items-center text-left">
+                                <input
+                                type="checkbox"
+                                name="superInterested6"
+                                className="mr-4 w-[20px] h-[20px]"
+                                checked={checkboxValues.superInterested6}
+                                onChange={handleCheckboxChange}
+                                />
+                                Super interested
+                            </label>
+                        </div>
+                        <img src="/page-14.jpg" alt="Page 14" className="w-[257px] md:w-[337px] h-[174px] md:h-[244px] rounded-lg mt-4 mb-4 bg-[#D9D9D9]" />
+                    </div>
+                </div>
+            ),
+            buttonText: "Done"
+        },
+        {
+            Number: 15,
+            type: "text",
+            Content: (
+                <div className="flex flex-col md:flex-row justify-center items-center">
+                    <div className="text-center mr-8">
+                        <p className="font-poppins font-bold text-[40px] text-[#A42828]">
+                            Chapter 2: Your Mystery Trip Begins
+                        </p>
+                    </div>
+                    <img
+                        src="/chapter-2.png"
+                        alt="Chapter 2"
+                        className="w-[249px] h-[241px] mt-4 mb-4"
+                    />
+                </div>
+            ),
+            buttonText: "Continue"
+        },
+        {
+            Number: 16,
+            type: "text",
+            Content: (
+                <div className="w-full flex flex-col items-start px-4 sm:px-8 md:px-32 lg:px-64">
+                    <p className="font-poppins font-normal text-[24px] text-[#000000] text-center mb-4">
+                        What’s the <span className="font-bold">#1 thing you’re hoping for from this trip? *</span> how excited are you?
+                    </p>
+                    <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
+                        <label className="flex items-center text-left">
+                            <input
+                            type="checkbox"
+                            name="qualityTime"
+                            className="mr-4 w-[20px] h-[20px]"
+                            checked={checkboxValues.qualityTime}
+                            onChange={handleCheckboxChange}
+                            />
+                            Quality time together / by myself
+                        </label>
+                        <label className="flex items-center text-left">
+                            <input
+                            type="checkbox"
+                            name="newDestination"
+                            className="mr-4 w-[20px] h-[20px]"
+                            checked={checkboxValues.newDestination}
+                            onChange={handleCheckboxChange}
+                            />
+                            Visit a new destination
+                        </label>
+                        <label className="flex items-center text-left">
+                            <input
+                            type="checkbox"
+                            name="wellness"
+                            className="mr-4 w-[20px] h-[20px]"
+                            checked={checkboxValues.wellness}
+                            onChange={handleCheckboxChange}
+                            />
+                            Emotional wellness
+                        </label>
+                        <label className="flex items-center text-left">
+                            <input
+                            type="checkbox"
+                            name="specialOccasion"
+                            className="mr-4 w-[20px] h-[20px]"
+                            checked={checkboxValues.specialOccasion}
+                            onChange={handleCheckboxChange}
+                            />
+                            Celebrate a special occasion
+                        </label>
+                    </div>
+                </div>
+            ),
+            buttonText: "Done"
+        },
+
         ...Array.from({ length: TOTAL_PAGES - 3 }, (_, i) => ({
             Number: i + 4,
             type: "text",

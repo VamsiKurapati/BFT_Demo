@@ -1,6 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
+import { Navigate } from "react-router-dom";
 
 const Home = lazy(() => import("./assets/Home"));
 const Contact = lazy(() => import("./assets/Contact"));
@@ -19,7 +20,7 @@ const App = () => {
                 <Route path="/how_it_works" element={<HowItWorks />} />
                 <Route path="/questionnaire" element={<Questionnaire />} />
                 {/* Other route redirect to home and change the path to your home page */}
-                <Route path="/*" element={<Home />} />
+                <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
       </Suspense>
     );
