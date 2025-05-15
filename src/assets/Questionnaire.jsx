@@ -18,6 +18,9 @@ export default function Questionnaire() {
     const [travelerCount, setTravelerCount] = useState(1);
     const [firstName, setFirstName] = useState("");
     const [avoidDestination, setAvoidDestination] = useState("");
+    const [stayingDuration, setStayingDuration] = useState("");
+    const [budget, setBudget] = useState("");
+
     const [checkboxValues, setCheckboxValues] = useState({
         awareOfNothing: false,
         unableToDoPhysicalActivities: false,
@@ -27,6 +30,7 @@ export default function Questionnaire() {
         seaSickness: false,
         claustrophobia: false,
         fearOfDogs: false,
+        comfortableWithAll: false,
         noNatureWalk: false,
         noHiking: false,
         noBikingSegway: false,
@@ -106,6 +110,18 @@ export default function Questionnaire() {
         yes: false,
         openToAnywhere: false,
         internationalTrip: false,
+        fDtN: false,
+        fDfN: false,
+        sDfN: false,
+        preferredStartDate: false,
+        completelyFlexible: false,
+        eitherIsFine: false,
+        exclusiveResidence: false,
+        hotel: false,
+        maxBudget: false,
+        increaseBy5000: false,
+        increaseBy7500: false,
+        increaseBy10000: false,
     });
 
     const handleTravelerCountChange = (e) => {
@@ -116,18 +132,6 @@ export default function Questionnaire() {
     const handleFirstNameChange = (e) => {
         setFirstName(e.target.value);
         // updateFormData({ firstName: e.target.value }); // Uncomment if you use form data globally
-    };
-
-    const isFormValid = () =>{
-        return firstName.trim() !== "" && travelerCount > 0;
-    }
-
-    const handleCheckboxChange = (event) => {
-        const { name, checked } = event.target;
-            setCheckboxValues((prevState) => ({
-            ...prevState,
-            [name]: checked,
-        }));
     };
 
     const handlestateSelectionChange = (event) => {
@@ -142,8 +146,125 @@ export default function Questionnaire() {
         // updateFormData({ avoidDestination }); // Uncomment if you use form data globally
     };
 
-    const isFormValid1 = () => {
+    const handleCheckboxChange = (event) => {
+        const { name, checked } = event.target;
+            setCheckboxValues((prevState) => ({
+            ...prevState,
+            [name]: checked,
+        }));
+    };
+
+    const handleStayingDurationChange = (event) => {
+        const val = event.target.value;
+        setStayingDuration(val);
+    }
+
+    const handleBudgetChange = (e) => {
+        const rawValue = e.target.value.replace(/,/g, '');
+        if (!/^\d*$/.test(rawValue)) return; // block non-numeric input
+        setBudget(Number(rawValue).toLocaleString('en-IN'));
+    };
+
+    const page3validator = () =>{
+        return firstName.trim() !== "" && travelerCount > 0;
+    }
+
+    const page5validator = () => {
+        return checkboxValues["awareOfNothing"] || checkboxValues["unableToDoPhysicalActivities"] || checkboxValues["pregnancy"] || checkboxValues["fearOfHeights"] || checkboxValues["cantSwim"] || checkboxValues["seaSickness"] || checkboxValues["claustrophobia"] || checkboxValues["fearOfDogs"];
+    }
+
+    const page6validator = () => {
+        const keysToCheck = [
+            "comfortableWithAll",
+            "noNatureWalk",
+            "noHiking",
+            "noBikingSegway",
+            "noBoatTrips",
+            "noSwimmingSnorkeling",
+            "noKayakingSUP",
+            "noRafting",
+            "noSurfing",
+            "noScubaDiving",
+            "noCanyoningCaving",
+            "noParagliding",
+            "noHorseCamelRiding",
+            "noWineTasting",
+            "noBreweryTour",
+            "noSpaContact"
+        ];
+        return keysToCheck.some((key) => checkboxValues[key]);
+    };
+
+    const page7validator = () => {
+        return checkboxValues["none"] || checkboxValues["vegeterian"] || checkboxValues["vegan"] || checkboxValues["noAlcohol"] || checkboxValues["otherAllergies"];
+    }
+
+    const page8to14validator = (suffix) => {
+        const keys = ["notInterested", "openAndWilling", "curious", "excited", "superInterested"];
+        return () => {
+            return keys.some(key => checkboxValues[`${key}${suffix}`]);
+        };
+    };
+
+    const page16validator = () => {
+        return checkboxValues["qualityTime"] || checkboxValues["newDestination"] || checkboxValues["wellness"] || checkboxValues["specialOccasion"];
+    };
+
+    const page17validator = () => {
+        return checkboxValues["totalChill"] || checkboxValues["mostlyRelaxed"] || checkboxValues["aBitOfBoth"] || checkboxValues["prettyActive"] || checkboxValues["nonStopAdventure"];
+    }
+
+    const page18validator = () => {
+        return checkboxValues["surpriseMe"] || checkboxValues["coolerClimate"] || checkboxValues["bringOnTheSunshine"];
+    }
+
+    const page19validator = () => {
+        const keysToCheck = [
+            "vibrantUrbanLife",
+            "creativeArtsyVibes",
+            "lushGreenLandscapes",
+            "photogenic",
+            "budgetFriendlyAdventures",
+            "mountainous",
+            "calmSereneEscapes",
+            "eyeCatchingArchitecture",
+            "sandyBeaches"
+        ];
+
+        const checkedCount = keysToCheck.reduce((count, key) => {
+            return checkboxValues[key] ? count + 1 : count;
+        }, 0);
+
+        return checkedCount >= 2 && checkedCount <= 5;
+    };
+
+    const page20validator = () => {
+        return checkboxValues["yes"] || checkboxValues["openToAnywhere"] || checkboxValues["internationalTrip"];
+    }
+
+    const page21validator = () => {
         return selectedState !== "";
+    }
+
+    const page26validator = () => {
+        return checkboxValues["fDfN"] || checkboxValues["fDtN"] || checkboxValues["sDfN"] || stayingDuration!=="";
+    }
+
+    const page27validator = () => {
+        return checkboxValues["preferredStartDate"] || checkboxValues["completelyFlexible"];
+    }
+
+    const page28validator = () => {
+        return checkboxValues["eitherIsFine"] || checkboxValues["exclusiveResidence"] || checkboxValues["hotel"];
+    }
+
+    const page29validator = () => {
+        const numericBudget = Number(budget.replace(/,/g, ''));
+        return numericBudget > 0;
+    };
+
+    const page30validator = () => {
+        return checkboxValues["maxBudget"] || checkboxValues["increaseBy5000"] || checkboxValues["increaseBy7500"] || checkboxValues["increaseBy10000"];
     }
 
     const handleSave = () => {
@@ -202,7 +323,7 @@ export default function Questionnaire() {
                             <span className="font-titan font-normal text-[32px] text-[#000000BF]">01.</span> How many travelers are in your crew ? <span className="text-[#A32727]">*</span>
                         </h2>
                         <p className='font-poppins font-normal text-[20px] text-[#000000BF] text-left mb-4'>
-                            If you're <span className="font-bold">not sure, start with 1</span>. You can always add more people later—after receiving your Blind Fold Trip Proposal.
+                            If you're <span className="font-bold text-[#000000]">not sure, start with 1</span>. You can always add more people later—after receiving your Blind Fold Trip Proposal.
                         </p>
                         <div className="relative w-[120px]">
                             <select
@@ -236,7 +357,7 @@ export default function Questionnaire() {
                     </div>
                 </div>
             ),
-            buttonText: "Next"
+            buttonText: "Done"
         },
         {
             Number: 4,
@@ -264,7 +385,7 @@ export default function Questionnaire() {
                 <div className="w-full sm:w-[90%] md:w-[75%] lg:w-[40%] flex flex-col items-center">
                     <p className="font-poppins font-normal text-[20px] text-[#000000BF] text-left mb-4">
                         With BFT, the world becomes your playground for adventure and self-discovery.<br /><br />
-                        We totally get that <span className="font-bold">fears, phobias, or medical conditions</span> can affect your travel experience. Is there <span className="font-bold">anything we should keep in mind?</span>
+                        We totally get that <span className="font-bold text-[#000000]">fears, phobias, or medical conditions</span> can affect your travel experience. Is there <span className="font-bold text-[#000000]">anything we should keep in mind?</span>
                     </p>
                     <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-poppins">
                         <label className="flex items-center text-left">
@@ -363,6 +484,16 @@ export default function Questionnaire() {
                         If you’re unsure about an activity, don't say no to it!
                     </p>
                     <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-poppins">
+                        <label className="flex items-center text-left">
+                            <input
+                            type="checkbox"
+                            name="comfortableWithAll"
+                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                            checked={checkboxValues.comfortableWithAll}
+                            onChange={handleCheckboxChange}
+                            />
+                            Comfortable with them all
+                        </label>
                         <label className="flex items-center text-left">
                             <input
                             type="checkbox"
@@ -524,7 +655,7 @@ export default function Questionnaire() {
             Content: (
                 <div className="w-full sm:w-[90%] md:w-[75%] lg:w-[40%] flex flex-col items-center">
                     <p className="font-poppins font-normal text-[20px] text-[#000000] text-left mb-4">
-                        Do you follow <span className="font-bold">any dietary preferences or restrictions</span> we should consider for foodie stops? *
+                        Do you follow <span className="font-bold text-[#000000]">any dietary preferences or restrictions</span> we should consider for foodie stops?
                     </p>
                     <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-poppins">
                         <label className="flex items-center text-left">
@@ -588,7 +719,7 @@ export default function Questionnaire() {
             Content: (
                 <div className="w-full flex flex-col items-center">
                     <p className="font-poppins font-normal text-[24px] text-[#000000] text-left mr-12 md:mr-20 mb-4">
-                        How much do you enjoy <span className="font-bold">outdoor adventures?</span>
+                        How much do you enjoy <span className="font-bold text-[#000000]">outdoor adventures?</span>
                     </p>
                     <div className="flex flex-row items-center gap-4 sm:gap-8 lg:gap-12 mb-4">
                         <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
@@ -655,7 +786,7 @@ export default function Questionnaire() {
             Content: (
                 <div className="w-full flex flex-col items-center">
                     <p className="font-poppins font-normal text-[24px] text-[#000000] text-left mr-14 md:mr-28 mb-4">
-                        How do you feel about being <span className="font-bold">out in nature?</span>
+                        How do you feel about being <span className="font-bold text-[#000000]">out in nature?</span>
                     </p>
                     <div className="flex flex-row items-center gap-4 sm:gap-8 lg:gap-12 mb-4">
                         <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
@@ -722,7 +853,7 @@ export default function Questionnaire() {
             Content: (
                 <div className="w-full flex flex-col items-center">
                     <p className="font-poppins font-normal text-[24px] text-[#000000] text-left mr-14 md:mr-28 mb-4">
-                        Strolling through <span className="font-bold">charming little towns—</span> love it or leave it? 
+                        Strolling through <span className="font-bold text-[#000000]">charming little towns—</span> love it or leave it? 
                     </p>
                     <div className="flex flex-row items-center gap-4 sm:gap-8 lg:gap-12 mb-4">
                         <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
@@ -789,7 +920,7 @@ export default function Questionnaire() {
             Content: (
                 <div className="w-full flex flex-col items-center">
                     <p className="font-poppins font-normal text-[24px] text-[#000000] text-left mr-14 md:mr-28 mb-4">
-                        Seeing <span className="font-bold">iconic landmarks—</span> must-do or pass?
+                        Seeing <span className="font-bold text-[#000000]">iconic landmarks—</span> must-do or pass?
                     </p>
                     <div className="flex flex-row items-center gap-4 sm:gap-8 lg:gap-12 mb-4">
                         <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
@@ -856,7 +987,7 @@ export default function Questionnaire() {
             Content: (
                 <div className="w-full flex flex-col items-center">
                     <p className="font-poppins font-normal text-[24px] text-[#000000] text-left mr-14 md:mr-28 mb-4">
-                        Exploring <span className="font-bold">places rich in history—</span> your thing? 
+                        Exploring <span className="font-bold text-[#000000]">places rich in history—</span> your thing? 
                     </p>
                     <div className="flex flex-row items-center gap-4 sm:gap-8 lg:gap-12 mb-4">
                         <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
@@ -923,7 +1054,7 @@ export default function Questionnaire() {
             Content: (
                 <div className="w-full flex flex-col items-center">
                     <p className="font-poppins font-normal text-[24px] text-[#000000] text-left mr-12 sm:mr-14 md:mr-48 mb-4">
-                        <span className="font-bold">Art and museum </span> visits—yay or nay?
+                        <span className="font-bold text-[#000000]">Art and museum </span> visits—yay or nay?
                     </p>
                     <div className="flex flex-row items-center gap-4 sm:gap-8 lg:gap-12 mb-4">
                         <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
@@ -990,7 +1121,7 @@ export default function Questionnaire() {
             Content: (
                 <div className="w-full flex flex-col items-center">
                     <p className="font-poppins font-normal text-[24px] text-[#000000] text-left mr-14 md:mr-28 mb-4">
-                        Sampling <span className="font-bold">delicious local food—</span> how excited are you?
+                        Sampling <span className="font-bold text-[#000000]">delicious local food—</span> how excited are you?
                     </p>
                     <div className="flex flex-row items-center gap-4 sm:gap-8 lg:gap-12 mb-4">
                         <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
@@ -1076,7 +1207,7 @@ export default function Questionnaire() {
             Content: (
                 <div className="w-full flex flex-col items-start px-4 sm:px-8 md:px-32 lg:px-64">
                     <p className="font-poppins font-normal text-[24px] text-[#000000] text-center mb-4">
-                        What’s the <span className="font-bold">#1 thing you’re hoping for from this trip? *</span>
+                        What’s the <span className="font-bold text-[#000000]">#1 thing you’re hoping for from this trip? *</span>
                     </p>
                     <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
                         <label className="flex items-center text-left">
@@ -1130,7 +1261,7 @@ export default function Questionnaire() {
             Content: (
                 <div className="w-full flex flex-col items-start px-4 sm:px-8 md:px-32 lg:px-64">
                     <p className="font-poppins font-normal text-[24px] text-[#000000] text-center mb-4">
-                       How <span className="font-bold">active or chill</span> do you want your <span className="font-bold">trip</span> to be?
+                       How <span className="font-bold text-[#000000]">active or chill</span> do you want your <span className="font-bold text-[#000000]">trip</span> to be?
                     </p>
                     <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
                         <label className="flex items-center text-left">
@@ -1420,7 +1551,7 @@ export default function Questionnaire() {
             Content: (
                 <div className="w-full flex flex-col items-center px-4 sm:px-8 md:px-32 lg:px-64">
                     <p className="font-poppins font-normal text-[24px] text-[#000000BF] text-center mb-4">
-                        Which <span className="font-bold">States</span> are <span className="text-[#000000] font-bold">on your bucket list?</span> 
+                        Which <span className="text-[#000000] font-bold">States</span> are <span className="text-[#000000] font-bold">on your bucket list?</span> 
                     </p>
                     <div className="relative w-[250px]">
                         <select
@@ -1457,10 +1588,10 @@ export default function Questionnaire() {
             Content: (
                 <div className="w-full flex flex-col items-center px-4 sm:px-8 md:px-32 lg:px-64">
                     <p className="font-poppins font-normal text-[24px] text-[#000000BF] text-center mb-4">
-                        Our mission at BFT is to connect people with cultures far from their own. But let’s be clear: <span className="font-bold">your safety is non-negotiable on any of our trips.</span>
+                        Our mission at BFT is to connect people with cultures far from their own. But let’s be clear: <span className="font-bold text-[#000000]">your safety is non-negotiable on any of our trips.</span>
                     </p>
                     <p className="font-poppins font-normal text-[24px] text-[#000000BF] text-center mb-4">
-                        Any <span className="font-bold">destination types that wouldn’t be safe or suitable for you?</span>
+                        Any <span className="font-bold text-[#000000]">destination types that wouldn’t be safe or suitable for you?</span>
                     </p>
                     <div className="relative w-[250px]">
                         <select
@@ -1498,7 +1629,7 @@ export default function Questionnaire() {
                 <div className='w-full sm:w-[90%] md:w-[75%] lg:w-[50%] flex flex-col items-start px-4'>
                     <div className="w-full mb-8">
                         <p className='font-poppins font-normal text-[20px] text-[#000000BF] text-left mb-4'>
-                            Where have you already been that you’d <span className="font-bold">prefer not to revisit?</span>
+                            Where have you already been that you’d <span className="font-bold text-[#000000]">prefer not to revisit?</span>
                         </p>
                         <input
                             type="text"
@@ -1510,7 +1641,7 @@ export default function Questionnaire() {
                     </div>
                 </div>
             ),
-            buttonText: "Next"
+            buttonText: "Done"
         },
         {
             Number: 24,
@@ -1531,6 +1662,299 @@ export default function Questionnaire() {
             ),
             buttonText: "Continue"
         },
+        {
+            Number: 25,
+            type: "text",
+            Content: (
+                <div className="flex flex-col md:flex-row justify-center items-center">
+                    <div className="text-center mr-8">
+                        <p className="font-poppins font-bold text-[40px] text-[#A42828]">
+                            Chapter 3: The Must-Knows
+                        </p>
+                    </div>
+                    <img
+                        src="/chapter-3.png"
+                        alt="Chapter 3"
+                        className="w-[249px] h-[241px] mt-4 mb-4"
+                    />
+                </div>
+            ),
+            buttonText: "Continue"
+        },
+        {
+            Number: 26,
+            type: "text",
+            Content: (
+                <div className='w-full sm:w-[90%] md:w-[75%] lg:w-[50%] flex flex-col items-start px-4'>
+                    <div className="w-full mb-8">
+                        <p className='font-poppins font-bold text-[20px] text-[#000000] text-left mb-4'>
+                            How long would you like to be away for ? *
+                        </p>
+                        <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
+                            <label className="flex items-center text-left">
+                                <input
+                                type="checkbox"
+                                name="fDtN"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                checked={checkboxValues.fDtN}
+                                onChange={handleCheckboxChange}
+                                />
+                                4 Days / 3 Nights
+                            </label>
+                            <label className="flex items-center text-left">
+                                <input
+                                type="checkbox"
+                                name="fDfN"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                checked={checkboxValues.fDfN}
+                                onChange={handleCheckboxChange}
+                                />
+                                5 Days / 4 Nights
+                            </label>
+                            <label className="flex items-center text-left mb-4">
+                                <input
+                                type="checkbox"
+                                name="sDfN"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                checked={checkboxValues.sDfN}
+                                onChange={handleCheckboxChange}
+                                />
+                                7 Days / 5 Nights
+                            </label>
+                            <p className="font-poppins font-normal text-[16px] md:text-[20px] text-[#000000]" >If others, please type below</p>
+                            <input
+                                type="text"
+                                value={stayingDuration}
+                                onChange={handleStayingDurationChange}
+                                placeholder="Enter No.of Day and Nights"
+                                className="w-full px-4 py-3 border border-2 border-[#000000B2] bg-[#D9D9D966] rounded-lg font-poppins font-normal text-[12px] sm:text-[16px] md:text-[24px] text-[#000000]"
+                            />
+                        </div>
+                    </div>
+                </div>
+            ),
+            buttonText: "Done"
+        },
+        {
+            Number: 27,
+            type: "text",
+            Content: (
+                <div className='w-full sm:w-[90%] md:w-[75%] lg:w-[50%] flex flex-col items-start px-4'>
+                    <div className="w-full mb-8">
+                        <p className='font-poppins font-bold text-[20px] text-[#000000] text-left mb-4'>
+                            Thinking of your trip dates, which of these is true? *
+                        </p>
+                        <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
+                            <label className="flex items-center text-left">
+                                <input
+                                type="checkbox"
+                                name="preferredStartDate"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                checked={checkboxValues.preferredStartDate}
+                                onChange={handleCheckboxChange}
+                                />
+                                I have a preferred start date, but can be flexible by +/- 3 days
+                            </label>
+                            <label className="flex items-center text-left">
+                                <input
+                                type="checkbox"
+                                name="completelyFlexible"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                checked={checkboxValues.completelyFlexible}
+                                onChange={handleCheckboxChange}
+                                />
+                                I'm completely flexible and want to go on the best value dates
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            ),
+            buttonText: "Done"
+        },
+        {
+            Number: 28,
+            type: "text",
+            Content: (
+                <div className='w-full sm:w-[90%] md:w-[75%] lg:w-[50%] flex flex-col items-start px-4'>
+                    <div className="w-full mb-8">
+                        <p className='font-poppins font-bold text-[20px] text-[#000000] text-left mb-4'>
+                            <span className="font-normal">Would you rather</span> stay in a private apartment or a hotel ?
+                        </p>
+                        <div className="font-poppins font-normal text-[20px] text-[#000000BF] text-left mb-4">
+                            <p>
+                                Stay your way!<br /><br />
+                                Whether it’s a snug apartment with your own chill zone and kitchenette, or a comfy hotel with friendly reception and daily housekeeping—we’ve got you covered.<br /><br />
+                            </p>
+                            <p>
+                                Wherever you land, expect:
+                            </p>
+                            <ul className="ml-5 list-disc pl-5">
+                                <li>Prime locations close to the action</li>
+                                <li>Sparkling clean, cozy, and totally safe</li>
+                                <li>Your own private space (yes, with your own bathroom!)</li>
+                                <li>Wi-Fi, towels, and toiletries—no need to pack ‘em</li>
+                                <li>Top-rated 3-star spots (fancy an upgrade? 4-star+ awaits!)</li>
+                            </ul>
+                        </div>
+                        <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
+                            <label className="flex items-center text-left">
+                                <input
+                                type="checkbox"
+                                name="eitherIsFine"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                checked={checkboxValues.eitherIsFine}
+                                onChange={handleCheckboxChange}
+                                />
+                                Either is fine
+                            </label>
+                            <label className="flex items-center text-left">
+                                <input
+                                type="checkbox"
+                                name="exclusiveResidence"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                checked={checkboxValues.exclusiveResidence}
+                                onChange={handleCheckboxChange}
+                                />
+                                Exclusive residence
+                            </label>
+                            <label className="flex items-center text-left">
+                                <input
+                                type="checkbox"
+                                name="hotel"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                checked={checkboxValues.hotel}
+                                onChange={handleCheckboxChange}
+                                />
+                                Hotel
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            ),
+            buttonText: "Done"
+        },
+        {
+            Number: 29,
+            type: "text",
+            Content: (
+                <div className='w-full sm:w-[90%] md:w-[75%] lg:w-[50%] flex flex-col items-start px-4'>
+                    <div className="w-full mb-8">
+                        <p className='font-poppins font-bold text-[24px] text-[#000000] text-left mb-4'>
+                            <span className="font-normal">What’s</span> your total budget for a 7-day trip ?
+                        </p>
+                        <div className="font-poppins font-normal text-[20px] text-[#000000BF] text-left mb-4">
+                            <p>
+                                What's Included in Your Budget:
+                            </p>
+                            <ul className="ml-5 list-disc pl-5 mt-1 mb-4">
+                                <li>Round-trip flights (with 2 carry-on bags)</li>
+                                <li>Curated stays for 4 nights</li>
+                                <li>Unique, authentic experiences)</li>
+                                <li>Internal travel within the destination (if needed)</li>
+                                <li>Full travel protection</li>
+                            </ul>
+                            <p>
+                                Most solo travellers set a budget of ₹88,000 for a 5-day trip, with a minimum starting at ₹78,000.<br /><br />
+                                If we find the perfect experience for less, we’ll automatically adjust your budget down—yes, really!<br /><br />
+                                You can lock in your surprise trip with a flexible deposit, and pay the rest whenever you’re ready—just make sure it's done at least 21 days before your trip.
+                            </p>
+                        </div>
+                        <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
+                            <div className="relative w-full">
+                                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-[24px] text-[#000000] font-poppins">₹</span>
+                                <input
+                                    type="text"
+                                    value={budget}
+                                    onChange={handleBudgetChange}
+                                    placeholder="90,000"
+                                    className="w-full pl-10 pr-4 py-3 border-2 border-[#000000B2] bg-[#D9D9D966] rounded-lg font-poppins font-normal text-[24px] text-[#000000]"
+                                    required
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
+            buttonText: "Done"
+        },
+        {
+            Number: 30,
+            type: "text",
+            Content: (
+                <div className='w-full sm:w-[90%] md:w-[75%] lg:w-[50%] flex flex-col items-start px-4'>
+                    <div className="w-full mb-8">
+                        <p className='font-poppins font-normal text-[24px] text-[#000000] text-left mb-4'>
+                            We'll do our best to budget your trip to this amount, but <span className="font-bold">would you be willing to increase it ? *</span>
+                        </p>
+                        <p className="font-poppins font-normal text-left mb-4 text-[20px] text-[#000000BF]">
+                            This is in case flights to your best destination are more expensive than usual.
+                        </p>
+                        <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
+                            <label className="flex items-center text-left">
+                                <input
+                                type="checkbox"
+                                name="maxBudget"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                checked={checkboxValues.maxBudget}
+                                onChange={handleCheckboxChange}
+                                />
+                                Nope, that's my max budget
+                            </label>
+                            <label className="flex items-center text-left">
+                                <input
+                                type="checkbox"
+                                name="increaseBy5000"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                checked={checkboxValues.increaseBy5000}
+                                onChange={handleCheckboxChange}
+                                />
+                                Yes, increase it by ₹5000
+                            </label>
+                            <label className="flex items-center text-left">
+                                <input
+                                type="checkbox"
+                                name="increaseBy7500"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                checked={checkboxValues.increaseBy7500}
+                                onChange={handleCheckboxChange}
+                                />
+                                Yes, increase it by ₹7500
+                            </label>
+                            <label className="flex items-center text-left">
+                                <input
+                                type="checkbox"
+                                name="increaseBy10000"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                checked={checkboxValues.increaseBy10000}
+                                onChange={handleCheckboxChange}
+                                />
+                                Yes, increase it by ₹10000
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            ),
+            buttonText: "Done"
+        },
+        {
+            Number: 31,
+            type: "text",
+            Content: (
+                <div className="flex flex-col md:flex-row justify-center items-center">
+                    <div className="text-center mr-8">
+                        <p className="font-poppins font-bold text-[40px] text-[#A42828]">
+                            Final Touch: You!
+                        </p>
+                    </div>
+                    <img
+                        src="/final-touch.png"
+                        alt="Final Touch"
+                        className="w-[249px] h-[241px] mt-4 mb-4"
+                    />
+                </div>
+            ),
+            buttonText: "Continue"
+        },
         ...Array.from({ length: TOTAL_PAGES - 21 }, (_, i) => ({
             Number: i + 1,
             type: "text",
@@ -1540,7 +1964,7 @@ export default function Questionnaire() {
                     <p className="text-lg text-gray-700 font-poppins">This is the content for page {i + 1}.</p>
                 </div>
             ),
-            buttonText: i === TOTAL_PAGES - 4 ? "Finish" : "Next"
+            buttonText: i === TOTAL_PAGES - 4 ? "Finish" : "Next1"
         }))
     ];
 
@@ -1575,8 +1999,28 @@ export default function Questionnaire() {
     }, [currentPageIndex, lineWidth]);
 
     const validators = {
-        2: isFormValid,
-        20: isFormValid1,
+        2: page3validator,
+        4: page5validator,
+        5: page6validator,
+        6: page7validator,
+        7: page8to14validator(""),
+        8: page8to14validator("1"),
+        9: page8to14validator("2"),
+        10: page8to14validator("3"),
+        11: page8to14validator("4"),
+        12: page8to14validator("5"),
+        13: page8to14validator("6"),
+        15: page16validator,
+        16: page17validator,
+        17: page18validator,
+        18: page19validator,
+        19: page20validator,
+        20: page21validator,
+        25: page26validator,
+        26: page27validator,
+        27: page28validator,
+        28: page29validator,
+        29: page30validator,
         // add more: [pageIndex]: validationFunction
     };
 
@@ -1623,7 +2067,6 @@ export default function Questionnaire() {
                 <button
                     onClick={handleNext}
                     className="bg-[#A11616E5] hover:bg-[#003566] text-[#FCD2B1] font-poppins font-bold text-[20px] px-4 md:px-6 lg:px-8 py-2 rounded-full border border-1 border-[#FCD2B1] flex items-center gap-2 transition"
-                    // disabled={(currentPageIndex === 2 && !isFormValid) || (currentPageIndex === 21 && !isFormValid1())}
                     disabled={isDisabled}
                 >
                     {Pages[currentPageIndex].buttonText}
