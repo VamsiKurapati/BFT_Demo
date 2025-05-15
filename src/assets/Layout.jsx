@@ -43,7 +43,7 @@ export default Layout;
             {/* Hero Content - with higher z-index to appear above overlay */}
             <div className="container mx-auto px-8 mt-16 pl-[72px] relative z-10">
                 <div className="max-w-xl">
-                    <h2 className="text-4xl md:text-[48px] font-delta-gothic font-weight-400 text-white">
+                    <h2 className="text-4xl md:text-[48px] font-dela-gothic font-weight-400 text-white">
                         No Clues, No Ties—<br/>
                         Just Pure Surprise!
                     </h2>

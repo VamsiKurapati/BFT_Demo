@@ -200,7 +200,7 @@ export default function HowItWorks() {
                 {/* Hero Content */}
                 <div className="container mx-auto px-8 mt-48 lg:pl-[60px] relative z-10">
                     <div className="max-w-xl">
-                    <h2 className="text-[48px] md:text-[56px] font-delta-gothic font-normal text-white">
+                    <h2 className="text-[48px] md:text-[56px] font-dela-gothic font-normal text-white">
                         How it works ? 
                     </h2>
                     <p className="mt-2 text-[#FFFFFFE5] font-goudy font-normal text-[18px] md:text-[22px]">

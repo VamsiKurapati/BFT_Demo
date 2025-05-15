@@ -980,13 +980,13 @@ export default function Home() {
 
           {/* Hero Content */}
           <div className="container mx-auto px-8 mt-24 lg:pl-[60px] relative z-10">
-            <div className="max-w-xl">
-              <h2 className="text-[48px] md:text-[56px] font-delta-gothic font-normal text-white">
+            <div className="w-[70%] lg:w-[50%]">
+              <h2 className="text-[40px] md:text-[56px] font-dela-gothic font-normal text-white">
                 No Clues, No Ties—Just Pure Surprise!
               </h2>
               <p className="mt-2 text-white font-goudy font-normal text-[18px] md:text-[22px] opacity-90">
                 Blind fold trips let you experience a fun, spontaneous, and
-                surprise—filled adventure on your finger tips.
+                surprise-filled adventure on your finger tips.
               </p>
               <button
                 className="mt-8 bg-[#A11716E5] font-poppins font-bold text-[#FCD2B1] text-[16px] md:text-[20px] px-6 py-2 rounded-full flex items-center transition border border-1"

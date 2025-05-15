@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { gsap } from "gsap";
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
 import car from "/car.png";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { FaArrowRightLong } from "react-icons/fa6";
 
-const TOTAL_PAGES = 36;
+const TOTAL_PAGES = 35;
 
 export default function Questionnaire() {
     const carRef = useRef(null);
@@ -14,12 +16,14 @@ export default function Questionnaire() {
     const navigate = useNavigate();
 
     const [currentPageIndex, setCurrentPageIndex] = useState(0);
-    const [selectedState, setSelectedState] = useState("");
+    // const [selectedState, setSelectedState] = useState("");
+    const [favouriteDestination, setFavouriteDestination] = useState("");
     const [travelerCount, setTravelerCount] = useState(1);
     const [firstName, setFirstName] = useState("");
     const [avoidDestination, setAvoidDestination] = useState("");
     const [stayingDuration, setStayingDuration] = useState("");
     const [budget, setBudget] = useState("");
+    const [phone, setPhone] = useState('');
 
     const [checkboxValues, setCheckboxValues] = useState({
         awareOfNothing: false,
@@ -110,6 +114,15 @@ export default function Questionnaire() {
         yes: false,
         openToAnywhere: false,
         internationalTrip: false,
+        unsafeFemale: false,
+        hostilityLGBTQ: false,
+        hostilityBlack: false,
+        attitudeIslam: false,
+        attitudeJewish: false,
+        hostilityIndigenous: false,
+        unsafeReligiousAttire: false,
+        discriminatoryTrans: false,
+        racialProfiling: false,
         fDtN: false,
         fDfN: false,
         sDfN: false,
@@ -122,6 +135,14 @@ export default function Questionnaire() {
         increaseBy5000: false,
         increaseBy7500: false,
         increaseBy10000: false,
+        yesCurious: false,
+        notCurious: false,
+        someoneIKnow: false,
+        influencer: false,
+        press: false,
+        randomCustomer: false,
+        paidAd: false,
+        agree: false,
     });
 
     const handleTravelerCountChange = (e) => {
@@ -134,11 +155,10 @@ export default function Questionnaire() {
         // updateFormData({ firstName: e.target.value }); // Uncomment if you use form data globally
     };
 
-    const handlestateSelectionChange = (event) => {
-        const state = event.target.value;
-        setSelectedState(state);
-        // updateFormData({ selectedState }); // Uncomment if you use form data globally
-    };
+    const handlefavouriteDestinationChange = (event) => {
+        const favs = event.target.value;
+        setFavouriteDestination(favs);
+    }
 
     const handleAvoidDestinationChange = (event) => {
         const destination = event.target.value;
@@ -243,7 +263,7 @@ export default function Questionnaire() {
     }
 
     const page21validator = () => {
-        return selectedState !== "";
+        return favouriteDestination!=="" && avoidDestination!=="";
     }
 
     const page26validator = () => {
@@ -267,12 +287,32 @@ export default function Questionnaire() {
         return checkboxValues["maxBudget"] || checkboxValues["increaseBy5000"] || checkboxValues["increaseBy7500"] || checkboxValues["increaseBy10000"];
     }
 
-    const handleSave = () => {
-        // Here you can save the responses to a backend or store them locally
-        console.log("Saved Responses:", checkboxValues);
-        // Example: Send the data to an API or local storage
-        // fetch("/api/save", { method: "POST", body: JSON.stringify(checkboxValues) });
+    const page33validator = () => {
+        return checkboxValues["yesCurious"] || checkboxValues["notCurious"];
+    }
+
+    const page34validator = () => {
+        return checkboxValues["someoneIKnow"] || checkboxValues["influencer"] || checkboxValues["press"] || checkboxValues["randomCustomer"] || checkboxValues["paidAd"];
+    }
+
+    const page35validator = () => {
+        return checkboxValues["agree"];
+    }
+
+    const handleSave = async () => {
+        try {
+            const response = await fetch("http://localhost:5000/api/save", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(checkboxValues),
+            });
+            return response.ok;
+        } catch (error) {
+            console.error("Save failed:", error);
+            return false;
+        }
     };
+
 
     const Pages = [
         {
@@ -1551,33 +1591,25 @@ export default function Questionnaire() {
             Content: (
                 <div className="w-full flex flex-col items-center px-4 sm:px-8 md:px-32 lg:px-64">
                     <p className="font-poppins font-normal text-[24px] text-[#000000BF] text-center mb-4">
-                        Which <span className="text-[#000000] font-bold">States</span> are <span className="text-[#000000] font-bold">on your bucket list?</span> 
+                        Which <span className="text-[#000000] font-bold">Places / Countries</span> are <span className="text-[#000000] font-bold">on your bucket list?</span> 
                     </p>
-                    <div className="relative w-[250px]">
-                        <select
-                            value={selectedState}
-                            onChange={handlestateSelectionChange}
-                            className="w-full px-4 py-2 border border-2 border-[#000000B2] rounded-lg appearance-none bg-[#D9D9D966] font-poppins font-bold text-[#000000] text-[20px]"
-                        >
-                            <option value="">Select</option>
-                            {[
-                            "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", "Goa",
-                            "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand", "Karnataka", "Kerala",
-                            "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland",
-                            "Odisha", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura",
-                            "Uttar Pradesh", "Uttarakhand", "West Bengal"
-                            ].map((state, index) => (
-                            <option key={index} value={state}>
-                                {state}
-                            </option>
-                            ))}
-                        </select>
-                        <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                            <svg className="w-5 h-5 text-[#000000]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                            </svg>
-                        </div>
-                    </div>
+                    <input
+                        type="text"
+                        value={favouriteDestination}
+                        onChange={handlefavouriteDestinationChange}
+                        placeholder="e.g. Paris, France"
+                        className="w-[90%] md:w-[50%] px-4 py-3 border border-2 border-[#000000B2] bg-[#D9D9D966] rounded-lg font-poppins font-normal text-[24px] text-[#000000]"
+                    />
+                    <p className='font-poppins font-normal text-[20px] text-[#000000BF] text-left mt-8 mb-4'>
+                        Where have you already been that you’d <span className="font-bold text-[#000000]">prefer not to revisit?</span>
+                    </p>
+                    <input
+                        type="text"
+                        value={avoidDestination}
+                        onChange={handleAvoidDestinationChange}
+                        placeholder="e.g. Paris, France"
+                        className="w-[90%] md:w-[50%] px-4 py-3 border border-2 border-[#000000B2] bg-[#D9D9D966] rounded-lg font-poppins font-normal text-[24px] text-[#000000]"
+                    />
                 </div>
             ),
             buttonText: "Done"
@@ -1593,30 +1625,105 @@ export default function Questionnaire() {
                     <p className="font-poppins font-normal text-[24px] text-[#000000BF] text-center mb-4">
                         Any <span className="font-bold text-[#000000]">destination types that wouldn’t be safe or suitable for you?</span>
                     </p>
-                    <div className="relative w-[250px]">
-                        <select
-                            value={selectedState}
-                            onChange={handlestateSelectionChange}
-                            className="w-full px-4 py-2 border border-2 border-[#000000B2] rounded-lg appearance-none bg-[#D9D9D966] font-poppins font-bold text-[#000000] text-[20px]"
-                        >
-                            <option value="">Select</option>
-                            {[
-                            "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", "Goa",
-                            "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand", "Karnataka", "Kerala",
-                            "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland",
-                            "Odisha", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura",
-                            "Uttar Pradesh", "Uttarakhand", "West Bengal"
-                            ].map((state, index) => (
-                            <option key={index} value={state}>
-                                {state}
-                            </option>
-                            ))}
-                        </select>
-                        <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                            <svg className="w-5 h-5 text-[#000000]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                            </svg>
-                        </div>
+                    <div className="flex flex-col items-start gap-4 text-[16px] mb-4 sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
+                        <label className="flex items-center text-left">
+                        <input
+                            type="checkbox"
+                            name="unsafeFemale"
+                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                            checked={checkboxValues.unsafeFemale}
+                            onChange={handleCheckboxChange}
+                        />
+                            Considered unsafe for solo female travellers
+                        </label>
+
+                        <label className="flex items-center text-left">
+                        <input
+                            type="checkbox"
+                            name="hostilityLGBTQ"
+                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                            checked={checkboxValues.hostilityLGBTQ}
+                            onChange={handleCheckboxChange}
+                        />
+                            Regular instances of hostility towards the LGBTQ community
+                        </label>
+
+                        <label className="flex items-center text-left">
+                        <input
+                            type="checkbox"
+                            name="hostilityBlack"
+                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                            checked={checkboxValues.hostilityBlack}
+                            onChange={handleCheckboxChange}
+                        />
+                            Regular instances of hostility towards the Black community
+                        </label>
+
+                        <label className="flex items-center text-left">
+                        <input
+                            type="checkbox"
+                            name="attitudeIslam"
+                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                            checked={checkboxValues.attitudeIslam}
+                            onChange={handleCheckboxChange}
+                        />
+                            Unfavourable attitude towards followers of Islam
+                        </label>
+
+                        <label className="flex items-center text-left">
+                        <input
+                            type="checkbox"
+                            name="attitudeJewish"
+                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                            checked={checkboxValues.attitudeJewish}
+                            onChange={handleCheckboxChange}
+                        />
+                            Unfavourable attitude towards people of Jewish faith
+                        </label>
+
+                        <label className="flex items-center text-left">
+                        <input
+                            type="checkbox"
+                            name="hostilityIndigenous"
+                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                            checked={checkboxValues.hostilityIndigenous}
+                            onChange={handleCheckboxChange}
+                        />
+                            Regular instances of hostility towards Indigenous communities
+                        </label>
+
+                        <label className="flex items-center text-left">
+                        <input
+                            type="checkbox"
+                            name="unsafeReligiousAttire"
+                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                            checked={checkboxValues.unsafeReligiousAttire}
+                            onChange={handleCheckboxChange}
+                        />
+                            Considered unsafe for people with visible religious attire
+                        </label>
+
+                        <label className="flex items-center text-left">
+                        <input
+                            type="checkbox"
+                            name="discriminatoryTrans"
+                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                            checked={checkboxValues.discriminatoryTrans}
+                            onChange={handleCheckboxChange}
+                        />
+                            Discriminatory laws or policies against transgender individuals
+                        </label>
+
+                        <label className="flex items-center text-left">
+                        <input
+                            type="checkbox"
+                            name="racialProfiling"
+                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                            checked={checkboxValues.racialProfiling}
+                            onChange={handleCheckboxChange}
+                        />
+                            Known for racial profiling by law enforcement
+                        </label>
                     </div>
                 </div>
             ),
@@ -1624,24 +1731,22 @@ export default function Questionnaire() {
         },
         {
             Number: 23,
-            type: "form",
+            type: "text",
             Content: (
-                <div className='w-full sm:w-[90%] md:w-[75%] lg:w-[50%] flex flex-col items-start px-4'>
-                    <div className="w-full mb-8">
-                        <p className='font-poppins font-normal text-[20px] text-[#000000BF] text-left mb-4'>
-                            Where have you already been that you’d <span className="font-bold text-[#000000]">prefer not to revisit?</span>
+                <div className="flex flex-col md:flex-row justify-center items-center">
+                    <div className="text-center mr-8">
+                        <p className="font-poppins font-bold text-[40px] text-[#A42828]">
+                            Chapter 3: The Must-Knows
                         </p>
-                        <input
-                            type="text"
-                            value={avoidDestination}
-                            onChange={handleAvoidDestinationChange}
-                            placeholder="e.g. Paris, France"
-                            className="w-full px-4 py-3 border border-2 border-[#000000B2] bg-[#D9D9D966] rounded-lg font-poppins font-normal text-[24px] text-[#000000]"
-                        />
                     </div>
+                    <img
+                        src="/chapter-3.png"
+                        alt="Chapter 3"
+                        className="w-[249px] h-[241px] mt-4 mb-4"
+                    />
                 </div>
             ),
-            buttonText: "Done"
+            buttonText: "Continue"
         },
         {
             Number: 24,
@@ -1955,26 +2060,199 @@ export default function Questionnaire() {
             ),
             buttonText: "Continue"
         },
-        ...Array.from({ length: TOTAL_PAGES - 21 }, (_, i) => ({
-            Number: i + 1,
+        {
+            Number: 32,
             type: "text",
             Content: (
-                <div className="text-center">
-                    <h2 className="text-2xl font-semibold mb-4 font-poppins">Page {i + 1}</h2>
-                    <p className="text-lg text-gray-700 font-poppins">This is the content for page {i + 1}.</p>
+                <div className="w-full sm:w-[90%] md:w-[75%] lg:w-[50%] flex flex-col items-start px-4">
+                    <div className="w-full mb-8">
+                        <p className="font-poppins font-normal text-[24px] text-[#000000]">
+                            What's the <span className="font-bold">best number to reach you ?</span>
+                        </p>
+                        <p className="font-poppins font-normal text-[20px] text-[#000000BF]">
+                            This is where we'll send your free Journey Proposal.
+                        </p>
+                    </div>
+
+                    <PhoneInput
+                        country={'in'} // Default to India flag as in screenshot
+                        value={phone}
+                        onChange={setPhone}
+                        inputProps={{
+                            name: 'phone',
+                            required: true,
+                            autoFocus: true,
+                            placeholder: "Enter your mobile number"
+                        }}
+                        containerClass="w-full h-[40px]"
+                        inputClass="w-full h-[40px] px-4 py-4 border-2 border-[#000000B2] bg-[#D9D9D966] rounded-lg font-poppins font-normal text-[20px] text-[#000000] outline-none focus:ring-2 focus:ring-black"
+                    />
                 </div>
             ),
-            buttonText: i === TOTAL_PAGES - 4 ? "Finish" : "Next1"
-        }))
+            buttonText: "Done"
+        },
+        {
+            Number: 33,
+            type: "text",
+            Content: (
+                <div className='w-full sm:w-[90%] md:w-[75%] lg:w-[50%] flex flex-col items-start px-4'>
+                    <div className="w-full mb-8">
+                        <p className='font-poppins font-normal text-[24px] text-[#000000] text-left mb-4'>
+                            P.S. Want to <span className="font-bold">get Culture Curious and The Explorer in your inbox ?</span>
+                        </p>
+                        <p className="font-poppins font-normal text-left mb-4 text-[20px] text-[#000000BF]">
+                            As a travel lover, you'll enjoy reading them! If not, you can easily  unsubscribe with one click. We'll never share your email either.
+                        </p>
+                        <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
+                            <label className="flex items-center text-left">
+                                <input
+                                type="checkbox"
+                                name="yesCurious"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                checked={checkboxValues.yesCurious}
+                                onChange={handleCheckboxChange}
+                                />
+                                Yes
+                            </label>
+                            <label className="flex items-center text-left">
+                                <input
+                                type="checkbox"
+                                name="notCurious"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                checked={checkboxValues.notCurious}
+                                onChange={handleCheckboxChange}
+                                />
+                                No
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            ),
+            buttonText: "Done"
+        },
+        {
+            Number: 34,
+            type: "text",
+            Content: (
+                <div className='w-full sm:w-[90%] md:w-[75%] lg:w-[50%] flex flex-col items-start px-4'>
+                    <div className="w-full mb-8">
+                        <p className='font-poppins font-normal text-[24px] text-[#000000] text-left mb-4'>
+                            How did you first hear about BFT ?
+                        </p>
+                        <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
+                            <label className="flex items-center text-left">
+                                <input
+                                    type="checkbox"
+                                    name="someoneIKnow"
+                                    className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                    checked={checkboxValues.someoneIKnow}
+                                    onChange={handleCheckboxChange}
+                                />
+                                Someone I know IRL
+                                </label>
+
+                                <label className="flex items-center text-left">
+                                    <input
+                                        type="checkbox"
+                                        name="influencer"
+                                        className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                        checked={checkboxValues.influencer}
+                                        onChange={handleCheckboxChange}
+                                    />
+                                    Influencer
+                                </label>
+
+                                <label className="flex items-center text-left">
+                                    <input
+                                        type="checkbox"
+                                        name="press"
+                                        className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                        checked={checkboxValues.press}
+                                        onChange={handleCheckboxChange}
+                                    />
+                                    Press / blog feature
+                                </label>
+
+                                <label className="flex items-center text-left">
+                                    <input
+                                        type="checkbox"
+                                        name="randomCustomer"
+                                        className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                        checked={checkboxValues.randomCustomer}
+                                        onChange={handleCheckboxChange}
+                                    />
+                                    Random BFT customer online
+                                </label>
+
+                                <label className="flex items-center text-left">
+                                    <input
+                                        type="checkbox"
+                                        name="paidAd"
+                                        className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                        checked={checkboxValues.paidAd}
+                                        onChange={handleCheckboxChange}
+                                    />
+                                    Paid ad from @blind fold trips (Facebook / Instagram)
+                                </label>
+                        </div>
+                    </div>
+                </div>
+            ),
+            buttonText: "Done"
+        },
+        {
+            Number: 35,
+            type: "text",
+            Content: (
+                <div className='w-full sm:w-[90%] md:w-[75%] lg:w-[50%] flex flex-col items-start px-4'>
+                    <div className="w-full mb-8">
+                        <p className='font-poppins font-normal text-[24px] text-[#000000] text-left mb-4'>
+                            To send your BFT proposal, we’ll need your OK on our Privacy Policy !!!!
+                        </p>
+                        <p className="font-poppins font-normal text-left text-[20px] text-[#000000BF]">
+                            We don't misuse your data.
+                        </p>
+                        <p className="font-poppins font-normal text-left mb-4 text-[20px] text-[#000000BF]">
+                            Full policy <a href="/privacy_policy" className="text-[#1059E0]">here</a>.
+                        </p>
+                        <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
+                            <label className="flex items-center text-left">
+                                <input
+                                type="checkbox"
+                                name="agree"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                checked={checkboxValues.agree}
+                                onChange={handleCheckboxChange}
+                                />
+                                I Agree
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            ),
+            buttonText: "Done"
+        },
     ];
 
-    const handleNext = () => {
+    const handleNext = async () => {
         if (currentPageIndex < TOTAL_PAGES - 1) {
             setCurrentPageIndex(prev => prev + 1);
         } else {
-            navigate("/thankyou");
+            const success = await handleSave();
+            if (success) {
+                console.log("Responses save successful...")
+                setTimeout(() => {
+                    navigate("/contact");
+                }, 3000);
+            } else {
+            alert("Failed to save responses. Please try again.");
+            }
         }
     };
+
+    useEffect(() => {
+        console.log("Page index updated to:", currentPageIndex);
+    }, [currentPageIndex]);
 
     useEffect(() => {
         const updateWidth = () => {
@@ -1999,29 +2277,41 @@ export default function Questionnaire() {
     }, [currentPageIndex, lineWidth]);
 
     const validators = {
-        2: page3validator,
-        4: page5validator,
-        5: page6validator,
-        6: page7validator,
-        7: page8to14validator(""),
-        8: page8to14validator("1"),
-        9: page8to14validator("2"),
-        10: page8to14validator("3"),
-        11: page8to14validator("4"),
-        12: page8to14validator("5"),
-        13: page8to14validator("6"),
-        15: page16validator,
-        16: page17validator,
-        17: page18validator,
-        18: page19validator,
-        19: page20validator,
-        20: page21validator,
-        25: page26validator,
-        26: page27validator,
-        27: page28validator,
-        28: page29validator,
-        29: page30validator,
-        // add more: [pageIndex]: validationFunction
+        // //Page 1 Intro
+        // //Page 2 Intro
+        // 2: page3validator,
+        // //Page 4 - Chapter-1
+        // 4: page5validator,
+        // 5: page6validator,
+        // 6: page7validator,
+        // 7: page8to14validator(""),
+        // 8: page8to14validator("1"),
+        // 9: page8to14validator("2"),
+        // 10: page8to14validator("3"),
+        // 11: page8to14validator("4"),
+        // 12: page8to14validator("5"),
+        // 13: page8to14validator("6"),
+        // //Page 15 - Chapter-2
+        // 15: page16validator,
+        // 16: page17validator,
+        // 17: page18validator,
+        // 18: page19validator,
+        // 19: page20validator,
+        // 20: page21validator,
+        // //Page 22 - No validation required
+        // //Page 23 - Chapter-3
+        // //Page 24- still development
+        // //Page 25- still development
+        // 25: page26validator,
+        // 26: page27validator,
+        // 27: page28validator,
+        // 28: page29validator,
+        // 29: page30validator,
+        // //Page 31 - Final Touch
+        // //Page 32 - Mobile Number
+        // 32: page33validator,
+        // 33: page34validator,
+        // 34: page35validator,
     };
 
     const currentValidator = validators[currentPageIndex];
@@ -2053,7 +2343,7 @@ export default function Questionnaire() {
                     ref={carRef}
                     src={car}
                     alt="car"
-                    className="w-[60px] md:w-[90px] lg:w-[135px] h-[60px] md:h-[90px] lg:h-[120px] absolute top-1/2 transform -translate-y-1/2 left-4"
+                    className="w-[60px] md:w-[90px] lg:w-[110px] h-[60px] md:h-[90px] lg:h-[90px] absolute top-1/2 transform -translate-y-1/2 left-4"
                 />
             </div>
 
@@ -2065,7 +2355,7 @@ export default function Questionnaire() {
             {/* Navigation Button */}
             <div className="w-full px-6 pb-8 flex justify-center">
                 <button
-                    onClick={handleNext}
+                    onClick={ handleNext }
                     className="bg-[#A11616E5] hover:bg-[#003566] text-[#FCD2B1] font-poppins font-bold text-[20px] px-4 md:px-6 lg:px-8 py-2 rounded-full border border-1 border-[#FCD2B1] flex items-center gap-2 transition"
                     disabled={isDisabled}
                 >
