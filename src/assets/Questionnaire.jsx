@@ -318,7 +318,16 @@ export default function Questionnaire() {
             const response = await fetch("http://localhost:5000/api/save", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(checkboxValues),
+            body: JSON.stringify({
+                firstName,
+                favouriteDestination,
+                travelerCount,
+                avoidDestination,
+                stayingDuration,
+                budget,
+                phone,
+                checkboxValues
+            }),
             });
             return response.ok;
         } catch (error) {
