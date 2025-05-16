@@ -17,7 +17,6 @@ export default function Questionnaire() {
     const navigate = useNavigate();
 
     const [currentPageIndex, setCurrentPageIndex] = useState(0);
-    // const [selectedState, setSelectedState] = useState("");
     const [favouriteDestination, setFavouriteDestination] = useState("");
     const [travelerCount, setTravelerCount] = useState(1);
     const [firstName, setFirstName] = useState("");
@@ -269,6 +268,14 @@ export default function Questionnaire() {
 
     const page21validator = () => {
         return favouriteDestination!=="" && avoidDestination!=="";
+    }
+
+    const page24validator = () => {
+        return true;
+    }
+
+    const page25validator = () => {
+        return true;
     }
 
     const page26validator = () => {
@@ -2298,21 +2305,13 @@ export default function Questionnaire() {
             if (success) {
                 console.log("Responses save successful...")
                 setTimeout(() => {
-                    navigate("/contact");
+                    navigate("/thankyou");
                 }, 3000);
             } else {
             alert("Failed to save responses. Please try again.");
             }
         }
     };
-
-    useEffect(() => {
-        console.log("Page index updated to:", currentPageIndex);
-    }, [currentPageIndex]);
-
-    useEffect(() => {
-        console.log("Phone : ",phone);
-    },[phone]);
 
     useEffect(() => {
         const updateWidth = () => {
@@ -2360,8 +2359,8 @@ export default function Questionnaire() {
         20: page21validator,
         //Page 22 - No validation required
         //Page 23 - Chapter-3
-        //Page 24- still development
-        //Page 25- still development
+        23: page24validator,
+        24: page25validator,
         25: page26validator,
         26: page27validator,
         27: page28validator,
