@@ -316,22 +316,30 @@ export default function Questionnaire() {
     const handleSave = async () => {
         try {
             const response = await fetch("http://localhost:5000/api/save", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                firstName,
-                favouriteDestination,
-                travelerCount,
-                avoidDestination,
-                stayingDuration,
-                budget,
-                phone,
-                checkboxValues
-            }),
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    firstName,
+                    favouriteDestination,
+                    travelerCount,
+                    avoidDestination,
+                    stayingDuration,
+                    budget,
+                    phone,
+                    checkboxValues
+                }),
             });
-            return response.ok;
+
+            if (response.ok) {
+                alert("Saved successfully!");
+                return true;
+            } else {
+                alert("Failed to save. Please try again.");
+                return false;
+            }
         } catch (error) {
             console.error("Save failed:", error);
+            alert("Something went wrong while saving.");
             return false;
         }
     };
