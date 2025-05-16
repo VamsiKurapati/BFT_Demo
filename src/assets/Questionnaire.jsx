@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { gsap } from "gsap";
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
+import { parsePhoneNumberFromString } from 'libphonenumber-js';
 import car from "/car.png";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { FaArrowRightLong } from "react-icons/fa6";
@@ -185,6 +186,10 @@ export default function Questionnaire() {
         setBudget(Number(rawValue).toLocaleString('en-IN'));
     };
 
+    const handleSetPhone = (val) => {
+        setPhone(val);
+    };
+
     const page3validator = () =>{
         return firstName.trim() !== "" && travelerCount > 0;
     }
@@ -287,6 +292,15 @@ export default function Questionnaire() {
         return checkboxValues["maxBudget"] || checkboxValues["increaseBy5000"] || checkboxValues["increaseBy7500"] || checkboxValues["increaseBy10000"];
     }
 
+    const page32validator = (val) => {
+        try {
+            const phoneNumber = parsePhoneNumberFromString(`+${val}`);
+            return (phoneNumber ? phoneNumber.isValid() : false);
+        } catch (err) {
+            return false;
+        }
+    }
+
     const page33validator = () => {
         return checkboxValues["yesCurious"] || checkboxValues["notCurious"];
     }
@@ -313,18 +327,17 @@ export default function Questionnaire() {
         }
     };
 
-
     const Pages = [
         {
             Number: 1,
             type: "text",
             Content: (
                 <div className='w-full sm:w-[90%] md:w-[75%] lg:w-[60%] flex flex-col items-center'>
-                    <h1 className='font-titan font-normal text-[36px] text-[#000000E5] text-center mb-4'>
-                        Blind Fold Trip Questionnaire
+                    <h1 className='font-titan-one font-normal text-[36px] text-[#000000E5] text-center mb-4'>
+                        Blind Fold Trips Questionnaire
                     </h1>
                     <p className='font-poppins font-normal text-[24px] text-[#000000BF] text-center mb-4'>
-                        <span className="font-titan text-[32px] text-[#000000BF]">Welcome, explorer.</span> What you share here unlocks the journey meant just for you. Soon, the details will find their way to you.
+                        <span className="font-bold text-[#000000]">Welcome, explorer.</span> What you share here unlocks the journey meant just for you. Soon, the details will find their way to you.
                     </p>
                     <p className='font-poppins font-normal text-[24px] text-[#000000BF] text-center mb-4'>
                         Unlock the first step to the unknown. <span className="font-bold text-[#000000]">Fill in the details, receive your surprise proposal — all for free.</span>
@@ -343,10 +356,10 @@ export default function Questionnaire() {
                     </p>
                     <div className='items-start mb-4'>
                         <p className='font-poppins font-normal text-[24px] text-[#000000] text-left mb-4'>
-                            <span className="font-titan text-[32px] text-[#000000BF]">01.</span>  Choose any airport across India to begin your trip.
+                            <span className="font-titan-one text-[32px] text-[#000000BF]">01.</span>  Choose any airport across India to begin your trip.
                         </p>
                         <p className='font-poppins font-normal text-[24px] text-[#000000] text-left mb-4'>
-                            <span className="font-titan text-[32px] text-[#000000BF]">02.</span>  Everyone is at least 10 years old with at least one person who is 18 or older.
+                            <span className="font-titan-one text-[32px] text-[#000000BF]">02.</span>  Everyone is at least 10 years old with at least one person who is 18 or older.
                         </p>
                     </div>
                 </div>
@@ -360,7 +373,7 @@ export default function Questionnaire() {
                 <div className='w-full sm:w-[90%] md:w-[75%] lg:w-[50%] flex flex-col items-start px-4'>
                     <div className="w-full mb-8">
                         <h2 className='font-poppins font-bold text-[24px] text-[#000000] text-left mb-4'>
-                            <span className="font-titan font-normal text-[32px] text-[#000000BF]">01.</span> How many travelers are in your crew ? <span className="text-[#A32727]">*</span>
+                            <span className="font-titan-one font-normal text-[32px] text-[#000000BF]">01.</span> How many travelers are in your crew ? <span className="text-[#A32727]">*</span>
                         </h2>
                         <p className='font-poppins font-normal text-[20px] text-[#000000BF] text-left mb-4'>
                             If you're <span className="font-bold text-[#000000]">not sure, start with 1</span>. You can always add more people later—after receiving your Blind Fold Trip Proposal.
@@ -384,7 +397,7 @@ export default function Questionnaire() {
                     </div>
                     <div className="w-full mb-8">
                         <h2 className='font-poppins font-normal text-[24px] text-[#000000BF] text-left mb-4'>
-                            <span className="font-titan text-[32px]">02.</span> Your <span className="font-bold text-[#000000]">first name</span>, please <span className="text-[#A32626]">*</span>
+                            <span className="font-titan-one text-[32px]">02.</span> Your <span className="font-bold text-[#000000]">first name</span>, please <span className="text-[#A32626]">*</span>
                         </h2>
                         <input
                             type="text"
@@ -2062,31 +2075,57 @@ export default function Questionnaire() {
         },
         {
             Number: 32,
-            type: "text",
+            type: "form",
             Content: (
                 <div className="w-full sm:w-[90%] md:w-[75%] lg:w-[50%] flex flex-col items-start px-4">
                     <div className="w-full mb-8">
                         <p className="font-poppins font-normal text-[24px] text-[#000000]">
                             What's the <span className="font-bold">best number to reach you ?</span>
                         </p>
-                        <p className="font-poppins font-normal text-[20px] text-[#000000BF]">
+                        <p className="font-poppins font-normal text-[20px] text-[#000000BF] mb-8">
                             This is where we'll send your free Journey Proposal.
                         </p>
-                    </div>
 
-                    <PhoneInput
-                        country={'in'} // Default to India flag as in screenshot
-                        value={phone}
-                        onChange={setPhone}
-                        inputProps={{
-                            name: 'phone',
-                            required: true,
-                            autoFocus: true,
-                            placeholder: "Enter your mobile number"
-                        }}
-                        containerClass="w-full h-[40px]"
-                        inputClass="w-full h-[40px] px-4 py-4 border-2 border-[#000000B2] bg-[#D9D9D966] rounded-lg font-poppins font-normal text-[20px] text-[#000000] outline-none focus:ring-2 focus:ring-black"
-                    />
+                        <div className="w-full flex justify-center">
+                            <PhoneInput
+                                country={'in'}
+                                value={phone}
+                                onChange={handleSetPhone}
+                                inputProps={{
+                                    name: 'phone',
+                                    required: true,
+                                    autoFocus: true,
+                                    placeholder: "Enter your mobile number"
+                                }}
+                                inputStyle={{
+                                    width: "100%",
+                                    paddingLeft: "56px",
+                                    height: "50px",
+                                    backgroundColor: "#D9D9D966",
+                                    fontSize: "20px",
+                                    color: "#000000",
+                                    border: "2px solid #000000B2",
+                                    borderRadius: "10px",
+                                    boxSizing: "border-box"
+                                }}
+                                containerStyle={{
+                                    width: "436px"
+                                }}
+                                dropdownStyle={{
+                                    maxHeight: "200px",
+                                    overflowY: "auto",
+                                    zIndex: 99999
+                                }}
+                                buttonStyle={{
+                                    height: "50px",
+                                    border: "2px solid #000000B2",
+                                    borderRadius: "10px 0 0 10px",
+                                    boxSizing: "border-box"
+                                }}
+                                containerClass="w-[436px] mx-auto"
+                            />
+                        </div>
+                    </div>
                 </div>
             ),
             buttonText: "Done"
@@ -2255,6 +2294,10 @@ export default function Questionnaire() {
     }, [currentPageIndex]);
 
     useEffect(() => {
+        console.log("Phone : ",phone);
+    },[phone]);
+
+    useEffect(() => {
         const updateWidth = () => {
             if (lineRef.current) {
                 const adjustedWidth = lineRef.current.offsetWidth - 70;
@@ -2277,41 +2320,41 @@ export default function Questionnaire() {
     }, [currentPageIndex, lineWidth]);
 
     const validators = {
-        // //Page 1 Intro
-        // //Page 2 Intro
-        // 2: page3validator,
-        // //Page 4 - Chapter-1
-        // 4: page5validator,
-        // 5: page6validator,
-        // 6: page7validator,
-        // 7: page8to14validator(""),
-        // 8: page8to14validator("1"),
-        // 9: page8to14validator("2"),
-        // 10: page8to14validator("3"),
-        // 11: page8to14validator("4"),
-        // 12: page8to14validator("5"),
-        // 13: page8to14validator("6"),
-        // //Page 15 - Chapter-2
-        // 15: page16validator,
-        // 16: page17validator,
-        // 17: page18validator,
-        // 18: page19validator,
-        // 19: page20validator,
-        // 20: page21validator,
-        // //Page 22 - No validation required
-        // //Page 23 - Chapter-3
-        // //Page 24- still development
-        // //Page 25- still development
-        // 25: page26validator,
-        // 26: page27validator,
-        // 27: page28validator,
-        // 28: page29validator,
-        // 29: page30validator,
-        // //Page 31 - Final Touch
-        // //Page 32 - Mobile Number
-        // 32: page33validator,
-        // 33: page34validator,
-        // 34: page35validator,
+        //Page 1 Intro
+        //Page 2 Intro
+        2: page3validator,
+        //Page 4 - Chapter-1
+        4: page5validator,
+        5: page6validator,
+        6: page7validator,
+        7: page8to14validator(""),
+        8: page8to14validator("1"),
+        9: page8to14validator("2"),
+        10: page8to14validator("3"),
+        11: page8to14validator("4"),
+        12: page8to14validator("5"),
+        13: page8to14validator("6"),
+        //Page 15 - Chapter-2
+        15: page16validator,
+        16: page17validator,
+        17: page18validator,
+        18: page19validator,
+        19: page20validator,
+        20: page21validator,
+        //Page 22 - No validation required
+        //Page 23 - Chapter-3
+        //Page 24- still development
+        //Page 25- still development
+        25: page26validator,
+        26: page27validator,
+        27: page28validator,
+        28: page29validator,
+        29: page30validator,
+        //Page 31 - Final Touch
+        31: () => page32validator(phone),
+        32: page33validator,
+        33: page34validator,
+        34: page35validator,
     };
 
     const currentValidator = validators[currentPageIndex];

@@ -12,7 +12,7 @@ export default {
         'dela-gothic': ['"Dela Gothic One"', 'cursive'],
         'baloo-bhai': ['"Baloo Bhai 2"', 'cursive'],
         'archivo-black': ['"Archivo Black"', 'sans-serif'],
-        'titan': ['"Titan One"', 'cursive'],
+        'titan-one': ['"Titan One"', 'cursive'],
         'sofia': ['Sofia', 'cursive'],
       },
     },

@@ -19,6 +19,7 @@
     "@fontsource/titan-one": "^5.2.5",
     "framer-motion": "^12.9.1",
     "gsap": "^3.13.0",
+    "libphonenumber-js": "^1.12.8",
     "lucide-react": "^0.503.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
