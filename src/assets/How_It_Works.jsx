@@ -347,10 +347,8 @@ export default function HowItWorks() {
 
                 <p className="font-poppins font-bold text-[#A11616E5] text-[16px] mb-2">* Hover the Cards to know what's included</p>
                 <div className="flex justify-end w-full">
-                    <p className="text-[16px] md:text[20px] lg:text-[26px] font-poppins font-bold text-black mb-4 w-full md:w-1/3 pr-12">
-                        <span className="text-[#A11616] opacity-90">Everything is taken care </span>
-                        of so
-                        <span className="text-[#003566] opacity-90"> you can relax, trust the process, and focus on the adventure.</span>
+                    <p className="text-[16px] md:text[20px] lg:text-[26px] font-poppins font-bold text-black mb-4 w-full md:w-[573px] pr-12">
+                        <span className="text-[#A11616] opacity-90">Everything is taken care </span>of so<span className="text-[#003566] opacity-90"> you can relax, trust the process, and focus on the adventure.</span>
                     </p>
                 </div>
             </section>
