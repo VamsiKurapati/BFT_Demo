@@ -9,6 +9,7 @@ const WhyUs = lazy(() => import("./assets/Why_Us"));
 const HowItWorks = lazy(() => import("./assets/How_It_Works"));
 const Questionnaire = lazy(() => import("./assets/Questionnaire"));
 const LocationSelector = lazy(() => import("./assets/sample2"));
+const StayTuned = lazy(() => import("./assets/Stay_Alert"));
 
 const App = () => {
     return (
@@ -21,6 +22,7 @@ const App = () => {
                 <Route path="/how_it_works" element={<HowItWorks />} />
                 <Route path="/questionnaire" element={<Questionnaire />} />
                 <Route path="/hello" element={<LocationSelector />} />
+                <Route path="/stay_tuned" element={<StayTuned />} />
                 {/* Other route redirect to home and change the path to your home page */}
                 <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>

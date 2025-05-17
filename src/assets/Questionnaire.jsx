@@ -658,10 +658,10 @@ export default function Questionnaire() {
             Number: 5,
             type: "text",
             Content: (
-                <div className="w-full sm:w-[90%] md:w-[75%] lg:w-[40%] flex flex-col items-center">
+                <div className="w-full sm:w-[90%] md:w-[75%] lg:w-[567px] flex flex-col items-center">
                     <p className="font-poppins font-normal text-[20px] text-[#000000BF] text-left mb-4">
                         With BFT, the world becomes your playground for adventure and self-discovery.<br /><br />
-                        We totally get that <span className="font-bold text-[#000000]">fears, phobias, or medical conditions</span> can affect your travel experience. Is there <span className="font-bold text-[#000000]">anything we should keep in mind?</span>
+                        <span className="text-[24px]">We totally get that <span className="font-bold text-[#000000]">fears, phobias, or medical conditions</span> can affect your travel experience. Is there <span className="font-bold text-[#000000]">anything we should keep in mind? </span><span className="text-[#A32727]">*</span></span>
                     </p>
                     <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-poppins">
                         <label className="flex items-center text-left">
@@ -677,6 +677,7 @@ export default function Questionnaire() {
 
                         {!checkboxValues["awareOfNothing"] && (
                             <>
+                            <div className="w-full h-[1px] bg-gray-300 my-2"></div>
                             <label className="flex items-center text-left">
                                 <input
                                 type="checkbox"
@@ -752,16 +753,17 @@ export default function Questionnaire() {
                     </div>
                 </div>
             ),
-            buttonText: "Done"
+            buttonText: "Done",
+            Heading: "Chapter 1: You & Your Getaway Style"
         },
         {
             Number: 6,
             type: "text",
             Content: (
-                <div className="w-full sm:w-[90%] md:w-[75%] lg:w-[40%] flex flex-col items-center">
+                <div className="w-full sm:w-[90%] md:w-[75%] lg:w-[567px] flex flex-col items-center">
                     <p className="font-poppins font-normal text-[20px] text-[#000000BF] text-left mb-4">
                         Every BFT adventure is designed with beginners in mind and guided by seasoned experts. We’ll always factor in any fears, phobias, or medical conditions you’ve shared with us.<br /><br />
-                        We’d love to gently nudge you out of your comfort zone—but are there any <span className="font-bold text-[#000000]">activities that are a definite no for you?</span><br /><br />
+                        <span className="text-[24px]">We’d love to gently nudge you out of your comfort zone—but are there any <span className="font-bold text-[#000000]">activities that are a definite no for you? </span><span className="text-[#A32727]">*</span></span><br /><br />
                         If you’re unsure about an activity, don't say no to it!
                     </p>
                     <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-poppins">
@@ -778,6 +780,7 @@ export default function Questionnaire() {
 
                         {!checkboxValues["comfortableWithAll"] && (
                             <>
+                            <div className="w-full h-[1px] bg-gray-300 my-2"></div>
                             <label className="flex items-center text-left">
                                 <input
                                 type="checkbox"
@@ -933,15 +936,16 @@ export default function Questionnaire() {
                     </div>
                 </div>
             ),
-            buttonText: "Done"
+            buttonText: "Done",
+            Heading: "Chapter 1: You & Your Getaway Style"
         },
         {
             Number: 7,
             type: "text",
             Content: (
-                <div className="w-full sm:w-[90%] md:w-[75%] lg:w-[40%] flex flex-col items-center">
-                    <p className="font-poppins font-normal text-[20px] text-[#000000] text-left mb-4">
-                        Do you follow <span className="font-bold text-[#000000]">any dietary preferences or restrictions</span> we should consider for foodie stops?
+                <div className="w-full sm:w-[90%] md:w-[75%] lg:w-[567px] flex flex-col items-center">
+                    <p className="font-poppins font-normal text-[24px] text-[#000000] text-left mb-4">
+                        Do you follow <span className="font-bold text-[#000000]">any dietary preferences or restrictions</span> we should consider for foodie stops? <span className="text-[#A32727]">*</span>
                     </p>
                     <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-poppins">
                         <label className="flex items-center text-left">
@@ -957,6 +961,7 @@ export default function Questionnaire() {
 
                         {!checkboxValues.none && (
                             <>
+                            <div className="w-full h-[1px] bg-gray-300 my-2"></div>
                             <label className="flex items-center text-left">
                                 <input
                                 type="checkbox"
@@ -1013,7 +1018,8 @@ export default function Questionnaire() {
                     </div>
                 </div>
             ),
-            buttonText: "Done"
+            buttonText: "Done",
+            Heading: "Chapter 1: You & Your Getaway Style"
         },
         {
             Number: 8,
@@ -1021,7 +1027,7 @@ export default function Questionnaire() {
             Content: (
                 <div className="w-full flex flex-col items-center">
                     <p className="font-poppins font-normal text-[24px] text-[#000000] text-left mr-12 md:mr-20 mb-4">
-                        How much do you enjoy <span className="font-bold text-[#000000]">outdoor adventures?</span>
+                        How much do you enjoy <span className="font-bold">outdoor adventures? </span><span className="text-[#A32727]">*</span>
                     </p>
                     <div className="flex flex-row items-center gap-4 sm:gap-8 lg:gap-12 mb-4">
                         <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
@@ -1080,7 +1086,8 @@ export default function Questionnaire() {
                     </div>
                 </div>
             ),
-            buttonText: "Done"
+            buttonText: "Done",
+            Heading: "Chapter 1: You & Your Getaway Style"
         },
         {
             Number: 9,
@@ -1088,7 +1095,7 @@ export default function Questionnaire() {
             Content: (
                 <div className="w-full flex flex-col items-center">
                     <p className="font-poppins font-normal text-[24px] text-[#000000] text-left mr-14 md:mr-28 mb-4">
-                        How do you feel about being <span className="font-bold text-[#000000]">out in nature?</span>
+                        How do you feel about being <span className="font-bold">out in nature? </span><span className="text-[#A32727]">*</span>
                     </p>
                     <div className="flex flex-row items-center gap-4 sm:gap-8 lg:gap-12 mb-4">
                         <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
@@ -1147,7 +1154,8 @@ export default function Questionnaire() {
                     </div>
                 </div>
             ),
-            buttonText: "Done"
+            buttonText: "Done",
+            Heading: "Chapter 1: You & Your Getaway Style"
         },
         {
             Number: 10,
@@ -1155,7 +1163,7 @@ export default function Questionnaire() {
             Content: (
                 <div className="w-full flex flex-col items-center">
                     <p className="font-poppins font-normal text-[24px] text-[#000000] text-left mr-14 md:mr-28 mb-4">
-                        Strolling through <span className="font-bold text-[#000000]">charming little towns—</span> love it or leave it? 
+                        Strolling through <span className="font-bold">charming little towns—</span> love it or leave it? <span className="text-[#A32727]">*</span>
                     </p>
                     <div className="flex flex-row items-center gap-4 sm:gap-8 lg:gap-12 mb-4">
                         <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
@@ -1214,7 +1222,8 @@ export default function Questionnaire() {
                     </div>
                 </div>
             ),
-            buttonText: "Done"
+            buttonText: "Done",
+            Heading: "Chapter 1: You & Your Getaway Style"
         },
         {
             Number: 11,
@@ -1222,7 +1231,7 @@ export default function Questionnaire() {
             Content: (
                 <div className="w-full flex flex-col items-center">
                     <p className="font-poppins font-normal text-[24px] text-[#000000] text-left mr-14 md:mr-28 mb-4">
-                        Seeing <span className="font-bold text-[#000000]">iconic landmarks—</span> must-do or pass?
+                        Seeing <span className="font-bold">iconic landmarks—</span> must-do or pass? <span className="text-[#A32727]">*</span>
                     </p>
                     <div className="flex flex-row items-center gap-4 sm:gap-8 lg:gap-12 mb-4">
                         <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
@@ -1281,7 +1290,8 @@ export default function Questionnaire() {
                     </div>
                 </div>
             ),
-            buttonText: "Done"
+            buttonText: "Done",
+            Heading: "Chapter 1: You & Your Getaway Style"
         },
         {
             Number: 12,
@@ -1289,7 +1299,7 @@ export default function Questionnaire() {
             Content: (
                 <div className="w-full flex flex-col items-center">
                     <p className="font-poppins font-normal text-[24px] text-[#000000] text-left mr-14 md:mr-28 mb-4">
-                        Exploring <span className="font-bold text-[#000000]">places rich in history—</span> your thing? 
+                        Exploring <span className="font-bold">places rich in history—</span> your thing? <span className="text-[#A32727]">*</span>
                     </p>
                     <div className="flex flex-row items-center gap-4 sm:gap-8 lg:gap-12 mb-4">
                         <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
@@ -1348,7 +1358,8 @@ export default function Questionnaire() {
                     </div>
                 </div>
             ),
-            buttonText: "Done"
+            buttonText: "Done",
+            Heading: "Chapter 1: You & Your Getaway Style"
         },
         {
             Number: 13,
@@ -1356,7 +1367,7 @@ export default function Questionnaire() {
             Content: (
                 <div className="w-full flex flex-col items-center">
                     <p className="font-poppins font-normal text-[24px] text-[#000000] text-left mr-12 sm:mr-14 md:mr-48 mb-4">
-                        <span className="font-bold text-[#000000]">Art and museum </span> visits—yay or nay?
+                        <span className="font-bold">Art and museum </span> visits—yay or nay? <span className="text-[#A32727]">*</span>
                     </p>
                     <div className="flex flex-row items-center gap-4 sm:gap-8 lg:gap-12 mb-4">
                         <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
@@ -1415,7 +1426,8 @@ export default function Questionnaire() {
                     </div>
                 </div>
             ),
-            buttonText: "Done"
+            buttonText: "Done",
+            Heading: "Chapter 1: You & Your Getaway Style"
         },
         {
             Number: 14,
@@ -1423,7 +1435,7 @@ export default function Questionnaire() {
             Content: (
                 <div className="w-full flex flex-col items-center">
                     <p className="font-poppins font-normal text-[24px] text-[#000000] text-left mr-14 md:mr-28 mb-4">
-                        Sampling <span className="font-bold text-[#000000]">delicious local food—</span> how excited are you?
+                        Sampling <span className="font-bold">delicious local food—</span> how excited are you? <span className="text-[#A32727]">*</span>
                     </p>
                     <div className="flex flex-row items-center gap-4 sm:gap-8 lg:gap-12 mb-4">
                         <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
@@ -1482,7 +1494,8 @@ export default function Questionnaire() {
                     </div>
                 </div>
             ),
-            buttonText: "Done"
+            buttonText: "Done",
+            Heading: "Chapter 1: You & Your Getaway Style"
         },
         {
             Number: 15,
@@ -1509,7 +1522,7 @@ export default function Questionnaire() {
             Content: (
                 <div className="w-full flex flex-col items-start px-4 sm:px-8 md:px-32 lg:px-64">
                     <p className="font-poppins font-normal text-[24px] text-[#000000] text-center mb-4">
-                        What’s the <span className="font-bold text-[#000000]">#1 thing you’re hoping for from this trip? *</span>
+                        What’s the <span className="font-bold">#1 thing you’re hoping for from this trip?</span> <span className="text-[#A32727]">*</span>
                     </p>
                     <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
                         <label className="flex items-center text-left">
@@ -1555,7 +1568,8 @@ export default function Questionnaire() {
                     </div>
                 </div>
             ),
-            buttonText: "Done"
+            buttonText: "Done",
+            Heading: "Chapter 2: Your Mystery Trip Begins"
         },
         {
             Number: 17,
@@ -1563,7 +1577,7 @@ export default function Questionnaire() {
             Content: (
                 <div className="w-full flex flex-col items-start px-4 sm:px-8 md:px-32 lg:px-64">
                     <p className="font-poppins font-normal text-[24px] text-[#000000] text-center mb-4">
-                       How <span className="font-bold text-[#000000]">active or chill</span> do you want your <span className="font-bold text-[#000000]">trip</span> to be?
+                       How <span className="font-bold text-[#000000]">active or chill</span> do you want your <span className="font-bold">trip</span> to be? <span className="text-[#A32727]">*</span>
                     </p>
                     <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
                         <label className="flex items-center text-left">
@@ -1644,7 +1658,8 @@ export default function Questionnaire() {
                     </div>
                 </div>
             ),
-            buttonText: "Done"
+            buttonText: "Done",
+            Heading: "Chapter 2: Your Mystery Trip Begins"
         },
         {
             Number: 18,
@@ -1652,11 +1667,11 @@ export default function Questionnaire() {
             Content: (
                 <div className="w-full flex flex-col items-start px-4 sm:px-8 md:px-32 lg:px-64">
                     <div className="flex flex-col items-start mb-4">
-                        <p className="font-poppins font-normal text-[24px] text-[#000000BF] text-left">
-                        Got a <span className="text-[#000000] font-bold">temperature preference</span> for your trip?
+                        <p className="font-poppins font-normal text-[24px] text-[#000000] text-left">
+                        Got a <span className="text-[#000000] font-bold">temperature preference</span> for your trip? <span className="text-[#A32727]">*</span>
                         </p>
-                        <p className="mt-2 text-[20px]">Warm = Above 15°C / 60°F</p>
-                        <p className="mt-2 text-[20px]">Cool = Below 15°C / 60°F</p>
+                        <p className="text-[#000000BF] mt-2 text-[20px]">Warm = Above 15°C / 60°F</p>
+                        <p className="text-[#000000BF] mt-2 text-[20px]">Cool = Below 15°C / 60°F</p>
                     </div>
                     <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
                         <label className="flex items-center text-left">
@@ -1696,16 +1711,17 @@ export default function Questionnaire() {
                     </p>
                 </div>
             ),
-            buttonText: "Done"
+            buttonText: "Done",
+            Heading: "Chapter 2: Your Mystery Trip Begins"
         },
         {
             Number: 19,
             type: "text",
             Content: (
                 <div className="w-full flex flex-col items-start px-4 sm:px-8 md:px-32 lg:px-64">
-                    <p className="font-poppins font-normal text-[24px] text-[#000000BF] text-left mb-4">
-                        What kind of <span className="text-[#000000] font-bold">vibes</span> are you hoping for in your surprise destination?<br /> <br/>
-                        <span className="text-[20px]">Make between 2 and 5 choices.</span>
+                    <p className="font-poppins font-normal text-[24px] text-[#000000] text-left mb-4">
+                        What kind of <span className="font-bold">vibes</span> are you hoping for in your surprise destination? <span className="text-[#A32727]">*</span><br /> <br/>
+                        <span className="text-[#000000BF] text-[20px]">Make between 2 and 5 choices.</span>
                     </p>
                     <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
                         <label className="flex items-center text-left">
@@ -1801,15 +1817,16 @@ export default function Questionnaire() {
                     </div>
                 </div>
             ),
-            buttonText: "Done"
+            buttonText: "Done",
+            Heading: "Chapter 2: Your Mystery Trip Begins"
         },
         {
             Number: 20,
             type: "text",
             Content: (
                 <div className="w-full flex flex-col items-start px-4 sm:px-8 md:px-32 lg:px-64">
-                    <p className="font-poppins font-normal text-[24px] text-[#000000BF] text-left mb-4">
-                        Is there a <span className="text-[#000000] font-bold">dream destination or state on your list</span> you'd love to land? 
+                    <p className="font-poppins font-normal text-[24px] text-[#000000] text-left mb-4">
+                        Is there a <span className="font-bold">dream destination or state on your list</span> you'd love to land? <span className="text-[#A32727]">*</span>
                     </p>
                     <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
                         <label className="flex items-center text-left">
@@ -1845,15 +1862,16 @@ export default function Questionnaire() {
                     </div>
                 </div>
             ),
-            buttonText: "Done"
+            buttonText: "Done",
+            Heading: "Chapter 2: Your Mystery Trip Begins"
         },
         {
             Number: 21,
             type: "form",
             Content: (
                 <div className="w-full flex flex-col items-center px-4 sm:px-8 md:px-32 lg:px-64">
-                    <p className="font-poppins font-normal text-[24px] text-[#000000BF] text-center mb-4">
-                        Which <span className="text-[#000000] font-bold">Places / Countries</span> are <span className="text-[#000000] font-bold">on your bucket list?</span> 
+                    <p className="font-poppins font-normal text-[24px] text-[#000000] text-center mb-4">
+                        Which <span className="font-bold">Places / Countries</span> are <span className="font-bold">on your bucket list? </span><span className="text-[#A32727]">*</span> 
                     </p>
                     <input
                         type="text"
@@ -1862,8 +1880,8 @@ export default function Questionnaire() {
                         placeholder="e.g. Paris, France"
                         className="w-[90%] md:w-[50%] px-4 py-3 border border-2 border-[#000000B2] bg-[#D9D9D966] rounded-lg font-poppins font-normal text-[24px] text-[#000000]"
                     />
-                    <p className='font-poppins font-normal text-[20px] text-[#000000BF] text-left mt-8 mb-4'>
-                        Where have you already been that you’d <span className="font-bold text-[#000000]">prefer not to revisit?</span>
+                    <p className='font-poppins font-normal text-[20px] text-[#000000] text-left mt-8 mb-4'>
+                        Where have you already been that you’d <span className="font-bold">prefer not to revisit? </span><span className="text-[#A32727]">*</span>
                     </p>
                     <input
                         type="text"
@@ -1874,18 +1892,19 @@ export default function Questionnaire() {
                     />
                 </div>
             ),
-            buttonText: "Done"
+            buttonText: "Done",
+            Heading: "Chapter 2: Your Mystery Trip Begins"
         },
         {
             Number: 22,
             type: "form",
             Content: (
                 <div className="w-full flex flex-col items-center px-4 sm:px-8 md:px-32 lg:px-64">
-                    <p className="font-poppins font-normal text-[24px] text-[#000000BF] text-center mb-4">
-                        Our mission at BFT is to connect people with cultures far from their own. But let’s be clear: <span className="font-bold text-[#000000]">your safety is non-negotiable on any of our trips.</span>
+                    <p className="font-poppins font-normal text-[20px] text-[#000000BF] text-center mb-4">
+                        Our mission at BFT is to connect people with cultures far from their own. But let’s be clear: <span className="font-bold">your safety is non-negotiable on any of our trips.</span>
                     </p>
-                    <p className="font-poppins font-normal text-[24px] text-[#000000BF] text-center mb-4">
-                        Any <span className="font-bold text-[#000000]">destination types that wouldn’t be safe or suitable for you?</span>
+                    <p className="font-poppins font-normal text-[24px] text-[#000000] text-center mb-4">
+                        Any <span className="font-bold">destination types that wouldn’t be safe or suitable for you? </span><span className="text-[#A32727]">*</span>
                     </p>
                     <div className="flex flex-col items-start gap-4 text-[16px] mb-4 sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
                         <label className="flex items-center text-left">
@@ -1989,7 +2008,8 @@ export default function Questionnaire() {
                     </div>
                 </div>
             ),
-            buttonText: "Done"
+            buttonText: "Done",
+            Heading: "Chapter 2: Your Mystery Trip Begins"
         },
         {
             Number: 23,
@@ -2014,10 +2034,10 @@ export default function Questionnaire() {
             Number: 24,
             type: "text",
             Content: (
-                <div className="w-full sm:w-[90%] md:w-[75%] lg:w-[40%] flex flex-col items-center">
+                <div className="w-full sm:w-[90%] md:w-[75%] lg:w-[50%] flex flex-col items-center">
                     <div className="w-full mb-8">
                         <p className='font-poppins font-bold text-[24px] text-[#000000] text-left mb-4'>
-                            <span className="font-normal">Which</span> Country will you be flying out from ?
+                            <span className="font-normal">Which</span> Country will you be flying out from ? <span className="text-[#A32727]">*</span>
                         </p>
 
                         {/* <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins mb-8">
@@ -2054,7 +2074,7 @@ export default function Questionnaire() {
 
                             
                         </div> */}
-                        <select
+                        {/* <select
                             value={selectedCountry}
                             onChange={handleCountryChange}
                             className="mt-2 w-full sm:w-[436px] h-[50px] px-4 py-3 border border-[#000000B2] bg-[#D9D9D966] rounded-lg font-poppins font-normal text-[12px] sm:text-[16px] md:text-[24px] text-[#000000]"
@@ -2065,10 +2085,63 @@ export default function Questionnaire() {
                                 {country.name}
                                 </option>
                             ))}
-                        </select>
+                        </select> */}
+
+                        <Select
+                            options={countries.map((country) => ({
+                                value: country.name,
+                                label: country.name,
+                            }))}
+                            value={
+                                selectedCountry
+                                ? { value: selectedCountry, label: selectedCountry }
+                                : null
+                            }
+                            onChange={(selectedOption) =>
+                                handleCountryChange({ target: { value: selectedOption?.value || '' } })
+                            }
+                            placeholder="Select Country"
+                            className="w-full sm:w-[436px] text-left font-poppins"
+                            styles={{
+                                control: (base) => ({
+                                ...base,
+                                height: 'auto',
+                                minHeight: '50px',
+                                backgroundColor: '#D9D9D966',
+                                border: '2px solid #000000B2',
+                                borderRadius: '8px',
+                                fontSize: '24px',
+                                fontFamily: 'poppins',
+                                }),
+                                placeholder: (base) => ({
+                                ...base,
+                                color: '#000000BF',
+                                fontSize: '24px',
+                                fontFamily: 'poppins',
+                                }),
+                                singleValue: (base) => ({
+                                ...base,
+                                color: '#000000',
+                                fontFamily: 'poppins',
+                                fontSize: '24px',
+                                }),
+                                menu: (base) => ({
+                                ...base,
+                                fontFamily: 'poppins',
+                                fontSize: '20px',
+                                }),
+                                option: (base, state) => ({
+                                ...base,
+                                backgroundColor: state.isFocused ? '#CCCCCC' : 'white',
+                                color: '#000000',
+                                cursor: 'pointer',
+                                fontFamily: 'poppins',
+                                }),
+                            }}
+                        />
 
                         <p className='font-poppins font-bold text-[24px] text-[#000000] text-left mt-8 mb-4'>
-                            <span className="font-normal">Which</span> airports can you depart from ?
+                            <span className="font-normal">Which</span> airports can you depart from ? <span className="text-[#A32727]">*</span>
                         </p>
 
                         <Select
@@ -2076,7 +2149,7 @@ export default function Questionnaire() {
                             options={airports}
                             value={selectedAirports}
                             onChange={setSelectedAirports}
-                            className="w-[436px] text-left font-poppins"
+                            className="w-full sm:w-[436px] text-left font-poppins"
                             placeholder="Select"
                             styles={{
                                 control: (base) => ({
@@ -2121,7 +2194,7 @@ export default function Questionnaire() {
                         />
 
                         <p className='font-poppins font-normal text-[24px] text-[#000000] text-left mb-4 mt-8'>
-                            Do you need to <span className="font-bold">fly in and out of the same airport</span> (e.g., if you're leaving your car there)?
+                            Do you need to <span className="font-bold">fly in and out of the same airport</span> (e.g., if you're leaving your car there)? <span className="text-[#A32727]">*</span>
                         </p>
                         
                         <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
@@ -2149,16 +2222,17 @@ export default function Questionnaire() {
                     </div>
                 </div>
             ),
-            buttonText: "Done"
+            buttonText: "Done",
+            Heading: "Chapter 3: The Must-Knows"
         },
         {
             Number: 25,
             type: "text",
             Content: (
-                <div className="w-full sm:w-[90%] md:w-[75%] lg:w-[40%] flex flex-col items-center">
+                <div className="w-full sm:w-[90%] md:w-[75%] lg:w-[50%] flex flex-col items-center">
                     <div className="w-full mb-8">
                         <p className='font-poppins font-bold text-[24px] text-[#000000] text-left mb-4'>
-                            <span className="font-normal">Which</span> State will you be flying out from ?
+                            <span className="font-normal">Which</span> State will you be flying out from ? <span className="text-[#A32727]">*</span>
                         </p>
 
                         {/* <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins mb-8">
@@ -2195,7 +2269,7 @@ export default function Questionnaire() {
 
                             
                         </div> */}
-                        <select
+                        {/* <select
                             value={selectedState}
                             onChange={handleStateChange}
                             className="mt-2 w-full sm:w-[436px] h-[50px] px-4 py-3 border border-[#000000B2] bg-[#D9D9D966] rounded-lg font-poppins font-normal text-[12px] sm:text-[16px] md:text-[24px] text-[#000000]"
@@ -2206,10 +2280,63 @@ export default function Questionnaire() {
                                 {state.name}
                                 </option>
                             ))}
-                        </select>
+                        </select> */}
+
+                        <Select
+                            options={states.map((state) => ({
+                                value: state.name,
+                                label: state.name,
+                            }))}
+                            value={
+                                selectedState
+                                ? { value: selectedState, label: selectedState }
+                                : null
+                            }
+                            onChange={(selectedOption) =>
+                                handleStateChange({ target: { value: selectedOption?.value || '' } })
+                            }
+                            placeholder="Select State"
+                            className="w-full sm:w-[436px] text-left font-poppins mt-2"
+                            styles={{
+                                control: (base) => ({
+                                    ...base,
+                                    height: 'auto',
+                                    minHeight: '50px',
+                                    backgroundColor: '#D9D9D966',
+                                    border: '2px solid #000000B2',
+                                    borderRadius: '8px',
+                                    fontSize: '24px',
+                                    fontFamily: 'poppins',
+                                }),
+                                placeholder: (base) => ({
+                                    ...base,
+                                    color: '#000000BF',
+                                    fontSize: '24px',
+                                    fontFamily: 'poppins',
+                                }),
+                                singleValue: (base) => ({
+                                    ...base,
+                                    color: '#000000',
+                                    fontFamily: 'poppins',
+                                    fontSize: '24px',
+                                }),
+                                menu: (base) => ({
+                                    ...base,
+                                    fontFamily: 'poppins',
+                                    fontSize: '20px',
+                                }),
+                                option: (base, state) => ({
+                                    ...base,
+                                    backgroundColor: state.isFocused ? '#CCCCCC' : 'white',
+                                    color: '#000000',
+                                    cursor: 'pointer',
+                                    fontFamily: 'poppins',
+                                }),
+                            }}
+                        />
 
                         <p className='font-poppins font-bold text-[24px] text-[#000000] text-left mt-8 mb-4'>
-                            <span className="font-normal">Which</span> airports can you depart from ?
+                            <span className="font-normal">Which</span> airports can you depart from ? <span className="text-[#A32727]">*</span>
                         </p>
 
                         <Select
@@ -2217,7 +2344,7 @@ export default function Questionnaire() {
                             options={airports}
                             value={selectedAirports1}
                             onChange={setSelectedAirports1}
-                            className="w-[436px] text-left font-poppins"
+                            className="w-full sm:w-[436px] text-left font-poppins"
                             placeholder="Select"
                             styles={{
                                 control: (base) => ({
@@ -2262,7 +2389,7 @@ export default function Questionnaire() {
                         />
 
                         <p className='font-poppins font-normal text-[24px] text-[#000000] text-left mb-4 mt-8'>
-                            Do you need to <span className="font-bold">fly in and out of the same airport</span> (e.g., if you're leaving your car there)?
+                            Do you need to <span className="font-bold">fly in and out of the same airport</span> (e.g., if you're leaving your car there)? <span className="text-[#A32727]">*</span>
                         </p>
                         
                         <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
@@ -2290,7 +2417,8 @@ export default function Questionnaire() {
                     </div>
                 </div>
             ),
-            buttonText: "Done"
+            buttonText: "Done",
+            Heading: "Chapter 3: The Must-Knows"
         },
         {
             Number: 26,
@@ -2298,8 +2426,8 @@ export default function Questionnaire() {
             Content: (
                 <div className='w-full sm:w-[90%] md:w-[75%] lg:w-[50%] flex flex-col items-start px-4'>
                     <div className="w-full mb-8">
-                        <p className='font-poppins font-bold text-[20px] text-[#000000] text-left mb-4'>
-                            How long would you like to be away for ? *
+                        <p className='font-poppins font-bold text-[24px] text-[#000000] text-left mb-4'>
+                            How long would you like to be away for ? <span className="text-[#A32727]">*</span>
                         </p>
                         <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
                             <label className="flex items-center text-left">
@@ -2355,7 +2483,8 @@ export default function Questionnaire() {
                     </div>
                 </div>
             ),
-            buttonText: "Done"
+            buttonText: "Done",
+            Heading: "Chapter 3: The Must-Knows"
         },
         {
             Number: 27,
@@ -2363,8 +2492,8 @@ export default function Questionnaire() {
             Content: (
                 <div className='w-full sm:w-[90%] md:w-[75%] lg:w-[50%] flex flex-col items-start px-4'>
                     <div className="w-full mb-8">
-                        <p className='font-poppins font-bold text-[20px] text-[#000000] text-left mb-4'>
-                            Thinking of your trip dates, which of these is true? *
+                        <p className='font-poppins font-bold text-[24px] text-[#000000] text-left mb-4'>
+                            Thinking of your trip dates, which of these is true? <span className="text-[#A32727]">*</span>
                         </p>
                         <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
                             <label className="flex items-center text-left">
@@ -2391,7 +2520,8 @@ export default function Questionnaire() {
                     </div>
                 </div>
             ),
-            buttonText: "Done"
+            buttonText: "Done",
+            Heading: "Chapter 3: The Must-Knows"
         },
         {
             Number: 28,
@@ -2399,8 +2529,8 @@ export default function Questionnaire() {
             Content: (
                 <div className='w-full sm:w-[90%] md:w-[75%] lg:w-[50%] flex flex-col items-start px-4'>
                     <div className="w-full mb-8">
-                        <p className='font-poppins font-bold text-[20px] text-[#000000] text-left mb-4'>
-                            <span className="font-normal">Would you rather</span> stay in a private apartment or a hotel ?
+                        <p className='font-poppins font-bold text-[24px] text-[#000000] text-left mb-4'>
+                            <span className="font-normal">Would you rather</span> stay in a private apartment or a hotel ? <span className="text-[#A32727]">*</span>
                         </p>
                         <div className="font-poppins font-normal text-[20px] text-[#000000BF] text-left mb-4">
                             <p>
@@ -2453,7 +2583,8 @@ export default function Questionnaire() {
                     </div>
                 </div>
             ),
-            buttonText: "Done"
+            buttonText: "Done",
+            Heading: "Chapter 3: The Must-Knows"
         },
         {
             Number: 29,
@@ -2462,7 +2593,7 @@ export default function Questionnaire() {
                 <div className='w-full sm:w-[90%] md:w-[75%] lg:w-[50%] flex flex-col items-start px-4'>
                     <div className="w-full mb-8">
                         <p className='font-poppins font-bold text-[24px] text-[#000000] text-left mb-4'>
-                            <span className="font-normal">What’s</span> your total budget for a 7-day trip ?
+                            <span className="font-normal">What’s</span> your total budget for a 7-day trip ? <span className="text-[#A32727]">*</span>
                         </p>
                         <div className="font-poppins font-normal text-[20px] text-[#000000BF] text-left mb-4">
                             <p>
@@ -2497,7 +2628,8 @@ export default function Questionnaire() {
                     </div>
                 </div>
             ),
-            buttonText: "Done"
+            buttonText: "Done",
+            Heading: "Chapter 3: The Must-Knows"
         },
         {
             Number: 30,
@@ -2506,7 +2638,7 @@ export default function Questionnaire() {
                 <div className='w-full sm:w-[90%] md:w-[75%] lg:w-[50%] flex flex-col items-start px-4'>
                     <div className="w-full mb-8">
                         <p className='font-poppins font-normal text-[24px] text-[#000000] text-left mb-4'>
-                            We'll do our best to budget your trip to this amount, but <span className="font-bold">would you be willing to increase it ? *</span>
+                            We'll do our best to budget your trip to this amount, but <span className="font-bold">would you be willing to increase it ? </span><span className="text-[#A32727]">*</span>
                         </p>
                         <p className="font-poppins font-normal text-left mb-4 text-[20px] text-[#000000BF]">
                             This is in case flights to your best destination are more expensive than usual.
@@ -2556,7 +2688,8 @@ export default function Questionnaire() {
                     </div>
                 </div>
             ),
-            buttonText: "Done"
+            buttonText: "Done",
+            Heading: "Chapter 3: The Must-Knows"
         },
         {
             Number: 31,
@@ -2583,8 +2716,8 @@ export default function Questionnaire() {
             Content: (
                 <div className="w-full sm:w-[90%] md:w-[75%] lg:w-[50%] flex flex-col items-start px-4">
                     <div className="w-full mb-8">
-                        <p className="font-poppins font-normal text-[24px] text-[#000000]">
-                            What's the <span className="font-bold">best number to reach you ?</span>
+                        <p className="font-poppins font-normal text-[24px] text-[#000000] mb-2">
+                            What's the <span className="font-bold">best number to reach you ? </span><span className="text-[#A32727]">*</span>
                         </p>
                         <p className="font-poppins font-normal text-[20px] text-[#000000BF] mb-8">
                             This is where we'll send your free Journey Proposal.
@@ -2632,7 +2765,8 @@ export default function Questionnaire() {
                     </div>
                 </div>
             ),
-            buttonText: "Done"
+            buttonText: "Done",
+            Heading: "Final Touch: You!"
         },
         {
             Number: 33,
@@ -2641,7 +2775,7 @@ export default function Questionnaire() {
                 <div className='w-full sm:w-[90%] md:w-[75%] lg:w-[50%] flex flex-col items-start px-4'>
                     <div className="w-full mb-8">
                         <p className='font-poppins font-normal text-[24px] text-[#000000] text-left mb-4'>
-                            P.S. Want to <span className="font-bold">get Culture Curious and The Explorer in your inbox ?</span>
+                            P.S. Want to <span className="font-bold">get Culture Curious and The Explorer in your inbox ? </span><span className="text-[#A32727]">*</span>
                         </p>
                         <p className="font-poppins font-normal text-left mb-4 text-[20px] text-[#000000BF]">
                             As a travel lover, you'll enjoy reading them! If not, you can easily  unsubscribe with one click. We'll never share your email either.
@@ -2671,7 +2805,8 @@ export default function Questionnaire() {
                     </div>
                 </div>
             ),
-            buttonText: "Done"
+            buttonText: "Done",
+            Heading: "Final Touch: You!"
         },
         {
             Number: 34,
@@ -2679,8 +2814,8 @@ export default function Questionnaire() {
             Content: (
                 <div className='w-full sm:w-[90%] md:w-[75%] lg:w-[50%] flex flex-col items-start px-4'>
                     <div className="w-full mb-8">
-                        <p className='font-poppins font-normal text-[24px] text-[#000000] text-left mb-4'>
-                            How did you first hear about BFT ?
+                        <p className='font-poppins font-bold text-[24px] text-[#000000] text-left mb-4'>
+                            How did you first hear about BFT ? <span className="text-[#A32727]">*</span>
                         </p>
                         <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
                             <label className="flex items-center text-left">
@@ -2741,7 +2876,8 @@ export default function Questionnaire() {
                     </div>
                 </div>
             ),
-            buttonText: "Done"
+            buttonText: "Done",
+            Heading: "Final Touch: You!"
         },
         {
             Number: 35,
@@ -2749,14 +2885,14 @@ export default function Questionnaire() {
             Content: (
                 <div className='w-full sm:w-[90%] md:w-[75%] lg:w-[50%] flex flex-col items-start px-4'>
                     <div className="w-full mb-8">
-                        <p className='font-poppins font-normal text-[24px] text-[#000000] text-left mb-4'>
-                            To send your BFT proposal, we’ll need your OK on our Privacy Policy !!!!
+                        <p className='font-poppins font-bold text-[24px] text-[#000000] text-left mb-4'>
+                            To send your BFT proposal, we’ll need your OK on our Privacy Policy !!!! <span className="text-[#A32727]">*</span>
                         </p>
                         <p className="font-poppins font-normal text-left text-[20px] text-[#000000BF]">
                             We don't misuse your data.
                         </p>
                         <p className="font-poppins font-normal text-left mb-4 text-[20px] text-[#000000BF]">
-                            Full policy <a href="/privacy_policy" className="text-[#1059E0]">here</a>.
+                            Full policy <a href="/privacy_policy" className="text-[#1059E0] font-bold">here</a>.
                         </p>
                         <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
                             <label className="flex items-center text-left">
@@ -2773,7 +2909,8 @@ export default function Questionnaire() {
                     </div>
                 </div>
             ),
-            buttonText: "Done"
+            buttonText: "Done",
+            Heading: "Final Touch: You!"
         },
     ];
 
@@ -2783,10 +2920,10 @@ export default function Questionnaire() {
         } else {
             const success = await handleSave();
             if (success) {
-                console.log("Responses save successful...")
+                // console.log("Responses save successful...")
                 setTimeout(() => {
-                    navigate("/thankyou");
-                }, 3000);
+                    navigate("/stay_tuned");
+                }, 1500);
             } else {
             alert("Failed to save responses. Please try again.");
             }
@@ -2878,11 +3015,17 @@ export default function Questionnaire() {
     return (
         <div className="min-h-screen flex flex-col bg-white font-poppins">
             {/* Header */}
-            <div className="flex justify-end items-center pt-[56px] px-6 py-4 border-b shadow-sm">
+            <div className="flex flex-col justify-end items-end pt-[56px] px-6 py-4 border-b shadow-sm">
                 <img src="/Logo_1.png" alt="Logo" className="pl-[40px] w-64 h-16 mr-auto" />
-                <button onClick={() => navigate("/")} className="text-red-600 text-xl pr-[60px] font-bold hover:text-red-800 transition">
-                    <IoCloseCircleOutline size={30} />
-                </button>
+                {currentPageIndex===0 ? (
+                    <button onClick={() => navigate("/")} className="text-red-600 text-xl pr-[60px] font-bold hover:text-red-800 transition">
+                        <IoCloseCircleOutline size={30} />
+                    </button>
+                ) : (
+                    <p className="font-poppins font-bold text-[#A42828] text-[20px] md:text-[24px] md:pr-[60px]">
+                        {Pages[currentPageIndex].Heading}
+                    </p>
+                )}
             </div>
 
             {/* Dashed Line Path + Car */}
@@ -2906,8 +3049,8 @@ export default function Questionnaire() {
             </div>
 
             {/* Page Content */}
-            <div className="flex-grow flex flex-col justify-center items-center px-6 text-center">
-                {Pages[currentPageIndex].Content}
+            <div className="flex-grow flex flex-col justify-center items-center px-6 text-center text-[#000000]">
+                {Pages[currentPageIndex].Content || ''}
             </div>
 
             {/* Navigation Button */}
