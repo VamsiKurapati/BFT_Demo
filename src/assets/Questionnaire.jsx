@@ -2955,7 +2955,7 @@ export default function Questionnaire() {
     }, [selectedCountryCode]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/api/airports') // Replace with your actual backend URL if deployed
+        fetch('https://bft-backend.vercel.app/api/airports') // Replace with your actual backend URL if deployed
         .then((res) => res.json())
         .then((data) => setAirports(data))
         .catch((err) => console.error('Failed to fetch airport data', err));
