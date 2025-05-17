@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocation } from "react-router-dom";
 import { FaEnvelope, FaPhone, FaClock, FaFacebook, FaInstagram, FaXTwitter,} from 'react-icons/fa6';
