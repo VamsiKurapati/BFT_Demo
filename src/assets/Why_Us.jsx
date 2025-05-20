@@ -185,7 +185,7 @@ export default function WhyUs() {
               <p className="font-poppins font-normal text-[20px] text-[#000000CC] leading-relaxed">
                   Imagine showing up at the airport with your bags packed, boarding pass in hand,
                   and no idea where you're flying.
-                  <span className="font-semibold text-[#000000]">
+                  <span className="font-semibold text-[#000000E5]">
                     That’s the thrill of Blind Fold Trips—a spontaneous, surprise-filled journey where the
                     destination is revealed only when it’s time to take off.
                   </span>
@@ -280,17 +280,25 @@ export default function WhyUs() {
             </div>
           </section>
 
-          <section
-            className="relative bg-cover bg-center py-10 px-5 sm:px-8 md:px-12"
-            style={{
-              backgroundImage: "url('/Who_for.jpg')",
-            }}
-          >
-            <div className="absolute inset-0 bg-[#00000066] z-0"></div>
-
-            <div className="z-10 rounded-xl border-l-[6px] border-[#FFBE55] p-5 sm:p-7 md:p-10 shadow-[0px_21px_47px_#00000021,0px_85px_85px_#0000001C,0px_192px_115px_#00000012,0px_341px_137px_#00000005,1px_533px_149px_#00000000] max-w-screen-2xl mx-auto flex flex-col lg:flex-row gap-8"
+          <section className="relative py-10 px-5 sm:px-8 md:px-12 overflow-hidden">
+            {/* Background image with 0.8 opacity */}
+            <div
+              className="absolute inset-0 bg-center bg-cover z-[-2]"
               style={{
-                background: "linear-gradient(180deg, rgba(255, 255, 255, 0) -111.56%, rgba(255, 255, 255, 0.9) 100%)"
+                backgroundImage: "url('/Who_for.jpg')",
+                opacity: 0.8,
+              }}
+            ></div>
+
+            {/* Black overlay on top of background image */}
+            <div className="absolute inset-0 bg-[#00000066] z-[-1]"></div>
+
+            {/* Content Container */}
+            <div
+              className="z-10 rounded-xl border-l-[6px] border-[#FFBE55] p-5 sm:p-7 md:p-10 shadow-[0px_21px_47px_#00000021,0px_85px_85px_#0000001C,0px_192px_115px_#00000012,0px_341px_137px_#00000005,1px_533px_149px_#00000000] max-w-screen-2xl mx-auto flex flex-col lg:flex-row gap-8"
+              style={{
+                background:
+                  "linear-gradient(180deg, rgba(255, 255, 255, 0) -111.56%, rgba(255, 255, 255, 0.9) 100%)",
               }}
             >
               {/* Text Section */}
@@ -301,20 +309,16 @@ export default function WhyUs() {
 
                 <ul className="space-y-2 text-[15px] sm:text-[16px] md:text-[19px] text-[#000000BF] font-poppins font-normal">
                   <li>
-                    <span className="text-[#000000] font-semibold">Free spirits and thrill-seekers</span> who live for the
-                    unknown.
+                    <span className="text-[#000000] font-semibold">Free spirits and thrill-seekers</span> who live for the unknown.
                   </li>
                   <li>
-                    <span className="text-[#000000] font-semibold">Romantic couples</span> looking to spice things up with
-                    a mystery escape.
+                    <span className="text-[#000000] font-semibold">Romantic couples</span> looking to spice things up with a mystery escape.
                   </li>
                   <li>
-                    <span className="text-[#000000] font-semibold">Curious explorers</span> who want something different
-                    from cookie-cutter vacations.
+                    <span className="text-[#000000] font-semibold">Curious explorers</span> who want something different from cookie-cutter vacations.
                   </li>
                   <li>
-                    <span className="text-[#000000] font-semibold">Overworked minds</span> who just need a break—from both
-                    routine and decision-making.
+                    <span className="text-[#000000] font-semibold">Overworked minds</span> who just need a break—from both routine and decision-making.
                   </li>
                 </ul>
 
@@ -322,9 +326,7 @@ export default function WhyUs() {
                   <span className="text-[#003566CC]">
                     If you're tired of planning every second of your trip
                   </span>
-                  <span className="text-[#000000]">
-                    , or just ready to say "yes" to something new—
-                  </span>
+                  <span className="text-[#000000]">, or just ready to say "yes" to something new—</span>
                   <span className="text-[#A11616]"> this is for you.</span>
                 </p>
 
@@ -333,7 +335,7 @@ export default function WhyUs() {
                 </button>
               </div>
 
-              {/* Image Grid Section */}
+              {/* Mobile Swiper */}
               <div className="sm:hidden">
                 <Swiper
                   spaceBetween={10}
@@ -377,9 +379,8 @@ export default function WhyUs() {
                 </Swiper>
               </div>
 
-              {/* Desktop Image Grid Section */}
+              {/* Desktop Image Grid */}
               <div className="hidden sm:block sm:grid sm:grid-cols-2 gap-2 md:gap-y-2 lg:-gap-y-2">
-                {/* Row 1 */}
                 <div className="flex flex-col gap-2">
                   <img
                     src="/Traveler_2.jpg"
@@ -399,7 +400,6 @@ export default function WhyUs() {
                   className="rounded-lg object-cover w-full h-[316px] transition duration-300 ease-in-out hover:scale-105 hover:shadow-xl hover:brightness-110"
                 />
 
-                {/* Row 2 */}
                 <img
                   src="/Traveler_1.jpg"
                   alt="Traveler 1"
@@ -410,8 +410,7 @@ export default function WhyUs() {
           </section>
 
           <section className="relative py-12">
-            <div className="absolute inset-0 bg-white">
-            </div>
+            <div className="absolute inset-0 bg-white"></div>
 
             <div className="container relative mx-auto z-20 pl-[48px] lg:pl-[72px]">
               <div className="mb-8">
@@ -441,12 +440,12 @@ export default function WhyUs() {
                 </div>
               </div>
 
-              <div className="md:w-[70%] mt-8 mb-8">
+              <div className="md:w-[90%] mt-8 mb-8">
                   <h2 className="font-archivo-black font-normal text-[32px] md:text-[40px] text-[#003566E5]">Ready to Let Go and Let Adventure Take Over?</h2>
                   <p className="mt-2 text-[#000000CC] font-poppins font-normal text-[20px]">
-                    Your next unforgettable story starts with a leap of faith.<span className="font-weight-800 text-[#003566CC]"> Pack your bag, embrace the unknown, and let Blind Fold Trips show you just how fun not knowing can be.</span>
+                    Your next unforgettable story starts with a leap of faith.<span className="font-extrabold text-[#003566CC]"> Pack your bag, embrace the unknown, and let Blind Fold Trips show you just how fun not knowing can be.</span>
                   </p>
-                  <button className="mt-4 bg-[#A11616E5] text-[#FCD2B1] px-6 py-2 font-poppins font-normal text-[20px] rounded-xl">
+                  <button className="mt-4 bg-[#A11616E5] text-[#FCD2B1] px-6 py-2 font-poppins font-bold text-[20px] rounded-xl">
                     Start Your Mystery Trip
                   </button>
               </div>

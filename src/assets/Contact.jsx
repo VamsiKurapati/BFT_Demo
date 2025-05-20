@@ -362,7 +362,7 @@ export default function Contact() {
                     <div className="w-[90%] border-l-4 border-[#FFBE55] px-10 py-10 mx-auto shadow-xl rounded-3xl mt-6 mb-6">
                         <div className="items-center mb-6">
                             <h2 className="text-[32px] md:text-[40px] text-[#003566E5] font-archivo-black font-normal mb-1">Send Us a Message</h2>
-                            <p className="text-[20px] md:text-[24px] text-[#00474CBF] font-baloo-bhai font-normalmb-6">
+                            <p className="text-[20px] md:text-[24px] text-[#00474CBF] font-baloo-bhai font-normal mb-6">
                                 We usually reply within 24 hours. Faster if we've had our coffee ☕
                             </p>
                         </div>

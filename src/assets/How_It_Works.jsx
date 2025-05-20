@@ -227,11 +227,11 @@ export default function HowItWorks() {
                                 <div className="flex flex-row items-center gap-2">
                                     <div className="flex flex-col items-center">
                                         <h3 className="text-[#003566E5] text-[40px] font-archivo-black">Step 1:</h3>
-                                        <p className="text-[#00474CBF] text-[24px] font-baloo-bhai">Tell Us About You</p>
+                                        <p className="text-[#00474CBF] text-[24px] font-baloo-bhai font-normal">Tell Us About You</p>
                                     </div>
                                 <img src="/robot.png" alt="Robot Icon" className="w-28 h-28" />
                                 </div>
-                                <p className="text-[#000000CC] text-[20px] font-poppins mt-2">
+                                <p className="text-[#000000CC] text-[20px] font-poppins font-normal mt-2">
                                     Fill out a short travel quiz—dates, budget, vibe (relaxing, adventurous, romantic?), and what you don’t want.
                                 </p>
                             </div>
@@ -246,10 +246,10 @@ export default function HowItWorks() {
                                     <img src="/chart.png" alt="Chart Icon" className="w-28 h-28" />
                                     <div className="flex flex-col items-center text-right">
                                         <h3 className="text-[#003566E5] text-[40px] font-archivo-black">Step 2:</h3>
-                                        <p className="text-[#00474CBF] text-[24px] font-baloo-bhai">We Plan Everything</p>
+                                        <p className="text-[#00474CBF] text-[24px] font-baloo-bhai font-normal">We Plan Everything</p>
                                     </div>
                                 </div>
-                                <p className="text-[#000000CC] text-[20px] font-poppins mt-2 text-right">
+                                <p className="text-[#000000CC] text-[20px] font-poppins font-normal mt-2 text-right">
                                     We book your flights, accommodation, and hand-pick experiences tailored to your personality and travel style.
                                 </p>
                             </div>
@@ -263,11 +263,11 @@ export default function HowItWorks() {
                                 <div className="flex flex-row items-center gap-2">
                                     <div className="flex flex-col items-center">
                                         <h3 className="text-[#003566E5] text-[40px] font-archivo-black">Step 3:</h3>
-                                        <p className="text-[#00474CBF] text-[24px] font-baloo-bhai">Clues & Countdown</p>
+                                        <p className="text-[#00474CBF] text-[24px] font-baloo-bhai font-normal">Clues & Countdown</p>
                                     </div>
                                 <img src="/clock.png" alt="Clock Icon" className="w-28 h-28" />
                                 </div>
-                                <p className="text-[#000000CC] text-[20px] font-poppins mt-2">
+                                <p className="text-[#000000CC] text-[20px] font-poppins font-normal mt-2">
                                     Receive playful hints about your destination—but nothing that gives it away! Just enough to build anticipation.
                                 </p>
                             </div>
@@ -282,10 +282,10 @@ export default function HowItWorks() {
                                     <img src="/human.png" alt="Human Icon" className="w-28 h-28" />
                                     <div className="flex flex-col items-center text-right">
                                         <h3 className="text-[#003566E5] text-[40px] font-archivo-black">Step 4:</h3>
-                                        <p className="text-[#00474CBF] text-[24px] font-baloo-bhai">Pack & Show Up</p>
+                                        <p className="text-[#00474CBF] text-[24px] font-baloo-bhai font-normal">Pack & Show Up</p>
                                     </div>
                                 </div>
-                                <p className="text-[#000000CC] text-[20px] font-poppins mt-2 text-right">
+                                <p className="text-[#000000CC] text-[20px] font-poppins font-normal mt-2 text-right">
                                     Get a weather forecast and a packing list a few days before. Your destination is revealed only at the airport!
                                 </p>
                             </div>
@@ -300,10 +300,10 @@ export default function HowItWorks() {
                                     <img src="/fly.png" alt="Fly Icon" className="w-28 h-28" />
                                         <div className="flex flex-col items-center">
                                             <h3 className="text-[#003566E5] text-[40px] font-archivo-black">Step 5:</h3>
-                                            <p className="text-[#00474CBF] text-[24px] font-baloo-bhai">Fly & Enjoy the Mystery</p>
+                                            <p className="text-[#00474CBF] text-[24px] font-baloo-bhai font-normal">Fly & Enjoy the Mystery</p>
                                         </div>
                                     </div>
-                                <p className="text-[#000000CC] text-[20px] font-poppins mt-2">
+                                <p className="text-[#000000CC] text-[20px] font-poppins font-normal mt-2">
                                     Hop on your flight and enjoy your surprise vacation. We handle the logistics—you make the memories.
                                 </p>
                             </div>
