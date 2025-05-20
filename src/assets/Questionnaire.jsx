@@ -516,7 +516,7 @@ export default function Questionnaire() {
 
     const handleSave = async () => {
         try {
-            const response = await fetch("https://bft-backend.vercel.app/api/save", {
+            const response = await fetch("https://bft-backend.vercel.app/api/data/saveData", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -2955,7 +2955,7 @@ export default function Questionnaire() {
     }, [selectedCountryCode]);
 
     useEffect(() => {
-        fetch('https://bft-backend.vercel.app/api/airports') // Replace with your actual backend URL if deployed
+        fetch('https://bft-backend.vercel.app/api/data/airportsData') // Replace with your actual backend URL if deployed
         .then((res) => res.json())
         .then((data) => setAirports(data))
         .catch((err) => console.error('Failed to fetch airport data', err));
