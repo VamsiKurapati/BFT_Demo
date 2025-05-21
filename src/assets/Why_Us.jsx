@@ -330,7 +330,8 @@ export default function WhyUs() {
                   <span className="text-[#A11616]"> this is for you.</span>
                 </p>
 
-                <button className="mt-6 bg-[#A11616E5] text-[#FCD2B1] px-5 py-2.5 rounded-lg font-poppins font-bold text-[15px] md:text-[19px] shadow-md">
+                <button className="mt-6 bg-[#A11616E5] text-[#FCD2B1] px-5 py-2.5 rounded-lg font-poppins font-bold text-[15px] md:text-[19px] shadow-md"
+                onClick={() => navigate("/questionnaire")}>
                   Start Your Mystery Trip
                 </button>
               </div>
@@ -445,7 +446,8 @@ export default function WhyUs() {
                   <p className="mt-2 text-[#000000CC] font-poppins font-normal text-[20px]">
                     Your next unforgettable story starts with a leap of faith.<span className="font-extrabold text-[#003566CC]"> Pack your bag, embrace the unknown, and let Blind Fold Trips show you just how fun not knowing can be.</span>
                   </p>
-                  <button className="mt-4 bg-[#A11616E5] text-[#FCD2B1] px-6 py-2 font-poppins font-bold text-[20px] rounded-xl">
+                  <button className="mt-4 bg-[#A11616E5] text-[#FCD2B1] px-6 py-2 font-poppins font-bold text-[20px] rounded-xl"
+                  onClick={() => navigate("/questionnaire")}>
                     Start Your Mystery Trip
                   </button>
               </div>

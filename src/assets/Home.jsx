@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
 import Footer from "./Footer";
 
@@ -89,6 +89,7 @@ const feedbacks = [
 ];
 
 export default function Home() {
+  const navigate = useNavigate();
   const [activeCard, setActiveCard] = useState(null);
   const [indiaStartIndex, setIndiaStartIndex] = useState(0);
   const [globalStartIndex, setGlobalStartIndex] = useState(0);
@@ -990,6 +991,7 @@ export default function Home() {
               </p>
               <button
                 className="mt-8 bg-[#A11716E5] font-poppins font-bold text-[#FCD2B1] text-[16px] md:text-[20px] px-6 py-2 rounded-full flex items-center transition border border-1"
+                onClick={() => navigate("/questionnaire")}
                 style={{ borderColor: '#FCD2B1' }}
               >
                 Know your destination <span className="ml-2">→</span>
@@ -1107,7 +1109,8 @@ export default function Home() {
               ))}
 
               <div className="justify-center items-center text-center">
-                <button className="mt-12 mb-8 mx-auto px-8 py-3 rounded-xl shadow-md bg-[#A11616E5] hover:bg-[#003566] font-poppins font-bold text-[14px] sm:text-[16px] md:text-[20px] text-[#FCD2B1] transition-all">
+                <button className="mt-12 mb-8 mx-auto px-8 py-3 rounded-xl shadow-md bg-[#A11616E5] hover:bg-[#003566] font-poppins font-bold text-[14px] sm:text-[16px] md:text-[20px] text-[#FCD2B1] transition-all"
+                onClick={() => navigate("/questionnaire")}>
                   Start Your Mystery Trip
                 </button>
               </div>

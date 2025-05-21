@@ -1,6 +1,8 @@
 import { FaArrowRightLong } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
 
 const StayTuned = () => {
+    const navigate = useNavigate();
   return (
     <section className="relative min-h-screen md:h-[750px] bg-cover bg-center bg-no-repeat overflow-hidden"
         style={{ backgroundImage: "url('/stay_alert.jpg')" }}
@@ -27,7 +29,7 @@ const StayTuned = () => {
                 </p>
             </div>
 
-            <button className="text-center px-8 py-2 bg-[#A11616E5] hover:bg-[#00474C] text-[#FCD2B1] border border-0.5 border-[#FCD2B1] rounded-full font-poppins font-bold text-[12px] sm:text-[16px] md:text-[20px]">
+            <button className="text-center px-8 py-2 bg-[#A11616E5] hover:bg-[#00474C] text-[#FCD2B1] border border-0.5 border-[#FCD2B1] rounded-full font-poppins font-bold text-[12px] sm:text-[16px] md:text-[20px]" onClick={() => navigate("/")}>
                 Home <FaArrowRightLong className="inline-block" />
             </button>
         </div>
