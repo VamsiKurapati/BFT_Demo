@@ -118,24 +118,24 @@ export default function Home() {
   const steps = [
     {
       number: "01",
-      title: "Whisper your answers, and let the adventure unfold.",
+      title: "Whisper your answers",
+      subtitle: "and let the adventure unfold.",
       description:
-        "Plan less, explore more! Share your travel details in 10 minutes—dates, budget, and preferences—then let the magic happen. A surprise trip proposal will land in your inbox soon... no hints, just pure adventure!",
-      position: "top-[10%] left-[5%] max-w-[450px]",
+        <span className="font-poppins font-light text-[15px] text-[#000000A6]">Plan less, explore more! <span className="font-bold text-[#000000]">Share your travel details in 10 minutes—dates, budget, and preferences—then let the magic happen.</span> A surprise trip proposal will land in your inbox soon... no hints, just pure adventure!</span>,
     },
     {
       number: "02",
-      title: "Answers are in, now it's time for the thrill to begin!",
+      title: "Time For Thrill",
+      subtitle: "to begin!",
       description:
-        "No planning, no stress—just pack up and let the Blind Fold trips do the rest!",
-      position: "top-[35%] right-[5%] max-w-[450px]",
+        <span className="font-poppins font-light text-[15px] text-[#000000A6]">No planning, no stress—<span className="font-bold text-[#000000]">just pack up and let the Blind Fold trips do the rest!</span></span>,
     },
     {
       number: "03",
-      title: "Airport first, destination next—let the mystery unfold!",
+      title: "Airport first",
+      subtitle:"destination next—let the mystery unfold!",
       description:
-        "Arrive at the airport, no need to guess. Open your postcard, feel the suspense! Board your flight, let wonder ignite. Adventure awaits—your journey takes flight!",
-      position: "top-[55%] left-[5%] max-w-[450px]",
+        <span className="font-poppins font-light text-[15px] text-[#000000A6]"><span className="font-bold text-[#000000]">Arrive at the airport, no need to guess. Open your postcard, feel the suspense!</span> Board your flight, let wonder ignite. Adventure awaits—your journey takes flight!</span>,
     },
   ];
 
@@ -147,7 +147,7 @@ export default function Home() {
       image: "/India/Nature.jpg",
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
-          <h3 className="font-titan font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Nature Unleashed</h3>
+          <h3 className="font-titan-one font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Nature Unleashed</h3>
           <div className="flex flex-row flex-grow">
             <div className="w-1/2">
               <ul className="list-disc pl-[12px] md:pl-[24px] space-y-1 font-poppins font-normal text-[12px] sm:text-[16px] md:text-[11.5px] lg:text-[12px] text-[#FFFFFF]">
@@ -190,7 +190,7 @@ export default function Home() {
       image: "/India/Adrenaline.jpg",
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
-          <h3 className="font-titan font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Adventure & Activities</h3>
+          <h3 className="font-titan-one font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Adventure & Activities</h3>
           <div className="flex flex-row flex-grow">
             <div className="w-1/2">
               <ul className="list-disc pl-[12px] md:pl-[24px] space-y-1 font-poppins font-normal text-[12px] sm:text-[16px] md:text-[11.5px] lg:text-[12px] text-[#FFFFFF]">
@@ -233,7 +233,7 @@ export default function Home() {
       image: "/India/Culture.jpg",
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
-          <h3 className="font-titan font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Cultural & Historical</h3>
+          <h3 className="font-titan-one font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Cultural & Historical</h3>
           <div className="flex flex-row flex-grow">
             <div className="w-1/2">
               <ul className="list-disc pl-[12px] md:pl-[24px] space-y-1 font-poppins font-normal text-[12px] sm:text-[16px] md:text-[11.5px] lg:text-[12px] text-[#FFFFFF]">
@@ -274,7 +274,7 @@ export default function Home() {
       image: "/India/Taste.jpg",
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
-          <h3 className="font-titan font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Taste The Culture</h3>
+          <h3 className="font-titan-one font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Taste The Culture</h3>
           <div className="flex flex-row flex-grow">
             <div className="w-1/2">
               <ul className="list-disc pl-[12px] md:pl-[24px] space-y-1 font-poppins font-normal text-[12px] sm:text-[16px] md:text-[11.5px] lg:text-[12px] text-[#FFFFFF]">
@@ -313,7 +313,7 @@ export default function Home() {
       image: "/India/City.jpg",
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
-          <h3 className="font-titan font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Urban & Entertainment</h3>
+          <h3 className="font-titan-one font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Urban & Entertainment</h3>
           <div className="flex flex-row flex-grow">
             <div className="w-1/2">
               <ul className="list-disc pl-[12px] md:pl-[24px] space-y-1 font-poppins font-normal text-[12px] sm:text-[16px] md:text-[11.5px] lg:text-[12px] text-[#FFFFFF]">
@@ -351,7 +351,7 @@ export default function Home() {
       image: "/India/Festive.jpg",
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
-          <h3 className="font-titan font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Festive Trails</h3>
+          <h3 className="font-titan-one font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Festive Trails</h3>
           <div className="flex flex-row flex-grow">
             <div className="w-1/2">
               <ul className="list-disc pl-[12px] md:pl-[24px] space-y-1 font-poppins font-normal text-[12px] sm:text-[16px] md:text-[11.5px] lg:text-[12px] text-[#FFFFFF]">
@@ -391,7 +391,7 @@ export default function Home() {
       image: "/India/Squad.jpg",
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
-          <h3 className="font-titan font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Squad Getaways</h3>
+          <h3 className="font-titan-one font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Squad Getaways</h3>
           <div className="flex flex-row flex-grow">
             <div className="w-1/2">
               <ul className="list-disc pl-[12px] md:pl-[24px] space-y-1 font-poppins font-normal text-[12px] sm:text-[16px] md:text-[11.5px] lg:text-[12px] text-[#FFFFFF]">
@@ -430,7 +430,7 @@ export default function Home() {
       image: "/India/Awakening.jpg",
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
-          <h3 className="font-titan font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Spiritual & Self-Discovery</h3>
+          <h3 className="font-titan-one font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Spiritual & Self-Discovery</h3>
           <div className="flex flex-row flex-grow">
             <div className="w-1/2">
               <ul className="list-disc pl-[12px] md:pl-[24px] space-y-1 font-poppins font-normal text-[12px] sm:text-[16px] md:text-[11.5px] lg:text-[12px] text-[#FFFFFF]">
@@ -470,7 +470,7 @@ export default function Home() {
       image: "/India/Nature.jpg",
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
-          <h3 className="font-titan font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Nature Unleashed</h3>
+          <h3 className="font-titan-one font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Nature Unleashed</h3>
           <div className="flex flex-row flex-grow">
             <div className="w-1/2">
               <ul className="list-disc pl-[12px] md:pl-[24px] space-y-1 font-poppins font-normal text-[12px] sm:text-[16px] md:text-[11.5px] lg:text-[12px] text-[#FFFFFF]">
@@ -508,7 +508,7 @@ export default function Home() {
       image: "/India/Adrenaline.jpg",
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
-          <h3 className="font-titan font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Adventure & Activities</h3>
+          <h3 className="font-titan-one font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Adventure & Activities</h3>
           <div className="flex flex-row flex-grow">
             <div className="w-1/2">
               <ul className="list-disc pl-[12px] md:pl-[24px] space-y-1 font-poppins font-normal text-[12px] sm:text-[16px] md:text-[11.5px] lg:text-[12px] text-[#FFFFFF]">
@@ -546,7 +546,7 @@ export default function Home() {
       image: "/India/Culture.jpg",
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
-          <h3 className="font-titan font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Cultural & Historical</h3>
+          <h3 className="font-titan-one font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Cultural & Historical</h3>
           <div className="flex flex-row flex-grow">
             <div className="w-1/2">
               <ul className="list-disc pl-[12px] md:pl-[24px] space-y-1 font-poppins font-normal text-[12px] sm:text-[16px] md:text-[11.5px] lg:text-[12px] text-[#FFFFFF]">
@@ -582,7 +582,7 @@ export default function Home() {
       image: "/India/Taste.jpg",
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
-          <h3 className="font-titan font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Taste The Culture</h3>
+          <h3 className="font-titan-one font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Taste The Culture</h3>
           <div className="flex flex-row flex-grow">
             <div className="w-1/2">
               <ul className="list-disc pl-[12px] md:pl-[24px] space-y-1 font-poppins font-normal text-[12px] sm:text-[16px] md:text-[11.5px] lg:text-[12px] text-[#FFFFFF]">
@@ -616,7 +616,7 @@ export default function Home() {
       image: "/India/City.jpg",
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
-          <h3 className="font-titan font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Urban & Entertainment</h3>
+          <h3 className="font-titan-one font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Urban & Entertainment</h3>
           <div className="flex flex-row flex-grow">
             <div className="w-1/2">
               <ul className="list-disc pl-[12px] md:pl-[24px] space-y-1 font-poppins font-normal text-[12px] sm:text-[16px] md:text-[11.5px] lg:text-[12px] text-[#FFFFFF]">
@@ -649,7 +649,7 @@ export default function Home() {
       image: "/India/Festive.jpg",
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
-          <h3 className="font-titan font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Festive Trails</h3>
+          <h3 className="font-titan-one font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Festive Trails</h3>
           <div className="flex flex-row flex-grow">
             <div className="w-1/2">
               <ul className="list-disc pl-[12px] md:pl-[24px] space-y-1 font-poppins font-normal text-[12px] sm:text-[16px] md:text-[11.5px] lg:text-[12px] text-[#FFFFFF]">
@@ -684,7 +684,7 @@ export default function Home() {
       image: "/India/Squad.jpg",
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
-          <h3 className="font-titan font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Squad Getaways</h3>
+          <h3 className="font-titan-one font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Squad Getaways</h3>
           <div className="flex flex-row flex-grow">
             <div className="w-1/2">
               <ul className="list-disc pl-[12px] md:pl-[24px] space-y-1 font-poppins font-normal text-[12px] sm:text-[16px] md:text-[11.5px] lg:text-[12px] text-[#FFFFFF]">
@@ -718,7 +718,7 @@ export default function Home() {
       image: "/India/Awakening.jpg",
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
-          <h3 className="font-titan font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Spiritual & Self-Discovery</h3>
+          <h3 className="font-titan-one font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Spiritual & Self-Discovery</h3>
           <div className="flex flex-row flex-grow">
             <div className="w-1/2">
               <ul className="list-disc pl-[12px] md:pl-[24px] space-y-1 font-poppins font-normal text-[12px] sm:text-[16px] md:text-[11.5px] lg:text-[12px] text-[#FFFFFF]">
@@ -1038,11 +1038,11 @@ export default function Home() {
 
           <div className="container mx-auto relative z-10">
             <div className="flex flex-col sm:flex-row items-center sm:justify-between gap-2 w-full">
-              <h2 className="text-[32px] font-titan font-normal text-[#00474CBF] text-center w-full">
+              <h2 className="text-[32px] font-titan-one font-normal text-[#00474CBF] text-center w-full">
                 Your 3 step Plan
               </h2>
 
-              <div className="flex items-center gap-2 justify-center sm:justify-end w-full sm:w-auto">
+              <div className="flex items-center gap-2 justify-center sm:justify-end pr-16 w-full sm:w-auto">
                 <div className="h-[24px] w-1 bg-[#00474C]"></div>
                 <p className="text-[20px] text-[#00474CCC] font-sofia font-normal">
                   Progress
@@ -1053,30 +1053,64 @@ export default function Home() {
         </div>
 
         {/* Adventure Steps Section */}
-        <section className="relative min-h-screen bg-cover bg-center overflow-hidden"
-            style={{backgroundImage: "url('/mountain.jpg')",
-              opacity: 0.8,
-            }}
-        >
-            {/* Boxes */}
-            {steps.map((step, idx) => (
-                <div
-                key={idx}
-                className={`absolute ${step.position} p-2 bg-[#fff1dd] rounded-xl shadow-lg`}
-                >
-                <div className="flex items-center gap-0">
-                    <h2 className="text-[70px] font-titan text-[#43463166]">{step.number}</h2>
-                    <h3 className="text-[32px] font-semibold text-[#951A1AD9]">{step.title}</h3>
-                </div>
-                <p className="text-[15px] mt-2 text-[#573021]">{step.description}</p>
-                </div>
-            ))}
+        <section className="relative bg-cover bg-center overflow-hidden">
+            <div
+              className="absolute inset-0 bg-cover bg-center"
+              style={{
+                backgroundImage: "url('/mountain.jpg')",
+                opacity: 0.8,
+                zIndex: 0,
+              }}
+            ></div>
 
-            {/* CTA Button */}
-            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2">
-                <button className="mt-12 px-8 py-3 bg-[#a02726] text-white text-lg rounded-full shadow-md hover:bg-[#821d1d] transition-all flex items-center">
-                Know your destination <span className="ml-2">→</span>
+            <div className="relative z-10">
+              {/* Boxes */}
+              {steps.map((step, idx) => (
+                  <div
+                    key={idx}
+                    className={`flex flex-col md:flex-row ${idx % 2 === 1 ? "md:flex-row-reverse" : ""} items-center gap-4 md:gap-10 mt-6 md:mt-12 px-4 md:px-12`}
+                  >
+                    <div
+                      className={`bg-[#FFEFCE] rounded-xl shadow-lg p-4 ${
+                        idx === 0
+                          ? 'w-full md:w-[720px]'
+                          : idx === 1
+                          ? 'w-full md:w-[520px]'
+                          : 'w-full md:w-[475px]'
+                      }`}
+                    >
+                      <div className={`flex items-start`}>
+                        {/* Column 1: Step Number */}
+                        <div className="flex-shrink-0">
+                          <h2 className="text-[48px] md:text-[64px] lg:text-[70px] font-titan-one font-normal text-[#43463166] leading-none">
+                            {step.number}
+                          </h2>
+                        </div>
+
+                        {/* Column 2: Title + Subtitle */}
+                        <div className="flex flex-col w-full">
+                          <div className="text-[32px] md:text-[40px] lg:text-[48px] font-titan-one font-normal text-[#951A1AE5] leading-tight">
+                            {step.title}
+                          </div>
+                          <div className="text-right text-[14px] md:text-[20px] font-normal font-goudy text-[#951A1A] -mt-1">
+                            {step.subtitle}
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Description */}
+                      <p className={`text-[15px] mt-4 text-[#573021] ${idx % 2 === 1 ? "text-right" : ""}`}>
+                        {step.description}
+                      </p>
+                    </div>
+                  </div>
+              ))}
+
+              <div className="justify-center items-center text-center">
+                <button className="mt-12 mb-8 mx-auto px-8 py-3 rounded-xl shadow-md bg-[#A11616E5] hover:bg-[#003566] font-poppins font-bold text-[14px] sm:text-[16px] md:text-[20px] text-[#FCD2B1] transition-all">
+                  Start Your Mystery Trip
                 </button>
+              </div>
             </div>
         </section>
 
@@ -1323,7 +1357,7 @@ export default function Home() {
                       className="object-cover w-full h-full rounded-xl"
                     />
                     <div className="absolute inset-0 bg-[#003566] opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl flex flex-col p-4 border border-[#FFBE55] border-4">
-                      <h3 className="font-titan font-normal text-[48px] text-[#FFBE55] text-center">{item.name}</h3>
+                      <h3 className="font-titan-one font-normal text-[48px] text-[#FFBE55] text-center">{item.name}</h3>
                       <p className="font-goudy font-normal text-[24px] text-[#FFBE55] text-right -mt-2 mb-4">{item.role}</p>
                       <p className="text-[#FFFFFFCC] text-[16px] font-poppins font-normal leading-snug">{item.text}</p>
                     </div>
