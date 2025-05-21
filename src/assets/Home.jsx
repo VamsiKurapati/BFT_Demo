@@ -1164,6 +1164,24 @@ export default function Home() {
                                                         <h3 className="text-[24px] font-bold">{gem.title}</h3>
                                                         <p className="text-gray-200 text-[14px]">{gem.description}</p>
                                                     </div>
+                                                    <div
+                                                      className="absolute inset-0 flex flex-row items-center justify-center transition-opacity duration-300 opacity-0 group-hover:opacity-100"
+                                                      style={{
+                                                        background: 'linear-gradient(180deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.45) 41.63%, rgba(0, 0, 0, 0.9) 83.26%)',
+                                                        boxShadow: `
+                                                          0px 4.71px 11.31px 0px #00000029,
+                                                          0px 19.78px 19.78px 0px #00000024,
+                                                          0px 44.28px 26.38px 0px #00000014,
+                                                          0px 79.14px 32.03px 0px #00000005,
+                                                          0px 124.36px 34.86px 0px #00000000
+                                                        `
+                                                      }}
+                                                    >
+                                                      <span className="flex items-center gap-2 font-poppins font-normal text-[#FFFFFF] text-[12px] sm:text-[14px] md:text-[16px]">
+                                                        <img src="/ads_click.png" alt="Click icon" className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
+                                                        Click to Know More
+                                                      </span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -1233,6 +1251,24 @@ export default function Home() {
                                                     <div className="p-6 absolute bottom-0 left-0 text-white transition-all duration-300 group-hover:opacity-0">
                                                         <h3 className="text-[24px] font-bold">{gem.title}</h3>
                                                         <p className="text-gray-200 text-[14px]">{gem.description}</p>
+                                                    </div>
+                                                    <div
+                                                      className="absolute inset-0 flex flex-row items-center justify-center transition-opacity duration-300 opacity-0 group-hover:opacity-100"
+                                                      style={{
+                                                        background: 'linear-gradient(180deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.45) 41.63%, rgba(0, 0, 0, 0.9) 83.26%)',
+                                                        boxShadow: `
+                                                          0px 4.71px 11.31px 0px #00000029,
+                                                          0px 19.78px 19.78px 0px #00000024,
+                                                          0px 44.28px 26.38px 0px #00000014,
+                                                          0px 79.14px 32.03px 0px #00000005,
+                                                          0px 124.36px 34.86px 0px #00000000
+                                                        `
+                                                      }}
+                                                    >
+                                                      <span className="flex items-center gap-2 font-poppins font-normal text-[#FFFFFF] text-[12px] sm:text-[14px] md:text-[16px]">
+                                                        <img src="/ads_click.png" alt="Click icon" className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
+                                                        Click to Know More
+                                                      </span>
                                                     </div>
                                                 </div>
                                             </div>

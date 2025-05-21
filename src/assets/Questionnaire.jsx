@@ -35,6 +35,7 @@ export default function Questionnaire() {
     const [selectedAirports1, setSelectedAirports1] = useState([]);
     const [budget, setBudget] = useState("");
     const [phone, setPhone] = useState('');
+    const [preferredStartDate, setPreferredStartDate] = useState("");
 
     const [checkboxValues, setCheckboxValues] = useState({
         awareOfNothing: false,
@@ -322,6 +323,12 @@ export default function Questionnaire() {
         setSelectedState(stat);
     }
 
+    const handlepreferredStartDateChange = (event) => {
+        const date = event.target.value;
+        console.log("Date:",date);
+        setPreferredStartDate(date);
+    }
+
     const handleCheckboxChange = (event) => {
         const { name, checked } = event.target;
 
@@ -477,7 +484,7 @@ export default function Questionnaire() {
     }
 
     const page27validator = () => {
-        return checkboxValues["preferredStartDate"] || checkboxValues["completelyFlexible"];
+        return (checkboxValues["preferredStartDate"] && preferredStartDate!=="") || checkboxValues["completelyFlexible"];
     }
 
     const page28validator = () => {
@@ -2504,8 +2511,23 @@ export default function Questionnaire() {
                                 checked={checkboxValues.preferredStartDate}
                                 onChange={handleCheckboxChange}
                                 />
-                                I have a preferred start date, but can be flexible by +/- 3 days
+                                I have a preferred start date, but can be flexible by +/- 1 day
                             </label>
+                            {checkboxValues.preferredStartDate && (
+                                <div className="pl-8">
+                                    <p className="font-poppins font-normal text-[#000000] text-[16px] sm:text-[20px] md:text-[24px] mb-2">
+                                        What's your <span className="font-bold">preferred start date ? <span className="text-[#A32727]">*</span></span>
+                                    </p>
+                                    <input
+                                        type="date"
+                                        name="preferredStartDateValue"
+                                        value={preferredStartDate || ""}
+                                        onChange={handlepreferredStartDateChange}
+                                        className="border border-2 border-[#000000B2] bg-[#D9D9D966] rounded-lg px-4 py-2 text-black"
+                                        min={new Date(Date.now() + 86400000).toISOString().split("T")[0]} // Tomorrow's date
+                                    />
+                                </div>
+                            )}
                             <label className="flex items-center text-left">
                                 <input
                                 type="checkbox"
