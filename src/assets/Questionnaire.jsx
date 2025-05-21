@@ -539,6 +539,7 @@ export default function Questionnaire() {
                     phone,
                     selectedCountry,
                     selectedState,
+                    preferredStartDate,
                     ...checkboxValues,
                 }),
             });
