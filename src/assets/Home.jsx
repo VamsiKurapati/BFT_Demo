@@ -144,7 +144,7 @@ export default function Home() {
       id: "nature-india",
       title: "Nature Unleashed",
       description: "Epic trails, roaring rivers, and wild air.",
-      image: "/India/Nature.jpg",
+      image: "/Cards/Nature.jpg",
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
           <h3 className="font-titan-one font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Nature Unleashed</h3>
@@ -163,13 +163,13 @@ export default function Home() {
             <div className="w-1/2">
               <ImageCarousel 
                 images={[
-                  "/India/1_1_1.jpg", 
-                  "/India/1_1_2.jpg", 
-                  "/India/1_1_3.jpg", 
-                  "/India/1_1_4.jpg",
-                  "/India/1_1_5.jpg",
-                  "/India/1_1_6.jpg",
-                  "/India/1_1_7.jpg"
+                  "/Cards/1_1.jpg", 
+                  "/Cards/1_2.jpg", 
+                  "/Cards/1_3.jpg", 
+                  "/Cards/1_4.jpg",
+                  "/Cards/1_5.jpg",
+                  "/Cards/1_6.jpg",
+                  "/Cards/1_7.jpg"
                 ]} 
                 alt="Nature" 
               />
@@ -187,7 +187,7 @@ export default function Home() {
       id: "adrenaline-india",
       title: "Adrenaline Fix",
       description: "Fuel your thrill with every chill.",
-      image: "/India/Adrenaline.jpg",
+      image: "/Cards/Adrenaline.jpg",
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
           <h3 className="font-titan-one font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Adventure & Activities</h3>
@@ -206,13 +206,13 @@ export default function Home() {
             <div className="w-1/2">
               <ImageCarousel 
                 images={[
-                  "/India/1_2_1.jpg", 
-                  "/India/1_2_2.jpg", 
-                  "/India/1_2_3.jpg", 
-                  "/India/1_2_4.jpg",
-                  "/India/1_2_5.jpg",
-                  "/India/1_2_6.jpg",
-                  "/India/1_2_7.jpg"
+                  "/Cards/2_1.jpg", 
+                  "/Cards/2_2.jpg", 
+                  "/Cards/2_3.jpg", 
+                  "/Cards/2_4.jpg",
+                  "/Cards/2_5.jpg",
+                  "/Cards/2_6.jpg",
+                  "/Cards/2_7.jpg"
                 ]} 
                 alt="Adrenaline" 
               />
@@ -230,7 +230,7 @@ export default function Home() {
       id: "culture-india",
       title: "Culture Unlocked",
       description: "Traditions, temples, and tales with a twist.",
-      image: "/India/Culture.jpg",
+      image: "/Cards/Culture.jpg",
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
           <h3 className="font-titan-one font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Cultural & Historical</h3>
@@ -248,12 +248,12 @@ export default function Home() {
             <div className="w-1/2">
               <ImageCarousel 
                 images={[
-                  "/India/1_3_1.jpg", 
-                  "/India/1_3_2.jpg", 
-                  "/India/1_3_3.jpg", 
-                  "/India/1_3_4.jpg",
-                  "/India/1_3_5.jpg",
-                  "/India/1_3_6.jpg"
+                  "/Cards/3_1.jpg", 
+                  "/Cards/3_2.jpg", 
+                  "/Cards/3_3.jpg", 
+                  "/Cards/3_4.jpg",
+                  "/Cards/3_5.jpg",
+                  "/Cards/3_6.jpg"
                 ]} 
                 alt="Culture" 
               />
@@ -271,7 +271,7 @@ export default function Home() {
       id: "taste-india",
       title: "Taste the Culture",
       description: "Dine like a local, live like one too.",
-      image: "/India/Taste.jpg",
+      image: "/Cards/Taste.jpg",
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
           <h3 className="font-titan-one font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Taste The Culture</h3>
@@ -288,11 +288,11 @@ export default function Home() {
             <div className="w-1/2">
               <ImageCarousel 
                 images={[
-                  "/India/1_4_1.jpg", 
-                  "/India/1_4_2.jpg", 
-                  "/India/1_4_3.jpg", 
-                  "/India/1_4_4.jpg",
-                  "/India/1_4_5.jpg"
+                  "/Cards/4_1.jpg", 
+                  "/Cards/4_2.jpg", 
+                  "/Cards/4_3.jpg", 
+                  "/Cards/4_4.jpg",
+                  "/Cards/4_5.jpg"
                 ]} 
                 alt="Taste" 
               />
@@ -310,7 +310,7 @@ export default function Home() {
       id: "city-india",
       title: "City Beat",
       description: "Catch the rhythm of rooftops and rush.",
-      image: "/India/City.jpg",
+      image: "/Cards/City.jpg",
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
           <h3 className="font-titan-one font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Urban & Entertainment</h3>
@@ -327,11 +327,11 @@ export default function Home() {
             <div className="w-1/2">
               <ImageCarousel 
                 images={[
-                  "/India/1_5_1.jpg", 
-                  "/India/1_5_2.jpg", 
-                  "/India/1_5_3.jpg", 
-                  "/India/1_5_4.jpg",
-                  "/India/1_5_5.jpg"
+                  "/Cards/5_1.jpg", 
+                  "/Cards/5_2.jpg", 
+                  "/Cards/5_3.jpg", 
+                  "/Cards/5_4.jpg",
+                  "/Cards/5_5.jpg"
                 ]} 
                 alt="City" 
               />
@@ -348,7 +348,7 @@ export default function Home() {
       id: "festive-india",
       title: "Festive Trails",
       description: "Celebrate, explore, and discover something worth remembering.",
-      image: "/India/Festive.jpg",
+      image: "/Cards/Festive.jpg",
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
           <h3 className="font-titan-one font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Festive Trails</h3>
@@ -366,11 +366,11 @@ export default function Home() {
             <div className="w-1/2">
               <ImageCarousel 
                 images={[
-                  "/India/1_6_1.jpg", 
-                  "/India/1_6_2.jpg", 
-                  "/India/1_6_3.jpg", 
-                  "/India/1_6_4.jpg",
-                  "/India/1_6_5.jpg"
+                  "/Cards/6_1.jpg", 
+                  "/Cards/6_2.jpg", 
+                  "/Cards/6_3.jpg", 
+                  "/Cards/6_4.jpg",
+                  "/Cards/6_5.jpg"
                 ]} 
                 alt="Festive" 
               />
@@ -388,7 +388,7 @@ export default function Home() {
       id: "squad-india",
       title: "Squad Getaways",
       description: "One destination. Endless group selfies.",
-      image: "/India/Squad.jpg",
+      image: "/Cards/Squad.jpg",
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
           <h3 className="font-titan-one font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Squad Getaways</h3>
@@ -404,12 +404,12 @@ export default function Home() {
             <div className="w-1/2">
               <ImageCarousel 
                 images={[
-                  "/India/1_7_1.jpg", 
-                  "/India/1_7_2.jpg", 
-                  "/India/1_7_3.jpg", 
-                  "/India/1_7_4.jpg",
-                  "/India/1_7_5.jpg",
-                  "/India/1_7_6.jpg"
+                  "/Cards/7_1.jpg", 
+                  "/Cards/7_2.jpg", 
+                  "/Cards/7_3.jpg", 
+                  "/Cards/7_4.jpg",
+                  "/Cards/7_5.jpg",
+                  "/Cards/7_6.jpg"
                 ]} 
                 alt="Squad" 
               />
@@ -427,7 +427,7 @@ export default function Home() {
       id: "awakening-india",
       title: "Awakening the soul",
       description: "Discover your true self through spirituality and reflection.",
-      image: "/India/Awakening.jpg",
+      image: "/Cards/Awakening.jpg",
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
           <h3 className="font-titan-one font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Spiritual & Self-Discovery</h3>
@@ -443,10 +443,10 @@ export default function Home() {
             <div className="w-1/2">
               <ImageCarousel 
                 images={[
-                  "/India/1_8_1.jpg", 
-                  "/India/1_8_2.jpg", 
-                  "/India/1_8_3.jpg", 
-                  "/India/1_8_4.jpg"
+                  "/Cards/8_1.jpg", 
+                  "/Cards/8_2.jpg", 
+                  "/Cards/8_3.jpg", 
+                  "/Cards/8_4.jpg"
                 ]} 
                 alt="Awakening" 
               />
@@ -467,7 +467,7 @@ export default function Home() {
       id: "nature-global",
       title: "Nature Unleashed",
       description: "Epic trails, roaring rivers, and wild air.",
-      image: "/India/Nature.jpg",
+      image: "/Cards/Nature_Global.jpg",
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
           <h3 className="font-titan-one font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Nature Unleashed</h3>
@@ -486,13 +486,13 @@ export default function Home() {
             <div className="w-1/2">
               <ImageCarousel 
                 images={[
-                  "/India/1_1_1.jpg", 
-                  "/India/1_1_2.jpg", 
-                  "/India/1_1_3.jpg", 
-                  "/India/1_1_4.jpg",
-                  "/India/1_1_5.jpg",
-                  "/India/1_1_6.jpg",
-                  "/India/1_1_7.jpg"
+                  "/Cards/1_1.jpg", 
+                  "/Cards/1_2.jpg", 
+                  "/Cards/1_3.jpg", 
+                  "/Cards/1_4.jpg",
+                  "/Cards/1_5.jpg",
+                  "/Cards/1_6.jpg",
+                  "/Cards/1_7.jpg"
                 ]} 
                 alt="Nature" 
               />
@@ -505,7 +505,7 @@ export default function Home() {
       id: "adrenaline-global",
       title: "Adrenaline Fix",
       description: "Fuel your thrill with every chill.",
-      image: "/India/Adrenaline.jpg",
+      image: "/Cards/Adrenaline_Global.jpg",
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
           <h3 className="font-titan-one font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Adventure & Activities</h3>
@@ -524,13 +524,13 @@ export default function Home() {
             <div className="w-1/2">
               <ImageCarousel 
                 images={[
-                  "/India/1_2_1.jpg", 
-                  "/India/1_2_2.jpg", 
-                  "/India/1_2_3.jpg", 
-                  "/India/1_2_4.jpg",
-                  "/India/1_2_5.jpg",
-                  "/India/1_2_6.jpg",
-                  "/India/1_2_7.jpg"
+                  "/Cards/2_1.jpg", 
+                  "/Cards/2_2.jpg", 
+                  "/Cards/2_3.jpg", 
+                  "/Cards/2_4.jpg",
+                  "/Cards/2_5.jpg",
+                  "/Cards/2_6.jpg",
+                  "/Cards/2_7.jpg"
                 ]} 
                 alt="Adrenaline" 
               />
@@ -543,7 +543,7 @@ export default function Home() {
       id: "culture-global",
       title: "Culture Unlocked",
       description: "Traditions, temples, and tales with a twist.",
-      image: "/India/Culture.jpg",
+      image: "/Cards/Culture_Global.jpg",
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
           <h3 className="font-titan-one font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Cultural & Historical</h3>
@@ -561,12 +561,12 @@ export default function Home() {
             <div className="w-1/2">
               <ImageCarousel 
                 images={[
-                  "/India/1_3_1.jpg", 
-                  "/India/1_3_2.jpg", 
-                  "/India/1_3_3.jpg", 
-                  "/India/1_3_4.jpg",
-                  "/India/1_3_5.jpg",
-                  "/India/1_3_6.jpg"
+                  "/Cards/3_1.jpg", 
+                  "/Cards/3_2.jpg", 
+                  "/Cards/3_3.jpg", 
+                  "/Cards/3_4.jpg",
+                  "/Cards/3_5.jpg",
+                  "/Cards/3_6.jpg"
                 ]} 
                 alt="Culture" 
               />
@@ -579,7 +579,7 @@ export default function Home() {
       id: "taste-global",
       title: "Taste the Culture",
       description: "Dine like a local, live like one too.",
-      image: "/India/Taste.jpg",
+      image: "/Cards/Taste_Global.jpg",
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
           <h3 className="font-titan-one font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Taste The Culture</h3>
@@ -596,11 +596,11 @@ export default function Home() {
             <div className="w-1/2">
               <ImageCarousel 
                 images={[
-                  "/India/1_4_1.jpg", 
-                  "/India/1_4_2.jpg", 
-                  "/India/1_4_3.jpg", 
-                  "/India/1_4_4.jpg",
-                  "/India/1_4_5.jpg"
+                  "/Cards/4_1.jpg", 
+                  "/Cards/4_2.jpg", 
+                  "/Cards/4_3.jpg", 
+                  "/Cards/4_4.jpg",
+                  "/Cards/4_5.jpg"
                 ]} 
                 alt="Taste" 
               />
@@ -613,7 +613,7 @@ export default function Home() {
       id: "city-global",
       title: "City Beat",
       description: "Catch the rhythm of rooftops and rush.",
-      image: "/India/City.jpg",
+      image: "/Cards/City_Global.jpg",
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
           <h3 className="font-titan-one font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Urban & Entertainment</h3>
@@ -630,11 +630,11 @@ export default function Home() {
             <div className="w-1/2">
               <ImageCarousel 
                 images={[
-                  "/India/1_5_1.jpg", 
-                  "/India/1_5_2.jpg", 
-                  "/India/1_5_3.jpg", 
-                  "/India/1_5_4.jpg",
-                  "/India/1_5_5.jpg"
+                  "/Cards/5_1.jpg", 
+                  "/Cards/5_2.jpg", 
+                  "/Cards/5_3.jpg", 
+                  "/Cards/5_4.jpg",
+                  "/Cards/5_5.jpg"
                 ]} 
                 alt="City" 
               />
@@ -646,7 +646,7 @@ export default function Home() {
       id: "festive-global",
       title: "Festive Trails",
       description: "Celebrate, explore, and discover something worth remembering.",
-      image: "/India/Festive.jpg",
+      image: "/Cards/Festive_Global.jpg",
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
           <h3 className="font-titan-one font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Festive Trails</h3>
@@ -664,11 +664,11 @@ export default function Home() {
             <div className="w-1/2">
               <ImageCarousel 
                 images={[
-                  "/India/1_6_1.jpg", 
-                  "/India/1_6_2.jpg", 
-                  "/India/1_6_3.jpg", 
-                  "/India/1_6_4.jpg",
-                  "/India/1_6_5.jpg"
+                  "/Cards/6_1.jpg", 
+                  "/Cards/6_2.jpg", 
+                  "/Cards/6_3.jpg", 
+                  "/Cards/6_4.jpg",
+                  "/Cards/6_5.jpg"
                 ]} 
                 alt="Festive" 
               />
@@ -681,7 +681,7 @@ export default function Home() {
       id: "squad-global",
       title: "Squad Getaways",
       description: "One destination. Endless group selfies.",
-      image: "/India/Squad.jpg",
+      image: "/Cards/Squad_Global.jpg",
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
           <h3 className="font-titan-one font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Squad Getaways</h3>
@@ -697,12 +697,12 @@ export default function Home() {
             <div className="w-1/2">
               <ImageCarousel 
                 images={[
-                  "/India/1_7_1.jpg", 
-                  "/India/1_7_2.jpg", 
-                  "/India/1_7_3.jpg", 
-                  "/India/1_7_4.jpg",
-                  "/India/1_7_5.jpg",
-                  "/India/1_7_6.jpg"
+                  "/Cards/7_1.jpg", 
+                  "/Cards/7_2.jpg", 
+                  "/Cards/7_3.jpg", 
+                  "/Cards/7_4.jpg",
+                  "/Cards/7_5.jpg",
+                  "/Cards/7_6.jpg"
                 ]} 
                 alt="Squad" 
               />
@@ -715,7 +715,7 @@ export default function Home() {
       id: "awakening-global",
       title: "Awakening the soul",
       description: "Discover your true self through spirituality and reflection.",
-      image: "/India/Awakening.jpg",
+      image: "/Cards/Awakening_Global.jpg",
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
           <h3 className="font-titan-one font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Spiritual & Self-Discovery</h3>
@@ -731,10 +731,10 @@ export default function Home() {
             <div className="w-1/2">
               <ImageCarousel 
                 images={[
-                  "/India/1_8_1.jpg", 
-                  "/India/1_8_2.jpg", 
-                  "/India/1_8_3.jpg", 
-                  "/India/1_8_4.jpg"
+                  "/Cards/8_1.jpg", 
+                  "/Cards/8_2.jpg", 
+                  "/Cards/8_3.jpg", 
+                  "/Cards/8_4.jpg"
                 ]} 
                 alt="Awakening" 
               />
@@ -1131,8 +1131,7 @@ export default function Home() {
           >
             {/* Explore hidden gems of India Section */}
             <div className="container mx-auto relative z-10">
-                <h2 className="font-archivo-black font-normal text-[28px] md:text-[40px] text-[#003566E5]">India Uncovered: Explore the Unexpected</h2>
-                <p className="font-baloo-bhai font-normal text-[20px] md:text-[24px] text-[#00474CBF] mb-8">Choose Your Adventure</p>
+                <h2 className="font-archivo-black font-normal text-[28px] md:text-[40px] text-[#003566E5]">Hidden Gems of India</h2>
                 
                 <div className="relative">
                     <div className="flex gap-4 mb-4 -mr-4 mx-auto relative overflow-x-auto sm:overflow-x-visible scroll-smooth snap-x snap-mandatory sm:flex-wrap sm:overflow-hidden hide-horizontal-scrollbar">
@@ -1202,9 +1201,7 @@ export default function Home() {
 
             {/* Explore hidden gems Across the Globe Section */}
             <div className="container mx-auto relative z-10 mt-20 mb-12">
-                <h2 className="font-archivo-black font-normal text-[28px] md:text-[40px] text-[#003566E5]">Wonders Uncovered: Travel Beyond the Ordinary</h2>
-                <p className="font-baloo-bhai font-normal text-[20px] md:text-[24px] text-[#00474CBF] mb-8">Choose Your Adventure</p>
-                
+                <h2 className="font-archivo-black font-normal text-[28px] md:text-[40px] text-[#003566E5]">Wonders Uncovered: Travel Beyond the Ordinary</h2>                
                 <div className="relative">
                     <div className="flex gap-4 mb-4 -mr-4 mx-auto relative overflow-x-auto sm:overflow-x-visible scroll-smooth snap-x snap-mandatory sm:flex-wrap sm:overflow-hidden hide-horizontal-scrollbar">
                         <AnimatePresence custom={slideDirection} mode="popLayout">
