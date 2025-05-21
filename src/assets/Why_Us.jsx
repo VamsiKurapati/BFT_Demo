@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from "swiper/modules";
 import 'swiper/swiper-bundle.css';
 import Footer from "./Footer";
 
 export default function WhyUs() {
+    const navigate = useNavigate(); 
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const location = useLocation();
     
