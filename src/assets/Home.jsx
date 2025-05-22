@@ -146,6 +146,25 @@ export default function Home() {
       title: "Nature Unleashed",
       description: "Epic trails, roaring rivers, and wild air.",
       image: "/Cards/Nature.jpg",
+      clickTitle: "Nature & Scenic",
+      activities: [
+        "Coastal / Beach",
+        "Mountains",
+        "Forest / Jungle",
+        "Lakes & Rivers",
+        "Waterfalls",
+        "National Parks",
+        "Wildlife & Safari"
+      ],
+      images: [
+        "/Cards/1_1.jpg", 
+        "/Cards/1_2.jpg", 
+        "/Cards/1_3.jpg", 
+        "/Cards/1_4.jpg",
+        "/Cards/1_5.jpg",
+        "/Cards/1_6.jpg",
+        "/Cards/1_7.jpg"
+      ],
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
           <h3 className="font-titan-one font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Nature Unleashed</h3>
@@ -189,6 +208,25 @@ export default function Home() {
       title: "Adrenaline Fix",
       description: "Fuel your thrill with every chill.",
       image: "/Cards/Adrenaline.jpg",
+      clickTitle: "Adventure & Activities",
+      activities: [
+        "Trekking / Hiking",
+        "Camping",
+        "Skiing / Snow Adventures",
+        "Scuba Diving / Snorkeling",
+        "Paragliding / Skydiving",
+        "Rock Climbing",
+        "Biking / Motorbiking Tours"
+      ],
+      images: [
+        "/Cards/2_1.jpg", 
+        "/Cards/2_2.jpg", 
+        "/Cards/2_3.jpg", 
+        "/Cards/2_4.jpg",
+        "/Cards/2_5.jpg",
+        "/Cards/2_6.jpg",
+        "/Cards/2_7.jpg"
+      ],
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
           <h3 className="font-titan-one font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Adventure & Activities</h3>
@@ -197,7 +235,7 @@ export default function Home() {
               <ul className="list-disc pl-[12px] md:pl-[24px] space-y-1 font-poppins font-normal text-[12px] sm:text-[16px] md:text-[11.5px] lg:text-[12px] text-[#FFFFFF]">
                 <li>Trekking / Hiking</li>
                 <li>Camping</li>
-                <li>Skiing / Snow Adevntures</li>
+                <li>Skiing / Snow Adventures</li>
                 <li>Scuba Diving / Snorkeling</li>
                 <li>Paragliding / Skydiving</li>
                 <li>Rock Climbing</li>
@@ -232,6 +270,23 @@ export default function Home() {
       title: "Culture Unlocked",
       description: "Traditions, temples, and tales with a twist.",
       image: "/Cards/Culture.jpg",
+      clickTitle: "Cultural & Historical",
+      activities: [
+        "Heritage & Historical Tours",
+        "Devotional / Pilgrimage",
+        "Rural / Village Tourism",
+        "Architecture & Monuments",
+        "Archaeological Sites",
+        "Cultural Festivals"
+      ],
+      images: [
+        "/Cards/3_1.jpg", 
+        "/Cards/3_2.jpg", 
+        "/Cards/3_3.jpg", 
+        "/Cards/3_4.jpg",
+        "/Cards/3_5.jpg",
+        "/Cards/3_6.jpg"
+      ],
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
           <h3 className="font-titan-one font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Cultural & Historical</h3>
@@ -273,6 +328,21 @@ export default function Home() {
       title: "Taste the Culture",
       description: "Dine like a local, live like one too.",
       image: "/Cards/Taste.jpg",
+      clickTitle: "Food & Lifestyle",
+      activities: [
+        "Culinary Tours / Food Trails",
+        "Wine Tasting / Vineyard Tours",
+        "Cooking Classes",
+        "Shopping Destinations",
+        "Wellness & Spa Retreats"
+      ],
+      images: [
+        "/Cards/4_1.jpg", 
+        "/Cards/4_2.jpg", 
+        "/Cards/4_3.jpg", 
+        "/Cards/4_4.jpg",
+        "/Cards/4_5.jpg"
+      ],
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
           <h3 className="font-titan-one font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Taste The Culture</h3>
@@ -312,6 +382,21 @@ export default function Home() {
       title: "City Beat",
       description: "Catch the rhythm of rooftops and rush.",
       image: "/Cards/City.jpg",
+      clickTitle: "Food & Lifestyle",
+      activities: [
+        "Party & Nightlife",
+        "City Tours / Urban Escapes",
+        "Luxury Travel",
+        "Cruises",
+        "Theme Parks"
+      ],
+      images: [
+        "/Cards/5_1.jpg", 
+        "/Cards/5_2.jpg", 
+        "/Cards/5_3.jpg", 
+        "/Cards/5_4.jpg",
+        "/Cards/5_5.jpg"
+      ],
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
           <h3 className="font-titan-one font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Urban & Entertainment</h3>
@@ -345,11 +430,28 @@ export default function Home() {
           </div>
         </div>
       )
-    },{
+    },
+    {
       id: "festive-india",
       title: "Festive Trails",
       description: "Celebrate, explore, and discover something worth remembering.",
       image: "/Cards/Festive.jpg",
+      clickTitle: "Food & Lifestyle",
+      activities: [
+        "Honeymoon / Romantic",
+        "Winter Travel",
+        "Summer Getaways",
+        "Spring Blossoms",
+        "Photography Tours",
+        "Eco-Tourism"
+      ],
+      images: [
+        "/Cards/6_1.jpg", 
+        "/Cards/6_2.jpg", 
+        "/Cards/6_3.jpg", 
+        "/Cards/6_4.jpg",
+        "/Cards/6_5.jpg"
+      ],
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
           <h3 className="font-titan-one font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Festive Trails</h3>
@@ -390,6 +492,21 @@ export default function Home() {
       title: "Squad Getaways",
       description: "One destination. Endless group selfies.",
       image: "/Cards/Squad.jpg",
+      clickTitle: "Food & Lifestyle",
+      activities: [
+        "Family-Friendly Trips",
+        "Kids' Adventures",
+        "Group Tours",
+        "Solo Travel Friendly"
+      ],
+      images: [
+        "/Cards/7_1.jpg", 
+        "/Cards/7_2.jpg", 
+        "/Cards/7_3.jpg", 
+        "/Cards/7_4.jpg",
+        "/Cards/7_5.jpg",
+        "/Cards/7_6.jpg"
+      ],
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
           <h3 className="font-titan-one font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Squad Getaways</h3>
@@ -429,6 +546,19 @@ export default function Home() {
       title: "Awakening the soul",
       description: "Discover your true self through spirituality and reflection.",
       image: "/Cards/Awakening.jpg",
+      clickTitle: "Food & Lifestyle",
+      activities: [
+        "Devotional / Pilgrimage",
+        "Yoga & Meditation Retreats",
+        "Mindfulness Journeys",
+        "Astrology / Mystic Travel"
+      ],
+      images: [
+        "/Cards/8_1.jpg", 
+        "/Cards/8_2.jpg", 
+        "/Cards/8_3.jpg", 
+        "/Cards/8_4.jpg"
+      ],
       detailContent: (
         <div className="p-4 flex flex-col h-full text-white">
           <h3 className="font-titan-one font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Spiritual & Self-Discovery</h3>
@@ -515,7 +645,7 @@ export default function Home() {
               <ul className="list-disc pl-[12px] md:pl-[24px] space-y-1 font-poppins font-normal text-[12px] sm:text-[16px] md:text-[11.5px] lg:text-[12px] text-[#FFFFFF]">
                 <li>Trekking / Hiking</li>
                 <li>Camping</li>
-                <li>Skiing / Snow Adevntures</li>
+                <li>Skiing / Snow Adventures</li>
                 <li>Scuba Diving / Snorkeling</li>
                 <li>Paragliding / Skydiving</li>
                 <li>Rock Climbing</li>
@@ -806,30 +936,6 @@ export default function Home() {
   // Get visible gems for each section
   const visibleIndiaGems = indiaGems.slice(indiaStartIndex, indiaStartIndex + itemsToShow);
   const visibleGlobalGems = globalGems.slice(globalStartIndex, globalStartIndex + itemsToShow);
-  // const cardVariants = {
-  //   hidden: (direction) => ({
-  //     x: direction === "right" ? 300 : -300,
-  //     opacity: 0
-  //   }),
-  //   visible: {
-  //     x: 0,
-  //     opacity: 1,
-  //     transition: {
-  //       x: { type: "spring", stiffness: 300, damping: 30 },
-  //       opacity: { duration: 0.2 }
-  //     }s
-  //   },
-  //   exit: (direction) => ({
-  //     x: direction === "right" ? -300 : 300,
-  //     opacity: 0,
-  //     transition: {
-  //       x: { type: "spring", stiffness: 300, damping: 30 },
-  //       opacity: { duration: 0.2 }
-  //     }
-  //   })
-  // };
-
-  // Function to toggle FAQ items
   
   const cardVariants = {
     hidden: (direction) => ({
@@ -857,7 +963,6 @@ export default function Home() {
       }
     })
   };
-  
 
   const toggleFaq = (id) => {
     if (activeFaq === id) {
@@ -885,6 +990,70 @@ export default function Home() {
       answer: "The minimum is 10K per person for a 4-day trip from India ."
     }
   ];
+
+  const AdventureCard = ({ cardData }) => {
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    // Auto-advance both subtitle and background image
+    useEffect(() => {
+      const Length = cardData.activities.length;
+      console.log("Activities:",Length);
+      console.log(new Date());
+      const interval = setInterval(() => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % Length);
+      }, 1000); // Change every 1 second
+    
+      return () => clearInterval(interval);
+    }, [cardData.activities.length]);
+
+    return (
+      <div className="max-w-sm mx-auto bg-white rounded-xl shadow-lg overflow-hidden border-2 border-orange-400">
+        {/* Header Section with Scrolling Background */}
+        <div className="relative h-32 overflow-hidden">
+          {/* Background Image Carousel */}
+          {/* <div className="absolute inset-0">
+            <ImageCarousel 
+              images1={cardData.images}
+              alt={cardData.title}
+              className="w-full h-full object-cover"
+            />
+          </div> */}
+          
+          {/* Dark overlay for better text readability */}
+          <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+          
+          {/* Header Text */}
+          <div className="relative z-10 p-4 text-white">
+            <h2 className="text-xl font-bold mb-1">{cardData.clickTitle}</h2>
+            <p className="text-sm font-medium transition-all duration-300">
+              {cardData.activities[currentIndex]}
+            </p>
+          </div>
+        </div>
+
+        {/* Content Section */}
+        <div className="p-4 bg-gray-100">
+          {/* Activities List */}
+          <div className="grid grid-cols-2 gap-x-4 gap-y-1 mb-4">
+            {cardData.activities.map((activity, index) => (
+              <div key={index} className="flex items-center">
+                <span className="w-1 h-1 bg-black rounded-full mr-2 flex-shrink-0"></span>
+                <span className="text-xs text-gray-800 font-medium">{activity}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* Button */}
+          <div className="text-center">
+            <button className="bg-red-700 hover:bg-red-800 text-orange-100 px-6 py-2 rounded-lg text-xs font-bold border border-orange-200 transition-colors duration-200 flex items-center justify-center mx-auto gap-1">
+              🔗 Chase the Adventure
+              {/* <ArrowRight size={12} /> */}
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  };
 
   return (
     <section className="w-full font-goudy">
@@ -1137,6 +1306,28 @@ export default function Home() {
                 <h2 className="font-archivo-black font-normal text-[28px] md:text-[40px] text-[#003566E5]">Hidden Gems of India</h2>
                 
                 <div className="relative">
+                    <button
+                      disabled={!canMoveLeft}
+                      onClick={() => canMoveLeft && moveCards('india', -1)}
+                      // className={`w-[77px] h-[42px] rounded-lg flex items-center justify-center shadow-md transition 
+                      //   ${canMoveLeft ? 'bg-[#003566]' : 'bg-[#003566BF]'} text-[#FCD2B1] text-[32px] border border-0.94px border-[#FCD2B1]`}
+                      className="absolute hidden sm:flex -left-4 top-1/2 transform -translate-y-1/2 z-10"
+                      // title={!canMoveLeft ? "No more cards" : ""}
+                    >
+                      <img src="/arrow-left.png" alt="Left" className="w-15 h-15" />
+                    </button>
+
+                    <button
+                      disabled={!canMoveRight}
+                      onClick={() => canMoveRight && moveCards('india', 1)}
+                      // className={`w-[77px] h-[42px] rounded-lg flex items-center justify-center shadow-md transition 
+                      //   ${canMoveRight ? 'bg-[#003566]' : 'bg-[#003566BF]'} text-[#FCD2B1] text-[32px] border border-0.94px border-[#FCD2B1]`}
+                      className="absolute hidden sm:flex -right-8 top-1/2 transform -translate-y-1/2 z-10"
+                      // title={!canMoveRight ? "No more cards" : ""}
+                    >
+                      <img src="/arrow-left.png" alt="Right" className="w-15 h-15 rotate-180" />
+                    </button>
+
                     <div className="flex gap-4 mb-4 -mr-4 mx-auto relative overflow-x-auto sm:overflow-x-visible scroll-smooth snap-x snap-mandatory sm:flex-wrap sm:overflow-hidden hide-horizontal-scrollbar">
                         <AnimatePresence custom={slideDirection} mode="popLayout">
                             {visibleIndiaGems.map((gem) => (
@@ -1151,11 +1342,12 @@ export default function Home() {
                                     custom={slideDirection}
                                 >
                                     {activeCard === gem.id ? (
-                                        <div className="slider h-[300px] lg:h-[250px] bg-[#003566] overflow-y-auto">
+                                        <div className="h-[300px] lg:h-[250px] bg-[#003566] overflow-y-auto">
                                           <div className="h-full px-2">
                                             {gem.detailContent}
+                                            {/* <AdventureCard key={gem.id} cardData={gem} /> */}
                                           </div>
-                                        </div>                                      
+                                        </div>                                   
                                     ) : (
                                         <div className="relative group">
                                             <div 
@@ -1193,36 +1385,33 @@ export default function Home() {
                             ))}
                         </AnimatePresence>
                     </div>
-                    
-                    <div className="absolute hidden sm:flex right-4 mt-2 space-x-2">
-                      {/* Left Button */}
-                      <button
-                        disabled={!canMoveLeft}
-                        onClick={() => canMoveLeft && moveCards('india', -1)}
-                        className={`w-[77px] h-[42px] rounded-lg flex items-center justify-center shadow-md transition 
-                          ${canMoveLeft ? 'bg-[#003566]' : 'bg-[#003566BF]'} text-[#FCD2B1] text-[32px] border border-0.94px border-[#FCD2B1]`}
-                        // title={!canMoveLeft ? "No more cards" : ""}
-                      >
-                        <FaArrowLeftLong className="absolute w-[28px] h-[21px]" />
-                      </button>
-
-                      {/* Right Button */}
-                      <button
-                        disabled={!canMoveRight}
-                        onClick={() => canMoveRight && moveCards('india', 1)}
-                        className={`w-[77px] h-[42px] rounded-lg flex items-center justify-center shadow-md transition 
-                          ${canMoveRight ? 'bg-[#003566]' : 'bg-[#003566BF]'} text-[#FCD2B1] text-[32px] border border-0.94px border-[#FCD2B1]`}
-                        // title={!canMoveRight ? "No more cards" : ""}
-                      >
-                        <FaArrowRightLong className="absolute w-[28px] h-[21px]" />
-                      </button>
-                    </div>
                 </div>
             </div>
 
             {/* Explore hidden gems Across the Globe Section */}
             <div className="container mx-auto relative z-10 mt-20 mb-12">
-                <h2 className="font-archivo-black font-normal text-[28px] md:text-[40px] text-[#003566E5]">Wonders Uncovered: Travel Beyond the Ordinary</h2>                
+                <h2 className="font-archivo-black font-normal text-[28px] md:text-[40px] text-[#003566E5]">Wonders Uncovered: Travel Beyond the Ordinary</h2>
+                <button
+                  disabled={!canMoveLeftGlobal}
+                  onClick={() => canMoveLeftGlobal && moveCards('global', -1)}
+                  // className={`w-[77px] h-[42px] rounded-lg flex items-center justify-center shadow-md transition 
+                  //   ${canMoveLeft ? 'bg-[#003566]' : 'bg-[#003566BF]'} text-[#FCD2B1] text-[32px] border border-0.94px border-[#FCD2B1]`}
+                  className="absolute hidden sm:flex -left-4 top-1/2 transform -translate-y-1/2 z-10"
+                  // title={!canMoveLeft ? "No more cards" : ""}
+                >
+                  <img src="/arrow-left.png" alt="Left" className="w-15 h-15" />
+                </button>
+
+                <button
+                  disabled={!canMoveRightGlobal}
+                  onClick={() => canMoveRightGlobal && moveCards('global', 1)}
+                  // className={`w-[77px] h-[42px] rounded-lg flex items-center justify-center shadow-md transition 
+                  //   ${canMoveRight ? 'bg-[#003566]' : 'bg-[#003566BF]'} text-[#FCD2B1] text-[32px] border border-0.94px border-[#FCD2B1]`}
+                  className="absolute hidden sm:flex -right-8 top-1/2 transform -translate-y-1/2 z-10"
+                  // title={!canMoveRight ? "No more cards" : ""}
+                >
+                  <img src="/arrow-left.png" alt="Right" className="w-15 h-15 rotate-180" />
+                </button>                
                 <div className="relative">
                     <div className="flex gap-4 mb-4 -mr-4 mx-auto relative overflow-x-auto sm:overflow-x-visible scroll-smooth snap-x snap-mandatory sm:flex-wrap sm:overflow-hidden hide-horizontal-scrollbar">
                         <AnimatePresence custom={slideDirection} mode="popLayout">
@@ -1280,30 +1469,6 @@ export default function Home() {
                                 </motion.div>
                             ))}
                         </AnimatePresence>
-                    </div>
-                    
-                    <div className="absolute hidden sm:flex right-4 mt-2 space-x-2">
-                      {/* Left Button */}
-                      <button
-                        disabled={!canMoveLeftGlobal}
-                        onClick={() => canMoveLeftGlobal && moveCards('global', -1)}
-                        className={`w-[77px] h-[42px] rounded-lg flex items-center justify-center shadow-md transition 
-                          ${canMoveLeftGlobal ? 'bg-[#003566]' : 'bg-[#003566BF]'} text-[#FCD2B1] text-[32px] border border-0.94px border-[#FCD2B1]`}
-                        // title={!canMoveLeft ? "No more cards" : ""}
-                      >
-                        <FaArrowLeftLong className="absolute w-[28px] h-[21px]" />
-                      </button>
-
-                      {/* Right Button */}
-                      <button
-                        disabled={!canMoveRightGlobal}
-                        onClick={() => canMoveRightGlobal && moveCards('global', 1)}
-                        className={`w-[77px] h-[42px] rounded-lg flex items-center justify-center shadow-md transition 
-                          ${canMoveRightGlobal ? 'bg-[#003566]' : 'bg-[#003566BF]'} text-[#FCD2B1] text-[32px] border border-0.94px border-[#FCD2B1]`}
-                        // title={!canMoveRight ? "No more cards" : ""}
-                      >
-                        <FaArrowRightLong className="absolute w-[28px] h-[21px]" />
-                      </button>
                     </div>
                 </div>
             </div>
