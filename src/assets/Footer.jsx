@@ -11,17 +11,19 @@ export default function Footer() {
     const handleSubmit = async () => {
         try {
             const res = await fetch("https://bft-backend.vercel.app/api/data/saveEmail", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email }),
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email }),
             });
 
             if (res.ok) {
-            console.log("Email submitted successfully!");
-            return true;
+                console.log("Email submitted successfully!");
+                setEmail("");
+                alert("Thanks for subscribing");
+                return true;
             } else {
-            alert("Please try again.");
-            return false;
+                alert("Please try again.");
+                return false;
             }
         } catch (err) {
             console.error("Error submitting email:", err.message);
