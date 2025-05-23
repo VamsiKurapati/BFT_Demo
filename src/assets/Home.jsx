@@ -1,39 +1,81 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocation, useNavigate } from "react-router-dom";
-import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
 import Footer from "./Footer";
 
 // ImageCarousel component for showing one image at a time with fade transition
-const ImageCarousel = ({ images, alt }) => {
+const ImageCarousel = ({ images, alt, clickTitle, activities }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  
+
   // Auto-advance the carousel
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 3000); // Change image every 3 seconds
-    
+    }, 1500);
+
     return () => clearInterval(interval);
   }, [images.length]);
 
   return (
-    <div className="relative w-full h-[140px] pl-[6px] overflow-hidden rounded">
+    <div className="relative w-full h-full overflow-hidden rounded-2xl">
       <AnimatePresence mode="wait">
         <motion.img
           key={currentIndex}
           src={images[currentIndex]}
           alt={`${alt} ${currentIndex + 1}`}
-          className="w-full h-[120px] object-cover rounded-xl justify-center items-center"
+          className="w-full h-[120px] object-cover rounded-xl"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.1 }}
+          transition={{ duration: 0.3 }}
         />
       </AnimatePresence>
+
+      {/* Overlay with text */}
+      <div className="absolute top-4 left-4 text-white px-2 py-1 bg-bg-[#A11616E5]">
+        <div className="font-poppins font-bold text-[22px] text-[#FFFFFF]">{clickTitle}</div>
+        <div className="font-poppins font-regular text-[12px] text-[#FFFFFF]">{activities[currentIndex]}</div>
+      </div>
     </div>
   );
 };
+
+const generateDetailContent = (title, activities, activities_1, images, alt, navigate) => (
+  <div className="w-full h-full flex flex-col">
+    {/* Image carousel with overlay title - NO BORDER */}
+    <div className="relative h-[120px] bg-[#A11616E5] rounded-2xl">
+      <ImageCarousel
+        images={images}
+        alt={alt}
+        clickTitle={title}
+        activities={activities}
+      />
+    </div>
+
+    {/* Content below image - WITH BORDER except top */}
+    <div className="rounded-b-2xl border border-2 border-[#FFBE55] border-t-0 text-[#1A1A1A] w-full h-full flex flex-col justify-between">
+      {/* Activities Grid */}
+      <div className="px-2 lg:px-4 pt-2 grid grid-cols-2 lg:grid-cols-3 gap-y-1 gap-x-1 text-[10px] text-[#1A1A1A] font-poppins font-medium">
+        {activities_1.map((activity, index) => (
+          <div key={index} className="flex items-start">
+            <span className="mr-2 text-[10px]">•</span>
+            <span>{activity}</span>
+          </div>
+        ))}
+      </div>
+
+      {/* CTA Button */}
+      <div className="flex items-center justify-center p-4 pt-3">
+        <button
+          className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-[#A11616E5] rounded-xl border-[2px] border-[#F5B501] transition duration-300 font-poppins font-bold text-[10px] sm:text-[12px] md:text-[14px] text-[#FCD2B1]"
+          onClick={() => navigate("/questionnaire")}
+        >
+          <img src="/footprint.png" alt="footprint icon" /> Chase the Adventure
+        </button>
+      </div>
+    </div>
+  </div>
+);
 
 const images = [
   '/why_us_1.jpg',
@@ -146,8 +188,8 @@ export default function Home() {
       title: "Nature Unleashed",
       description: "Epic trails, roaring rivers, and wild air.",
       image: "/Cards/Nature.jpg",
-      clickTitle: "Nature & Scenic",
-      activities: [
+      detailContent: generateDetailContent("Nature & Scenic",
+        [
         "Coastal / Beach",
         "Mountains",
         "Forest / Jungle",
@@ -156,7 +198,16 @@ export default function Home() {
         "National Parks",
         "Wildlife & Safari"
       ],
-      images: [
+      [
+        "Coastal / Beach",
+        "Mountains",
+        "Forest / Jungle",
+        "Lakes & Rivers",
+        "Waterfalls",
+        "Wildlife & Safari",
+         "National Parks"
+      ],
+      [
         "/Cards/1_1.jpg", 
         "/Cards/1_2.jpg", 
         "/Cards/1_3.jpg", 
@@ -165,42 +216,8 @@ export default function Home() {
         "/Cards/1_6.jpg",
         "/Cards/1_7.jpg"
       ],
-      detailContent: (
-        <div className="p-4 flex flex-col h-full text-white">
-          <h3 className="font-titan-one font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Nature Unleashed</h3>
-          <div className="flex flex-row flex-grow">
-            <div className="w-1/2">
-              <ul className="list-disc pl-[12px] md:pl-[24px] space-y-1 font-poppins font-normal text-[12px] sm:text-[16px] md:text-[11.5px] lg:text-[12px] text-[#FFFFFF]">
-                <li>Coastal / Beach</li>
-                <li>Mountains</li>
-                <li>Forest / Jungle</li>
-                <li>Lakes & Rivers</li>
-                <li>Waterfalls</li>
-                <li>National Parks</li>
-                <li>Wildlife & Safari</li>
-              </ul>
-            </div>
-            <div className="w-1/2">
-              <ImageCarousel 
-                images={[
-                  "/Cards/1_1.jpg", 
-                  "/Cards/1_2.jpg", 
-                  "/Cards/1_3.jpg", 
-                  "/Cards/1_4.jpg",
-                  "/Cards/1_5.jpg",
-                  "/Cards/1_6.jpg",
-                  "/Cards/1_7.jpg"
-                ]} 
-                alt="Nature" 
-              />
-              <div className="flex items-center justify-center">
-                <button className="text-center px-4 py-2 bg-[#A11616E5] hover:bg-[#00474C] text-[#FCD2B1] border border-0.5 border-[#FCD2B1] rounded-lg font-poppins font-bold text-[7px] sm:text-[8px] md:text-[9px] lg:text-[10px]">
-                  Chase the Adventure <FaArrowRightLong className="inline-block" />
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+      "Nature",
+      navigate,
       )
     },
     {
@@ -208,61 +225,36 @@ export default function Home() {
       title: "Adrenaline Fix",
       description: "Fuel your thrill with every chill.",
       image: "/Cards/Adrenaline.jpg",
-      clickTitle: "Adventure & Activities",
-      activities: [
-        "Trekking / Hiking",
-        "Camping",
-        "Skiing / Snow Adventures",
-        "Scuba Diving / Snorkeling",
-        "Paragliding / Skydiving",
-        "Rock Climbing",
-        "Biking / Motorbiking Tours"
-      ],
-      images: [
-        "/Cards/2_1.jpg", 
-        "/Cards/2_2.jpg", 
-        "/Cards/2_3.jpg", 
-        "/Cards/2_4.jpg",
-        "/Cards/2_5.jpg",
-        "/Cards/2_6.jpg",
-        "/Cards/2_7.jpg"
-      ],
-      detailContent: (
-        <div className="p-4 flex flex-col h-full text-white">
-          <h3 className="font-titan-one font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Adventure & Activities</h3>
-          <div className="flex flex-row flex-grow">
-            <div className="w-1/2">
-              <ul className="list-disc pl-[12px] md:pl-[24px] space-y-1 font-poppins font-normal text-[12px] sm:text-[16px] md:text-[11.5px] lg:text-[12px] text-[#FFFFFF]">
-                <li>Trekking / Hiking</li>
-                <li>Camping</li>
-                <li>Skiing / Snow Adventures</li>
-                <li>Scuba Diving / Snorkeling</li>
-                <li>Paragliding / Skydiving</li>
-                <li>Rock Climbing</li>
-                <li>Biking / Motorbiking Tours</li>
-              </ul>
-            </div>
-            <div className="w-1/2">
-              <ImageCarousel 
-                images={[
-                  "/Cards/2_1.jpg", 
-                  "/Cards/2_2.jpg", 
-                  "/Cards/2_3.jpg", 
-                  "/Cards/2_4.jpg",
-                  "/Cards/2_5.jpg",
-                  "/Cards/2_6.jpg",
-                  "/Cards/2_7.jpg"
-                ]} 
-                alt="Adrenaline" 
-              />
-              <div className="flex items-center justify-center">
-                <button className="text-center px-4 py-2 bg-[#A11616E5] hover:bg-[#00474C] text-[#FCD2B1] border border-0.5 border-[#FCD2B1] rounded-lg font-poppins font-bold text-[7px] sm:text-[8px] md:text-[9px] lg:text-[10px]">
-                  Chase the Adventure <FaArrowRightLong className="inline-block" />
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+      detailContent: generateDetailContent("Adventure & Activities",
+        [
+          "Trekking / Hiking",
+          "Camping",
+          "Skiing / Snow Adventures",
+          "Scuba Diving / Snorkeling",
+          "Paragliding / Skydiving",
+          "Rock Climbing",
+          "Biking / Motorbiking Tours"
+        ],
+        [
+          "Trekking",
+          "Camping",
+          "Rock Climbing",
+          "Scuba Diving",
+          "Snow Adventures",
+          "Motorbiking Tours",
+          "Cycling"
+        ],
+        [
+          "/Cards/2_1.jpg", 
+          "/Cards/2_2.jpg", 
+          "/Cards/2_3.jpg", 
+          "/Cards/2_4.jpg",
+          "/Cards/2_5.jpg",
+          "/Cards/2_6.jpg",
+          "/Cards/2_7.jpg"
+        ],
+        "Adrenaline",
+      navigate,
       )
     },
     {
@@ -270,57 +262,34 @@ export default function Home() {
       title: "Culture Unlocked",
       description: "Traditions, temples, and tales with a twist.",
       image: "/Cards/Culture.jpg",
-      clickTitle: "Cultural & Historical",
-      activities: [
-        "Heritage & Historical Tours",
-        "Devotional / Pilgrimage",
-        "Rural / Village Tourism",
-        "Architecture & Monuments",
-        "Archaeological Sites",
-        "Cultural Festivals"
-      ],
-      images: [
-        "/Cards/3_1.jpg", 
-        "/Cards/3_2.jpg", 
-        "/Cards/3_3.jpg", 
-        "/Cards/3_4.jpg",
-        "/Cards/3_5.jpg",
-        "/Cards/3_6.jpg"
-      ],
-      detailContent: (
-        <div className="p-4 flex flex-col h-full text-white">
-          <h3 className="font-titan-one font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Cultural & Historical</h3>
-          <div className="flex flex-row flex-grow">
-            <div className="w-1/2">
-              <ul className="list-disc pl-[12px] md:pl-[24px] space-y-1 font-poppins font-normal text-[12px] sm:text-[16px] md:text-[11.5px] lg:text-[12px] text-[#FFFFFF]">
-                <li>Heritage & Historical Tours</li>
-                <li>Devotional / Pilgrimage</li>
-                <li>Rural / Village Tourism</li>
-                <li>Architecture & Monuments</li>
-                <li>Archaeological Sites</li>
-                <li>Cultural Festivals</li>
-              </ul>
-            </div>
-            <div className="w-1/2">
-              <ImageCarousel 
-                images={[
-                  "/Cards/3_1.jpg", 
-                  "/Cards/3_2.jpg", 
-                  "/Cards/3_3.jpg", 
-                  "/Cards/3_4.jpg",
-                  "/Cards/3_5.jpg",
-                  "/Cards/3_6.jpg"
-                ]} 
-                alt="Culture" 
-              />
-              <div className="flex items-center justify-center">
-                <button className="text-center px-4 py-2 bg-[#A11616E5] hover:bg-[#00474C] text-[#FCD2B1] border border-0.5 border-[#FCD2B1] rounded-lg font-poppins font-bold text-[7px] sm:text-[8px] md:text-[9px] lg:text-[10px]">
-                  Chase the Adventure <FaArrowRightLong className="inline-block" />
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+      detailContent: generateDetailContent("Cultural & Historical",
+        [
+          "Heritage & Historical Tours",
+          "Devotional / Pilgrimage",
+          "Rural / Village Tourism",
+          "Architecture & Monuments",
+          "Archaeological Sites",
+          "Cultural Festivals"
+        ],
+        [
+          "Historical Tours",
+          "Rural Tourism",
+          "Archaeological Sites",
+          "Pilgrimage",
+          "Heritage",
+          "Cultural Festivals",
+          "Monuments",
+        ],
+        [
+          "/Cards/3_1.jpg", 
+          "/Cards/3_2.jpg", 
+          "/Cards/3_3.jpg", 
+          "/Cards/3_4.jpg",
+          "/Cards/3_5.jpg",
+          "/Cards/3_6.jpg"
+        ],
+        "Culture",
+      navigate,
       )
     },
     {
@@ -328,268 +297,130 @@ export default function Home() {
       title: "Taste the Culture",
       description: "Dine like a local, live like one too.",
       image: "/Cards/Taste.jpg",
-      clickTitle: "Food & Lifestyle",
-      activities: [
+      detailContent: generateDetailContent("Food & Lifestyle",[
         "Culinary Tours / Food Trails",
         "Wine Tasting / Vineyard Tours",
         "Cooking Classes",
         "Shopping Destinations",
         "Wellness & Spa Retreats"
-      ],
-      images: [
+      ],[
+        "Culinary Tours",
+        "Vineyard Tours",
+        "Cooking Classes",
+        "Spa",
+        "Wellness Retreats",
+        "Shopping Destinations"
+      ],[
         "/Cards/4_1.jpg", 
         "/Cards/4_2.jpg", 
         "/Cards/4_3.jpg", 
         "/Cards/4_4.jpg",
         "/Cards/4_5.jpg"
-      ],
-      detailContent: (
-        <div className="p-4 flex flex-col h-full text-white">
-          <h3 className="font-titan-one font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Taste The Culture</h3>
-          <div className="flex flex-row flex-grow">
-            <div className="w-1/2">
-              <ul className="list-disc pl-[12px] md:pl-[24px] space-y-1 font-poppins font-normal text-[12px] sm:text-[16px] md:text-[11.5px] lg:text-[12px] text-[#FFFFFF]">
-                <li>Culinary Tours / Food Trails</li>
-                <li>Wine Tasting / Vineyard Tours</li>
-                <li>Cooking Classes</li>
-                <li>Shopping Destinations</li>
-                <li>Wellness & Spa Retreats</li>
-              </ul>
-            </div>
-            <div className="w-1/2">
-              <ImageCarousel 
-                images={[
-                  "/Cards/4_1.jpg", 
-                  "/Cards/4_2.jpg", 
-                  "/Cards/4_3.jpg", 
-                  "/Cards/4_4.jpg",
-                  "/Cards/4_5.jpg"
-                ]} 
-                alt="Taste" 
-              />
-              <div className="flex items-center justify-center">
-                <button className="text-center px-4 py-2 bg-[#A11616E5] hover:bg-[#00474C] text-[#FCD2B1] border border-0.5 border-[#FCD2B1] rounded-lg font-poppins font-bold text-[7px] sm:text-[8px] md:text-[9px] lg:text-[10px]">
-                  Chase the Adventure <FaArrowRightLong className="inline-block" />
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )
+      ],"Taste",
+      navigate,)
     },
     {
       id: "city-india",
       title: "City Beat",
       description: "Catch the rhythm of rooftops and rush.",
       image: "/Cards/City.jpg",
-      clickTitle: "Food & Lifestyle",
-      activities: [
+      detailContent: generateDetailContent("Urban & Entertainment", [
         "Party & Nightlife",
         "City Tours / Urban Escapes",
         "Luxury Travel",
         "Cruises",
         "Theme Parks"
-      ],
-      images: [
+      ],[
+        "Party",
+        "Casino",
+        "Cruises",
+        "Night Life",
+        "Luxury Travel",
+        "Theme Parks"
+      ],[
         "/Cards/5_1.jpg", 
         "/Cards/5_2.jpg", 
         "/Cards/5_3.jpg", 
         "/Cards/5_4.jpg",
         "/Cards/5_5.jpg"
-      ],
-      detailContent: (
-        <div className="p-4 flex flex-col h-full text-white">
-          <h3 className="font-titan-one font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Urban & Entertainment</h3>
-          <div className="flex flex-row flex-grow">
-            <div className="w-1/2">
-              <ul className="list-disc pl-[12px] md:pl-[24px] space-y-1 font-poppins font-normal text-[12px] sm:text-[16px] md:text-[11.5px] lg:text-[12px] text-[#FFFFFF]">
-                <li>Party & Nightlife</li>
-                <li>City Tours / Urban Escapes</li>
-                <li>Luxury Travel</li>
-                <li>Cruises</li>
-                <li>Theme Parks</li>
-              </ul>
-            </div>
-            <div className="w-1/2">
-              <ImageCarousel 
-                images={[
-                  "/Cards/5_1.jpg", 
-                  "/Cards/5_2.jpg", 
-                  "/Cards/5_3.jpg", 
-                  "/Cards/5_4.jpg",
-                  "/Cards/5_5.jpg"
-                ]} 
-                alt="City" 
-              />
-              <div className="flex items-center justify-center">
-                <button className="text-center px-4 py-2 bg-[#A11616E5] hover:bg-[#00474C] text-[#FCD2B1] border border-0.5 border-[#FCD2B1] rounded-lg font-poppins font-bold text-[7px] sm:text-[8px] md:text-[9px] lg:text-[10px]">
-                  Chase the Adventure <FaArrowRightLong className="inline-block" />
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )
+      ],"City",
+      navigate,)
     },
     {
       id: "festive-india",
       title: "Festive Trails",
       description: "Celebrate, explore, and discover something worth remembering.",
       image: "/Cards/Festive.jpg",
-      clickTitle: "Food & Lifestyle",
-      activities: [
+      detailContent: generateDetailContent("Seasonal & Special Interest",[
         "Honeymoon / Romantic",
         "Winter Travel",
         "Summer Getaways",
         "Spring Blossoms",
         "Photography Tours",
         "Eco-Tourism"
-      ],
-      images: [
+      ],[
+        "Honeymoon",
+        "Winter Travel",
+        "Summer Getaways",
+        "Photography Tours",
+        "Spring Blossoms",
+        "Eco-Tourism"
+      ],[
         "/Cards/6_1.jpg", 
         "/Cards/6_2.jpg", 
         "/Cards/6_3.jpg", 
         "/Cards/6_4.jpg",
         "/Cards/6_5.jpg"
-      ],
-      detailContent: (
-        <div className="p-4 flex flex-col h-full text-white">
-          <h3 className="font-titan-one font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Festive Trails</h3>
-          <div className="flex flex-row flex-grow">
-            <div className="w-1/2">
-              <ul className="list-disc pl-[12px] md:pl-[24px] space-y-1 font-poppins font-normal text-[12px] sm:text-[16px] md:text-[11.5px] lg:text-[12px] text-[#FFFFFF]">
-                <li>Honeymoon / Romantic</li>
-                <li>Winter Travel</li>
-                <li>Summer Getaways</li>
-                <li>Spring Blossoms</li>
-                <li>Photography Tours</li>
-                <li>Eco-Tourism</li>
-              </ul>
-            </div>
-            <div className="w-1/2">
-              <ImageCarousel 
-                images={[
-                  "/Cards/6_1.jpg", 
-                  "/Cards/6_2.jpg", 
-                  "/Cards/6_3.jpg", 
-                  "/Cards/6_4.jpg",
-                  "/Cards/6_5.jpg"
-                ]} 
-                alt="Festive" 
-              />
-              <div className="flex items-center justify-center">
-                <button className="text-center px-4 py-2 bg-[#A11616E5] hover:bg-[#00474C] text-[#FCD2B1] border border-0.5 border-[#FCD2B1] rounded-lg font-poppins font-bold text-[7px] sm:text-[8px] md:text-[9px] lg:text-[10px]">
-                  Chase the Adventure <FaArrowRightLong className="inline-block" />
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )
+      ],"Festive",
+      navigate,)
     },
     {
       id: "squad-india",
       title: "Squad Getaways",
       description: "One destination. Endless group selfies.",
       image: "/Cards/Squad.jpg",
-      clickTitle: "Food & Lifestyle",
-      activities: [
+      detailContent: generateDetailContent("Family & Group Oriented",[
         "Family-Friendly Trips",
         "Kids' Adventures",
         "Group Tours",
         "Solo Travel Friendly"
-      ],
-      images: [
+      ],[
+        "Family-Friendly Trips",
+        "Kids' Adventures",
+        "Group Tours",
+        "Solo Travel Friendly"
+      ],[
         "/Cards/7_1.jpg", 
         "/Cards/7_2.jpg", 
         "/Cards/7_3.jpg", 
         "/Cards/7_4.jpg",
         "/Cards/7_5.jpg",
         "/Cards/7_6.jpg"
-      ],
-      detailContent: (
-        <div className="p-4 flex flex-col h-full text-white">
-          <h3 className="font-titan-one font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Squad Getaways</h3>
-          <div className="flex flex-row flex-grow">
-            <div className="w-1/2">
-              <ul className="list-disc pl-[12px] md:pl-[24px] space-y-1 font-poppins font-normal text-[12px] sm:text-[16px] md:text-[11.5px] lg:text-[12px] text-[#FFFFFF]">
-                <li>Family-Friendly Trips</li>
-                <li>Kids' Adventures</li>
-                <li>Group Tours</li>
-                <li>Solo Travel Friendly</li>
-              </ul>
-            </div>
-            <div className="w-1/2">
-              <ImageCarousel 
-                images={[
-                  "/Cards/7_1.jpg", 
-                  "/Cards/7_2.jpg", 
-                  "/Cards/7_3.jpg", 
-                  "/Cards/7_4.jpg",
-                  "/Cards/7_5.jpg",
-                  "/Cards/7_6.jpg"
-                ]} 
-                alt="Squad" 
-              />
-              <div className="flex items-center justify-center">
-                <button className="text-center px-4 py-2 bg-[#A11616E5] hover:bg-[#00474C] text-[#FCD2B1] border border-0.5 border-[#FCD2B1] rounded-lg font-poppins font-bold text-[7px] sm:text-[8px] md:text-[9px] lg:text-[10px]">
-                  Chase the Adventure <FaArrowRightLong className="inline-block" />
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )
+      ],"Squad",
+      navigate,)
     },
     {
       id: "awakening-india",
       title: "Awakening the soul",
       description: "Discover your true self through spirituality and reflection.",
       image: "/Cards/Awakening.jpg",
-      clickTitle: "Food & Lifestyle",
-      activities: [
+      detailContent: generateDetailContent("Spiritual & Self Discovery",[
         "Devotional / Pilgrimage",
         "Yoga & Meditation Retreats",
         "Mindfulness Journeys",
         "Astrology / Mystic Travel"
-      ],
-      images: [
+      ],[
+        "Devotional",
+        "Mystic Travel",
+        "Mindfulness Journeys",
+        "Meditation Retreat"
+      ],[
         "/Cards/8_1.jpg", 
         "/Cards/8_2.jpg", 
         "/Cards/8_3.jpg", 
         "/Cards/8_4.jpg"
-      ],
-      detailContent: (
-        <div className="p-4 flex flex-col h-full text-white">
-          <h3 className="font-titan-one font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Spiritual & Self-Discovery</h3>
-          <div className="flex flex-row flex-grow">
-            <div className="w-1/2">
-              <ul className="list-disc pl-[12px] md:pl-[24px] space-y-1 font-poppins font-normal text-[12px] sm:text-[16px] md:text-[11.5px] lg:text-[12px] text-[#FFFFFF]">
-                <li>Devotional / Pilgrimage</li>
-                <li>Yoga & Meditation Retreats</li>
-                <li>Mindfulness Journeys</li>
-                <li>Astrology / Mystic Travel</li>
-              </ul>
-            </div>
-            <div className="w-1/2">
-              <ImageCarousel 
-                images={[
-                  "/Cards/8_1.jpg", 
-                  "/Cards/8_2.jpg", 
-                  "/Cards/8_3.jpg", 
-                  "/Cards/8_4.jpg"
-                ]} 
-                alt="Awakening" 
-              />
-              <div className="flex items-center justify-center">
-                <button className="text-center px-4 py-2 bg-[#A11616E5] hover:bg-[#00474C] text-[#FCD2B1] border border-0.5 border-[#FCD2B1] rounded-lg font-poppins font-bold text-[7px] sm:text-[8px] md:text-[9px] lg:text-[10px]">
-                  Chase the Adventure <FaArrowRightLong className="inline-block" />
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )
+      ],"Awakening",
+      navigate,)
     }
   ];
 
@@ -599,37 +430,36 @@ export default function Home() {
       title: "Nature Unleashed",
       description: "Epic trails, roaring rivers, and wild air.",
       image: "/Cards/Nature_Global.jpg",
-      detailContent: (
-        <div className="p-4 flex flex-col h-full text-white">
-          <h3 className="font-titan-one font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Nature Unleashed</h3>
-          <div className="flex flex-row flex-grow">
-            <div className="w-1/2">
-              <ul className="list-disc pl-[12px] md:pl-[24px] space-y-1 font-poppins font-normal text-[12px] sm:text-[16px] md:text-[11.5px] lg:text-[12px] text-[#FFFFFF]">
-                <li>Coastal / Beach</li>
-                <li>Mountains</li>
-                <li>Forest / Jungle</li>
-                <li>Lakes & Rivers</li>
-                <li>Waterfalls</li>
-                <li>National Parks</li>
-                <li>Wildlife & Safari</li>
-              </ul>
-            </div>
-            <div className="w-1/2">
-              <ImageCarousel 
-                images={[
-                  "/Cards/1_1.jpg", 
-                  "/Cards/1_2.jpg", 
-                  "/Cards/1_3.jpg", 
-                  "/Cards/1_4.jpg",
-                  "/Cards/1_5.jpg",
-                  "/Cards/1_6.jpg",
-                  "/Cards/1_7.jpg"
-                ]} 
-                alt="Nature" 
-              />
-            </div>
-          </div>
-        </div>
+      detailContent: generateDetailContent("Nature & Scenic",
+        [
+        "Coastal / Beach",
+        "Mountains",
+        "Forest / Jungle",
+        "Lakes & Rivers",
+        "Waterfalls",
+        "National Parks",
+        "Wildlife & Safari"
+      ],
+      [
+        "Coastal / Beach",
+        "Mountains",
+        "Forest / Jungle",
+        "Lakes & Rivers",
+        "Waterfalls",
+        "Wildlife & Safari",
+         "National Parks"
+      ],
+      [
+        "/Cards/1_1.jpg", 
+        "/Cards/1_2.jpg", 
+        "/Cards/1_3.jpg", 
+        "/Cards/1_4.jpg",
+        "/Cards/1_5.jpg",
+        "/Cards/1_6.jpg",
+        "/Cards/1_7.jpg"
+      ],
+      "Nature",
+      navigate,
       )
     },
     {
@@ -637,37 +467,36 @@ export default function Home() {
       title: "Adrenaline Fix",
       description: "Fuel your thrill with every chill.",
       image: "/Cards/Adrenaline_Global.jpg",
-      detailContent: (
-        <div className="p-4 flex flex-col h-full text-white">
-          <h3 className="font-titan-one font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Adventure & Activities</h3>
-          <div className="flex flex-row flex-grow">
-            <div className="w-1/2">
-              <ul className="list-disc pl-[12px] md:pl-[24px] space-y-1 font-poppins font-normal text-[12px] sm:text-[16px] md:text-[11.5px] lg:text-[12px] text-[#FFFFFF]">
-                <li>Trekking / Hiking</li>
-                <li>Camping</li>
-                <li>Skiing / Snow Adventures</li>
-                <li>Scuba Diving / Snorkeling</li>
-                <li>Paragliding / Skydiving</li>
-                <li>Rock Climbing</li>
-                <li>Biking / Motorbiking Tours</li>
-              </ul>
-            </div>
-            <div className="w-1/2">
-              <ImageCarousel 
-                images={[
-                  "/Cards/2_1.jpg", 
-                  "/Cards/2_2.jpg", 
-                  "/Cards/2_3.jpg", 
-                  "/Cards/2_4.jpg",
-                  "/Cards/2_5.jpg",
-                  "/Cards/2_6.jpg",
-                  "/Cards/2_7.jpg"
-                ]} 
-                alt="Adrenaline" 
-              />
-            </div>
-          </div>
-        </div>
+      detailContent: generateDetailContent("Adventure & Activities",
+        [
+          "Trekking / Hiking",
+          "Camping",
+          "Skiing / Snow Adventures",
+          "Scuba Diving / Snorkeling",
+          "Paragliding / Skydiving",
+          "Rock Climbing",
+          "Biking / Motorbiking Tours"
+        ],
+        [
+          "Trekking",
+          "Camping",
+          "Rock Climbing",
+          "Scuba Diving",
+          "Snow Adventures",
+          "Motorbiking Tours",
+          "Cycling"
+        ],
+        [
+          "/Cards/2_1.jpg", 
+          "/Cards/2_2.jpg", 
+          "/Cards/2_3.jpg", 
+          "/Cards/2_4.jpg",
+          "/Cards/2_5.jpg",
+          "/Cards/2_6.jpg",
+          "/Cards/2_7.jpg"
+        ],
+        "Adrenaline",
+      navigate,
       )
     },
     {
@@ -675,35 +504,34 @@ export default function Home() {
       title: "Culture Unlocked",
       description: "Traditions, temples, and tales with a twist.",
       image: "/Cards/Culture_Global.jpg",
-      detailContent: (
-        <div className="p-4 flex flex-col h-full text-white">
-          <h3 className="font-titan-one font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Cultural & Historical</h3>
-          <div className="flex flex-row flex-grow">
-            <div className="w-1/2">
-              <ul className="list-disc pl-[12px] md:pl-[24px] space-y-1 font-poppins font-normal text-[12px] sm:text-[16px] md:text-[11.5px] lg:text-[12px] text-[#FFFFFF]">
-                <li>Heritage & Historical Tours</li>
-                <li>Devotional / Pilgrimage</li>
-                <li>Rural / Village Tourism</li>
-                <li>Architecture & Monuments</li>
-                <li>Archaeological Sites</li>
-                <li>Cultural Festivals</li>
-              </ul>
-            </div>
-            <div className="w-1/2">
-              <ImageCarousel 
-                images={[
-                  "/Cards/3_1.jpg", 
-                  "/Cards/3_2.jpg", 
-                  "/Cards/3_3.jpg", 
-                  "/Cards/3_4.jpg",
-                  "/Cards/3_5.jpg",
-                  "/Cards/3_6.jpg"
-                ]} 
-                alt="Culture" 
-              />
-            </div>
-          </div>
-        </div>
+      detailContent: generateDetailContent("Cultural & Historical",
+        [
+          "Heritage & Historical Tours",
+          "Devotional / Pilgrimage",
+          "Rural / Village Tourism",
+          "Architecture & Monuments",
+          "Archaeological Sites",
+          "Cultural Festivals"
+        ],
+        [
+          "Historical Tours",
+          "Rural Tourism",
+          "Archaeological Sites",
+          "Pilgrimage",
+          "Heritage",
+          "Cultural Festivals",
+          "Monuments",
+        ],
+        [
+          "/Cards/3_1.jpg", 
+          "/Cards/3_2.jpg", 
+          "/Cards/3_3.jpg", 
+          "/Cards/3_4.jpg",
+          "/Cards/3_5.jpg",
+          "/Cards/3_6.jpg"
+        ],
+        "Culture",
+      navigate,
       )
     },
     {
@@ -711,168 +539,130 @@ export default function Home() {
       title: "Taste the Culture",
       description: "Dine like a local, live like one too.",
       image: "/Cards/Taste_Global.jpg",
-      detailContent: (
-        <div className="p-4 flex flex-col h-full text-white">
-          <h3 className="font-titan-one font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Taste The Culture</h3>
-          <div className="flex flex-row flex-grow">
-            <div className="w-1/2">
-              <ul className="list-disc pl-[12px] md:pl-[24px] space-y-1 font-poppins font-normal text-[12px] sm:text-[16px] md:text-[11.5px] lg:text-[12px] text-[#FFFFFF]">
-                <li>Culinary Tours / Food Trails</li>
-                <li>Wine Tasting / Vineyard Tours</li>
-                <li>Cooking Classes</li>
-                <li>Shopping Destinations</li>
-                <li>Wellness & Spa Retreats</li>
-              </ul>
-            </div>
-            <div className="w-1/2">
-              <ImageCarousel 
-                images={[
-                  "/Cards/4_1.jpg", 
-                  "/Cards/4_2.jpg", 
-                  "/Cards/4_3.jpg", 
-                  "/Cards/4_4.jpg",
-                  "/Cards/4_5.jpg"
-                ]} 
-                alt="Taste" 
-              />
-            </div>
-          </div>
-        </div>
-      )
+      detailContent: generateDetailContent("Food & Lifestyle",[
+        "Culinary Tours / Food Trails",
+        "Wine Tasting / Vineyard Tours",
+        "Cooking Classes",
+        "Shopping Destinations",
+        "Wellness & Spa Retreats"
+      ],[
+        "Culinary Tours",
+        "Vineyard Tours",
+        "Cooking Classes",
+        "Spa",
+        "Wellness Retreats",
+        "Shopping Destinations"
+      ],[
+        "/Cards/4_1.jpg", 
+        "/Cards/4_2.jpg", 
+        "/Cards/4_3.jpg", 
+        "/Cards/4_4.jpg",
+        "/Cards/4_5.jpg"
+      ],"Taste",
+      navigate,)
     },
     {
       id: "city-global",
       title: "City Beat",
       description: "Catch the rhythm of rooftops and rush.",
       image: "/Cards/City_Global.jpg",
-      detailContent: (
-        <div className="p-4 flex flex-col h-full text-white">
-          <h3 className="font-titan-one font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Urban & Entertainment</h3>
-          <div className="flex flex-row flex-grow">
-            <div className="w-1/2">
-              <ul className="list-disc pl-[12px] md:pl-[24px] space-y-1 font-poppins font-normal text-[12px] sm:text-[16px] md:text-[11.5px] lg:text-[12px] text-[#FFFFFF]">
-                <li>Party & Nightlife</li>
-                <li>City Tours / Urban Escapes</li>
-                <li>Luxury Travel</li>
-                <li>Cruises</li>
-                <li>Theme Parks</li>
-              </ul>
-            </div>
-            <div className="w-1/2">
-              <ImageCarousel 
-                images={[
-                  "/Cards/5_1.jpg", 
-                  "/Cards/5_2.jpg", 
-                  "/Cards/5_3.jpg", 
-                  "/Cards/5_4.jpg",
-                  "/Cards/5_5.jpg"
-                ]} 
-                alt="City" 
-              />
-            </div>
-          </div>
-        </div>
-      )
-    },{
+      detailContent: generateDetailContent("Urban & Entertainment", [
+        "Party & Nightlife",
+        "City Tours / Urban Escapes",
+        "Luxury Travel",
+        "Cruises",
+        "Theme Parks"
+      ],[
+        "Party",
+        "Casino",
+        "Cruises",
+        "Night Life",
+        "Luxury Travel",
+        "Theme Parks"
+      ],[
+        "/Cards/5_1.jpg", 
+        "/Cards/5_2.jpg", 
+        "/Cards/5_3.jpg", 
+        "/Cards/5_4.jpg",
+        "/Cards/5_5.jpg"
+      ],"City",
+      navigate,)
+    },
+    {
       id: "festive-global",
       title: "Festive Trails",
       description: "Celebrate, explore, and discover something worth remembering.",
       image: "/Cards/Festive_Global.jpg",
-      detailContent: (
-        <div className="p-4 flex flex-col h-full text-white">
-          <h3 className="font-titan-one font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Festive Trails</h3>
-          <div className="flex flex-row flex-grow">
-            <div className="w-1/2">
-              <ul className="list-disc pl-[12px] md:pl-[24px] space-y-1 font-poppins font-normal text-[12px] sm:text-[16px] md:text-[11.5px] lg:text-[12px] text-[#FFFFFF]">
-                <li>Honeymoon / Romantic</li>
-                <li>Winter Travel</li>
-                <li>Summer Getaways</li>
-                <li>Spring Blossoms</li>
-                <li>Photography Tours</li>
-                <li>Eco-Tourism</li>
-              </ul>
-            </div>
-            <div className="w-1/2">
-              <ImageCarousel 
-                images={[
-                  "/Cards/6_1.jpg", 
-                  "/Cards/6_2.jpg", 
-                  "/Cards/6_3.jpg", 
-                  "/Cards/6_4.jpg",
-                  "/Cards/6_5.jpg"
-                ]} 
-                alt="Festive" 
-              />
-            </div>
-          </div>
-        </div>
-      )
+      detailContent: generateDetailContent("Seasonal & Special Interest",[
+        "Honeymoon / Romantic",
+        "Winter Travel",
+        "Summer Getaways",
+        "Spring Blossoms",
+        "Photography Tours",
+        "Eco-Tourism"
+      ],[
+        "Honeymoon",
+        "Winter Travel",
+        "Summer Getaways",
+        "Photography Tours",
+        "Spring Blossoms",
+        "Eco-Tourism"
+      ],[
+        "/Cards/6_1.jpg", 
+        "/Cards/6_2.jpg", 
+        "/Cards/6_3.jpg", 
+        "/Cards/6_4.jpg",
+        "/Cards/6_5.jpg"
+      ],"Festive",
+      navigate,)
     },
     {
       id: "squad-global",
       title: "Squad Getaways",
       description: "One destination. Endless group selfies.",
       image: "/Cards/Squad_Global.jpg",
-      detailContent: (
-        <div className="p-4 flex flex-col h-full text-white">
-          <h3 className="font-titan-one font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Squad Getaways</h3>
-          <div className="flex flex-row flex-grow">
-            <div className="w-1/2">
-              <ul className="list-disc pl-[12px] md:pl-[24px] space-y-1 font-poppins font-normal text-[12px] sm:text-[16px] md:text-[11.5px] lg:text-[12px] text-[#FFFFFF]">
-                <li>Family-Friendly Trips</li>
-                <li>Kids' Adventures</li>
-                <li>Group Tours</li>
-                <li>Solo Travel Friendly</li>
-              </ul>
-            </div>
-            <div className="w-1/2">
-              <ImageCarousel 
-                images={[
-                  "/Cards/7_1.jpg", 
-                  "/Cards/7_2.jpg", 
-                  "/Cards/7_3.jpg", 
-                  "/Cards/7_4.jpg",
-                  "/Cards/7_5.jpg",
-                  "/Cards/7_6.jpg"
-                ]} 
-                alt="Squad" 
-              />
-            </div>
-          </div>
-        </div>
-      )
+      detailContent: generateDetailContent("Family & Group Oriented",[
+        "Family-Friendly Trips",
+        "Kids' Adventures",
+        "Group Tours",
+        "Solo Travel Friendly"
+      ],[
+        "Family-Friendly Trips",
+        "Kids' Adventures",
+        "Group Tours",
+        "Solo Travel Friendly"
+      ],[
+        "/Cards/7_1.jpg", 
+        "/Cards/7_2.jpg", 
+        "/Cards/7_3.jpg", 
+        "/Cards/7_4.jpg",
+        "/Cards/7_5.jpg",
+        "/Cards/7_6.jpg"
+      ],"Squad",
+      navigate,)
     },
     {
       id: "awakening-global",
       title: "Awakening the soul",
       description: "Discover your true self through spirituality and reflection.",
       image: "/Cards/Awakening_Global.jpg",
-      detailContent: (
-        <div className="p-4 flex flex-col h-full text-white">
-          <h3 className="font-titan-one font-normal text-[24px] text-[#EC8305E5] mb-2 text-center w-full">Spiritual & Self-Discovery</h3>
-          <div className="flex flex-row flex-grow">
-            <div className="w-1/2">
-              <ul className="list-disc pl-[12px] md:pl-[24px] space-y-1 font-poppins font-normal text-[12px] sm:text-[16px] md:text-[11.5px] lg:text-[12px] text-[#FFFFFF]">
-                <li>Devotional / Pilgrimage</li>
-                <li>Yoga & Meditation Retreats</li>
-                <li>Mindfulness Journeys</li>
-                <li>Astrology / Mystic Travel</li>
-              </ul>
-            </div>
-            <div className="w-1/2">
-              <ImageCarousel 
-                images={[
-                  "/Cards/8_1.jpg", 
-                  "/Cards/8_2.jpg", 
-                  "/Cards/8_3.jpg", 
-                  "/Cards/8_4.jpg"
-                ]} 
-                alt="Awakening" 
-              />
-            </div>
-          </div>
-        </div>
-      )
+      detailContent: generateDetailContent("Spiritual & Self Discovery",[
+        "Devotional / Pilgrimage",
+        "Yoga & Meditation Retreats",
+        "Mindfulness Journeys",
+        "Astrology / Mystic Travel"
+      ],[
+        "Devotional",
+        "Mystic Travel",
+        "Mindfulness Journeys",
+        "Meditation Retreat"
+      ],[
+        "/Cards/8_1.jpg", 
+        "/Cards/8_2.jpg", 
+        "/Cards/8_3.jpg", 
+        "/Cards/8_4.jpg"
+      ],"Awakening",
+      navigate,)
     }
   ];
 
@@ -990,70 +780,6 @@ export default function Home() {
       answer: "The minimum is 10K per person for a 4-day trip from India ."
     }
   ];
-
-  const AdventureCard = ({ cardData }) => {
-    const [currentIndex, setCurrentIndex] = useState(0);
-
-    // Auto-advance both subtitle and background image
-    useEffect(() => {
-      const Length = cardData.activities.length;
-      console.log("Activities:",Length);
-      console.log(new Date());
-      const interval = setInterval(() => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % Length);
-      }, 1000); // Change every 1 second
-    
-      return () => clearInterval(interval);
-    }, [cardData.activities.length]);
-
-    return (
-      <div className="max-w-sm mx-auto bg-white rounded-xl shadow-lg overflow-hidden border-2 border-orange-400">
-        {/* Header Section with Scrolling Background */}
-        <div className="relative h-32 overflow-hidden">
-          {/* Background Image Carousel */}
-          {/* <div className="absolute inset-0">
-            <ImageCarousel 
-              images1={cardData.images}
-              alt={cardData.title}
-              className="w-full h-full object-cover"
-            />
-          </div> */}
-          
-          {/* Dark overlay for better text readability */}
-          <div className="absolute inset-0 bg-black bg-opacity-40"></div>
-          
-          {/* Header Text */}
-          <div className="relative z-10 p-4 text-white">
-            <h2 className="text-xl font-bold mb-1">{cardData.clickTitle}</h2>
-            <p className="text-sm font-medium transition-all duration-300">
-              {cardData.activities[currentIndex]}
-            </p>
-          </div>
-        </div>
-
-        {/* Content Section */}
-        <div className="p-4 bg-gray-100">
-          {/* Activities List */}
-          <div className="grid grid-cols-2 gap-x-4 gap-y-1 mb-4">
-            {cardData.activities.map((activity, index) => (
-              <div key={index} className="flex items-center">
-                <span className="w-1 h-1 bg-black rounded-full mr-2 flex-shrink-0"></span>
-                <span className="text-xs text-gray-800 font-medium">{activity}</span>
-              </div>
-            ))}
-          </div>
-
-          {/* Button */}
-          <div className="text-center">
-            <button className="bg-red-700 hover:bg-red-800 text-orange-100 px-6 py-2 rounded-lg text-xs font-bold border border-orange-200 transition-colors duration-200 flex items-center justify-center mx-auto gap-1">
-              🔗 Chase the Adventure
-              {/* <ArrowRight size={12} /> */}
-            </button>
-          </div>
-        </div>
-      </div>
-    );
-  };
 
   return (
     <section className="w-full font-goudy">
@@ -1303,7 +1029,7 @@ export default function Home() {
           >
             {/* Explore hidden gems of India Section */}
             <div className="container mx-auto relative z-10">
-                <h2 className="font-archivo-black font-normal text-[28px] md:text-[40px] text-[#003566E5]">Hidden Gems of India</h2>
+                <h2 className="font-titan-one font-normal text-[28px] md:text-[32px] text-[#00474CBF]"><span className="text-[#00474C66] text-[56px]">01</span>Hidden Gems of India</h2>
                 
                 <div className="relative">
                     <button
@@ -1311,10 +1037,10 @@ export default function Home() {
                       onClick={() => canMoveLeft && moveCards('india', -1)}
                       // className={`w-[77px] h-[42px] rounded-lg flex items-center justify-center shadow-md transition 
                       //   ${canMoveLeft ? 'bg-[#003566]' : 'bg-[#003566BF]'} text-[#FCD2B1] text-[32px] border border-0.94px border-[#FCD2B1]`}
-                      className="absolute hidden sm:flex -left-4 top-1/2 transform -translate-y-1/2 z-10"
+                      className="absolute hidden sm:flex -left-8 top-24 transform -translate-y-1/2 z-10"
                       // title={!canMoveLeft ? "No more cards" : ""}
                     >
-                      <img src="/arrow-left.png" alt="Left" className="w-15 h-15" />
+                      <img src="/arrow-left.png" alt="Left" className="w-[60px] h-[60px]" />
                     </button>
 
                     <button
@@ -1322,36 +1048,33 @@ export default function Home() {
                       onClick={() => canMoveRight && moveCards('india', 1)}
                       // className={`w-[77px] h-[42px] rounded-lg flex items-center justify-center shadow-md transition 
                       //   ${canMoveRight ? 'bg-[#003566]' : 'bg-[#003566BF]'} text-[#FCD2B1] text-[32px] border border-0.94px border-[#FCD2B1]`}
-                      className="absolute hidden sm:flex -right-8 top-1/2 transform -translate-y-1/2 z-10"
+                      className="absolute hidden sm:flex -right-8 top-24 transform -translate-y-1/2 z-10"
                       // title={!canMoveRight ? "No more cards" : ""}
                     >
-                      <img src="/arrow-left.png" alt="Right" className="w-15 h-15 rotate-180" />
+                      <img src="/arrow-left.png" alt="Right" className="w-[60px] h-[60px] rotate-180" />
                     </button>
 
-                    <div className="flex gap-4 mb-4 -mr-4 mx-auto relative overflow-x-auto sm:overflow-x-visible scroll-smooth snap-x snap-mandatory sm:flex-wrap sm:overflow-hidden hide-horizontal-scrollbar">
+                    <div className="flex gap-4 mb-4 mx-auto relative overflow-x-auto sm:overflow-x-visible scroll-smooth snap-x snap-mandatory sm:flex-wrap sm:overflow-hidden hide-horizontal-scrollbar">
                         <AnimatePresence custom={slideDirection} mode="popLayout">
                             {visibleIndiaGems.map((gem) => (
                                 <motion.div 
-                                    key={gem.id}
-                                    className={`shrink-0 snap-start sm:snap-none w-[85%] md:w-[calc(50%-1rem)] lg:w-[calc(33.33%-1rem)] mx-auto rounded-2xl overflow-hidden shadow-lg cursor-pointer transition-all duration-300 ${activeCard === gem.id ? 'scale-105' : 'hover:-translate-y-2'}`}
-                                    onClick={() => handleCardClick(gem.id)}
-                                    variants={cardVariants}
-                                    initial="hidden"
-                                    animate="visible"
-                                    exit="exit"
-                                    custom={slideDirection}
+                                  key={gem.id}
+                                  className="shrink-0 snap-start sm:snap-none w-[85%] md:w-[calc(50%-1rem)] lg:w-[calc(33.33%-1rem)] mx-auto rounded-2xl overflow-hidden shadow-lg cursor-pointer"
+                                  onClick={() => handleCardClick(gem.id)}
+                                  variants={cardVariants}
+                                  initial="hidden"
+                                  animate="visible"
+                                  exit="exit"
+                                  custom={slideDirection}
                                 >
                                     {activeCard === gem.id ? (
-                                        <div className="h-[300px] lg:h-[250px] bg-[#003566] overflow-y-auto">
-                                          <div className="h-full px-2">
-                                            {gem.detailContent}
-                                            {/* <AdventureCard key={gem.id} cardData={gem} /> */}
-                                          </div>
+                                        <div className="h-[300px] lg:h-[280px] bg-[#D9D9D9] overflow-y-auto">
+                                          {gem.detailContent}
                                         </div>                                   
                                     ) : (
                                         <div className="relative group">
                                             <div 
-                                                className="h-[300px] lg:h-[250px] bg-cover bg-center transition-all duration-300"
+                                                className="h-[300px] lg:h-[280px] bg-cover bg-center transition-all duration-300"
                                                 style={{ backgroundImage: `url('${gem.image}')` }}
                                             >
                                                 <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-20 transition-all duration-300">
@@ -1389,87 +1112,86 @@ export default function Home() {
             </div>
 
             {/* Explore hidden gems Across the Globe Section */}
-            <div className="container mx-auto relative z-10 mt-20 mb-12">
-                <h2 className="font-archivo-black font-normal text-[28px] md:text-[40px] text-[#003566E5]">Wonders Uncovered: Travel Beyond the Ordinary</h2>
-                <button
-                  disabled={!canMoveLeftGlobal}
-                  onClick={() => canMoveLeftGlobal && moveCards('global', -1)}
-                  // className={`w-[77px] h-[42px] rounded-lg flex items-center justify-center shadow-md transition 
-                  //   ${canMoveLeft ? 'bg-[#003566]' : 'bg-[#003566BF]'} text-[#FCD2B1] text-[32px] border border-0.94px border-[#FCD2B1]`}
-                  className="absolute hidden sm:flex -left-4 top-1/2 transform -translate-y-1/2 z-10"
-                  // title={!canMoveLeft ? "No more cards" : ""}
-                >
-                  <img src="/arrow-left.png" alt="Left" className="w-15 h-15" />
-                </button>
+            <div className="container mx-auto relative z-10 mt-12 mb-12">
+                <h2 className="font-titan-one font-normal text-[28px] md:text-[32px] text-[#00474CBF]"><span className="text-[#00474C66] text-[56px]">02</span>Wonders Uncovered: Travel Beyond the Ordinary</h2>
 
-                <button
-                  disabled={!canMoveRightGlobal}
-                  onClick={() => canMoveRightGlobal && moveCards('global', 1)}
-                  // className={`w-[77px] h-[42px] rounded-lg flex items-center justify-center shadow-md transition 
-                  //   ${canMoveRight ? 'bg-[#003566]' : 'bg-[#003566BF]'} text-[#FCD2B1] text-[32px] border border-0.94px border-[#FCD2B1]`}
-                  className="absolute hidden sm:flex -right-8 top-1/2 transform -translate-y-1/2 z-10"
-                  // title={!canMoveRight ? "No more cards" : ""}
-                >
-                  <img src="/arrow-left.png" alt="Right" className="w-15 h-15 rotate-180" />
-                </button>                
                 <div className="relative">
-                    <div className="flex gap-4 mb-4 -mr-4 mx-auto relative overflow-x-auto sm:overflow-x-visible scroll-smooth snap-x snap-mandatory sm:flex-wrap sm:overflow-hidden hide-horizontal-scrollbar">
-                        <AnimatePresence custom={slideDirection} mode="popLayout">
-                            {visibleGlobalGems.map((gem) => (
-                                <motion.div 
-                                    key={gem.id}
-                                    // className={`w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.33%-1rem)] mx-auto rounded-2xl overflow-hidden shadow-lg cursor-pointer transition-all duration-300 ${activeCard === gem.id ? 'scale-105' : 'hover:-translate-y-2'}`}
-                                    className={`shrink-0 snap-start sm:snap-none w-[85%] md:w-[calc(50%-1rem)] lg:w-[calc(33.33%-1rem)] mx-auto rounded-2xl overflow-hidden shadow-lg cursor-pointer transition-all duration-300 ${activeCard === gem.id ? 'scale-105' : 'hover:-translate-y-2'}`}
-                                    onClick={() => handleCardClick(gem.id)}
-                                    variants={cardVariants}
-                                    initial="hidden"
-                                    animate="visible"
-                                    exit="exit"
-                                    custom={slideDirection}
-                                >
-                                    {activeCard === gem.id ? (
-                                        <div className="slider h-[260px] bg-[#003566] overflow-y-auto">
-                                          <div className="h-full px-2">
-                                            {gem.detailContent}
+                  <button
+                    disabled={!canMoveLeftGlobal}
+                    onClick={() => canMoveLeftGlobal && moveCards('global', -1)}
+                    // className={`w-[77px] h-[42px] rounded-lg flex items-center justify-center shadow-md transition 
+                    //   ${canMoveLeft ? 'bg-[#003566]' : 'bg-[#003566BF]'} text-[#FCD2B1] text-[32px] border border-0.94px border-[#FCD2B1]`}
+                    className="absolute hidden sm:flex -left-4 top-24 transform -translate-y-1/2 z-10"
+                    // title={!canMoveLeft ? "No more cards" : ""}
+                  >
+                    <img src="/arrow-left.png" alt="Left" className="w-[60px] h-[60px]" />
+                  </button>
+
+                  <button
+                    disabled={!canMoveRightGlobal}
+                    onClick={() => canMoveRightGlobal && moveCards('global', 1)}
+                    // className={`w-[77px] h-[42px] rounded-lg flex items-center justify-center shadow-md transition 
+                    //   ${canMoveRight ? 'bg-[#003566]' : 'bg-[#003566BF]'} text-[#FCD2B1] text-[32px] border border-0.94px border-[#FCD2B1]`}
+                    className="absolute hidden sm:flex -right-8 top-24 transform -translate-y-1/2 z-10"
+                    // title={!canMoveRight ? "No more cards" : ""}
+                  >
+                    <img src="/arrow-left.png" alt="Right" className="w-[60px] h-[60px] rotate-180" />
+                  </button> 
+                              
+                  <div className="flex gap-4 mb-4 mx-auto relative overflow-x-auto sm:overflow-x-visible scroll-smooth snap-x snap-mandatory sm:flex-wrap sm:overflow-hidden hide-horizontal-scrollbar">
+                      <AnimatePresence custom={slideDirection} mode="popLayout">
+                          {visibleGlobalGems.map((gem) => (
+                              <motion.div 
+                                  key={gem.id}
+                                  className={"shrink-0 snap-start sm:snap-none w-[85%] md:w-[calc(50%-1rem)] lg:w-[calc(33.33%-1rem)] mx-auto rounded-2xl overflow-hidden shadow-lg cursor-pointer"}
+                                  onClick={() => handleCardClick(gem.id)}
+                                  variants={cardVariants}
+                                  initial="hidden"
+                                  animate="visible"
+                                  exit="exit"
+                                  custom={slideDirection}
+                              >
+                                  {activeCard === gem.id ? (
+                                      <div className="h-[300px] lg:h-[280px] bg-[#D9D9D9] overflow-y-auto">
+                                        {gem.detailContent}
+                                      </div>                                      
+                                  ) : (
+                                      <div className="relative group">
+                                          <div 
+                                              className="h-[300px] lg:h-[280px] bg-cover bg-center transition-all duration-300"
+                                              style={{ backgroundImage: `url('${gem.image}')` }}
+                                          >
+                                              <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-20 transition-all duration-300">
+                                                  <div className="p-6 absolute bottom-0 left-0 text-white transition-all duration-300 group-hover:opacity-0">
+                                                      <h3 className="text-[24px] font-bold">{gem.title}</h3>
+                                                      <p className="text-gray-200 text-[14px]">{gem.description}</p>
+                                                  </div>
+                                                  <div
+                                                    className="absolute inset-0 flex flex-row items-center justify-center transition-opacity duration-300 opacity-0 group-hover:opacity-100"
+                                                    style={{
+                                                      background: 'linear-gradient(180deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.45) 41.63%, rgba(0, 0, 0, 0.9) 83.26%)',
+                                                      boxShadow: `
+                                                        0px 4.71px 11.31px 0px #00000029,
+                                                        0px 19.78px 19.78px 0px #00000024,
+                                                        0px 44.28px 26.38px 0px #00000014,
+                                                        0px 79.14px 32.03px 0px #00000005,
+                                                        0px 124.36px 34.86px 0px #00000000
+                                                      `
+                                                    }}
+                                                  >
+                                                    <span className="flex items-center gap-2 font-poppins font-normal text-[#FFFFFF] text-[12px] sm:text-[14px] md:text-[16px]">
+                                                      <img src="/ads_click.png" alt="Click icon" className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
+                                                      Click to Know More
+                                                    </span>
+                                                  </div>
+                                              </div>
                                           </div>
-                                        </div>                                      
-                                    ) : (
-                                        <div className="relative group">
-                                            <div 
-                                                className="h-[260px] bg-cover bg-center transition-all duration-300"
-                                                style={{ backgroundImage: `url('${gem.image}')` }}
-                                            >
-                                                <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-20 transition-all duration-300">
-                                                    <div className="p-6 absolute bottom-0 left-0 text-white transition-all duration-300 group-hover:opacity-0">
-                                                        <h3 className="text-[24px] font-bold">{gem.title}</h3>
-                                                        <p className="text-gray-200 text-[14px]">{gem.description}</p>
-                                                    </div>
-                                                    <div
-                                                      className="absolute inset-0 flex flex-row items-center justify-center transition-opacity duration-300 opacity-0 group-hover:opacity-100"
-                                                      style={{
-                                                        background: 'linear-gradient(180deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.45) 41.63%, rgba(0, 0, 0, 0.9) 83.26%)',
-                                                        boxShadow: `
-                                                          0px 4.71px 11.31px 0px #00000029,
-                                                          0px 19.78px 19.78px 0px #00000024,
-                                                          0px 44.28px 26.38px 0px #00000014,
-                                                          0px 79.14px 32.03px 0px #00000005,
-                                                          0px 124.36px 34.86px 0px #00000000
-                                                        `
-                                                      }}
-                                                    >
-                                                      <span className="flex items-center gap-2 font-poppins font-normal text-[#FFFFFF] text-[12px] sm:text-[14px] md:text-[16px]">
-                                                        <img src="/ads_click.png" alt="Click icon" className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
-                                                        Click to Know More
-                                                      </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    )}
-                                </motion.div>
-                            ))}
-                        </AnimatePresence>
-                    </div>
+                                      </div>
+                                  )}
+                              </motion.div>
+                          ))}
+                      </AnimatePresence>
+                  </div>
                 </div>
             </div>
           </div>

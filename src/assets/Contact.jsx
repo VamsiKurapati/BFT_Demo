@@ -64,6 +64,53 @@ export default function Contact() {
     const handleChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value });
     };
+
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+    const validateForm = () => {
+      const { name, email, phone, subject, message } = form;
+      return !name || !email || !phone || !subject || !message;
+    };
+
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      setIsSubmitting(true);
+
+      try {
+        // Simulate API call
+        const response = await fetch("https://bft-backend.vercel.app/api/data/contactUs", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: form.name,
+            email: form.email,
+            phone: form.phone,
+            subject: form.subject,
+            message: form.message,
+          }),
+        });
+
+        if(response.ok){
+          alert('Form submitted successfully!');
+          setForm({
+            name: '',
+            email: '',
+            phone: '',
+            subject: '',
+            message: '',
+            category: 'Booking a trip',
+          });
+          return true;
+        }else{
+          alert("Please try again.");
+          return false;
+        }
+      } catch (error) {
+        console.error('Submission error:', error);
+      } finally {
+        setIsSubmitting(false);
+      }
+    };
     
     return(
         <section className="w-full font-goudy">
@@ -369,7 +416,7 @@ export default function Contact() {
                         <div className="grid md:grid-cols-2 gap-14 items-start">
                             {/* Left: Form */}
                             <div>
-                                <form className="space-y-4">
+                                <form onSubmit={handleSubmit} className="space-y-4">
                                     <div>
                                     <label className="block text-[17.53px] mb-1" htmlFor="name">Name *</label>
                                     <input
@@ -450,10 +497,11 @@ export default function Contact() {
                                     </div>
 
                                     <button
-                                    type="submit"
-                                    className="mt-4 bg-[#A11616E5] font-poppins font-bold text-[#FCD2B1] text-[18px] md:text-[24px] px-12 md:px-20 py-1 rounded-xl shadow transition"
+                                      type="submit"
+                                      className="mt-4 bg-[#A11616E5] font-poppins font-bold text-[#FCD2B1] text-[18px] md:text-[24px] px-12 md:px-20 py-1 rounded-xl shadow transition"
+                                      disabled={validateForm() || isSubmitting}
                                     >
-                                    Submit →
+                                      {isSubmitting ? "Submitting..." : "Submit →"}
                                     </button>
                                 </form>
                             </div>
