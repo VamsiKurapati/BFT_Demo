@@ -87,6 +87,7 @@ export default function Contact() {
             phone: form.phone,
             subject: form.subject,
             message: form.message,
+            category: form.category,
           }),
         });
 
