@@ -18,13 +18,13 @@ const ImageCarousel = ({ images, alt, clickTitle, activities }) => {
   }, [images.length]);
 
   return (
-    <div className="relative w-full h-full overflow-hidden rounded-2xl">
+    <div className="relative w-full h-full overflow-hidden">
       <AnimatePresence mode="wait">
         <motion.img
           key={currentIndex}
           src={images[currentIndex]}
           alt={`${alt} ${currentIndex + 1}`}
-          className="w-full h-[120px] object-cover rounded-xl"
+          className="w-full h-[120px] object-cover"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -44,7 +44,7 @@ const ImageCarousel = ({ images, alt, clickTitle, activities }) => {
 const generateDetailContent = (title, activities, activities_1, images, alt, navigate) => (
   <div className="w-full h-full flex flex-col">
     {/* Image carousel with overlay title - NO BORDER */}
-    <div className="relative h-[120px] bg-[#A11616E5] rounded-2xl">
+    <div className="relative h-[120px] bg-[#A11616E5]">
       <ImageCarousel
         images={images}
         alt={alt}
@@ -86,6 +86,9 @@ export default function Home() {
   const [slideDirection, setSlideDirection] = useState("right");
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   const location = useLocation();
 
   const navLinks = [
@@ -173,7 +176,6 @@ export default function Home() {
     }, 2000); // Delay of 3000ms (3s)
     return () => clearInterval(timer);
   }, []);
-
 
   const [activeFaq, setActiveFaq] = useState(null);
   
@@ -837,19 +839,22 @@ export default function Home() {
               </nav>
 
               {/* Login Button */}
-              <div className="hidden lg:block ml-8 relative group">
-                <button
-                  className="bg-[#A11716E5] text-[#FCD2B1] px-4 py-2 font-poppins font-bold rounded-full transition border border-1 group-hover:bg-[#003566] flex items-center"
-                  style={{ borderColor: '#FCD2B1' }}
-                >
-                  Login / Register
-                  <img 
-                    src="/Person.png" 
-                    alt="Person" 
-                    className="h-6 w-6 ml-2 absolute opacity-0 group-hover:opacity-100 group-hover:static transition-all duration-300" 
-                  />
-                </button>
-              </div>
+              { !isLoggedIn && (
+                <div className="hidden lg:block ml-8 relative group">
+                  <button
+                    className="bg-[#A11716E5] text-[#FCD2B1] px-4 py-2 font-poppins font-bold rounded-full transition border border-1 group-hover:bg-[#003566] flex items-center"
+                    style={{ borderColor: '#FCD2B1' }}
+                    onClick={() => navigate("/login")}
+                  >
+                    Login / Register
+                    <img 
+                      src="/Person.png" 
+                      alt="Person" 
+                      className="h-6 w-6 ml-2 absolute opacity-0 group-hover:opacity-100 group-hover:static transition-all duration-300" 
+                    />
+                  </button>
+                </div>
+              )}
 
               {/* Hamburger Button */}
               <button
@@ -885,6 +890,7 @@ export default function Home() {
                 ))}
                 <button
                   className="mt-4 bg-[#A11716E5] text-[#FCD2B1] px-6 py-2 font-poppins font-bold rounded-full transition border transition border  border-1"
+                  onClick={navigate("/login")}
                   style={{ borderColor: '#FCD2B1' }}
                 >
                   Login / Register
@@ -1332,6 +1338,15 @@ export default function Home() {
                   </div>
                 ))}
               </div>
+            </div>
+
+            <div className="group mt-16 z-10">
+              <button
+                className="hover:rounded-lg hover:bg-[#003566] hover:border hover:border-2 hover:border-[#FFBE55] font-poppins font-bold text-[24px] px-2 py-2"
+              >
+                <span className="text-black/80 group-hover:text-white/80">Your Mystery Trip Memories?</span>
+                <span className="text-[#003566] group-hover:text-[#FFBE55]"> Drop Them Here!</span>
+              </button>
             </div>
             
             {/* FAQ Section */}
