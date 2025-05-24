@@ -66,42 +66,9 @@ export default function HowItWorks() {
         }
     ];
 
-    const steps = [
-        {
-            title: 'Step 1:',
-            subtitle: 'Tell Us About You',
-            description:
-                'Fill out a short travel quiz—dates, budget, vibe (relaxing, adventurous, romantic?), and what you don’t want.',
-            icon: '/robot.png',
-        },
-        {
-            title: 'Step 2:',
-            subtitle: 'We Plan Everything',
-            description:
-                'We book your flights, accommodation, and hand-pick experiences tailored to your personality and travel style.',
-            icon: '/chart.png',
-        },
-        {
-            title: 'Step 3:',
-            subtitle: 'Clues & Countdown',
-            description:
-                'Receive playful hints about your destination—but nothing that gives it away! Just enough to build anticipation.',
-            icon: '/clock.png',
-        },
-        {
-            title: 'Step 4:',
-            subtitle: 'Pack & Show Up',
-            description:
-                'Get a weather forecast and a packing list a few days before. Your destination is revealed only at the airport!',
-            icon: '/human.png',
-        },
-        {
-            title: 'Step 5:',
-            subtitle: 'Fly & Enjoy the Mystery',
-            description:
-                'Hop on your flight and enjoy your surprise vacation. We handle the logistics—you make the memories.',
-            icon: '/fly.png',
-        },
+    const images = [
+        "/Founder.jpg",
+        "CoFounder.jpg",
     ];
     
     return(
@@ -381,7 +348,20 @@ export default function HowItWorks() {
                     </div>
 
                     <div className="flex flex-col items-center">
-                        <img src="/about_us.jpg" alt="This is not my secret" className="rounded-xl shadow-md w-[468px] h-[400px] mb-4" />
+                        <div className="w-[65%] md:w-[70%] lg:w-[80%] overflow-x-auto scroll-smooth snap-x snap-mandatory flex gap-4 pb-4 custom-scroll">
+                            {images.map((img, index) => (
+                                <div
+                                    key={index}
+                                    className="snap-start shrink-0 w-[300px] lg:w-[372px] h-[400px] lg:h-[478px] rounded-xl overflow-hidden shadow-md"
+                                >
+                                <img
+                                    src={img}
+                                    alt={Image}
+                                    className="w-full h-full object-cover"
+                                />
+                                </div>
+                            ))}
+                        </div>
                         <p className="text-center text-[#000000] text-[16px] sm:text[20px] md:text-[26px] font-poppins font-bold">
                             <span className="text-[#003566E5]">Adventure doesn’t start at the destination</span>—it starts the moment you decide to take the leap.
                             <span className="text-[#A11616E5]">Let’s make travel magical again.</span>

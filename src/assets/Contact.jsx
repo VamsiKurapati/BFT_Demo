@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocation } from "react-router-dom";
-import { FaEnvelope, FaPhone, FaClock, FaFacebook, FaInstagram, FaXTwitter,} from 'react-icons/fa6';
+import { FaEnvelope, FaPhone, FaClock, FaFacebook, FaInstagram, FaXTwitter, FaArrowRightLong } from 'react-icons/fa6';
 import Footer from "./Footer";
+import { useEffect } from "react";
 
 export default function Contact() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -51,6 +52,13 @@ export default function Contact() {
     ];
     
     const [activeIndex, setActiveIndex] = useState(0);
+
+    useEffect(() => {
+      const interval = setInterval(() => {
+        setActiveIndex((prevIndex) => (prevIndex + 1) % images.length);
+      }, 2000);
+      return () => clearInterval(interval);
+    }, [images.length]);
 
     const [form, setForm] = useState({
         name: '',
@@ -220,7 +228,7 @@ export default function Contact() {
                 </section>
 
                 <section className="px-6 py-16 bg-white">
-                    <div className="px-16 grid grid-cols-1 md:grid-cols-2 gap-24">
+                    <div className="px-6 md:px-16 grid grid-cols-1 md:grid-cols-2 gap-24">
                         {/* 1: Left Content */}
                         <div>
                             <h2 className="text-[32px] md:text-[40px] text-[#003566E5] font-archivo-black font-normal mb-4">
@@ -244,7 +252,7 @@ export default function Contact() {
                                     className={`rounded-xl object-cover cursor-pointer transition-all text-[#D9D9D9] duration-300
                                     ${index === activeIndex
                                         ? 'w-[250px] h-[140px]'
-                                        : 'w-[100px] h-[140px]'}`}
+                                        : 'w-[80px] h-[140px]'}`}
                                 />
                                 ))}
                             </div>
@@ -305,7 +313,7 @@ export default function Contact() {
                             <iframe
                                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3811.548841843516!2d83.302891!3d16.515099!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a39432eb5a2afc5%3A0x8eb3c71ae08b18cc!2sBenz%20Circle%2C%20Vijayawada!5e0!3m2!1sen!2sin!4v1700000000000"
                                 width="100%"
-                                height="260"
+                                height="100%"
                                 style={{ border: 0 }}
                                 allowFullScreen=""
                                 loading="lazy"
@@ -316,9 +324,14 @@ export default function Contact() {
                                 href="https://www.google.com/maps?q=benz+circle+vijayawada"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-blue-600 text-white px-6 py-2 rounded-full text-sm shadow-md hover:bg-blue-700 transition"
+                                className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-[#0090FF] text-white px-6 py-1 rounded-xl font-poppins font-regular text-[12px] sm:text-[14px] md:text-[16px] lg:text-[20px] shadow-md hover:bg-[#000000] transition flex items-center gap-2"
                             >
-                                Get Directions ✈️
+                                Get Directions
+                                <img
+                                  src="/directions.png"
+                                  alt="Directions"
+                                  className="w-[20px] h-[20px]"
+                                />
                             </a>
                         </div>
                     </div>
@@ -499,10 +512,13 @@ export default function Contact() {
 
                                     <button
                                       type="submit"
-                                      className="mt-4 bg-[#A11616E5] font-poppins font-bold text-[#FCD2B1] text-[18px] md:text-[24px] px-12 md:px-20 py-1 rounded-xl shadow transition"
+                                      className="group mt-4 bg-[#A11616E5] hover:bg-[#003566] hover:border hover:border-2 hover:border-[#FCD2B1] font-poppins font-bold text-[#FCD2B1] text-[18px] md:text-[24px] px-12 md:px-20 py-1 rounded-xl shadow transition flex items-center"
                                       disabled={validateForm() || isSubmitting}
                                     >
-                                      {isSubmitting ? "Submitting..." : "Submit →"}
+                                      Submit
+                                      <span className="hidden group-hover:inline-block transition-transform duration-300 translate-x-1">
+                                        <FaArrowRightLong />
+                                      </span>
                                     </button>
                                 </form>
                             </div>

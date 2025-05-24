@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocation, useNavigate } from "react-router-dom";
 import Footer from "./Footer";
+import { FaArrowRightLong } from "react-icons/fa6";
 
 // ImageCarousel component for showing one image at a time with fade transition
 const ImageCarousel = ({ images, alt, clickTitle, activities }) => {
@@ -77,59 +78,6 @@ const generateDetailContent = (title, activities, activities_1, images, alt, nav
   </div>
 );
 
-const images = [
-  '/why_us_1.jpg',
-  '/why_us_2.jpg',
-  '/why_us_3.jpg',
-  '/why_us_4.jpg',
-  '/why_us_5.jpg',
-];
-
-const feedbacks = [
-  {
-    id: 1,
-    name: "John Doe",
-    role: "College Student",
-    text: "Blind Fold Trips was the perfect mix of thrill and affordability! As a college student, I loved the surprise element—it took me to a place I’d never have picked, but it turned out amazing! Well-planned, budget-friendly, and full of adventure. A must-try for spontaneous travelers!",
-    image: "/1.jpg",
-  },
-  {
-    id: 2,
-    name: "John Doe",
-    role: "College Student",
-    text: "Blind Fold Trips was the perfect mix of thrill and affordability! As a college student, I loved the surprise element—it took me to a place I’d never have picked, but it turned out amazing! Well-planned, budget-friendly, and full of adventure. A must-try for spontaneous travelers!",
-    image: "/2.jpg",
-  },
-  {
-    id: 3,
-    name: "John Doe",
-    role: "College Student",
-    text: "Blind Fold Trips was the perfect mix of thrill and affordability! As a college student, I loved the surprise element—it took me to a place I’d never have picked, but it turned out amazing! Well-planned, budget-friendly, and full of adventure. A must-try for spontaneous travelers!",
-    image: "/3.jpg",
-  },
-  {
-    id: 4,
-    name: "John Doe",
-    role: "College Student",
-    text: "Blind Fold Trips was the perfect mix of thrill and affordability! As a college student, I loved the surprise element—it took me to a place I’d never have picked, but it turned out amazing! Well-planned, budget-friendly, and full of adventure. A must-try for spontaneous travelers!",
-    image: "/4.jpg",
-  },
-  {
-    id: 5,
-    name: "John Doe",
-    role: "College Student",
-    text: "Blind Fold Trips was the perfect mix of thrill and affordability! As a college student, I loved the surprise element—it took me to a place I’d never have picked, but it turned out amazing! Well-planned, budget-friendly, and full of adventure. A must-try for spontaneous travelers!",
-    image: "/5.jpg",
-  },
-  {
-    id: 6,
-    name: "John Doe",
-    role: "College Student",
-    text: "Blind Fold Trips was the perfect mix of thrill and affordability! As a college student, I loved the surprise element—it took me to a place I’d never have picked, but it turned out amazing! Well-planned, budget-friendly, and full of adventure. A must-try for spontaneous travelers!",
-    image: "/6.jpg",
-  },
-];
-
 export default function Home() {
   const navigate = useNavigate();
   const [activeCard, setActiveCard] = useState(null);
@@ -147,6 +95,67 @@ export default function Home() {
     { label: "Contact Us", path: "/contact" },
   ];
 
+  const images = [
+    '/why_us_1.jpg',
+    '/why_us_2.jpg',
+    '/why_us_3.jpg',
+    '/why_us_4.jpg',
+    '/why_us_5.jpg',
+  ];
+
+  const advImages = [
+    '/airplane_ticket.png',
+    '/kitesurfing.png',
+    '/carry_on_bag.png',
+    '/landscape_2.png',
+    '/map_search.png',
+  ];
+
+  const feedbacks = [
+    {
+      id: 1,
+      name: "John Doe",
+      role: "College Student",
+      text: "Blind Fold Trips was the perfect mix of thrill and affordability! As a college student, I loved the surprise element—it took me to a place I’d never have picked, but it turned out amazing! Well-planned, budget-friendly, and full of adventure. A must-try for spontaneous travelers!",
+      image: "/1.jpg",
+    },
+    {
+      id: 2,
+      name: "John Doe",
+      role: "College Student",
+      text: "Blind Fold Trips was the perfect mix of thrill and affordability! As a college student, I loved the surprise element—it took me to a place I’d never have picked, but it turned out amazing! Well-planned, budget-friendly, and full of adventure. A must-try for spontaneous travelers!",
+      image: "/2.jpg",
+    },
+    {
+      id: 3,
+      name: "John Doe",
+      role: "College Student",
+      text: "Blind Fold Trips was the perfect mix of thrill and affordability! As a college student, I loved the surprise element—it took me to a place I’d never have picked, but it turned out amazing! Well-planned, budget-friendly, and full of adventure. A must-try for spontaneous travelers!",
+      image: "/3.jpg",
+    },
+    {
+      id: 4,
+      name: "John Doe",
+      role: "College Student",
+      text: "Blind Fold Trips was the perfect mix of thrill and affordability! As a college student, I loved the surprise element—it took me to a place I’d never have picked, but it turned out amazing! Well-planned, budget-friendly, and full of adventure. A must-try for spontaneous travelers!",
+      image: "/4.jpg",
+    },
+    {
+      id: 5,
+      name: "John Doe",
+      role: "College Student",
+      text: "Blind Fold Trips was the perfect mix of thrill and affordability! As a college student, I loved the surprise element—it took me to a place I’d never have picked, but it turned out amazing! Well-planned, budget-friendly, and full of adventure. A must-try for spontaneous travelers!",
+      image: "/5.jpg",
+    },
+    {
+      id: 6,
+      name: "John Doe",
+      role: "College Student",
+      text: "Blind Fold Trips was the perfect mix of thrill and affordability! As a college student, I loved the surprise element—it took me to a place I’d never have picked, but it turned out amazing! Well-planned, budget-friendly, and full of adventure. A must-try for spontaneous travelers!",
+      image: "/6.jpg",
+    },
+  ];
+
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
@@ -156,6 +165,16 @@ export default function Home() {
     return () => clearInterval(timer);
   }, []);
 
+  const [currentAdv, setCurrentAdv] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentAdv((prev) => (prev + 1) % advImages.length);
+    }, 2000); // Delay of 3000ms (3s)
+    return () => clearInterval(timer);
+  }, []);
+
+
   const [activeFaq, setActiveFaq] = useState(null);
   
   const steps = [
@@ -164,21 +183,21 @@ export default function Home() {
       title: "Whisper your answers",
       subtitle: "and let the adventure unfold.",
       description:
-        <span className="font-poppins font-light text-[15px] text-[#000000A6]">Plan less, explore more! <span className="font-bold text-[#000000]">Share your travel details in 10 minutes—dates, budget, and preferences—then let the magic happen.</span> A surprise trip proposal will land in your inbox soon... no hints, just pure adventure!</span>,
+        <span className="font-poppins font-light text-[15px] text-[#000000A6] group-hover:text-[#FFFFFFA6]">Plan less, explore more! <span className="font-bold text-[#000000] group-hover:text-[#FFFFFF]">Share your travel details in 10 minutes—dates, budget, and preferences—then let the magic happen.</span> A surprise trip proposal will land in your inbox soon... no hints, just pure adventure!</span>,
     },
     {
       number: "02",
       title: "Time For Thrill",
       subtitle: "to begin!",
       description:
-        <span className="font-poppins font-light text-[15px] text-[#000000A6]">No planning, no stress—<span className="font-bold text-[#000000]">just pack up and let the Blind Fold trips do the rest!</span></span>,
+        <span className="font-poppins font-light text-[15px] text-[#000000A6] group-hover:text-[#FFFFFFA6]">No planning, no stress—<span className="font-bold text-[#000000] group-hover:text-[#FFFFFF]">just pack up and let the Blind Fold trips do the rest!</span></span>,
     },
     {
       number: "03",
       title: "Airport first",
       subtitle:"destination next—let the mystery unfold!",
       description:
-        <span className="font-poppins font-light text-[15px] text-[#000000A6]"><span className="font-bold text-[#000000]">Arrive at the airport, no need to guess. Open your postcard, feel the suspense!</span> Board your flight, let wonder ignite. Adventure awaits—your journey takes flight!</span>,
+        <span className="font-poppins font-light text-[15px] text-[#000000A6] group-hover:text-[#FFFFFFA6]"><span className="font-bold text-[#000000] group-hover:text-[#FFFFFF]">Arrive at the airport, no need to guess. Open your postcard, feel the suspense!</span> Board your flight, let wonder ignite. Adventure awaits—your journey takes flight!</span>,
     },
   ];
 
@@ -885,11 +904,13 @@ export default function Home() {
                 surprise-filled adventure on your finger tips.
               </p>
               <button
-                className="mt-8 bg-[#A11716E5] font-poppins font-bold text-[#FCD2B1] text-[16px] md:text-[20px] px-6 py-2 rounded-full flex items-center transition border border-1"
+                className="group mt-8 px-8 py-3 rounded-xl shadow-md bg-[#A11616E5] hover:bg-[#003566] hover:border hover:border-1 hover:border-[#FCD2B1] font-poppins font-bold text-[14px] sm:text-[16px] md:text-[20px] text-[#FCD2B1] transition-all flex items-center gap-2"
                 onClick={() => navigate("/questionnaire")}
-                style={{ borderColor: '#FCD2B1' }}
               >
-                Know your destination <span className="ml-2">→</span>
+                Start Your Mystery Trip
+                <span className="hidden group-hover:inline-block transition-transform duration-300 translate-x-1">
+                  <FaArrowRightLong />
+                </span>
               </button>
             </div>
           </div>
@@ -968,7 +989,7 @@ export default function Home() {
                     className={`flex flex-col md:flex-row ${idx % 2 === 1 ? "md:flex-row-reverse" : ""} items-center gap-4 md:gap-10 mt-6 md:mt-12 px-4 md:px-12`}
                   >
                     <div
-                      className={`bg-[#FFEFCE] rounded-xl shadow-lg p-4 ${
+                      className={`group bg-[#FFEFCE] hover:bg-[#003566] hover:border hover:border-2 hover:border-[#FFBE55] rounded-xl shadow-lg p-4 ${
                         idx === 0
                           ? 'w-full md:w-[720px]'
                           : idx === 1
@@ -979,17 +1000,17 @@ export default function Home() {
                       <div className={`flex items-start`}>
                         {/* Column 1: Step Number */}
                         <div className="flex-shrink-0">
-                          <h2 className="text-[48px] md:text-[64px] lg:text-[70px] font-titan-one font-normal text-[#43463166] leading-none">
+                          <h2 className="text-[48px] md:text-[64px] lg:text-[70px] font-titan-one font-normal text-[#43463166] group-hover:text-[#FFBE5566] leading-none">
                             {step.number}
                           </h2>
                         </div>
 
                         {/* Column 2: Title + Subtitle */}
                         <div className="flex flex-col w-full">
-                          <div className="text-[32px] md:text-[40px] lg:text-[48px] font-titan-one font-normal text-[#951A1AE5] leading-tight">
+                          <div className="text-[32px] md:text-[40px] lg:text-[48px] font-titan-one font-normal text-[#951A1AE5] group-hover:text-[#FFBE55] leading-tight">
                             {step.title}
                           </div>
-                          <div className="text-right text-[14px] md:text-[20px] font-normal font-goudy text-[#951A1A] -mt-1">
+                          <div className="text-right text-[14px] md:text-[20px] font-normal font-goudy text-[#951A1A] group-hover:text-[#FFBE55] -mt-1">
                             {step.subtitle}
                           </div>
                         </div>
@@ -1004,9 +1025,14 @@ export default function Home() {
               ))}
 
               <div className="justify-center items-center text-center">
-                <button className="mt-12 mb-8 mx-auto px-8 py-3 rounded-xl shadow-md bg-[#A11616E5] hover:bg-[#003566] font-poppins font-bold text-[14px] sm:text-[16px] md:text-[20px] text-[#FCD2B1] transition-all"
-                onClick={() => navigate("/questionnaire")}>
+                <button
+                  className="group mt-12 mb-8 mx-auto px-8 py-3 rounded-xl shadow-md bg-[#A11616E5] hover:bg-[#003566] hover:border hover:border-1 hover:border-[#FCD2B1] font-poppins font-bold text-[14px] sm:text-[16px] md:text-[20px] text-[#FCD2B1] transition-all flex items-center justify-center gap-2"
+                  onClick={() => navigate("/questionnaire")}
+                >
                   Start Your Mystery Trip
+                  <span className="hidden group-hover:inline-block transition-transform duration-300 translate-x-1">
+                    <FaArrowRightLong />
+                  </span>
                 </button>
               </div>
             </div>
@@ -1019,6 +1045,19 @@ export default function Home() {
             style={{ backgroundImage: "url('/explore.jpg')" }}
           >
             <div className="w-full h-full bg-white/80"></div>
+          </div>
+
+          <div className="relative z-10 mb-8 flex flex-col sm:flex-row items-center text-center justify-center gap-0 md:gap-4">
+            <p className="font-archivo-black font-normal text-[28px] md:text-[40px] text-[#003566E5]">
+              Choose Your Adventure
+            </p>
+            <div className="w-[60px] h-[60px] overflow-hidden">
+              <img
+                src={advImages[currentAdv]}
+                alt={`Icon ${currentAdv + 1}`}
+                className="w-full h-full object-contain transition-all duration-500"
+              />
+            </div>
           </div>
 
           {/* Main content container with rounded edges and styling */}
@@ -1221,7 +1260,7 @@ export default function Home() {
             <div className="relative flex flex-col justify-center items-center h-full z-10 text-center">
                 <h2 className="font-archivo-black font-normal text-[#FCD2B1] text-[40px]">Why Us?</h2>
                 <p className="font-baloo-bhai font-normal text-[#FCD2B1] text-[24px]">The answer lies in the journey</p>
-                <a href="/why_us" className="mt-4 px-5 py-1 text-[#FFFFFF] text-lg rounded-full transition-all flex items-center"
+                <a href="/why_us" className="mt-4 px-6 py-1 font-poppins font-bold text-[#FFFFFF] text-[14px] hover:text-[#000000] rounded-full transition-all flex items-center"
                   style={{
                     background: "linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.4) 40%)",
                     boxShadow: `
@@ -1230,7 +1269,13 @@ export default function Home() {
                       0px 20px 12px 0px #00000021,
                       0px 36px 14px 0px #0000000A,
                       0px 56px 16px 0px #00000000
-                    `
+                    `,
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = "#FFFFFF";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = "linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.4) 40%)";
                   }}
                 >
                   Know More

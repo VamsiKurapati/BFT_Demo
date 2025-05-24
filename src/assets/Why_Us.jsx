@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from "swiper/modules";
 import 'swiper/swiper-bundle.css';
 import Footer from "./Footer";
+import { FaArrowRightLong } from "react-icons/fa6";
 
 export default function WhyUs() {
     const navigate = useNavigate(); 
@@ -210,9 +211,9 @@ export default function WhyUs() {
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {/* Card 1 */}
-              <div className="relative bg-white rounded-2xl overflow-hidden border border-12 border-[#FFBE55] shadow-sm hover:shadow-lg transition">
-                <div className="relative h-[145px] bg-cover bg-center rounded-2xl" style={{ backgroundImage: "url('/img4.jpg')" }} >
-                  <div className="absolute inset-0 bg-[#00000066] rounded-2xl z-0"></div>
+              <div className="relative group bg-white hover:bg-[#003566] rounded-2xl overflow-hidden border border-2 border-[#FFBE55] shadow-sm hover:shadow-lg transition">
+                <div className="relative h-[145px] bg-cover bg-center rounded-xl overflow-hidden" style={{ backgroundImage: "url('/img4.jpg')" }} >
+                  <div className="absolute inset-0 bg-[#00000066] rounded-xl z-0"></div>
                   <div className="absolute inset-0 flex items-center justify-center z-10">
                     <h3 className="text-[20px] font-poppins font-bold text-[#FFFFFF] text-center z-10">
                       100% Mystery
@@ -220,16 +221,16 @@ export default function WhyUs() {
                   </div>
                 </div>
                 <div className="p-4 text-center">
-                  <p className="mt-4 font-poppins font-normal text-[12px] text-[#000000CC]">
-                    <span className="font-semibold text-[#000000]">You won’t know where you’re going until the very last moment.</span> Your trip is custom-curated, but the destination stays top-secret until the reveal. <span className="font-semibold text-[#000000]">It’s like unwrapping a present</span>—you just happen to fly there.
+                  <p className="mt-4 font-poppins font-normal text-[12px] text-[#000000CC] group-hover:text-[#FFFFFFCC]">
+                    <span className="font-semibold text-[#000000] group-hover:text-[#FFFFFF]">You won’t know where you’re going until the very last moment.</span> Your trip is custom-curated, but the destination stays top-secret until the reveal. <span className="font-semibold text-[#000000] group-hover:text-[#FFFFFF]">It’s like unwrapping a present</span>—you just happen to fly there.
                   </p>
                 </div>
               </div>
 
               {/* Card 2 */}
-              <div className="bg-white rounded-2xl overflow-hidden border border-yellow-400 shadow-sm hover:shadow-lg transition">
-                <div className="relative h-[145px] bg-cover bg-center rounded-2xl" style={{ backgroundImage: "url('/img3.jpg')" }} >
-                  <div className="absolute inset-0 bg-[#00000066] rounded-2xl z-0"></div>
+              <div className="group bg-white hover:bg-[#003566] rounded-2xl overflow-hidden border border-2 border-[#FFBE55] shadow-sm hover:shadow-lg transition">
+                <div className="relative h-[145px] bg-cover bg-center rounded-xl" style={{ backgroundImage: "url('/img3.jpg')" }} >
+                  <div className="absolute inset-0 bg-[#00000066] rounded-xl z-0"></div>
                   <div className="absolute inset-0 flex items-center justify-center z-10">
                     <h3 className="text-[20px] font-poppins font-bold text-[#FFFFFF] text-center z-10">
                       Zero Planning, All Play
@@ -237,16 +238,16 @@ export default function WhyUs() {
                   </div>
                 </div>
                 <div className="p-4 text-center">
-                  <p className="mt-4 font-poppins font-normal text-[12px] text-[#000000CC]">
-                    <span className="font-semibold text-[#000000]">Forget the stress</span> of booking flights, hotels, or activities. We handle it all, down to the details. <span className="font-semibold text-[#000000]">You just pack, trust the process, and go.</span>
+                  <p className="mt-4 font-poppins font-normal text-[12px] text-[#000000CC] group-hover:text-[#FFFFFFCC]">
+                    <span className="font-semibold text-[#000000] group-hover:text-[#FFFFFF]">Forget the stress</span> of booking flights, hotels, or activities. We handle it all, down to the details. <span className="font-semibold text-[#000000] group-hover:text-[#FFFFFF]">You just pack, trust the process, and go.</span>
                   </p>
                 </div>
               </div>
 
               {/* Card 3 */}
-              <div className="bg-white rounded-2xl overflow-hidden border border-yellow-400 shadow-sm hover:shadow-lg transition">
-                <div className="relative h-[145px] items-center justify-center bg-cover bg-center rounded-2xl" style={{ backgroundImage: "url('/img2.jpg')" }} >
-                  <div className="absolute inset-0 bg-[#00000066] rounded-2xl z-0"></div>
+              <div className="group bg-white hover:bg-[#003566] rounded-2xl overflow-hidden border border-2 border-[#FFBE55] shadow-sm hover:shadow-lg transition">
+                <div className="relative h-[145px] items-center justify-center bg-cover bg-center rounded-xl" style={{ backgroundImage: "url('/img2.jpg')" }} >
+                  <div className="absolute inset-0 bg-[#00000066] rounded-xl z-0"></div>
                   <div className="absolute inset-0 flex items-center justify-center z-10">
                     <h3 className="text-[20px] font-poppins font-bold text-[#FFFFFF] text-center z-10">
                       Tailored to You
@@ -254,27 +255,27 @@ export default function WhyUs() {
                   </div>
                 </div>
                 <div className="p-4 text-center">
-                  <p className="mt-4 font-poppins font-normal text-[12px] text-[#000000CC]">
+                  <p className="mt-4 font-poppins font-normal text-[12px] text-[#000000CC] group-hover:text-[#FFFFFFCC]">
                     Whether you love beaches, mountains, culture, food, or adventure—
-                    <span className="font-semibold text-[#000000]"> we design your trip based on your travel style, preferences, and comfort level.</span>
+                    <span className="font-semibold text-[#000000] group-hover:text-[#FFFFFF]"> we design your trip based on your travel style, preferences, and comfort level.</span>
                     You’re in the dark, but your experience is anything but random.
                   </p>
                 </div>
               </div>
 
               {/* Card 4 */}
-              <div className="bg-white rounded-2xl overflow-hidden border border-yellow-400 shadow-sm hover:shadow-lg transition">
-                <div className="relative h-[145px] bg-cover bg-center rounded-2xl" style={{ backgroundImage: "url('/img1.jpg')" }} >
-                  <div className="absolute inset-0 bg-[#00000066] rounded-2xl z-0"></div>
+              <div className="group bg-white hover:bg-[#003566] rounded-2xl overflow-hidden border border-2 border-[#FFBE55] shadow-sm hover:shadow-lg transition">
+                <div className="relative h-[145px] bg-cover bg-center rounded-xl" style={{ backgroundImage: "url('/img1.jpg')" }} >
+                  <div className="absolute inset-0 bg-[#00000066] rounded-xl z-0"></div>
                   <div className="absolute inset-0 flex items-center justify-center z-10">
                     <h3 className="text-[20px] font-poppins font-bold text-[#FFFFFF] text-center z-10">
                       Surprises that Spark Joy
                     </h3>
                   </div>
                 </div>
-                <div className="p-4 text-center">
-                  <p className="mt-4 font-poppins font-normal text-[12px] text-[#000000CC]">
-                    <span className="font-semibold text-[#000000]">We’re here for the goosebumps.</span> The excitement. The jaw-drops. The laughs. The kind of stories that begin with “You won’t believe what happened…”
+                <div className="group p-4 text-center">
+                  <p className="mt-4 font-poppins font-normal text-[12px] text-[#000000CC] group-hover:text-[#FFFFFFCC]">
+                    <span className="font-semibold text-[#000000] group-hover:text-[#FFFFFF]">We’re here for the goosebumps.</span> The excitement. The jaw-drops. The laughs. The kind of stories that begin with “You won’t believe what happened…”
                   </p>
                 </div>
               </div>
@@ -331,9 +332,14 @@ export default function WhyUs() {
                   <span className="text-[#A11616]"> this is for you.</span>
                 </p>
 
-                <button className="mt-6 bg-[#A11616E5] text-[#FCD2B1] px-5 py-2.5 rounded-lg font-poppins font-bold text-[15px] md:text-[19px] shadow-md"
-                onClick={() => navigate("/questionnaire")}>
+                <button
+                  className="group mt-6 px-8 py-3 rounded-xl shadow-md bg-[#A11616E5] hover:bg-[#003566] hover:border hover:border-1 hover:border-[#FCD2B1] font-poppins font-bold text-[14px] sm:text-[16px] md:text-[20px] text-[#FCD2B1] transition-all flex items-center justify-center gap-2"
+                  onClick={() => navigate("/questionnaire")}
+                >
                   Start Your Mystery Trip
+                  <span className="hidden group-hover:inline-block transition-transform duration-300 translate-x-1">
+                    <FaArrowRightLong />
+                  </span>
                 </button>
               </div>
 
@@ -447,9 +453,14 @@ export default function WhyUs() {
                   <p className="mt-2 text-[#000000CC] font-poppins font-normal text-[20px]">
                     Your next unforgettable story starts with a leap of faith.<span className="font-extrabold text-[#003566CC]"> Pack your bag, embrace the unknown, and let Blind Fold Trips show you just how fun not knowing can be.</span>
                   </p>
-                  <button className="mt-4 bg-[#A11616E5] text-[#FCD2B1] px-6 py-2 font-poppins font-bold text-[20px] rounded-xl"
-                  onClick={() => navigate("/questionnaire")}>
+                  <button
+                    className="group mt-4 px-8 py-3 rounded-xl shadow-md bg-[#A11616E5] hover:bg-[#003566] hover:border hover:border-1 hover:border-[#FCD2B1] font-poppins font-bold text-[14px] sm:text-[16px] md:text-[20px] text-[#FCD2B1] transition-all flex items-center justify-center gap-2"
+                    onClick={() => navigate("/questionnaire")}
+                  >
                     Start Your Mystery Trip
+                    <span className="hidden group-hover:inline-block transition-transform duration-300 translate-x-1">
+                      <FaArrowRightLong />
+                    </span>
                   </button>
               </div>
 
