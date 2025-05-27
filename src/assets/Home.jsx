@@ -85,9 +85,19 @@ export default function Home() {
   const [globalStartIndex, setGlobalStartIndex] = useState(0);
   const [slideDirection, setSlideDirection] = useState("right");
 
+  const [loginDetails, setLoginDetails] = useState(JSON.parse(localStorage.getItem("loginDetails")) || null);
+
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    if (loginDetails) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, [loginDetails]);
 
   const location = useLocation();
 
@@ -856,6 +866,23 @@ export default function Home() {
                 </div>
               )}
 
+              { isLoggedIn && (
+                <div className="hidden lg:block ml-8 relative group">
+                  <button
+                    className="bg-[#A11716E5] text-[#FCD2B1] px-4 py-2 font-poppins font-bold rounded-full transition border border-1 group-hover:bg-[#003566] flex items-center"
+                    style={{ borderColor: '#FCD2B1' }}
+                    onClick={() => navigate("/profile")}
+                  >
+                    Profile
+                    <img
+                      src="/Person.png"
+                      alt="Person"
+                      className="h-6 w-6 ml-2 absolute opacity-0 group-hover:opacity-100 group-hover:static transition-all duration-300"
+                    />
+                  </button>
+                </div>
+              )}
+
               {/* Hamburger Button */}
               <button
                 className="lg:hidden ml-4 text-white focus:outline-none text-3xl"
@@ -888,13 +915,24 @@ export default function Home() {
                     {link.label}
                   </a>
                 ))}
-                <button
-                  className="mt-4 bg-[#A11716E5] text-[#FCD2B1] px-6 py-2 font-poppins font-bold rounded-full transition border transition border  border-1"
-                  onClick={navigate("/login")}
-                  style={{ borderColor: '#FCD2B1' }}
-                >
-                  Login / Register
-                </button>
+                {!isLoggedIn && (
+                  <button
+                    className="mt-4 bg-[#A11716E5] text-[#FCD2B1] px-6 py-2 font-poppins font-bold rounded-full transition border transition border  border-1"
+                    onClick={() => navigate("/login")}
+                    style={{ borderColor: '#FCD2B1' }}
+                  >
+                    Login / Register
+                  </button>
+                )}
+                {isLoggedIn && (
+                  <button
+                    className="mt-4 bg-[#A11716E5] text-[#FCD2B1] px-6 py-2 font-poppins font-bold rounded-full transition border transition border  border-1"
+                    onClick={() => navigate("/profile")}
+                    style={{ borderColor: '#FCD2B1' }}
+                  >
+                    Profile
+                  </button>
+                )}
               </motion.div>
             )}
           </AnimatePresence>
