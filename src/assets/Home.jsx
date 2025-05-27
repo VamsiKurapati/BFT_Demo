@@ -869,7 +869,7 @@ export default function Home() {
               { isLoggedIn && (
                 <div className="hidden lg:block ml-8 relative group">
                   <button
-                    className="bg-[#A11716E5] text-[#FCD2B1] px-8 py-2 font-poppins font-bold rounded-full transition border border-1 group-hover:bg-[#003566] flex items-center"
+                    className="bg-[#A11716E5] text-[#FCD2B1] px-8 py-2 font-poppins font-bold text-[20px] rounded-full transition border border-1 group-hover:bg-[#003566] flex items-center"
                     style={{ borderColor: '#FCD2B1' }}
                     onClick={() => navigate("/profile")}
                   >
