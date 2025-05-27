@@ -87,9 +87,9 @@ const NavbarDashboard = () => {
             ) : (
             <div className="hidden lg:block ml-8 relative">
                 <button
-                className="bg-[#A11716E5] text-[#FCD2B1] px-8 py-2 font-poppins font-bold text-[20px] rounded-full transition border border-1 hover:bg-[#003566] flex items-center"
-                style={{ borderColor: '#FCD2B1' }}
-                onClick={() => setShowMenu(!showMenu)}
+                    className="bg-[#A11716E5] text-[#FCD2B1] px-8 py-2 font-poppins font-bold text-[20px] rounded-full transition border border-1 hover:bg-[#003566] flex items-center"
+                    style={{ borderColor: '#FCD2B1' }}
+                    onClick={() => setShowMenu(!showMenu)}
                 >
                 <img
                     src="/profile.png"
@@ -99,7 +99,7 @@ const NavbarDashboard = () => {
                 Profile
                 </button>
 
-                {showMenu && (
+                { showMenu && (
                 <div
                     ref={menuRef}
                     className="absolute top-full right-0 mt-2 w-72 bg-[#003566] text-white rounded-2xl shadow-lg p-4 z-50"
@@ -147,7 +147,7 @@ const NavbarDashboard = () => {
 
                     <button
                     className="w-full flex items-center gap-3 px-4 py-3 mt-2 hover:bg-[#002244] rounded-lg transition"
-                    onClick={logout}
+                    // onClick={logout}
                     >
                     <img src="/logout.png" alt="logout" className="w-6 h-6" />
                     Logout
