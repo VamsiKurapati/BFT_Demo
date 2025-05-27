@@ -1,21 +1,8 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { useLocation } from "react-router-dom";
 import 'swiper/swiper-bundle.css';
 import Footer from "./Footer";
 import NavbarDashboard from "./NavbarDashboard";
 
 export default function HowItWorks() {
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const location = useLocation();
-    
-    const navLinks = [
-        { label: "Home", path: "/" },
-        { label: "Why Us?", path: "/why_us" },
-        { label: "How it Works?", path: "/how_it_works" },
-        { label: "Contact Us", path: "/contact" },
-    ];
-
     const cards = [
         {
             title: "Round-Trip",

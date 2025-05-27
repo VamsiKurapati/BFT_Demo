@@ -1,8 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Footer from "./Footer";
 import { FaArrowRightLong } from "react-icons/fa6";
+import NavbarDashboard from "./NavbarDashboard";
 
 // ImageCarousel component for showing one image at a time with fade transition
 const ImageCarousel = ({ images, alt, clickTitle, activities }) => {
@@ -84,43 +85,6 @@ export default function Home() {
   const [indiaStartIndex, setIndiaStartIndex] = useState(0);
   const [globalStartIndex, setGlobalStartIndex] = useState(0);
   const [slideDirection, setSlideDirection] = useState("right");
-
-  const [loginDetails, setLoginDetails] = useState(JSON.parse(localStorage.getItem("loginDetails")) || null);
-
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  const [showMenu, setShowMenu] = useState(false);
-
-  const menuRef = useRef(null);
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
-        setShowMenu(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
-  useEffect(() => {
-    if (loginDetails) {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
-    }
-  }, [loginDetails]);
-
-  const location = useLocation();
-
-  const navLinks = [
-    { label: "Home", path: "/" },
-    { label: "Why Us?", path: "/why_us" },
-    { label: "How it Works?", path: "/how_it_works" },
-    { label: "Contact Us", path: "/contact" },
-  ];
 
   const images = [
     '/why_us_1.jpg',
@@ -835,179 +799,7 @@ export default function Home() {
         >
           <div className="absolute inset-0 bg-[#00000080] z-0"></div>
 
-          <div className="container mx-auto px-4 py-8 flex justify-between items-center lg:pl-[48px] relative z-10">
-            {/* Logo */}
-            <div className="text-white text-2xl font-bold">
-              <img src="/logo.png" alt="Logo" className="h-16" />
-            </div>
-
-            {/* Desktop Navigation */}
-            <div className="flex items-center">
-              <nav className="hidden lg:flex">
-                <ul className="flex gap-[12px] text-white font-goudy text-[20px] font-normal">
-                  {navLinks.map((link) => (
-                    <li key={link.path}>
-                      <a
-                        href={link.path}
-                        className={`px-4 py-2 ${
-                          location.pathname === link.path
-                            ? "bg-white text-black rounded-full"
-                            : "hover:text-gray-300"
-                        }`}
-                      >
-                        {link.label}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </nav>
-
-              {/* Login Button */}
-              { !isLoggedIn && (
-                <div className="hidden lg:block ml-8 relative group">
-                  <button
-                    className="bg-[#A11716E5] text-[#FCD2B1] px-4 py-2 font-poppins font-bold rounded-full transition border border-1 group-hover:bg-[#003566] flex items-center"
-                    style={{ borderColor: '#FCD2B1' }}
-                    onClick={() => navigate("/login")}
-                  >
-                    Login / Register
-                    <img 
-                      src="/Person.png" 
-                      alt="Person" 
-                      className="h-6 w-6 ml-2 absolute opacity-0 group-hover:opacity-100 group-hover:static transition-all duration-300" 
-                    />
-                  </button>
-                </div>
-              )}
-
-              {isLoggedIn && (
-                <div className="hidden lg:block ml-8 relative group">
-                  {/* Profile Button */}
-                  <button
-                    className="bg-[#A11716E5] text-[#FCD2B1] px-8 py-2 font-poppins font-bold text-[20px] rounded-full transition border border-1 hover:bg-[#003566] flex items-center"
-                    style={{ borderColor: '#FCD2B1' }}
-                    onClick={() => setShowMenu(!showMenu)}
-                  >
-                    <img
-                      src="/profile.png"
-                      alt="profile"
-                      className="h-[28px] w-[28px] mr-4 absolute opacity-0 group-hover:opacity-100 group-hover:static transition-all duration-300"
-                    />
-                    Profile
-                  </button>
-
-                  {/* Dropdown positioned relative to button */}
-                  {showMenu && (
-                    <div
-                      ref={menuRef}
-                      className="absolute top-full right-0 mt-2 w-72 bg-[#003566] text-white rounded-2xl shadow-lg p-4 z-50"
-                    >
-                      <div className="flex items-center justify-between mb-4">
-                        <div className="flex items-center">
-                          <img
-                            src={loginDetails.avatar || "/profile.png"}
-                            alt="Avatar"
-                            className="w-12 h-12 rounded-full mr-3"
-                          />
-                          <div>
-                            <h3 className="font-bold text-lg">{loginDetails.name || "John Doe"}</h3>
-                            <p className="text-sm text-gray-200">{loginDetails.email || "johndoe@gmail.com"}</p>
-                          </div>
-                        </div>
-                        <button onClick={() => navigate("/profile/edit")}>
-                          <img src="/edit.png" alt="edit" className="w-6 h-6" />
-                        </button>
-                      </div>
-
-                      <hr className="border-gray-600 mb-2" />
-
-                      <button
-                        className="w-full flex items-center gap-3 px-4 py-3 hover:bg-[#002244] rounded-lg transition"
-                        onClick={() => {
-                          setShowMenu(false);
-                          navigate("/my-trips");
-                        }}
-                      >
-                        <img src="/trips.png" alt="trips" className="w-6 h-6" />
-                        My Trips
-                      </button>
-
-                      <button
-                        className="w-full flex items-center gap-3 px-4 py-3 hover:bg-[#002244] rounded-lg transition"
-                        onClick={() => {
-                          setShowMenu(false);
-                          navigate("/my-proposal");
-                        }}
-                      >
-                        <img src="/proposals.png" alt="proposal" className="w-6 h-6" />
-                        My Proposal
-                      </button>
-
-                      <button
-                        className="w-full flex items-center gap-3 px-4 py-3 mt-2 hover:bg-[#002244] rounded-lg transition"
-                        // onClick={logout}
-                      >
-                        <img src="/logout.png" alt="logout" className="w-6 h-6" />
-                        Logout
-                      </button>
-                    </div>
-                  )}
-                </div>
-              )}
-
-              {/* Hamburger Button */}
-              <button
-                className="lg:hidden ml-4 text-white focus:outline-none text-3xl"
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              >
-                ☰
-              </button>
-            </div>
-          </div>
-
-          {/* Mobile Menu with animation */}
-          <AnimatePresence>
-            {isMobileMenuOpen && (
-              <motion.div
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: "auto", opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                className="absolute top-[100px] right-0 w-2/3 bg-[#FCD2B1] flex flex-col items-center py-6 z-20 lg:hidden overflow-hidden"
-              >
-                {navLinks.map((link) => (
-                  <a
-                    key={link.path}
-                    href={link.path}
-                    className={`text-lg py-2 px-6 ${
-                      location.pathname === link.path
-                        ? "bg-white text-black rounded-full"
-                        : "text-white hover:text-gray-300"
-                    }`}
-                  >
-                    {link.label}
-                  </a>
-                ))}
-                {!isLoggedIn && (
-                  <button
-                    className="mt-4 bg-[#A11716E5] text-[#FCD2B1] px-6 py-2 font-poppins font-bold rounded-full transition border transition border  border-1"
-                    onClick={() => navigate("/login")}
-                    style={{ borderColor: '#FCD2B1' }}
-                  >
-                    Login / Register
-                  </button>
-                )}
-                {isLoggedIn && (
-                  <button
-                    className="mt-4 bg-[#A11716E5] text-[#FCD2B1] px-6 py-2 font-poppins font-bold rounded-full transition border transition border  border-1"
-                    onClick={() => navigate("/profile")}
-                    style={{ borderColor: '#FCD2B1' }}
-                  >
-                    Profile
-                  </button>
-                )}
-              </motion.div>
-            )}
-          </AnimatePresence>
+          <NavbarDashboard />
 
           {/* Hero Content */}
           <div className="container mx-auto px-8 mt-24 lg:pl-[60px] relative z-10">
