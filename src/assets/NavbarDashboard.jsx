@@ -46,7 +46,7 @@ const NavbarDashboard = () => {
         localStorage.removeItem("loginDetails");
         setLoginDetails(null);
         setIsLoggedIn(false);
-        navigate('/home');
+        navigate('/');
     }
 
     return (
