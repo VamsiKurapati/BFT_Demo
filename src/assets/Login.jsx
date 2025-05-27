@@ -31,7 +31,7 @@ const Login = () => {
 
       if (response.ok) {
         const data = await response.json();
-        localStorage.setItem("bftUser", JSON.stringify(data));
+        localStorage.setItem("loginDetails", JSON.stringify(data));
         navigate("/home");
       } else {
         const errorData = await response.json();
