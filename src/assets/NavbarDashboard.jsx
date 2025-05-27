@@ -7,21 +7,21 @@ const navLinks = [
   { label: 'Home', path: '/' },
   { label: 'Why Us?', path: '/why_us' },
   { label: 'How It Works?', path: '/how_it_works' },
-  { label: 'Contact', path: '/contact' },
+  { label: 'Contact Us', path: '/contact' },
 ];
 
 const NavbarDashboard = () => {
-        const [loginDetails, setLoginDetails] = useState(JSON.parse(localStorage.getItem("loginDetails")) || null);
-    
-        const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [loginDetails, setLoginDetails] = useState(JSON.parse(localStorage.getItem("loginDetails")) || null);
 
-        const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-        const [showMenu, setShowMenu] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-        const menuRef = useRef(null);
+    const [showMenu, setShowMenu] = useState(false);
 
-        useEffect(() => {
+    const menuRef = useRef(null);
+
+    useEffect(() => {
         const handleClickOutside = (event) => {
             if (menuRef.current && !menuRef.current.contains(event.target)) {
             setShowMenu(false);
@@ -29,18 +29,25 @@ const NavbarDashboard = () => {
         };
         document.addEventListener("mousedown", handleClickOutside);
         return () => document.removeEventListener("mousedown", handleClickOutside);
-        }, []);
+    }, []);
 
-        useEffect(() => {
+    useEffect(() => {
         if (loginDetails) {
             setIsLoggedIn(true);
         } else {
             setIsLoggedIn(false);
         }
-        }, [loginDetails]);
+    }, [loginDetails]);
+
     const location = useLocation();
     const navigate = useNavigate();
 
+    const handleLogout = () => {
+        localStorage.removeItem("loginDetails");
+        setLoginDetails(null);
+        setIsLoggedIn(false);
+        navigate('/home');
+    }
 
     return (
     <>
@@ -147,7 +154,7 @@ const NavbarDashboard = () => {
 
                     <button
                     className="w-full flex items-center gap-3 px-4 py-3 mt-2 hover:bg-[#002244] rounded-lg transition"
-                    // onClick={logout}
+                    onClick={() => handleLogout}
                     >
                     <img src="/logout.png" alt="logout" className="w-6 h-6" />
                     Logout
