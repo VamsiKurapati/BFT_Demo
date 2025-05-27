@@ -5,8 +5,8 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 const navLinks = [
   { label: 'Home', path: '/' },
-  { label: 'Why_Us', path: '/why_us' },
-  { label: 'How_It_Works', path: '/how_it_works' },
+  { label: 'Why Us?', path: '/why_us' },
+  { label: 'How It Works?', path: '/how_it_works' },
   { label: 'Contact', path: '/contact' },
 ];
 
@@ -85,7 +85,7 @@ const NavbarDashboard = () => {
                 </button>
             </div>
             ) : (
-            <div className="hidden lg:block ml-8 relative">
+            <div className="hidden lg:block ml-8 relative group">
                 <button
                     className="bg-[#A11716E5] text-[#FCD2B1] px-8 py-2 font-poppins font-bold text-[20px] rounded-full transition border border-1 hover:bg-[#003566] flex items-center"
                     style={{ borderColor: '#FCD2B1' }}
