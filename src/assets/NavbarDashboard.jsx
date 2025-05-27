@@ -11,21 +11,36 @@ const navLinks = [
 ];
 
 const NavbarDashboard = ({ isLoggedIn, loginDetails = {}, logout }) => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [showMenu, setShowMenu] = useState(false);
-  const menuRef = useRef(null);
+     const [loginDetails, setLoginDetails] = useState(JSON.parse(localStorage.getItem("loginDetails")) || null);
+    
+      const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    
+      const [isLoggedIn, setIsLoggedIn] = useState(false);
+    
+      const [showMenu, setShowMenu] = useState(false);
+    
+      const menuRef = useRef(null);
+    
+      useEffect(() => {
+        const handleClickOutside = (event) => {
+          if (menuRef.current && !menuRef.current.contains(event.target)) {
+            setShowMenu(false);
+          }
+        };
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+      }, []);
+    
+      useEffect(() => {
+        if (loginDetails) {
+          setIsLoggedIn(true);
+        } else {
+          setIsLoggedIn(false);
+        }
+      }, [loginDetails]);
   const location = useLocation();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (menuRef.current && !menuRef.current.contains(e.target)) {
-        setShowMenu(false);
-      }
-    };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
 
   return (
     <>
