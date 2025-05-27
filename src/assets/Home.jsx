@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocation, useNavigate } from "react-router-dom";
 import Footer from "./Footer";
@@ -90,6 +90,20 @@ export default function Home() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const [showMenu, setShowMenu] = useState(false);
+
+  const menuRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setShowMenu(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   useEffect(() => {
     if (loginDetails) {
@@ -871,7 +885,7 @@ export default function Home() {
                   <button
                     className="bg-[#A11716E5] text-[#FCD2B1] px-8 py-2 font-poppins font-bold text-[20px] rounded-full transition border border-1 group-hover:bg-[#003566] flex items-center"
                     style={{ borderColor: '#FCD2B1' }}
-                    onClick={() => navigate("/profile")}
+                    onClick={() => setShowMenu(!showMenu)}
                   >
                     <img
                       src="/profile.png"
@@ -879,6 +893,52 @@ export default function Home() {
                       className="h-[28px] w-[28px] mr-4 absolute opacity-0 group-hover:opacity-100 group-hover:static transition-all duration-300"
                     />
                     Profile
+                  </button>
+                </div>
+              )}
+
+              {showMenu && (
+                <div className="absolute right-0 mt-2 w-72 bg-[#003566] text-white rounded-2xl shadow-lg p-4 z-50">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center">
+                      <img
+                        src={user?.avatar || "/profile.png"}
+                        alt="Avatar"
+                        className="w-12 h-12 rounded-full mr-3"
+                      />
+                      <div>
+                        <h3 className="font-bold text-lg">{user?.name || "John Doe"}</h3>
+                        <p className="text-sm text-gray-200">{user?.email || "johndoe@gmail.com"}</p>
+                      </div>
+                    </div>
+                    <button>
+                      <img src="/edit.png" alt="edit" className="w-6 h-6" />
+                    </button>
+                  </div>
+                  <hr className="border-gray-600 mb-2" />
+
+                  <button
+                    className="w-full flex items-center gap-3 px-4 py-3 hover:bg-[#002244] rounded-lg transition"
+                    onClick={() => navigate("/my-trips")}
+                  >
+                    <img src="/trips.png" alt="trips" className="w-6 h-6" />
+                    My Trips
+                  </button>
+
+                  <button
+                    className="w-full flex items-center gap-3 px-4 py-3 hover:bg-[#002244] rounded-lg transition"
+                    onClick={() => navigate("/my-proposal")}
+                  >
+                    <img src="/proposals.png" alt="proposal" className="w-6 h-6" />
+                    My Proposal
+                  </button>
+
+                  <button
+                    className="w-full flex items-center gap-3 px-4 py-3 mt-2 hover:bg-[#002244] rounded-lg transition"
+                    onClick={logout}
+                  >
+                    <img src="/logout.png" alt="logout" className="w-6 h-6" />
+                    Logout
                   </button>
                 </div>
               )}
