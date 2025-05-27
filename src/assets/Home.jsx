@@ -876,7 +876,7 @@ export default function Home() {
                     <img
                       src="/profile.png"
                       alt="profile"
-                      className="h-[28px] w-[28px] ml-2 absolute opacity-0 group-hover:opacity-100 group-hover:static transition-all duration-300"
+                      className="h-[28px] w-[28px] mr-4 absolute opacity-0 group-hover:opacity-100 group-hover:static transition-all duration-300"
                     />
                     Profile
                   </button>
