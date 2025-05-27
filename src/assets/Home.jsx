@@ -902,13 +902,13 @@ export default function Home() {
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center">
                       <img
-                        src={user?.avatar || "/profile.png"}
+                        src={"/profile.png"}
                         alt="Avatar"
                         className="w-12 h-12 rounded-full mr-3"
                       />
                       <div>
-                        <h3 className="font-bold text-lg">{user?.name || "John Doe"}</h3>
-                        <p className="text-sm text-gray-200">{user?.email || "johndoe@gmail.com"}</p>
+                        <h3 className="font-bold text-lg">{loginDetails.name || "John Doe"}</h3>
+                        <p className="text-sm text-gray-200">{loginDetails.email || "johndoe@gmail.com"}</p>
                       </div>
                     </div>
                     <button>
