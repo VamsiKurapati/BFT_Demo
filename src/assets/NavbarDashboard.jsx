@@ -10,7 +10,7 @@ const navLinks = [
   { label: 'Contact', path: '/contact' },
 ];
 
-const NavbarDashboard = ({ isLoggedIn, loginDetails = {}, logout }) => {
+const NavbarDashboard = () => {
         const [loginDetails, setLoginDetails] = useState(JSON.parse(localStorage.getItem("loginDetails")) || null);
     
         const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
