@@ -935,7 +935,7 @@ export default function Home() {
 
                   <button
                     className="w-full flex items-center gap-3 px-4 py-3 mt-2 hover:bg-[#002244] rounded-lg transition"
-                    onClick={logout}
+                    // onClick={logout}
                   >
                     <img src="/logout.png" alt="logout" className="w-6 h-6" />
                     Logout
