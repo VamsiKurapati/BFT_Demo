@@ -897,8 +897,10 @@ export default function Home() {
                 </div>
               )}
 
-              {showMenu && (
-                <div className="absolute right-0 mt-2 w-72 bg-[#003566] text-white rounded-2xl shadow-lg p-4 z-50">
+              { showMenu && (
+                <div
+                  ref={menuRef} 
+                  className="absolute right-0 mt-28 w-72 bg-[#003566] text-white rounded-2xl shadow-lg p-4 z-50">
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center">
                       <img
