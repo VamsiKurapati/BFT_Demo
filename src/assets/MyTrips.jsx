@@ -81,44 +81,39 @@ export default function MyTrips() {
         <div className='relative mt-4 bg-[#FFFFFF1A] p-8'>
             {/* Tabs */}
             <div className="flex items-center space-x-6 border-b border-blue-600 pb-2 mb-4">
-            {tabs.map((tab) => (
-                <button
-                key={tab}
-                onClick={() => setActiveTab(tab)}
-                className="relative pb-1 flex flex-row items-center"
-                >
-                <img
-                    src={activeTab === tab ? tabIcons[tab].active : tabIcons[tab].default}
-                    alt={`${tab} icon`}
-                    className={`${activeTab === tab ? "w-[48px] h-[48px]" : "w-[24px] h-[24px]"} mb-1`}
-                />
-                <span className={`font-poppins font-semibold text-[#FFFFFF99] ${activeTab === tab ? 'text-[#F5B501] text-[32px]' : 'text-[20px] text-[#FFFFFF99]'}`}>{tab}</span>
-                {/* {activeTab === tab && (
-                    <span className="absolute bottom-0 left-0 w-full h-1 bg- rounded"></span>
-                )} */}
-                </button>
-            ))}
+                {tabs.map((tab) => (
+                    <button
+                        key={tab}
+                        onClick={() => setActiveTab(tab)}
+                        className="relative pb-1 flex flex-row items-center"
+                    >
+                    <img
+                        src={activeTab === tab ? tabIcons[tab].active : tabIcons[tab].default}
+                        alt={`${tab} icon`}
+                        className={`${activeTab === tab ? "w-[48px] h-[48px]" : "w-[24px] h-[24px]"} mb-1`}
+                    />
+                    <span className={`font-poppins font-semibold ${activeTab === tab ? "text-[#F5B501] text-[32px]" : "text-[20px] text-[#FFFFFF99]"}`}>{tab}</span>
+                    </button>
+                ))}
 
-            {/* Search Bar */}
-            <div className="right-4 flex items-center bg-[#174b7a] px-2 py-1 rounded">
-                <input
-                type="text"
-                placeholder="Search"
-                className="bg-transparent outline-none placeholder-gray-300 text-sm text-white"
-                />
-                <FaSearch className="mr-2 text-gray-300" />
-            </div>
+                {/* Search Bar */}
+                <div className="right-4 flex items-center bg-[#174b7a] px-2 py-1 rounded">
+                    <input
+                    type="text"
+                    placeholder="Search"
+                    className="bg-transparent outline-none placeholder-gray-300 text-sm text-white"
+                    />
+                    <FaSearch className="mr-2 text-gray-300" />
+                </div>
             </div>
 
             {/* Content */}
-            <div
-            className="text-center relative overflow-hidden flex flex-col md:flex-row gap-4"
-            >
-            <img src={icon} alt="status icon" className="w-14 h-14 mx-auto mb-4" />
-            <div className="flex flex-col">
-                <p className="font-poppins font-semibold text-[24px] text-white mb-2">{title}</p>
-                <p className="text-[16px] text-white font-poppins font-light">{subtitle}</p>
-            </div>
+            <div className="text-center relative overflow-hidden flex flex-col md:flex-row">
+                <img src={icon} alt="status icon" className="w-14 h-14 mx-auto mb-4" />
+                <div className="flex flex-col">
+                    <p className="font-poppins font-semibold text-[24px] text-white mb-2">{title}</p>
+                    <p className="text-[16px] text-white font-poppins font-light">{subtitle}</p>
+                </div>
             </div>
         </div>
       </div>
