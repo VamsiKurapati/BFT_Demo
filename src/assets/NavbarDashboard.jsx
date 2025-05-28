@@ -154,10 +154,10 @@ const NavbarDashboard = () => {
                 )}
 
                 <button
-                className="lg:hidden ml-4 text-white focus:outline-none text-3xl"
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                >
-                ☰
+                    className="lg:hidden ml-4 text-white focus:outline-none text-3xl"
+                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                    >
+                    ☰
                 </button>
             </div>
         </div>
@@ -196,7 +196,7 @@ const NavbarDashboard = () => {
                 <div className="w-full px-6 mt-4">
                 {/* Profile Toggle Button */}
                 <button
-                    className="w-3/4 sm:w-2/3 mx-auto flex items-center justify-center text-center bg-[#A11716E5] text-[#FCD2B1] px-4 py-2 font-poppins font-bold rounded-full transition border border-1 hover:bg-[#003566]"
+                    className="w-3/4 sm:w-2/3 mx-auto flex items-center justify-center text-center bg-[#A11716E5] text-[#FCD2B1] py-2 font-poppins font-bold rounded-full transition border border-1 hover:bg-[#003566]"
                     style={{ borderColor: '#FCD2B1' }}
                     onClick={() => setShowMenu(!showMenu)}
                 >
@@ -213,50 +213,52 @@ const NavbarDashboard = () => {
                 {/* Dropdown below profile */}
                 {showMenu && (
                     <div className="mt-2 bg-[#003566] text-white border-l-[6px] border-[#F5B501] rounded-2xl shadow-lg p-4">
-                    <div className="flex items-center justify-between mb-4">
-                        <div className="flex items-center">
-                        <img
-                            src={loginDetails.avatar || '/profile.png'}
-                            alt="Avatar"
-                            className="w-10 h-10 rounded-full mr-3"
-                        />
-                        <div>
-                            <h3 className="font-bold text-base">
-                            {loginDetails.name || 'John Doe'}
-                            </h3>
-                            <p className="text-xs text-gray-200">
-                            {loginDetails.email || 'johndoe@gmail.com'}
-                            </p>
+                        <div className="flex items-center justify-between mb-4">
+                            <div className="flex items-center">
+                                <img
+                                    src={loginDetails.avatar || '/profile.png'}
+                                    alt="Avatar"
+                                    className="w-10 h-10 rounded-full mr-3"
+                                />
+                                <div>
+                                    <h3 className="font-bold text-base">
+                                        {loginDetails.name || 'John Doe'}
+                                    </h3>
+                                    <p className="text-xs text-gray-200">
+                                        {loginDetails.email || 'johndoe@gmail.com'}
+                                    </p>
+                                </div>
+                            </div>
+                            <button onClick={() => navigate('/profile/edit')}>
+                                <img src="/edit.png" alt="edit" className="w-5 h-5" />
+                            </button>
                         </div>
-                        </div>
-                        <button onClick={() => navigate('/profile/edit')}>
-                        <img src="/edit.png" alt="edit" className="w-5 h-5" />
+
+                        <hr className="border-gray-600 mb-2 p-0" />
+
+                        <button
+                            className="w-full flex items-center gap-3 px-4 py-2 hover:bg-[#FFFFFF1A] rounded-lg transition text-sm"
+                            onClick={() => {
+                                setShowMenu(false);
+                                setTimeout(() => navigate('/my-trips'), 300);
+                            }}
+                        >
+                            <img src="/trips.png" alt="trips" className="w-5 h-5" />
+                            My Trips
                         </button>
-                    </div>
 
-                    <hr className="border-gray-600 mb-2" />
+                        <hr className="border-gray-600 mb-2 p-0" />
 
-                    <button
-                        className="w-full flex items-center gap-3 px-4 py-2 hover:bg-[#FFFFFF1A] rounded-lg transition text-sm"
-                        onClick={() => {
-                        setShowMenu(false);
-                        navigate('/my-trips');
-                        }}
-                    >
-                        <img src="/trips.png" alt="trips" className="w-5 h-5" />
-                        My Trips
-                    </button>
-
-                    <button
-                        className="w-full flex items-center gap-3 px-4 py-2 mt-2 hover:bg-[#FFFFFF1A] rounded-lg transition text-sm"
-                        onClick={() => {
-                        setShowMenu(false);
-                        handleLogout();
-                        }}
-                    >
-                        <img src="/logout.png" alt="logout" className="w-5 h-5" />
-                        Logout
-                    </button>
+                        <button
+                            className="w-full flex items-center gap-3 px-4 py-2 mt-2 hover:bg-[#FFFFFF1A] rounded-lg transition text-sm"
+                            onClick={() => {
+                                setShowMenu(false);
+                                setTimeout(() => handleLogout(), 300);
+                            }}
+                        >
+                            <img src="/logout.png" alt="logout" className="w-5 h-5" />
+                            Logout
+                        </button>
                     </div>
                 )}
                 </div>
