@@ -11,6 +11,8 @@ const StayTuned = lazy(() => import("./assets/Stay_Tuned"));
 const Login = lazy(() => import("./assets/Login"));
 const SignUp = lazy(() => import("./assets/SignUp"));
 
+const MyTrips = lazy(() => import("./assets/MyTrips"));
+
 const App = () => {
     return (
       <Suspense fallback={<></>}>
@@ -24,6 +26,7 @@ const App = () => {
                 <Route path="/stay_tuned" element={<StayTuned />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<SignUp />} />
+                <Route path="/my-trips" element={<MyTrips />} />
 
                 {/* Other route redirect to home and change the path to your home page */}
                 <Route path="*" element={<Navigate to="/" replace />} />
