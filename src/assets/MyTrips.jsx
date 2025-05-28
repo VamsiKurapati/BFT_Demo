@@ -21,26 +21,23 @@ const tripsData = {
     title: "No secret destinations lined up—yet",
     subtitle: "The world is waiting... are you packed?",
     icon: no_upcoming,
-    bgImage: upcoming,
   },
   Cancelled: {
     title: "No mysteries missed !!",
     subtitle: "Every trip is a chance to explore the unknown",
     icon: no_cancelled,
-    bgImage: cancelled,
   },
   Completed: {
     title: "You haven’t unwrapped any surprises yet",
     subtitle: "Ready to make some memories?",
     icon: no_completed,
-    bgImage: completed,
   },
 };
 
 const tabIcons = {
-  Upcoming: { default: upcoming, active: upcoming_1 },
+  Upcoming: { default: completed, active: completed_1 },
   Cancelled: { default: cancelled, active: cancelled_1 },
-  Completed: { default: completed, active: completed_1 },
+  Completed: { default: upcoming, active: upcoming_1 },
 };
 
 export default function MyTrips() {
@@ -55,7 +52,7 @@ export default function MyTrips() {
     setCarPosition(tabs.indexOf(activeTab));
   }, [activeTab]);
 
-  const { title, subtitle, icon, bgImage } = tripsData[activeTab];
+  const { title, subtitle, icon } = tripsData[activeTab];
 
   return (
     <section className="w-full h-screen font-goudy">
@@ -76,12 +73,12 @@ export default function MyTrips() {
 
         {/* Close Button */}
         <button className="absolute top-4 right-4 text-red-400 hover:text-red-600 text-xl"
-            onClick={navigate('/')}
+            onClick={() => navigate('/')}
         >
           <FaTimesCircle />
         </button>
 
-        <div className='bg-[#FFFFFF1A] p-8'>
+        <div className='absolute mt-4 bg-[#FFFFFF1A] p-8'>
             {/* Tabs */}
             <div className="flex items-center space-x-6 border-b border-blue-600 pb-2 mb-4">
             {tabs.map((tab) => (
@@ -115,10 +112,10 @@ export default function MyTrips() {
 
             {/* Content */}
             <div
-            className="text-center relative overflow-hidden flex flex-col md:flex-row gap-4"
+            className="text-center relative overflow-hidden flex flex-row md:flex-col gap-4"
             >
-            <img src={bgImage} alt="status icon" className="w-14 h-14 mx-auto mb-4" />
-            <div className="flex flex-col">
+            <img src={icon} alt="status icon" className="w-14 h-14 mx-auto mb-4" />
+            <div className="flex flex-row">
                 <p className="font-poppins font-semibold text-[24px] text-white mb-2">{title}</p>
                 <p className="text-[16px] text-white font-poppins font-light">{subtitle}</p>
             </div>
