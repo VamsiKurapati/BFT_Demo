@@ -61,6 +61,13 @@ export default function MyTrips() {
         {/* Header */}
         <div className="text-[55px] font-poppins font-bold text-[#FFFFFF] mb-4">My Trips</div>
 
+        {/* Close Button */}
+        <button className="absolute top-4 right-4 text-red-400 hover:text-red-600 text-xl"
+            onClick={() => navigate('/')}
+        >
+          <FaTimesCircle />
+        </button>
+
         {/* Moving Car */}
         <div className="relative h-12 pl-24 mb-4">
           <img
@@ -71,21 +78,14 @@ export default function MyTrips() {
           />
         </div>
 
-        {/* Close Button */}
-        <button className="absolute top-4 right-4 text-red-400 hover:text-red-600 text-xl"
-            onClick={() => navigate('/')}
-        >
-          <FaTimesCircle />
-        </button>
-
-        <div className='absolute mt-4 bg-[#FFFFFF1A] p-8'>
+        <div className='relative mt-4 bg-[#FFFFFF1A] p-8'>
             {/* Tabs */}
             <div className="flex items-center space-x-6 border-b border-blue-600 pb-2 mb-4">
             {tabs.map((tab) => (
                 <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className="relative pb-1 flex flex-col items-center"
+                className="relative pb-1 flex flex-row items-center"
                 >
                 <img
                     src={activeTab === tab ? tabIcons[tab].active : tabIcons[tab].default}
@@ -112,10 +112,10 @@ export default function MyTrips() {
 
             {/* Content */}
             <div
-            className="text-center relative overflow-hidden flex flex-row md:flex-col gap-4"
+            className="text-center relative overflow-hidden flex flex-col md:flex-row gap-4"
             >
             <img src={icon} alt="status icon" className="w-14 h-14 mx-auto mb-4" />
-            <div className="flex flex-row">
+            <div className="flex flex-col">
                 <p className="font-poppins font-semibold text-[24px] text-white mb-2">{title}</p>
                 <p className="text-[16px] text-white font-poppins font-light">{subtitle}</p>
             </div>
