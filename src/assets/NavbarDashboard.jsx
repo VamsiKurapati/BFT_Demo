@@ -196,7 +196,7 @@ const NavbarDashboard = () => {
                 <div className="w-full px-6 mt-4">
                 {/* Profile Toggle Button */}
                 <button
-                    className="w-2/3 mx-auto flex items-center justify-between bg-[#A11716E5] text-[#FCD2B1] px-4 py-2 font-poppins font-bold rounded-full transition border border-1 hover:bg-[#003566]"
+                    className="w-2/3 mx-auto flex items-center justify-center text-center bg-[#A11716E5] text-[#FCD2B1] px-4 py-2 font-poppins font-bold rounded-full transition border border-1 hover:bg-[#003566]"
                     style={{ borderColor: '#FCD2B1' }}
                     onClick={() => setShowMenu(!showMenu)}
                 >
