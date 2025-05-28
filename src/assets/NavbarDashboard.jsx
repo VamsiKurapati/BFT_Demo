@@ -109,18 +109,18 @@ const NavbarDashboard = () => {
                     { showMenu && (
                     <div
                         ref={menuRef}
-                        className="absolute top-full right-0 mt-2 w-72 bg-[#003566] text-white rounded-2xl shadow-lg p-4 z-50"
+                        className="absolute top-full right-0 mt-2 w-72 bg-[#003566] text-white border-l-[6px] border-[#F5B501] rounded-2xl shadow-lg p-4 z-50"
                     >
                         <div className="flex items-center justify-between mb-4">
                         <div className="flex items-center">
                             <img
-                            src={loginDetails.avatar || '/profile.png'}
-                            alt="Avatar"
-                            className="w-12 h-12 rounded-full mr-3"
+                                src={loginDetails.avatar || '/profile.png'}
+                                alt="Avatar"
+                                className="w-12 h-12 rounded-full mr-3"
                             />
                             <div>
-                            <h3 className="font-bold text-lg">{loginDetails.name || 'John Doe'}</h3>
-                            <p className="text-sm text-gray-200">{loginDetails.email || 'johndoe@gmail.com'}</p>
+                                <h3 className="font-bold text-lg">{loginDetails.name || 'John Doe'}</h3>
+                                <p className="text-sm text-gray-200">{loginDetails.email || 'johndoe@gmail.com'}</p>
                             </div>
                         </div>
                         <button onClick={() => navigate('/profile/edit')}>
@@ -131,33 +131,22 @@ const NavbarDashboard = () => {
                         <hr className="border-gray-600 mb-2" />
 
                         <button
-                        className="w-full flex items-center gap-3 px-4 py-3 hover:bg-[#002244] rounded-lg transition"
-                        onClick={() => {
-                            setShowMenu(false);
-                            navigate('/my-trips');
-                        }}
+                            className="w-full flex items-center gap-3 px-4 py-3 hover:bg-[#FFFFFF1A] rounded-lg transition"
+                            onClick={() => {
+                                setShowMenu(false);
+                                navigate('/my-trips');
+                            }}
                         >
-                        <img src="/trips.png" alt="trips" className="w-6 h-6" />
-                        My Trips
+                            <img src="/trips.png" alt="trips" className="w-6 h-6" />
+                            My Trips
                         </button>
 
                         <button
-                        className="w-full flex items-center gap-3 px-4 py-3 hover:bg-[#002244] rounded-lg transition"
-                        onClick={() => {
-                            setShowMenu(false);
-                            navigate('/my-proposal');
-                        }}
-                        >
-                        <img src="/proposals.png" alt="proposal" className="w-6 h-6" />
-                        My Proposal
-                        </button>
-
-                        <button
-                        className="w-full flex items-center gap-3 px-4 py-3 mt-2 hover:bg-[#002244] rounded-lg transition"
-                        onClick={() => handleLogout()}
-                        >
-                        <img src="/logout.png" alt="logout" className="w-6 h-6" />
-                        Logout
+                            className="w-full flex items-center gap-3 px-4 py-3 mt-2 hover:bg-[#FFFFFF1A] rounded-lg transition"
+                            onClick={() => handleLogout()}
+                            >
+                            <img src="/logout.png" alt="logout" className="w-6 h-6" />
+                            Logout
                         </button>
                     </div>
                     )}
