@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useNavigate } from 'react';
 import { FaSearch, FaTimesCircle } from 'react-icons/fa';
 import car_myTrips from "/car-myTrips.png";
 
@@ -48,6 +48,8 @@ export default function MyTrips() {
 
   const [carPosition, setCarPosition] = useState(0);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     setCarPosition(tabs.indexOf(activeTab));
   }, [activeTab]);
@@ -55,14 +57,14 @@ export default function MyTrips() {
   const { title, subtitle, icon, bgImage } = tripsData[activeTab];
 
   return (
-    <section className="w-full min-h-screen font-goudy flex items-center justify-center bg-gradient-to-br from-blue-900 to-blue-800">
-      <div className="bg-[#0e3a65] text-white p-6 rounded-lg mx-auto shadow-lg relative w-full max-w-3xl overflow-hidden">
+    <section className="w-full min-h-screen font-goudy">
+      <div className="relative bg-[#003566] rounded-lg mx-auto shadow-lg border-l-[9px] border-[#F5B501] overflow-hidden">
 
         {/* Header */}
-        <div className="text-3xl font-bold mb-4">My Trips</div>
+        <div className="text-[55px] font-poppins font-bold text-[#FFFFFF] mb-4">My Trips</div>
 
         {/* Moving Car */}
-        <div className="relative h-12 mb-4">
+        <div className="relative h-12 pl-24 mb-4">
           <img
             src={car_myTrips}
             alt="Car"
@@ -72,7 +74,9 @@ export default function MyTrips() {
         </div>
 
         {/* Close Button */}
-        <button className="absolute top-4 right-4 text-red-400 hover:text-red-600 text-xl">
+        <button className="absolute top-4 right-4 text-red-400 hover:text-red-600 text-xl"
+            onClick={navigate('/')}
+        >
           <FaTimesCircle />
         </button>
 
