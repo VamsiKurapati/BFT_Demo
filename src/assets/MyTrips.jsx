@@ -17,19 +17,19 @@ import no_cancelled from "/no_cancelled.png";
 import no_completed from "/no_completed.png";
 
 const tripsData = {
-  upcoming: {
+  Upcoming: {
     title: "No secret destinations lined up—yet",
     subtitle: "The world is waiting... are you packed?",
     icon: no_upcoming,
     bgImage: upcoming,
   },
-  cancelled: {
+  Cancelled: {
     title: "No mysteries missed !!",
     subtitle: "Every trip is a chance to explore the unknown",
     icon: no_cancelled,
     bgImage: cancelled,
   },
-  completed: {
+  Completed: {
     title: "You haven’t unwrapped any surprises yet",
     subtitle: "Ready to make some memories?",
     icon: no_completed,
@@ -38,9 +38,9 @@ const tripsData = {
 };
 
 const tabIcons = {
-  upcoming: { default: upcoming, active: upcoming_1 },
-  cancelled: { default: cancelled, active: cancelled_1 },
-  completed: { default: completed, active: completed_1 },
+  Upcoming: { default: upcoming, active: upcoming_1 },
+  Cancelled: { default: cancelled, active: cancelled_1 },
+  Completed: { default: completed, active: completed_1 },
 };
 
 export default function MyTrips() {
