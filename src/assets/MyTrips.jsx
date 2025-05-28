@@ -87,8 +87,8 @@ export default function MyTrips() {
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`relative pb-1 flex flex-col items-center ${
-                activeTab === tab ? 'text-yellow-400 font-semibold' : 'text-white opacity-70'
+              className={`relative pb-1 flex flex-col items-center font-poppins font-semibold ${
+                activeTab === tab ? 'text-[#F5B501] text-[32px]' : 'text-[20px] text-[#FFFFFF99]'
               }`}
             >
               <img
@@ -96,9 +96,9 @@ export default function MyTrips() {
                 alt={`${tab} icon`}
                 className="w-6 h-6 mb-1"
               />
-              <span className="capitalize text-sm">{tab}</span>
+              <span className="font-poppins font-semibold text-[#FFFFFF99] text-[20px]">{tab}</span>
               {activeTab === tab && (
-                <span className="absolute bottom-0 left-0 w-full h-1 bg-yellow-400 rounded"></span>
+                <span className="absolute bottom-0 left-0 w-full h-1 bg- rounded"></span>
               )}
             </button>
           ))}
@@ -116,7 +116,7 @@ export default function MyTrips() {
 
         {/* Content */}
         <div
-          className="bg-[#174b7a] rounded-lg p-6 text-center relative overflow-hidden"
+          className="bg-[#174b7a] rounded-lg p-6 text-center relative overflow-hidden flex flex-col md:flex-row gap-4"
           style={{
             backgroundImage: `url(${bgImage})`,
             backgroundRepeat: 'no-repeat',
@@ -125,8 +125,10 @@ export default function MyTrips() {
           }}
         >
           <img src={icon} alt="status icon" className="w-14 h-14 mx-auto mb-4" />
-          <p className="font-semibold text-lg mb-2">{title}</p>
-          <p className="text-sm text-gray-200">{subtitle}</p>
+          <div className="flex flex-col">
+            <p className="font-poppins font-semibold text-[24px] text-white mb-2">{title}</p>
+            <p className="text-[16px] text-white font-poppins font-light">{subtitle}</p>
+          </div>
         </div>
       </div>
     </section>
