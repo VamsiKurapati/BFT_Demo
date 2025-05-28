@@ -20,7 +20,7 @@ const tripsData = {
   Upcoming: {
     title: "No secret destinations lined up—yet",
     subtitle: "The world is waiting... are you packed?",
-    icon: no_upcoming,
+    icon: no_completed,
   },
   Cancelled: {
     title: "No mysteries missed !!",
@@ -30,7 +30,7 @@ const tripsData = {
   Completed: {
     title: "You haven’t unwrapped any surprises yet",
     subtitle: "Ready to make some memories?",
-    icon: no_completed,
+    icon: no_upcoming,
   },
 };
 
