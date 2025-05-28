@@ -55,30 +55,31 @@ export default function MyTrips() {
   const { title, subtitle, icon } = tripsData[activeTab];
 
   return (
-    <section className="w-full h-screen font-goudy">
-      <div className="relative bg-[#003566] rounded-lg mx-auto shadow-lg border-l-[9px] border-[#F5B501] overflow-hidden p-8">
+    <section className="w-full min-h-screen font-goudy">
+      <div className="relative bg-[#003566] rounded-xl mx-auto shadow-lg border-l-[9px] border-[#F5B501] overflow-hidden p-8">
 
         {/* Header */}
         <div className="text-[55px] font-poppins font-bold text-[#FFFFFF] mb-4">My Trips</div>
 
         {/* Close Button */}
-        <button className="absolute top-4 right-4 text-red-400 hover:text-red-600 text-xl"
+        <button className="absolute top-12 right-4 text-red-400 hover:text-red-600 text-xl"
             onClick={() => navigate('/')}
         >
           <FaTimesCircle />
         </button>
 
-        {/* Moving Car */}
-        <div className="relative h-12 pl-24 mb-4">
-          <img
-            src={car_myTrips}
-            alt="Car"
-            className="absolute top-0 transition-all duration-500 ease-in-out"
-            style={{ left: `${carPosition * 33}%` }}
-          />
+        {/* Car Animation */}
+        <div className="relative h-[150px] mb-[-24px]">
+            <img
+                src={car_myTrips}
+                alt="Car"
+                className="absolute top-0 transition-all duration-500 ease-in-out w-[150px]"
+                style={{ left: `calc(40% + ${carPosition * 15}%)` }}
+            />
         </div>
 
-        <div className='relative mt-4 bg-[#FFFFFF1A] p-8'>
+        {/* Content */}
+        <div className='relative bg-[#FFFFFF1A] p-8 h-[320px] rounded-xl mb-8'>
             {/* Tabs */}
             <div className="flex items-center space-x-6 border-b border-blue-600 pb-2 mb-4">
                 {tabs.map((tab) => (
@@ -108,10 +109,10 @@ export default function MyTrips() {
             </div>
 
             {/* Content */}
-            <div className="text-center relative overflow-hidden flex flex-col md:flex-row">
-                <img src={icon} alt="status icon" className="w-[72px] h-[72px] mx-auto mb-4" />
+            <div className="mt-24 justify-center relative overflow-hidden flex flex-col md:flex-row">
+                <img src={icon} alt="status icon" className="w-[72px] h-[72px]" />
                 <div className="flex flex-col">
-                    <p className="font-poppins font-semibold text-[24px] text-white mb-2">{title}</p>
+                    <p className="font-poppins font-semibold text-[24px] text-white -mb-1">{title}</p>
                     <p className="text-[16px] text-white font-poppins font-light">{subtitle}</p>
                 </div>
             </div>
