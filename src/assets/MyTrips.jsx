@@ -97,11 +97,11 @@ export default function MyTrips() {
                 ))}
 
                 {/* Search Bar */}
-                <div className="right-4 flex items-center bg-[#174b7a] px-2 py-1 rounded">
+                <div className="right-4 flex items-center bg-[#FFFFFF1A] py-[8px] px-[18px] rounded-2xl">
                     <input
                     type="text"
                     placeholder="Search"
-                    className="bg-transparent outline-none placeholder-gray-300 text-sm text-white"
+                    className="bg-transparent font-poppins font-normal text-[16px] text-white outline-none"
                     />
                     <FaSearch className="mr-2 text-gray-300" />
                 </div>
@@ -109,7 +109,7 @@ export default function MyTrips() {
 
             {/* Content */}
             <div className="text-center relative overflow-hidden flex flex-col md:flex-row">
-                <img src={icon} alt="status icon" className="w-14 h-14 mx-auto mb-4" />
+                <img src={icon} alt="status icon" className="w-[72px] h-[72px] mx-auto mb-4" />
                 <div className="flex flex-col">
                     <p className="font-poppins font-semibold text-[24px] text-white mb-2">{title}</p>
                     <p className="text-[16px] text-white font-poppins font-light">{subtitle}</p>
