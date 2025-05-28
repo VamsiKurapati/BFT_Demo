@@ -32,7 +32,7 @@ export default function MyTrips() {
 
   return (
     <section className="w-full font-goudy">
-        <div className="bg-[#0e3a65] text-white p-6 rounded-lg max-w-2xl mx-auto shadow-lg relative">
+        <div className="bg-[#0e3a65] text-white p-6 rounded-lg mx-auto shadow-lg relative">
         <div className="text-3xl font-bold mb-4">My Trips</div>
         <FaCarSide className="absolute top-4 right-16 text-blue-300 text-3xl opacity-30" />
         <button className="absolute top-4 right-4 text-red-400 hover:text-red-600 text-xl">
