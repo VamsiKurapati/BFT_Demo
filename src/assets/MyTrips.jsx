@@ -59,7 +59,7 @@ export default function MyTrips() {
 
   return (
     <section className="w-full h-screen font-goudy">
-      <div className="relative bg-[#003566] rounded-lg mx-auto shadow-lg border-l-[9px] border-[#F5B501] overflow-hidden">
+      <div className="relative bg-[#003566] rounded-lg mx-auto shadow-lg border-l-[9px] border-[#F5B501] overflow-hidden p-8">
 
         {/* Header */}
         <div className="text-[55px] font-poppins font-bold text-[#FFFFFF] mb-4">My Trips</div>
