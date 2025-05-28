@@ -208,7 +208,6 @@ const NavbarDashboard = () => {
                     />
                     <span className="text-sm">Profile</span>
                     </div>
-                    <img src="/dropdown-arrow.png" alt="arrow" className="w-4 h-4" />
                 </button>
 
                 {/* Dropdown below profile */}
