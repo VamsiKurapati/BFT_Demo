@@ -213,7 +213,7 @@ const NavbarDashboard = () => {
                 {/* Dropdown below profile */}
                 {showMenu && (
                     <div className="mt-2 bg-[#003566] text-white border-l-[6px] border-[#F5B501] rounded-2xl shadow-lg p-4"
-                        ref={showMenu}
+                        ref={menuRef}
                     >
                         <div className="flex items-center justify-between mb-4">
                             <div className="flex items-center">
