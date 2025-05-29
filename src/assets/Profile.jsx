@@ -138,7 +138,7 @@ const Profile = () => {
                                 />
                                 <span
                                     onClick={() => setShowNewPassword(!showNewPassword)}
-                                    className="absolute right-3 top-2.5 text-gray-500 cursor-pointer"
+                                    className="absolute right-3 mt-2 text-gray-500 cursor-pointer"
                                     >
                                     {showNewPassword ? '🙈' : '👁️'}
                                 </span>
@@ -155,7 +155,7 @@ const Profile = () => {
                                 />
                                 <span
                                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                                    className="absolute right-3 top-2.5 text-gray-500 cursor-pointer"
+                                    className="absolute right-3 mt-2 text-gray-500 cursor-pointer"
                                     >
                                     {showConfirmPassword ? '🙈' : '👁️'}
                                 </span>
