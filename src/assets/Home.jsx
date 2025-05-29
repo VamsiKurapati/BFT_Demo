@@ -812,7 +812,7 @@ export default function Home() {
                 surprise-filled adventure on your finger tips.
               </p>
               <button
-                className="group mt-8 px-8 py-3 rounded-xl shadow-md bg-[#A11616E5] hover:bg-[#003566] hover:border hover:border-1 hover:border-[#FCD2B1] font-poppins font-bold text-[14px] sm:text-[16px] md:text-[20px] text-[#FCD2B1] transition-all flex items-center gap-2"
+                className="group mt-8 mb-4 md:mb-0 px-8 py-3 rounded-xl shadow-md bg-[#A11616E5] hover:bg-[#003566] hover:border hover:border-1 hover:border-[#FCD2B1] font-poppins font-bold text-[14px] sm:text-[16px] md:text-[20px] text-[#FCD2B1] transition-all flex items-center gap-2"
                 onClick={() => navigate("/questionnaire")}
               >
                 Start Your Mystery Trip

@@ -27,9 +27,9 @@ const App = () => {
                 <Route path="/signup" element={<SignUp />} />
 
                 {/* Other route redirect to home and change the path to your home page */}
-                <Route path="/questionnaire" element={<ProtectedRoutes allowedRoles={"User"}><Questionnaire /></ProtectedRoutes>}/>
-                <Route path="/my-trips" element={<ProtectedRoutes allowedRoles={"User"}><MyTrips /></ProtectedRoutes>} />
-                <Route path="/stay-tuned" element={<ProtectedRoutes allowedRoles={"User"}><StayTuned /></ProtectedRoutes>} />
+                <Route path="/questionnaire" element={<ProtectedRoutes allowedRoles={"User, Admin"}><Questionnaire /></ProtectedRoutes>}/>
+                <Route path="/my-trips" element={<ProtectedRoutes allowedRoles={"User, Admin"}><MyTrips /></ProtectedRoutes>} />
+                <Route path="/stay-tuned" element={<ProtectedRoutes allowedRoles={"User, Admin"}><StayTuned /></ProtectedRoutes>} />
                 <Route path="/create-trip" element={<ProtectedRoutes allowedRoles={"Admin"}><Questionnaire /></ProtectedRoutes>} />
 
                 {/* Redirect all other paths to home */}
