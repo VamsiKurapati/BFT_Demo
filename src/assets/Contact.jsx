@@ -13,7 +13,7 @@ export default function Contact() {
         } else {
           setActiveFaq(id); // Open the clicked FAQ
         }
-      };
+    };
     
     // FAQ data
     const faqItems = [

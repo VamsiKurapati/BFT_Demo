@@ -6,29 +6,33 @@ const Home = lazy(() => import("./assets/Home"));
 const Contact = lazy(() => import("./assets/Contact"));
 const WhyUs = lazy(() => import("./assets/Why_Us"));
 const HowItWorks = lazy(() => import("./assets/How_It_Works"));
-const Questionnaire = lazy(() => import("./assets/Questionnaire"));
-const StayTuned = lazy(() => import("./assets/Stay_Tuned"));
 const Login = lazy(() => import("./assets/Login"));
 const SignUp = lazy(() => import("./assets/SignUp"));
 
+import ProtectedRoutes from "./assets/ProtectedRoutes";
+
 const MyTrips = lazy(() => import("./assets/MyTrips"));
+const Questionnaire = lazy(() => import("./assets/Questionnaire"));
+const StayTuned = lazy(() => import("./assets/Stay_Tuned"));
 
 const App = () => {
     return (
       <Suspense fallback={<></>}>
           <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/home" element={<Home />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/why_us" element={<WhyUs />} />
                 <Route path="/how_it_works" element={<HowItWorks />} />
-                <Route path="/questionnaire" element={<Questionnaire />} />
-                <Route path="/stay_tuned" element={<StayTuned />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<SignUp />} />
-                <Route path="/my-trips" element={<MyTrips />} />
 
                 {/* Other route redirect to home and change the path to your home page */}
+                <Route path="/questionnaire" element={<ProtectedRoutes allowedRoles={"User"}><Questionnaire /></ProtectedRoutes>}/>
+                <Route path="/my-trips" element={<ProtectedRoutes allowedRoles={"User"}><MyTrips /></ProtectedRoutes>} />
+                <Route path="/stay-tuned" element={<ProtectedRoutes allowedRoles={"User"}><StayTuned /></ProtectedRoutes>} />
+                <Route path="/create-trip" element={<ProtectedRoutes allowedRoles={"Admin"}><Questionnaire /></ProtectedRoutes>} />
+
+                {/* Redirect all other paths to home */}
                 <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
       </Suspense>
