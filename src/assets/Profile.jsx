@@ -1,6 +1,6 @@
-import React,{ useState, useEffect } from 'react';
+import React,{ useState, useEffect, use } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import { toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 const Profile = () => {
     const navigate = useNavigate();
@@ -8,6 +8,7 @@ const Profile = () => {
         name: '',
         email: '',
         username: '',
+        userId: ''
     });
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
@@ -18,7 +19,8 @@ const Profile = () => {
         setFormData({
             name: loginDetails.name || '',
             email: loginDetails.email || '',
-            username: loginDetails.username || ''
+            username: loginDetails.username || '',
+            userId: loginDetails.userId || ''
         });
         } else {
         navigate('/login');
@@ -35,7 +37,7 @@ const Profile = () => {
         setError('');
     
         try {
-        const response = await fetch('https://bft-backend.vercel.app/api/auth/update-profile', {
+        const response = await fetch('https://bft-backend.vercel.app/api/profile/updateProfile', {
             method: "POST",
             headers: {
             "Content-Type": "application/json"
@@ -46,7 +48,7 @@ const Profile = () => {
         if (response.ok) {
             const data = await response.json();
             localStorage.setItem("loginDetails", JSON.stringify(data));
-            // toast.success('Profile updated successfully!');
+            toast.success('Profile updated successfully!');
             alert('Profile updated successfully!');
             setTimeout(() => navigate('/'),3000); // Redirect to home after successful update
         } else {
