@@ -123,7 +123,7 @@ const NavbarDashboard = () => {
                                 <p className="text-sm text-gray-200">{loginDetails.email || 'johndoe@gmail.com'}</p>
                             </div>
                         </div>
-                        <button onClick={() => navigate('/profile/edit')}>
+                        <button onClick={() => navigate('/edit-profile')}>
                             <img src="/edit.png" alt="edit" className="w-6 h-6" />
                         </button>
                         </div>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const ForgotPassword = () => {
   const [step, setStep] = useState(1); // 1 = email, 2 = OTP, 3 = new password
@@ -9,6 +10,7 @@ const ForgotPassword = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
+  const navigate = useNavigate();
 
   const handleEmailSubmit = async (e) => {
     e.preventDefault();
@@ -88,8 +90,23 @@ const ForgotPassword = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center px-4">
-      <div className="bg-white rounded-2xl shadow-xl p-8 w-full max-w-md">
+    <div
+      className="h-screen w-screen bg-cover bg-center relative flex items-center justify-center"
+      style={{
+        backgroundImage: "url('/login_page.jpg')",
+      }}
+    >
+      <div className="absolute inset-0 bg-black opacity-30"></div>
+
+      <button
+        className="absolute top-3 right-4 z-20"
+        onClick={() => navigate('/')}
+      >
+        <img src="/closeButton.png" alt="Close" />
+      </button>
+
+      <div className="relative w-[95%] max-w-md md:mt-0 mt-14 bg-[#D9D9D9] px-8 py-10 rounded-xl shadow-lg z-10">
+        <img src="/Logo_1.png" alt="Logo" className="w-[180px] h-[40px] mb-4" />
         {step===1 && (<h2 className="text-3xl font-bold text-center mb-2 text-gray-800">Forgot Password ?</h2>)}
 
         {step===2 && (<h2 className="text-3xl font-bold text-center mb-4 text-gray-800">Validate OTP</h2>)}

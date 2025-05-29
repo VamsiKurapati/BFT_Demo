@@ -15,6 +15,7 @@ import ProtectedRoutes from "./assets/ProtectedRoutes";
 const MyTrips = lazy(() => import("./assets/MyTrips"));
 const Questionnaire = lazy(() => import("./assets/Questionnaire"));
 const StayTuned = lazy(() => import("./assets/Stay_Tuned"));
+const Profile = lazy(() => import("./assets/Profile"));
 
 const App = () => {
     return (
@@ -33,6 +34,7 @@ const App = () => {
                 <Route path="/my-trips" element={<ProtectedRoutes allowedRoles={"User, Admin"}><MyTrips /></ProtectedRoutes>} />
                 <Route path="/stay-tuned" element={<ProtectedRoutes allowedRoles={"User, Admin"}><StayTuned /></ProtectedRoutes>} />
                 <Route path="/create-trip" element={<ProtectedRoutes allowedRoles={"Admin"}><Questionnaire /></ProtectedRoutes>} />
+                <Route path="/edit-profile" element={<ProtectedRoutes allowedRoles={"User, Admin"}><Profile /></ProtectedRoutes>} />
 
                 {/* Redirect all other paths to home */}
                 <Route path="*" element={<Navigate to="/" replace />} />
