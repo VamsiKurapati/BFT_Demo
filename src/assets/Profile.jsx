@@ -1,6 +1,6 @@
 import React,{ useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
 
 const Profile = () => {
     const navigate = useNavigate();
@@ -46,7 +46,9 @@ const Profile = () => {
         if (response.ok) {
             const data = await response.json();
             localStorage.setItem("loginDetails", JSON.stringify(data));
-            toast.success('Profile updated successfully!');
+            // toast.success('Profile updated successfully!');
+            alert('Profile updated successfully!');
+            setTimeout(() => navigate('/'),3000); // Redirect to home after successful update
         } else {
             const errorData = await response.json();
             setError(errorData.message || 'Profile update failed. Please try again.');
