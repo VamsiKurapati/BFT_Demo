@@ -8,6 +8,7 @@ const WhyUs = lazy(() => import("./assets/Why_Us"));
 const HowItWorks = lazy(() => import("./assets/How_It_Works"));
 const Login = lazy(() => import("./assets/Login"));
 const SignUp = lazy(() => import("./assets/SignUp"));
+const ForgotPassword = lazy(() => import("./assets/ForgotPassword"));
 
 import ProtectedRoutes from "./assets/ProtectedRoutes";
 
@@ -25,6 +26,7 @@ const App = () => {
                 <Route path="/how_it_works" element={<HowItWorks />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<SignUp />} />
+                <Route path="/forgot-password" element={<ForgotPassword />} />
 
                 {/* Other route redirect to home and change the path to your home page */}
                 <Route path="/questionnaire" element={<ProtectedRoutes allowedRoles={"User, Admin"}><Questionnaire /></ProtectedRoutes>}/>

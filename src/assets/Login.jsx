@@ -95,7 +95,7 @@ const Login = () => {
             <button
               type="button"
               className="text-black font-semibold hover:text-[#002244]"
-              onClick={() => navigate("/forgot_password")}
+              onClick={() => navigate("/forgot-password")}
             >
               Forgot Password?
             </button>
