@@ -93,7 +93,7 @@ const ForgotPassword = () => {
     <div
       className="h-screen w-screen bg-cover bg-center relative flex items-center justify-center"
       style={{
-        backgroundImage: "url('/login_page.jpg')",
+        backgroundImage: "url('/signup_page.jpg')",
       }}
     >
       <div className="absolute inset-0 bg-black opacity-30"></div>
