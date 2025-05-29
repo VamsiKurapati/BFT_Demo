@@ -20,7 +20,7 @@ const Profile = () => {
             name: loginDetails.name || '',
             email: loginDetails.email || '',
             username: loginDetails.username || '',
-            userId: loginDetails.userId || ''
+            userId: loginDetails._id || ''
         });
         } else {
         navigate('/login');
