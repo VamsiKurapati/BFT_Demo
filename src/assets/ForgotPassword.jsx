@@ -106,7 +106,7 @@ const ForgotPassword = () => {
       </button>
 
       <div className="relative w-[95%] max-w-md md:mt-0 mt-14 bg-[#D9D9D9] px-8 py-10 rounded-xl shadow-lg z-10">
-        <img src="/Logo_1.png" alt="Logo" className="w-[180px] h-[40px] mb-4" />
+        <img src="/Logo_1.png" alt="Logo" className="w-[180px] h-[40px] mb-12" />
         {step===1 && (<h2 className="text-3xl font-bold text-center mb-2 text-gray-800">Forgot Password ?</h2>)}
 
         {step===2 && (<h2 className="text-3xl font-bold text-center mb-4 text-gray-800">Validate OTP</h2>)}

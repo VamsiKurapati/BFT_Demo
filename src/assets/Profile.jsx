@@ -11,6 +11,11 @@ const Profile = () => {
     });
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
+    const [newPassword, setNewPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [changePassword, setChangePassword] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     
     useEffect(() => {
         const loginDetails = JSON.parse(localStorage.getItem("loginDetails"));
@@ -71,7 +76,7 @@ const Profile = () => {
             <div className="absolute inset-0 bg-black opacity-30"></div>
 
             <div className="relative w-[95%] max-w-md md:ml-20 md:mt-0 mt-14 bg-[#D9D9D9] px-8 py-10 rounded-xl shadow-lg z-10">
-                <img src="/Logo_1.png" alt="Logo" className="w-[180px] h-[40px] mb-4" />
+                <img src="/Logo_1.png" alt="Logo" className="w-[180px] h-[40px] mb-12" />
                 <h1 className="font-poppins font-extrabold text-[32px] text-black mb-4">Edit Profile</h1>
                 <form onSubmit={handleUpdateProfile}>
                     <div className="mb-4">
@@ -107,6 +112,51 @@ const Profile = () => {
                             required
                         />
                     </div>
+                    <button
+                        type="button"
+                        onClick={() => {setChangePassword(!changePassword); setNewPassword(''); setConfirmPassword('');}}
+                        className="text-blue-500 mb-4"
+                    >
+                        Change Password
+                        {changePassword && (
+                            <div>
+                                <div className="mb-4">
+                                <label className="block text-black mb-2">New Password</label>
+                                <input
+                                    type={showPassword ? 'text' : 'password'}
+                                    name="newPassword"
+                                    value={newPassword}
+                                    onChange={(e) => setNewPassword(e.target.value)}
+                                    className="w-full px-3 py-2 border border-gray-300 rounded"
+                                />
+                                <button
+                                    type="button"
+                                    onClick={() => setShowPassword(!showPassword)}
+                                    className="text-blue-500 mt-1"
+                                >
+                                    {showPassword ? 'Hide Password' : 'Show Password'}
+                                </button>
+                                </div>
+                                <div className="mb-4">
+                                    <label className="block text-black mb-2">Confirm New Password</label>
+                                    <input
+                                        type={showConfirmPassword ? 'text' : 'password'}
+                                        name="confirmPassword"
+                                        value={confirmPassword}
+                                        onChange={(e) => setConfirmPassword(e.target.value)}
+                                        className="w-full px-3 py-2 border border-gray-300 rounded"
+                                    />
+                                    <button
+                                        type="button"
+                                        onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                                        className="text-blue-500 mt-1"
+                                    >
+                                        {showConfirmPassword ? 'Hide Password' : 'Show Password'}
+                                    </button>
+                                </div>
+                            </div>
+                        )}
+                    </button>
                     <button
                         type="submit"
                         disabled={loading}
