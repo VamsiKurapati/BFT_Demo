@@ -1,7 +1,7 @@
 import { Navigate } from "react-router-dom";
 
 const ProtectedRoutes = ({ children, allowedRoles }) => {
-    const {loginDetails} = JSON.parse(localStorage.getItem("loginDetails")) || {};
+    const [loginDetails, setLoginDetails] = useState(JSON.parse(localStorage.getItem("loginDetails")) || null);
 
     console.log("ProtectedRoutes: ", loginDetails);
     
