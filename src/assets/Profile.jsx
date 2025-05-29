@@ -38,7 +38,7 @@ const Profile = () => {
     
         try {
         const response = await fetch('https://bft-backend.vercel.app/api/profile/updateProfile', {
-            method: "POST",
+            method: "PUT",
             headers: {
             "Content-Type": "application/json"
             },
