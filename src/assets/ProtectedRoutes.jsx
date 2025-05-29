@@ -1,4 +1,5 @@
 import { Navigate } from "react-router-dom";
+import React, { useState } from "react";
 
 const ProtectedRoutes = ({ children, allowedRoles }) => {
     const [loginDetails, setLoginDetails] = useState(JSON.parse(localStorage.getItem("loginDetails")) || null);
