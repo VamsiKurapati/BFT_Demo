@@ -112,51 +112,60 @@ const Profile = () => {
                             required
                         />
                     </div>
-                    <button
+                    <div className="mb-6">
+                        <button
                         type="button"
-                        onClick={() => {setChangePassword(!changePassword); setNewPassword(''); setConfirmPassword('');}}
-                        className="text-blue-500 mb-4"
-                    >
-                        Change Password
+                        onClick={() => {
+                            setChangePassword(!changePassword);
+                            setNewPassword('');
+                            setConfirmPassword('');
+                        }}
+                        className="text-blue-600 font-medium hover:underline"
+                        >
+                        {changePassword ? 'Cancel Password Change' : 'Change Password'}
+                        </button>
+
                         {changePassword && (
-                            <div>
-                                <div className="mb-4">
-                                <label className="block text-black mb-2">New Password</label>
-                                <input
-                                    type={showPassword ? 'text' : 'password'}
-                                    name="newPassword"
-                                    value={newPassword}
-                                    onChange={(e) => setNewPassword(e.target.value)}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded"
-                                />
-                                <button
-                                    type="button"
-                                    onClick={() => setShowPassword(!showPassword)}
-                                    className="text-blue-500 mt-1"
-                                >
-                                    {showPassword ? 'Hide Password' : 'Show Password'}
-                                </button>
-                                </div>
-                                <div className="mb-4">
-                                    <label className="block text-black mb-2">Confirm New Password</label>
-                                    <input
-                                        type={showConfirmPassword ? 'text' : 'password'}
-                                        name="confirmPassword"
-                                        value={confirmPassword}
-                                        onChange={(e) => setConfirmPassword(e.target.value)}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded"
-                                    />
-                                    <button
-                                        type="button"
-                                        onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                                        className="text-blue-500 mt-1"
-                                    >
-                                        {showConfirmPassword ? 'Hide Password' : 'Show Password'}
-                                    </button>
-                                </div>
+                        <div className="mt-4">
+                            <div className="mb-4">
+                            <label className="block text-black mb-1">New Password</label>
+                            <input
+                                type={showPassword ? 'text' : 'password'}
+                                name="newPassword"
+                                value={newPassword}
+                                onChange={(e) => setNewPassword(e.target.value)}
+                                className="w-full px-3 py-2 border border-gray-300 rounded"
+                            />
+                            <button
+                                type="button"
+                                onClick={() => setShowPassword(!showPassword)}
+                                className="text-sm text-blue-500 mt-1"
+                            >
+                                {showPassword ? 'Hide Password' : 'Show Password'}
+                            </button>
                             </div>
+
+                            <div className="mb-4">
+                            <label className="block text-black mb-1">Confirm New Password</label>
+                            <input
+                                type={showConfirmPassword ? 'text' : 'password'}
+                                name="confirmPassword"
+                                value={confirmPassword}
+                                onChange={(e) => setConfirmPassword(e.target.value)}
+                                className="w-full px-3 py-2 border border-gray-300 rounded"
+                            />
+                            <button
+                                type="button"
+                                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                                className="text-sm text-blue-500 mt-1"
+                            >
+                                {showConfirmPassword ? 'Hide Password' : 'Show Password'}
+                            </button>
+                            </div>
+                        </div>
                         )}
-                    </button>
+                    </div>
+                    {error && <p className="text-red-500 mb-4">{error}</p>}
                     <button
                         type="submit"
                         disabled={loading}
@@ -165,7 +174,6 @@ const Profile = () => {
                         {loading ? 'Updating...' : 'Update Profile'}
                     </button>
                 </form>
-                {error && <p className="text-red-500 mb-4">{error}</p>}
                 <button
                     onClick={() => navigate('/')}
                     className="mt-4 w-full px-4 py-2 bg-gray-300 text-black rounded hover:bg-gray-400"
