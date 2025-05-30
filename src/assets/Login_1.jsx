@@ -54,7 +54,7 @@ const Login = () => {
               const res = await fetch('https://bft-backend.vercel.app/api/auth/google-login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ credential: response.code }),
+                body: JSON.stringify({ code: response.code }),
               });
 
               if (res.ok) {
@@ -156,7 +156,7 @@ const Login = () => {
           <img
             src="/google_logo.png"
             alt="Google Sign-In"
-            className="w-10 h-10 cursor-pointer"
+            className="w-10 h-10 cursor-pointer hover:scale-105 transition"
             onClick={handleGoogleLogin}
           />
         </div>
