@@ -7,6 +7,7 @@ const Login = () => {
   const [formData, setFormData] = useState({ identifier: '', password: '' });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [google, setGoogle] = useState(null);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -40,44 +41,43 @@ const Login = () => {
     }
   };
 
-  useEffect(() => {
-    /* global google */
-    if (window.google) {
-      google.accounts.id.initialize({
-        client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
-        callback: async (response) => {
-          try {
-            const res = await fetch('https://bft-backend.vercel.app/api/auth/google-login', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ credential: response.credential }),
-            });
+  // Google login popup
+  const handleGoogleLogin = () => {
+    if (google) {
+      google.accounts.oauth2
+        .initCodeClient({
+          client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
+          scope: 'openid email profile',
+          ux_mode: 'popup',
+          callback: async (response) => {
+            try {
+              const res = await fetch('https://bft-backend.vercel.app/api/auth/google-login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ code: response.code }),
+              });
 
-            if (res.ok) {
-              const data = await res.json();
-              localStorage.setItem('loginDetails', JSON.stringify(data));
-              navigate('/');
-            } else {
-              const err = await res.json();
-              setError(err.message || 'Google login failed');
+              if (res.ok) {
+                const data = await res.json();
+                localStorage.setItem('loginDetails', JSON.stringify(data));
+                navigate('/');
+              } else {
+                const err = await res.json();
+                setError(err.message || 'Google login failed');
+              }
+            } catch (err) {
+              console.error('Google login error:', err);
+              setError('Google login failed. Please try again.');
             }
-          } catch (err) {
-            console.error('Google login error:', err);
-            setError('Google login failed. Please try again.');
-          }
-        },
-      });
-
-      // Optional: Enable One Tap
-      google.accounts.id.prompt();
-    }
-  }, [navigate]);
-
-  const handleGoogleClick = () => {
-    if (window.google) {
-      google.accounts.id.prompt(); // Trigger One Tap (or use popup if needed)
+          },
+        })
+        .requestCode();
     }
   };
+
+  useEffect(() => {
+    if (window.google) setGoogle(window.google);
+  }, []);
 
   return (
     <div
@@ -157,7 +157,7 @@ const Login = () => {
             src="/google_logo.png"
             alt="Google Sign-In"
             className="w-10 h-10 cursor-pointer"
-            onClick={() => handleGoogleClick()}
+            onClick={handleGoogleLogin}
           />
         </div>
 
