@@ -6,7 +6,7 @@ const Home = lazy(() => import("./assets/Home"));
 const Contact = lazy(() => import("./assets/Contact"));
 const WhyUs = lazy(() => import("./assets/Why_Us"));
 const HowItWorks = lazy(() => import("./assets/How_It_Works"));
-const Login = lazy(() => import("./assets/Login"));
+const Login = lazy(() => import("./assets/Login_1"));
 const SignUp = lazy(() => import("./assets/SignUp"));
 const ForgotPassword = lazy(() => import("./assets/ForgotPassword"));
 
