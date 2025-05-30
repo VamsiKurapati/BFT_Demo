@@ -112,24 +112,24 @@ const NavbarDashboard = () => {
                         className="absolute top-full right-0 mt-2 w-72 bg-[#003566] text-white border-l-[6px] border-[#F5B501] rounded-2xl shadow-lg p-4 z-50"
                     >
                         <div className="flex items-center justify-between mb-4">
-                        <div className="flex items-center">
-                            <img
-                                src={loginDetails.avatar || '/profile.png'}
-                                alt="Avatar"
-                                className="w-12 h-12 rounded-full mr-3"
-                            />
-                            <div className="overflow-x-auto whitespace-nowrap">
-                                <h3 className="font-bold text-lg overflow-x-auto whitespace-nowrap max-w-[200px] scrollbar-hide">
-                                    {loginDetails.name || 'John Doe'}
-                                </h3>
-                                <p className="text-sm text-gray-200 overflow-x-auto whitespace-nowrap max-w-[200px] scrollbar-hide">
-                                    {loginDetails.email || 'johndoe@gmail.com'}
-                                </p>
+                            <div className="flex items-center mr-4">
+                                <img
+                                    src={loginDetails.avatar || '/profile.png'}
+                                    alt="Avatar"
+                                    className="w-12 h-12 rounded-full mr-3"
+                                />
+                                <div className="overflow-x-auto whitespace-nowrap">
+                                    <h3 className="font-bold text-lg overflow-x-auto whitespace-nowrap max-w-[200px] scrollbar-hide">
+                                        {loginDetails.name || 'John Doe'}
+                                    </h3>
+                                    <p className="text-sm text-gray-200 overflow-x-auto whitespace-nowrap max-w-[200px] scrollbar-hide">
+                                        {loginDetails.email || 'johndoe@gmail.com'}
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                        <button onClick={() => navigate('/edit-profile')}>
-                            <img src="/edit.png" alt="edit" className="w-6 h-6" />
-                        </button>
+                            <button onClick={() => navigate('/edit-profile')}>
+                                <img src="/edit.png" alt="edit" className="pl-2 w-6 h-6" />
+                            </button>
                         </div>
 
                         <hr className="border-gray-600 mb-2" />
