@@ -104,3 +104,12 @@
   border-radius: 10px;
 }
 
+/* Tailwind CSS plugin or custom CSS */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
