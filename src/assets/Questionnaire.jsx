@@ -3067,7 +3067,7 @@ export default function Questionnaire() {
                     ref={carRef}
                     src={car}
                     alt="car"
-                    className="w-[60px] md:w-[90px] lg:w-[110px] h-[60px] md:h-[90px] lg:h-[90px] absolute top-1/2 transform -translate-y-1/2 left-4"
+                    className="w-[60px] md:w-[75px] h-[60px] md:h-[60px] absolute top-1/2 transform -translate-y-1/2 left-4"
                 />
             </div>
 
