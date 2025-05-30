@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { redirect, useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -49,6 +49,7 @@ const Login = () => {
           client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
           scope: 'openid email profile',
           ux_mode: 'popup',
+          redirect_uri: 'postmessage',
           callback: async (response) => {
             try {
               const res = await fetch('https://bft-backend.vercel.app/api/auth/google-login', {
