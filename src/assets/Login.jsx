@@ -128,7 +128,7 @@ const Login = () => {
                     'Content-Type': 'application/json'
                   },
                   body: JSON.stringify({
-                    token: credentialResponse.credential
+                    credential: credentialResponse.credential
                   })
                 });
 
