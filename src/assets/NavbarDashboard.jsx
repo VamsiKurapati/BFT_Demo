@@ -220,17 +220,17 @@ const NavbarDashboard = () => {
                         ref={menuRef}
                     >
                         <div className="flex items-center justify-between mb-4">
-                            <div className="flex items-center">
+                            <div className="flex items-center mr-4">
                                 <img
                                     src={loginDetails.avatar || '/profile.png'}
                                     alt="Avatar"
                                     className="w-10 h-10 rounded-full mr-3"
                                 />
-                                <div>
-                                    <h3 className="font-bold text-base">
+                                <div className="overflow-x-auto whitespace-nowrap">
+                                    <h3 className="font-bold text-lg overflow-x-auto whitespace-nowrap max-w-[200px] scrollbar-hide">
                                         {loginDetails.name || 'John Doe'}
                                     </h3>
-                                    <p className="text-xs text-gray-200">
+                                    <p className="text-sm text-gray-200 overflow-x-auto whitespace-nowrap max-w-[200px] scrollbar-hide">
                                         {loginDetails.email || 'johndoe@gmail.com'}
                                     </p>
                                 </div>
