@@ -4,6 +4,8 @@ import { BrowserRouter } from 'react-router-dom'
 import './index.css'
 import App from './App.jsx'
 
+import { GoogleOAuthProvider } from '@react-oauth/google';
+
 // Goudy Bookletter 1911 (Only weight 400)
 import '@fontsource/goudy-bookletter-1911/400.css';
 
@@ -35,7 +37,9 @@ import '@fontsource/sofia/400.css';
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
+    <GoogleOAuthProvider clientId={import.meta.env.GOOGLE_CLIENT_ID}>
       <App />
+    </GoogleOAuthProvider>
     </BrowserRouter>
   </StrictMode>
 );

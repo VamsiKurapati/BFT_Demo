@@ -3036,7 +3036,7 @@ export default function Questionnaire() {
     const isDisabled = currentValidator ? !currentValidator() : false;
 
     return (
-        <div className="min-h-screen flex flex-col bg-white font-poppins">
+        <div className="min-h-screen flex flex-col bg-white">
             {/* Header */}
             <div className="flex flex-col justify-end items-end pt-[56px] px-6 py-4 border-b shadow-sm">
                 <img src="/Logo_1.png" alt="Logo" className="pl-[40px] w-[242px] h-[53px] mr-auto" />

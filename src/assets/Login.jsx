@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { GoogleLogin } from '@react-oauth/google';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -118,9 +119,37 @@ const Login = () => {
 
         <div className="mt-4 text-center font-poppins font-nregular text-[#000000] text-[14px]">or continue with</div>
         <div className="mt-3 flex justify-center">
-          <button className="w-[42px] h-[42px]">
-            <img src="/google_logo.png" alt="Google" className="h-full w-full" />
-          </button>
+          <GoogleLogin
+            onSuccess={async (credentialResponse) => {
+              try {
+                const res = await fetch('https://bft-backend.vercel.app/api/auth/google-login', {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify({
+                    token: credentialResponse.credential
+                  })
+                });
+
+                if (res.ok) {
+                  const data = await res.json();
+                  localStorage.setItem('loginDetails', JSON.stringify(data));
+                  navigate('/');
+                } else {
+                  const err = await res.json();
+                  setError(err.message || 'Google login failed');
+                }
+              } catch (err) {
+                console.error('Google login error:', err);
+                setError('Google login failed. Please try again.');
+              }
+            }}
+            onError={() => {
+              setError('Google Sign In was unsuccessful. Try again later.');
+            }}
+            useOneTap
+          />
         </div>
 
         <div className="mt-6 text-center font-poppins font-normal text-[#000000] text-[16px]">

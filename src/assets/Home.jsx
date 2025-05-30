@@ -791,7 +791,7 @@ export default function Home() {
   ];
 
   return (
-    <section className="w-full font-goudy">
+    <section className="w-full">
         {/* Background Image and Navigation */}
         <section
           className="relative min-h-screen md:h-[750px] bg-cover bg-center bg-no-repeat overflow-hidden"

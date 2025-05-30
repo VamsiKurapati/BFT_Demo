@@ -55,7 +55,7 @@ export default function MyTrips() {
   const { title, subtitle, icon } = tripsData[activeTab];
 
   return (
-    <section className="w-full min-h-screen font-goudy px-4 py-6 sm:px-6 lg:px-8">
+    <section className="w-full min-h-screen px-4 py-6 sm:px-6 lg:px-8">
         <div className="relative bg-[#003566] rounded-xl max-w-[1200px] mx-auto shadow-lg border-l-[9px] border-[#F5B501] overflow-hidden p-4 sm:p-6 md:p-8">
             {/* Header */}
             <div className="text-[36px] sm:text-[44px] md:text-[55px] font-poppins font-bold text-white mb-4">
