@@ -37,7 +37,7 @@ import '@fontsource/sofia/400.css';
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
-    <GoogleOAuthProvider clientId={import.meta.env.GOOGLE_CLIENT_ID}>
+    <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
       <App />
     </GoogleOAuthProvider>
     </BrowserRouter>
