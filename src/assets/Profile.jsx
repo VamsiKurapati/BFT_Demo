@@ -70,7 +70,7 @@ const Profile = () => {
     
     return (
         <div
-            className="h-screen w-screen bg-cover bg-center relative flex items-center justify-center"
+            className="w-screen bg-cover bg-center relative flex items-center justify-center"
             style={{
                 backgroundImage: "url('/login_page.jpg')",
             }}
@@ -82,7 +82,7 @@ const Profile = () => {
                 <h1 className="font-poppins font-extrabold text-[32px] text-black mb-4">Edit Profile</h1>
                 <form onSubmit={handleUpdateProfile}>
                     <div className="mb-4">
-                        <label className="block text-black mb-2">Name</label>
+                        <label className="block text-black mb-1">Name</label>
                         <input
                             type="text"
                             name="name"
@@ -93,116 +93,116 @@ const Profile = () => {
                         />
                     </div>
                     <div className="mb-4">
-  <label className="block text-black mb-2">
-    Email
-    {provider === 'google' && (
-      <span className="ml-2 text-sm text-gray-600 italic">(Google account)</span>
-    )}
-  </label>
-  <input
-    type="email"
-    name="email"
-    value={formData.email}
-    onChange={handleChange}
-    className={`w-full px-3 py-2 border rounded ${
-      provider === 'google'
-        ? 'border-gray-300 bg-gray-100 cursor-not-allowed'
-        : 'border-gray-300 bg-white'
-    }`}
-    required
-    disabled={provider === 'google'}
-    aria-disabled={provider === 'google'}
-  />
-  {provider === 'google' && (
-    <p className="text-sm text-gray-500 mt-1">
-      Email cannot be changed because your account is linked with Google.
-    </p>
-  )}
-</div>
+                        <label className="block text-black mb-1">
+                            Email
+                            {provider === 'google' && (
+                            <span className="ml-2 text-sm text-gray-600 italic">(Google account)</span>
+                            )}
+                        </label>
+                        <input
+                            type="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            className={`w-full px-3 py-2 border rounded ${
+                            provider === 'google'
+                                ? 'border-gray-300 bg-gray-100 cursor-not-allowed'
+                                : 'border-gray-300 bg-white'
+                            }`}
+                            required
+                            disabled={provider === 'google'}
+                            aria-disabled={provider === 'google'}
+                        />
+                        {provider === 'google' && (
+                            <p className="text-sm text-gray-500 mt-1">
+                            Email cannot be changed because your account is linked with Google.
+                            </p>
+                        )}
+                    </div>
 
-<div className="mb-4">
-  <label className="block text-black mb-2">Username</label>
-  <input
-    type="text"
-    name="username"
-    value={formData.username}
-    onChange={handleChange}
-    className="w-full px-3 py-2 border border-gray-300 rounded bg-white"
-    required
-  />
-</div>
+                    <div className="mb-4">
+                    <label className="block text-black mb-2">Username</label>
+                    <input
+                        type="text"
+                        name="username"
+                        value={formData.username}
+                        onChange={handleChange}
+                        className="w-full px-3 py-2 border border-gray-300 rounded bg-white"
+                        required
+                    />
+                    </div>
 
-{provider !== 'google' && (
-  <div className="mb-6">
-    <button
-      type="button"
-      onClick={() => {
-        setChangePassword(!changePassword);
-        setNewPassword('');
-        setConfirmPassword('');
-      }}
-      className="text-blue-600 font-medium hover:underline"
-    >
-      {changePassword ? 'Cancel Password Change' : 'Change Password'}
-    </button>
+                    {provider !== 'google' && (
+                    <div className="mb-6">
+                        <button
+                        type="button"
+                        onClick={() => {
+                            setChangePassword(!changePassword);
+                            setNewPassword('');
+                            setConfirmPassword('');
+                        }}
+                        className="text-blue-600 font-medium hover:underline"
+                        >
+                        {changePassword ? 'Cancel Password Change' : 'Change Password'}
+                        </button>
 
-    {changePassword && (
-      <div className="mt-4">
-        <div className="relative mb-4">
-          <label className="block text-black mb-1">New Password</label>
-          <input
-            type={showNewPassword ? 'text' : 'password'}
-            name="newPassword"
-            value={newPassword}
-            onChange={(e) => setNewPassword(e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded"
-          />
-          <span
-            onClick={() => setShowNewPassword(!showNewPassword)}
-            className="absolute right-3 mt-2 text-gray-500 cursor-pointer select-none"
-            aria-label={showNewPassword ? 'Hide password' : 'Show password'}
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') setShowNewPassword(!showNewPassword);
-            }}
-          >
-            {showNewPassword ? '🙈' : '👁️'}
-          </span>
-        </div>
+                        {changePassword && (
+                        <div className="mt-4">
+                            <div className="relative mb-4">
+                            <label className="block text-black mb-1">New Password</label>
+                            <input
+                                type={showNewPassword ? 'text' : 'password'}
+                                name="newPassword"
+                                value={newPassword}
+                                onChange={(e) => setNewPassword(e.target.value)}
+                                className="w-full px-3 py-2 border border-gray-300 rounded"
+                            />
+                            <span
+                                onClick={() => setShowNewPassword(!showNewPassword)}
+                                className="absolute right-3 mt-2 text-gray-500 cursor-pointer select-none"
+                                aria-label={showNewPassword ? 'Hide password' : 'Show password'}
+                                role="button"
+                                tabIndex={0}
+                                onKeyDown={(e) => {
+                                if (e.key === 'Enter' || e.key === ' ') setShowNewPassword(!showNewPassword);
+                                }}
+                            >
+                                {showNewPassword ? '🙈' : '👁️'}
+                            </span>
+                            </div>
 
-        <div className="relative mb-4">
-          <label className="block text-black mb-1">Confirm New Password</label>
-          <input
-            type={showConfirmPassword ? 'text' : 'password'}
-            name="confirmPassword"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded"
-          />
-          <span
-            onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-            className="absolute right-3 mt-2 text-gray-500 cursor-pointer select-none"
-            aria-label={showConfirmPassword ? 'Hide password' : 'Show password'}
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') setShowConfirmPassword(!showConfirmPassword);
-            }}
-          >
-            {showConfirmPassword ? '🙈' : '👁️'}
-          </span>
-        </div>
-      </div>
-    )}
-  </div>
-)}
+                            <div className="relative mb-4">
+                            <label className="block text-black mb-1">Confirm New Password</label>
+                            <input
+                                type={showConfirmPassword ? 'text' : 'password'}
+                                name="confirmPassword"
+                                value={confirmPassword}
+                                onChange={(e) => setConfirmPassword(e.target.value)}
+                                className="w-full px-3 py-2 border border-gray-300 rounded"
+                            />
+                            <span
+                                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                                className="absolute right-3 mt-2 text-gray-500 cursor-pointer select-none"
+                                aria-label={showConfirmPassword ? 'Hide password' : 'Show password'}
+                                role="button"
+                                tabIndex={0}
+                                onKeyDown={(e) => {
+                                if (e.key === 'Enter' || e.key === ' ') setShowConfirmPassword(!showConfirmPassword);
+                                }}
+                            >
+                                {showConfirmPassword ? '🙈' : '👁️'}
+                            </span>
+                            </div>
+                        </div>
+                        )}
+                    </div>
+                    )}
 
-{provider === 'google' && (
-  <p className="mt-4 text-sm text-gray-700 italic">
-    Password management is handled by Google. To change your password, please visit your Google account settings.
-  </p>
-)}
+                    {provider === 'google' && (
+                    <p className="mt-4 mb-2 text-sm text-gray-700 italic">
+                        Password management is handled by Google. To change your password, please visit your Google account settings.
+                    </p>
+                    )}
 
                     {error && <p className="text-red-500 mb-4">{error}</p>}
                     <button
