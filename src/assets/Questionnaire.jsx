@@ -3077,7 +3077,7 @@ export default function Questionnaire() {
             </div>
 
             {/* Navigation Button */}
-            <div className="w-full mt-8 px-6 pb-8 flex justify-center">
+            <div className="w-full mt-8 px-6 pb-8 mb-4 flex justify-center">
                 <button
                     onClick={ handleNext }
                     className="bg-[#A11616E5] hover:bg-[#003566] text-[#FCD2B1] font-poppins font-bold text-[20px] px-4 md:px-6 lg:px-8 py-2 rounded-full border border-1 border-[#FCD2B1] flex items-center gap-2 transition"
@@ -3089,9 +3089,9 @@ export default function Questionnaire() {
             </div>
 
             {/* Page Counter */}
-            <div className="text-center text-gray-600 text-sm mb-6">
+            {/* <div className="text-center text-gray-600 text-sm mb-6">
                 {currentPageIndex + 1} of {TOTAL_PAGES}
-            </div>
+            </div> */}
         </div>
     );
 }
