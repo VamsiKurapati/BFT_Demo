@@ -54,7 +54,7 @@ const Login = () => {
               const res = await fetch('https://bft-backend.vercel.app/api/auth/google-login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ code: response.code }),
+                body: JSON.stringify({ credential: response.code }),
               });
 
               if (res.ok) {
