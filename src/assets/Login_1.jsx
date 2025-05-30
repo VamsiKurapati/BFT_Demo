@@ -157,7 +157,7 @@ const Login = () => {
             src="/google_logo.png"
             alt="Google Sign-In"
             className="w-10 h-10 cursor-pointer"
-            onClick={handleGoogleClick}
+            onClick={() => handleGoogleClick()}
           />
         </div>
 
