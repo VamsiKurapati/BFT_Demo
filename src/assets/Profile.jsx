@@ -9,7 +9,7 @@ const Profile = () => {
         username: '',
         userId: ''
     });
-    const provider = localStorage.getItem("provider");
+    const [provider, setProvider] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
     const [newPassword, setNewPassword] = useState('');
@@ -27,6 +27,7 @@ const Profile = () => {
             username: loginDetails.username || '',
             userId: loginDetails._id || ''
         });
+        setProvider(loginDetails.provider || '');
         } else {
         navigate('/login');
         }
