@@ -128,7 +128,7 @@ const NavbarDashboard = () => {
                                 </div>
                             </div>
                             <button onClick={() => navigate('/edit-profile')}>
-                                <img src="/edit.png" alt="edit" className="pl-2 w-6 h-6" />
+                                <img src="/edit.png" alt="edit" className="w-6 h-6" />
                             </button>
                         </div>
 
