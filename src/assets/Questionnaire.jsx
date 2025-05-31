@@ -409,7 +409,7 @@ export default function Questionnaire() {
     };
 
     const page3validator = () =>{
-        return firstName.trim() !== "" && travelerCount > 0;
+        return firstName.trim() !== "" && (travelerCount !== "" && (travelerCount !== "other" || customTravelerCount !== ""));
     }
 
     const page5validator = () => {
