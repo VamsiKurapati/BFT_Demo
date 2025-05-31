@@ -3174,25 +3174,26 @@ export default function Questionnaire() {
             </div>
 
             {/* Navigation Button */}
-            <div className="w-full mt-8 px-6 pb-8 mb-4 flex flex-col justify-center">
+            <div className="w-full mt-8 px-6 pb-8 mb-4 flex flex-col sm:flex-col md:flex-row justify-center gap-4">
+                {/* Back Button */}
+                {currentPageIndex > 0 && (
+                    <button
+                        onClick={handlePrev}
+                        className="bg-[#A11616E5] hover:bg-[#003566] text-[#FCD2B1] font-poppins font-bold text-[20px] px-4 md:px-6 lg:px-8 py-2 rounded-full border border-[#FCD2B1] flex items-center justify-center gap-2 transition"
+                    >
+                        <FaArrowLeftLong size={20} />
+                        Back
+                    </button>
+                )}
+
+                {/* Next Button */}
                 <button
-                    onClick={ handleNext }
-                    className="bg-[#A11616E5] hover:bg-[#003566] text-[#FCD2B1] font-poppins font-bold text-[20px] px-4 md:px-6 lg:px-8 py-2 rounded-full border border-1 border-[#FCD2B1] flex items-center gap-2 transition"
+                    onClick={handleNext}
+                    className="bg-[#A11616E5] hover:bg-[#003566] text-[#FCD2B1] font-poppins font-bold text-[20px] px-4 md:px-6 lg:px-8 py-2 rounded-full border border-[#FCD2B1] flex items-center justify-center gap-2 transition"
                     disabled={isDisabled}
                 >
                     {Pages[currentPageIndex].buttonText}
                     <FaArrowRightLong size={20} />
-                </button>
-                <button>
-                    {currentPageIndex > 0 && (
-                        <button
-                            onClick={ handlePrev }
-                            className="bg-[#A11616E5] hover:bg-[#003566] text-[#FCD2B1] font-poppins font-bold text-[20px] px-4 md:px-6 lg:px-8 py-2 rounded-full border border-1 border-[#FCD2B1] ml-4 flex items-center gap-2 transition"
-                        >
-                            <FaArrowLeftLong size={20} />
-                            Back
-                        </button>
-                    )}
                 </button>
             </div>
 
