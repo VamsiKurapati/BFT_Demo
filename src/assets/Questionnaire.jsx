@@ -652,7 +652,7 @@ export default function Questionnaire() {
                                 value={customTravelerCount}
                                 onChange={handleCustomTravelerCountChange}
                                 placeholder="Enter number of travelers"
-                                className="w-[160px] px-4 py-2 border border-2 border-[#000000B2] bg-[#D9D9D966] rounded-lg font-poppins font-normal text-[18px] text-[#000000]"
+                                className="w-full px-4 py-2 border border-2 border-[#000000B2] bg-[#D9D9D966] rounded-lg font-poppins font-normal text-[24px] text-[#000000]"
                                 required
                             />
                         )}
