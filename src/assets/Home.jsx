@@ -25,7 +25,7 @@ const ImageCarousel = ({ images, alt, clickTitle, activities }) => {
           key={currentIndex}
           src={images[currentIndex]}
           alt={`${alt} ${currentIndex + 1}`}
-          className="w-full h-[120px] object-cover"
+          className="absolute top-0 left-0 w-full h-[120px] object-cover"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
