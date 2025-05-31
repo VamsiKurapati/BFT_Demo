@@ -8,7 +8,7 @@ import { Country, State } from 'country-state-city';
 import { parsePhoneNumberFromString } from 'libphonenumber-js';
 import car from "/car.png";
 import { IoCloseCircleOutline } from "react-icons/io5";
-import { FaArrowRightLong } from "react-icons/fa6";
+import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
 
 const TOTAL_PAGES = 34;
 
