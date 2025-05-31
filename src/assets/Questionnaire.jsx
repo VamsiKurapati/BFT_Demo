@@ -36,7 +36,7 @@ const ImageCarousel = ({ images, alt, wrapperClass = "" }) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 1 }}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
         />
       </AnimatePresence>
     </div>
@@ -1235,7 +1235,12 @@ export default function Questionnaire() {
                                 Super interested
                             </label>
                         </div>
-                        <img src="/page-8.jpg" alt="Page 8" className="w-[200px] md:w-[337px] h-[150px] md:h-[244px] rounded-lg mt-4 mb-4 bg-[#D9D9D9]" />
+                        {/* <img src="/page-8.jpg" alt="Page 8" className="w-[200px] md:w-[337px] h-[150px] md:h-[244px] rounded-lg mt-4 mb-4 bg-[#D9D9D9]" /> */}
+                        <ImageCarousel 
+                            images={Images[0]}
+                            wrapperClass="w-[200px] md:w-[337px] h-[150px] md:h-[244px] rounded-lg mt-4 mb-4 bg-[#D9D9D9]"
+                            alt="Page 8 Image Carousel"
+                        />
                     </div>
                 </div>
             ),
@@ -1303,7 +1308,12 @@ export default function Questionnaire() {
                                 Super interested
                             </label>
                         </div>
-                        <img src="/page-9.jpg" alt="Page 9" className="w-[200px] md:w-[337px] h-[150px] md:h-[244px] rounded-lg mt-4 mb-4 bg-[#D9D9D9]" />
+                        {/* <img src="/page-9.jpg" alt="Page 9" className="w-[200px] md:w-[337px] h-[150px] md:h-[244px] rounded-lg mt-4 mb-4 bg-[#D9D9D9]" /> */}
+                        <ImageCarousel 
+                            images={Images[1]}
+                            wrapperClass="w-[200px] md:w-[337px] h-[150px] md:h-[244px] rounded-lg mt-4 mb-4 bg-[#D9D9D9]"
+                            alt="Page 9 Image Carousel"
+                        />
                     </div>
                 </div>
             ),
@@ -1371,7 +1381,12 @@ export default function Questionnaire() {
                                 Super interested
                             </label>
                         </div>
-                        <img src="/page-10.jpg" alt="Page 10" className="w-[200px] md:w-[337px] h-[150px] md:h-[244px] rounded-lg mt-4 mb-4 bg-[#D9D9D9]" />
+                        {/* <img src="/page-10.jpg" alt="Page 10" className="w-[200px] md:w-[337px] h-[150px] md:h-[244px] rounded-lg mt-4 mb-4 bg-[#D9D9D9]" /> */}
+                        <ImageCarousel 
+                            images={Images[2]}
+                            wrapperClass="w-[200px] md:w-[337px] h-[150px] md:h-[244px] rounded-lg mt-4 mb-4 bg-[#D9D9D9]"
+                            alt="Page 10 Image Carousel"
+                        />
                     </div>
                 </div>
             ),
@@ -1439,7 +1454,12 @@ export default function Questionnaire() {
                                 Super interested
                             </label>
                         </div>
-                        <img src="/page-11.jpg" alt="Page 11" className="w-[200px] md:w-[337px] h-[150px] md:h-[244px] rounded-lg mt-4 mb-4 bg-[#D9D9D9]" />
+                        {/* <img src="/page-11.jpg" alt="Page 11" className="w-[200px] md:w-[337px] h-[150px] md:h-[244px] rounded-lg mt-4 mb-4 bg-[#D9D9D9]" /> */}
+                        <ImageCarousel 
+                            images={Images[3]}
+                            wrapperClass="w-[200px] md:w-[337px] h-[150px] md:h-[244px] rounded-lg mt-4 mb-4 bg-[#D9D9D9]"
+                            alt="Page 11 Image Carousel"
+                        />
                     </div>
                 </div>
             ),
@@ -1507,7 +1527,12 @@ export default function Questionnaire() {
                                 Super interested
                             </label>
                         </div>
-                        <img src="/page-12.jpg" alt="Page 12" className="w-[200px] md:w-[337px] h-[150px] md:h-[244px] rounded-lg mt-4 mb-4 bg-[#D9D9D9]" />
+                        {/* <img src="/page-12.jpg" alt="Page 12" className="w-[200px] md:w-[337px] h-[150px] md:h-[244px] rounded-lg mt-4 mb-4 bg-[#D9D9D9]" /> */}
+                        <ImageCarousel 
+                            images={Images[4]}
+                            wrapperClass="w-[200px] md:w-[337px] h-[150px] md:h-[244px] rounded-lg mt-4 mb-4 bg-[#D9D9D9]"
+                            alt="Page 12 Image Carousel"
+                        />
                     </div>
                 </div>
             ),
@@ -1648,7 +1673,12 @@ export default function Questionnaire() {
                                 Super interested
                             </label>
                         </div>
-                        <img src="/page-14.jpg" alt="Page 14" className="w-[200px] md:w-[337px] h-[150px] md:h-[244px] rounded-lg mt-4 mb-4 bg-[#D9D9D9]" />
+                        {/* <img src="/page-14.jpg" alt="Page 14" className="w-[200px] md:w-[337px] h-[150px] md:h-[244px] rounded-lg mt-4 mb-4 bg-[#D9D9D9]" /> */}
+                        <ImageCarousel 
+                            images={Images[6]}
+                            wrapperClass="w-[200px] md:w-[337px] h-[150px] md:h-[244px] rounded-lg mt-4 mb-4 bg-[#D9D9D9]"
+                            alt="Page 14 Image Carousel"
+                        />
                     </div>
                 </div>
             ),
