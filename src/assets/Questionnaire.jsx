@@ -3297,12 +3297,12 @@ export default function Questionnaire() {
             </div>
 
             {/* Navigation Button */}
-            <div className="w-[100px] md:w-full mt-8 px-6 pb-8 mb-4 flex flex-col sm:flex-col md:flex-row justify-center gap-4">
+            <div className="w-full mt-8 px-6 pb-8 mb-4 flex flex-col sm:flex-col md:flex-row justify-center md:gap-4 space-y-4 md:space-y-0 mx-auto">
                 {/* Back Button */}
                 {currentPageIndex > 0 && (
                     <button
                         onClick={handlePrev}
-                        className="bg-[#A11616E5] hover:bg-[#003566] text-[#FCD2B1] font-poppins font-bold text-[20px] px-4 md:px-6 lg:px-8 py-2 rounded-full border border-[#FCD2B1] flex items-center justify-center gap-2 transition"
+                        className="mx-auto bg-[#A11616E5] hover:bg-[#003566] text-[#FCD2B1] font-poppins font-bold text-[20px] px-8 py-2 rounded-full border border-[#FCD2B1] flex items-center justify-center gap-2 transition"
                     >
                         <FaArrowLeftLong size={20} />
                         Back
@@ -3312,7 +3312,7 @@ export default function Questionnaire() {
                 {/* Next Button */}
                 <button
                     onClick={handleNext}
-                    className="bg-[#A11616E5] hover:bg-[#003566] text-[#FCD2B1] font-poppins font-bold text-[20px] px-4 md:px-6 lg:px-8 py-2 rounded-full border border-[#FCD2B1] flex items-center justify-center gap-2 transition"
+                    className="mx-auto bg-[#A11616E5] hover:bg-[#003566] text-[#FCD2B1] font-poppins font-bold text-[20px] px-8 py-2 rounded-full border border-[#FCD2B1] flex items-center justify-center gap-2 transition"
                     disabled={isDisabled}
                 >
                     {Pages[currentPageIndex].buttonText}
