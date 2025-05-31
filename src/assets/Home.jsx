@@ -34,7 +34,7 @@ const ImageCarousel = ({ images, alt, clickTitle, activities }) => {
       </AnimatePresence>
 
       {/* Overlay with text */}
-      <div className="absolute top-4 left-4 text-white px-2 py-1 bg-[#A11616E5]">
+      <div className="absolute top-4 left-4 text-white px-2 py-1">
         <div className="font-poppins font-bold text-[22px] text-[#FFFFFF]">{clickTitle}</div>
         <div className="font-poppins font-regular text-[12px] text-[#FFFFFF]">{activities[currentIndex]}</div>
       </div>
@@ -45,7 +45,7 @@ const ImageCarousel = ({ images, alt, clickTitle, activities }) => {
 const generateDetailContent = (title, activities, activities_1, images, alt, navigate) => (
   <div className="w-full h-full flex flex-col">
     {/* Image carousel with overlay title - NO BORDER */}
-    <div className="relative h-[120px] bg-[#A11616E5]">
+    <div className="relative h-[120px]">
       <ImageCarousel
         images={images}
         alt={alt}
