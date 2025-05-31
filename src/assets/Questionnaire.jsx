@@ -289,11 +289,8 @@ export default function Questionnaire() {
     ];
 
     const handleTravelerCountChange = (e) => {
-        if (e.target.value === "other") {
-            setTravelerCount("other");
-            setCustomTravelerCount("");
-            return;
-        }
+        const value = e.target.value;
+        setTravelerCount(value);
         // updateFormData({ travelerCount: Number(e.target.value) }); // Uncomment if you use form data globally
     };
 
