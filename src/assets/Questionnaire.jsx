@@ -10,7 +10,7 @@ import car from "/car.png";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { FaArrowRightLong } from "react-icons/fa6";
 
-const TOTAL_PAGES = 35;
+const TOTAL_PAGES = 34;
 
 export default function Questionnaire() {
     const carRef = useRef(null);
@@ -21,6 +21,7 @@ export default function Questionnaire() {
     const [currentPageIndex, setCurrentPageIndex] = useState(0);
     const [favouriteDestination, setFavouriteDestination] = useState("");
     const [travelerCount, setTravelerCount] = useState(1);
+    const [customTravelerCount, setCustomTravelerCount] = useState(11);
     const [firstName, setFirstName] = useState("");
     const [otherAllergyDetails, setOtherAllergyDetails] = useState("");
     const [avoidDestination, setAvoidDestination] = useState("");
@@ -157,8 +158,8 @@ export default function Questionnaire() {
         sameAirports: false,
         anyAirports: false,
 
-        sameAirports1: false,
-        anyAirports1: false,
+        // sameAirports1: false,
+        // anyAirports1: false,
 
         fDtN: false,
         fDfN: false,
@@ -178,7 +179,7 @@ export default function Questionnaire() {
         increaseBy10000: false,
         
         yesCurious: false,
-        notCurious: false,
+        // notCurious: false,
         
         someoneIKnow: false,
         influencer: false,
@@ -262,10 +263,10 @@ export default function Questionnaire() {
             name: "17",
             titles: ["maxBudget", "increaseBy5000", "increaseBy7500", "increaseBy10000"],
         },
-        {
-            name: "18",
-            titles: ["yesCurious", "notCurious"],
-        },
+        // {
+        //     name: "18",
+        //     titles: ["yesCurious", "notCurious"],
+        // },
         {
             name: "19",
             titles: ["someoneIKnow", "influencer", "press", "randomCustomer", "paidAd"],
@@ -290,6 +291,19 @@ export default function Questionnaire() {
     const handleTravelerCountChange = (e) => {
         setTravelerCount(Number(e.target.value));
         // updateFormData({ travelerCount: Number(e.target.value) }); // Uncomment if you use form data globally
+    };
+
+    const handleCustomTravelerCountChange = (e) => {
+        const value = e.target.value;
+        if (/^\d*$/.test(value)) {
+            setCustomTravelerCount(Number(value));
+            setTravelerCount(Number(value));
+            // updateFormData({ travelerCount: Number(value) }); // Uncomment if you use form data globally
+        } else {
+            // If the input is not a valid number, you can handle it here (e.g., show an error message)
+            console.error("Invalid input for traveler count");
+            alert("Please enter a valid number for the traveler count.");
+        }
     };
 
     const handleFirstNameChange = (e) => {
@@ -472,35 +486,35 @@ export default function Questionnaire() {
 
     const page24validator = () => {
         // return (checkboxValues["india"] || (checkboxValues["otherCountry"] && country!="")) && (selectedAirports!="") && (checkboxValues["sameAirports"] || checkboxValues["anyAirports"]);
-        return (selectedCountry!="") && (selectedAirports!="") && (checkboxValues["sameAirports"] || checkboxValues["anyAirports"]);
+        return (selectedCountry!="") && (selectedState!="") && (selectedAirports!="") && (checkboxValues["sameAirports"] || checkboxValues["anyAirports"]);
     }
+
+    // const page25validator = () => {
+    //     return (selectedState!="") && (selectedAirports1!="") && (checkboxValues["sameAirports1"] || checkboxValues["anyAirports1"]);
+    // }
 
     const page25validator = () => {
-        return (selectedState!="") && (selectedAirports1!="") && (checkboxValues["sameAirports1"] || checkboxValues["anyAirports1"]);
-    }
-
-    const page26validator = () => {
         return checkboxValues["fDfN"] || checkboxValues["fDtN"] || checkboxValues["sDfN"] || ( checkboxValues["userChoice"] && stayingDuration!=="") ;
     }
 
-    const page27validator = () => {
+    const page26validator = () => {
         return (checkboxValues["preferredStartDate"] && preferredStartDate!=="") || checkboxValues["completelyFlexible"];
     }
 
-    const page28validator = () => {
+    const page27validator = () => {
         return checkboxValues["eitherIsFine"] || checkboxValues["exclusiveResidence"] || checkboxValues["hotel"];
     }
 
-    const page29validator = () => {
+    const page28validator = () => {
         const numericBudget = Number(budget.replace(/,/g, ''));
         return numericBudget > 0;
     };
 
-    const page30validator = () => {
+    const page29validator = () => {
         return checkboxValues["maxBudget"] || checkboxValues["increaseBy5000"] || checkboxValues["increaseBy7500"] || checkboxValues["increaseBy10000"];
     }
 
-    const page32validator = (val) => {
+    const page31validator = (val) => {
         try {
             const phoneNumber = parsePhoneNumberFromString(`+${val}`);
             return (phoneNumber ? phoneNumber.isValid() : false);
@@ -509,15 +523,16 @@ export default function Questionnaire() {
         }
     }
 
-    const page33validator = () => {
-        return checkboxValues["yesCurious"] || checkboxValues["notCurious"];
+    const page32validator = () => {
+        // return checkboxValues["yesCurious"] || checkboxValues["notCurious"];
+        return checkboxValues["yesCurious"];
     }
 
-    const page34validator = () => {
+    const page33validator = () => {
         return checkboxValues["someoneIKnow"] || checkboxValues["influencer"] || checkboxValues["press"] || checkboxValues["randomCustomer"] || checkboxValues["paidAd"];
     }
 
-    const page35validator = () => {
+    const page34validator = () => {
         return checkboxValues["agree"];
     }
 
@@ -534,7 +549,7 @@ export default function Questionnaire() {
                     stayingDuration,
                     otherAllergyDetails,
                     selectedAirports,
-                    selectedAirports1,
+                    // selectedAirports1,
                     budget,
                     phone,
                     selectedCountry,
@@ -618,6 +633,7 @@ export default function Questionnaire() {
                                 {[...Array(10)].map((_, i) => (
                                     <option key={i + 1} value={i + 1}>{i + 1}</option>
                                 ))}
+                                <option value="other">Other</option>
                             </select>
                             <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
                                 <svg className="w-5 h-5 text-[#000000]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -625,6 +641,17 @@ export default function Questionnaire() {
                                 </svg>
                             </div>
                         </div>
+                        {travelerCount === "other" && (
+                            <input
+                                type="number"
+                                min="1"
+                                value={customTravelerCount}
+                                onChange={handleCustomTravelerCountChange}
+                                placeholder="Enter number of travelers"
+                                className="w-[160px] px-4 py-2 border border-2 border-[#000000B2] bg-[#D9D9D966] rounded-lg font-poppins font-normal text-[18px] text-[#000000]"
+                                required
+                            />
+                        )}
                     </div>
                     <div className="w-full mb-8">
                         <h2 className='font-poppins font-normal text-[24px] text-[#000000BF] text-left mb-4'>
@@ -2148,6 +2175,63 @@ export default function Questionnaire() {
                             }}
                         />
 
+                        <p className='font-poppins font-bold text-[24px] text-[#000000] text-left mb-4'>
+                            <span className="font-normal">Which</span> State will you be flying out from ? <span className="text-[#A32727]">*</span>
+                        </p>
+
+                        <Select
+                            options={states.map((state) => ({
+                                value: state.name,
+                                label: state.name,
+                            }))}
+                            value={
+                                selectedState
+                                ? { value: selectedState, label: selectedState }
+                                : null
+                            }
+                            onChange={(selectedOption) =>
+                                handleStateChange({ target: { value: selectedOption?.value || '' } })
+                            }
+                            placeholder="Select State"
+                            className="w-full sm:w-[436px] text-left font-poppins mt-2"
+                            styles={{
+                                control: (base) => ({
+                                    ...base,
+                                    height: 'auto',
+                                    minHeight: '50px',
+                                    backgroundColor: '#D9D9D966',
+                                    border: '2px solid #000000B2',
+                                    borderRadius: '8px',
+                                    fontSize: '24px',
+                                    fontFamily: 'poppins',
+                                }),
+                                placeholder: (base) => ({
+                                    ...base,
+                                    color: '#000000BF',
+                                    fontSize: '24px',
+                                    fontFamily: 'poppins',
+                                }),
+                                singleValue: (base) => ({
+                                    ...base,
+                                    color: '#000000',
+                                    fontFamily: 'poppins',
+                                    fontSize: '24px',
+                                }),
+                                menu: (base) => ({
+                                    ...base,
+                                    fontFamily: 'poppins',
+                                    fontSize: '20px',
+                                }),
+                                option: (base, state) => ({
+                                    ...base,
+                                    backgroundColor: state.isFocused ? '#CCCCCC' : 'white',
+                                    color: '#000000',
+                                    cursor: 'pointer',
+                                    fontFamily: 'poppins',
+                                }),
+                            }}
+                        />
+
                         <p className='font-poppins font-bold text-[24px] text-[#000000] text-left mt-8 mb-4'>
                             <span className="font-normal">Which</span> airports can you depart from ? <span className="text-[#A32727]">*</span>
                         </p>
@@ -2233,203 +2317,203 @@ export default function Questionnaire() {
             buttonText: "Done",
             Heading: "Chapter 3: The Must-Knows"
         },
+        // {
+        //     Number: 25,
+        //     type: "text",
+        //     Content: (
+        //         <div className="w-full sm:w-[90%] md:w-[75%] lg:w-[50%] flex flex-col items-center">
+        //             <div className="w-full mb-8">
+        //                 <p className='font-poppins font-bold text-[24px] text-[#000000] text-left mb-4'>
+        //                     <span className="font-normal">Which</span> State will you be flying out from ? <span className="text-[#A32727]">*</span>
+        //                 </p>
+
+        //                 {/* <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins mb-8">
+        //                     <label className="flex items-center text-left">
+        //                         <input
+        //                         type="checkbox"
+        //                         name="india"
+        //                         className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+        //                         checked={checkboxValues.india}
+        //                         onChange={handleCheckboxChange}
+        //                         />
+        //                         India
+        //                     </label>
+        //                     <label className="flex items-center text-left">
+        //                         <input
+        //                         type="checkbox"
+        //                         name="otherCountry"
+        //                         className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+        //                         checked={checkboxValues.otherCountry}
+        //                         onChange={handleCheckboxChange}
+        //                         />
+        //                         Other Country
+        //                     </label>
+                            
+        //                     {checkboxValues["otherCountry"] && (
+        //                         <input
+        //                             type="text"
+        //                             value={country}
+        //                             onChange={handleCountryChange}
+        //                             placeholder="Name of the Country"
+        //                             className="w-full px-4 py-3 border border-2 border-[#000000B2] bg-[#D9D9D966] rounded-lg font-poppins font-normal text-[12px] sm:text-[16px] md:text-[24px] text-[#000000]"
+        //                         />
+        //                     )}
+
+                            
+        //                 </div> */}
+        //                 {/* <select
+        //                     value={selectedState}
+        //                     onChange={handleStateChange}
+        //                     className="mt-2 w-full sm:w-[436px] h-[50px] px-4 py-3 border border-[#000000B2] bg-[#D9D9D966] rounded-lg font-poppins font-normal text-[12px] sm:text-[16px] md:text-[24px] text-[#000000]"
+        //                     >
+        //                     <option value="">Select State</option>
+        //                     {states.map((state) => (
+        //                         <option key={state.isoCode} value={state.name}>
+        //                         {state.name}
+        //                         </option>
+        //                     ))}
+        //                 </select> */}
+
+        //                 <Select
+        //                     options={states.map((state) => ({
+        //                         value: state.name,
+        //                         label: state.name,
+        //                     }))}
+        //                     value={
+        //                         selectedState
+        //                         ? { value: selectedState, label: selectedState }
+        //                         : null
+        //                     }
+        //                     onChange={(selectedOption) =>
+        //                         handleStateChange({ target: { value: selectedOption?.value || '' } })
+        //                     }
+        //                     placeholder="Select State"
+        //                     className="w-full sm:w-[436px] text-left font-poppins mt-2"
+        //                     styles={{
+        //                         control: (base) => ({
+        //                             ...base,
+        //                             height: 'auto',
+        //                             minHeight: '50px',
+        //                             backgroundColor: '#D9D9D966',
+        //                             border: '2px solid #000000B2',
+        //                             borderRadius: '8px',
+        //                             fontSize: '24px',
+        //                             fontFamily: 'poppins',
+        //                         }),
+        //                         placeholder: (base) => ({
+        //                             ...base,
+        //                             color: '#000000BF',
+        //                             fontSize: '24px',
+        //                             fontFamily: 'poppins',
+        //                         }),
+        //                         singleValue: (base) => ({
+        //                             ...base,
+        //                             color: '#000000',
+        //                             fontFamily: 'poppins',
+        //                             fontSize: '24px',
+        //                         }),
+        //                         menu: (base) => ({
+        //                             ...base,
+        //                             fontFamily: 'poppins',
+        //                             fontSize: '20px',
+        //                         }),
+        //                         option: (base, state) => ({
+        //                             ...base,
+        //                             backgroundColor: state.isFocused ? '#CCCCCC' : 'white',
+        //                             color: '#000000',
+        //                             cursor: 'pointer',
+        //                             fontFamily: 'poppins',
+        //                         }),
+        //                     }}
+        //                 />
+
+        //                 <p className='font-poppins font-bold text-[24px] text-[#000000] text-left mt-8 mb-4'>
+        //                     <span className="font-normal">Which</span> airports can you depart from ? <span className="text-[#A32727]">*</span>
+        //                 </p>
+
+        //                 <Select
+        //                     isMulti
+        //                     options={airports}
+        //                     value={selectedAirports1}
+        //                     onChange={setSelectedAirports1}
+        //                     className="w-full sm:w-[436px] text-left font-poppins"
+        //                     placeholder="Select"
+        //                     styles={{
+        //                         control: (base) => ({
+        //                             ...base,
+        //                             height: 'auto',
+        //                             minHeight: '50px',
+        //                             backgroundColor: '#D9D9D966',
+        //                             border: '2px solid #000000B2',
+        //                             borderRadius: '8px',
+        //                             fontSize: '24px',
+        //                             fontFamily: 'poppins',
+        //                             overflowX: 'auto', // this won't help unless container is changed
+        //                         }),
+        //                         valueContainer: (base) => ({
+        //                             ...base,
+        //                             display: 'flex',
+        //                             flexWrap: 'nowrap', // key line
+        //                             overflowX: 'auto',
+        //                             scrollbarWidth: 'thin',
+        //                             maxWidth: '100%',
+        //                         }),
+        //                         multiValue: (base) => ({
+        //                             ...base,
+        //                             backgroundColor: '#CCCCCC',
+        //                             borderRadius: '0.25rem',
+        //                             fontSize: '24px',
+        //                             marginRight: '4px',
+        //                             whiteSpace: 'nowrap',
+        //                         }),
+        //                         multiValueLabel: (base) => ({
+        //                             ...base,
+        //                             color: '#000000BF',
+        //                             fontFamily: 'poppins',
+        //                         }),
+        //                         placeholder: (base) => ({
+        //                             ...base,
+        //                             color: '#000000BF',
+        //                             fontSize: '24px',
+        //                             fontFamily: 'poppins',
+        //                         }),
+        //                     }}
+        //                 />
+
+        //                 <p className='font-poppins font-normal text-[24px] text-[#000000] text-left mb-4 mt-8'>
+        //                     Do you need to <span className="font-bold">fly in and out of the same airport</span> (e.g., if you're leaving your car there)? <span className="text-[#A32727]">*</span>
+        //                 </p>
+                        
+        //                 <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
+        //                     <label className="flex items-center text-left">
+        //                         <input
+        //                         type="checkbox"
+        //                         name="sameAirports1"
+        //                         className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+        //                         checked={checkboxValues.sameAirports1}
+        //                         onChange={handleCheckboxChange}
+        //                         />
+        //                         Yes
+        //                     </label>
+        //                     <label className="flex items-center text-left">
+        //                         <input
+        //                         type="checkbox"
+        //                         name="anyAirports1"
+        //                         className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+        //                         checked={checkboxValues.anyAirports1}
+        //                         onChange={handleCheckboxChange}
+        //                         />
+        //                         No, I’m open to anywhere
+        //                     </label>
+        //                 </div>
+        //             </div>
+        //         </div>
+        //     ),
+        //     buttonText: "Done",
+        //     Heading: "Chapter 3: The Must-Knows"
+        // },
         {
             Number: 25,
-            type: "text",
-            Content: (
-                <div className="w-full sm:w-[90%] md:w-[75%] lg:w-[50%] flex flex-col items-center">
-                    <div className="w-full mb-8">
-                        <p className='font-poppins font-bold text-[24px] text-[#000000] text-left mb-4'>
-                            <span className="font-normal">Which</span> State will you be flying out from ? <span className="text-[#A32727]">*</span>
-                        </p>
-
-                        {/* <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins mb-8">
-                            <label className="flex items-center text-left">
-                                <input
-                                type="checkbox"
-                                name="india"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.india}
-                                onChange={handleCheckboxChange}
-                                />
-                                India
-                            </label>
-                            <label className="flex items-center text-left">
-                                <input
-                                type="checkbox"
-                                name="otherCountry"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.otherCountry}
-                                onChange={handleCheckboxChange}
-                                />
-                                Other Country
-                            </label>
-                            
-                            {checkboxValues["otherCountry"] && (
-                                <input
-                                    type="text"
-                                    value={country}
-                                    onChange={handleCountryChange}
-                                    placeholder="Name of the Country"
-                                    className="w-full px-4 py-3 border border-2 border-[#000000B2] bg-[#D9D9D966] rounded-lg font-poppins font-normal text-[12px] sm:text-[16px] md:text-[24px] text-[#000000]"
-                                />
-                            )}
-
-                            
-                        </div> */}
-                        {/* <select
-                            value={selectedState}
-                            onChange={handleStateChange}
-                            className="mt-2 w-full sm:w-[436px] h-[50px] px-4 py-3 border border-[#000000B2] bg-[#D9D9D966] rounded-lg font-poppins font-normal text-[12px] sm:text-[16px] md:text-[24px] text-[#000000]"
-                            >
-                            <option value="">Select State</option>
-                            {states.map((state) => (
-                                <option key={state.isoCode} value={state.name}>
-                                {state.name}
-                                </option>
-                            ))}
-                        </select> */}
-
-                        <Select
-                            options={states.map((state) => ({
-                                value: state.name,
-                                label: state.name,
-                            }))}
-                            value={
-                                selectedState
-                                ? { value: selectedState, label: selectedState }
-                                : null
-                            }
-                            onChange={(selectedOption) =>
-                                handleStateChange({ target: { value: selectedOption?.value || '' } })
-                            }
-                            placeholder="Select State"
-                            className="w-full sm:w-[436px] text-left font-poppins mt-2"
-                            styles={{
-                                control: (base) => ({
-                                    ...base,
-                                    height: 'auto',
-                                    minHeight: '50px',
-                                    backgroundColor: '#D9D9D966',
-                                    border: '2px solid #000000B2',
-                                    borderRadius: '8px',
-                                    fontSize: '24px',
-                                    fontFamily: 'poppins',
-                                }),
-                                placeholder: (base) => ({
-                                    ...base,
-                                    color: '#000000BF',
-                                    fontSize: '24px',
-                                    fontFamily: 'poppins',
-                                }),
-                                singleValue: (base) => ({
-                                    ...base,
-                                    color: '#000000',
-                                    fontFamily: 'poppins',
-                                    fontSize: '24px',
-                                }),
-                                menu: (base) => ({
-                                    ...base,
-                                    fontFamily: 'poppins',
-                                    fontSize: '20px',
-                                }),
-                                option: (base, state) => ({
-                                    ...base,
-                                    backgroundColor: state.isFocused ? '#CCCCCC' : 'white',
-                                    color: '#000000',
-                                    cursor: 'pointer',
-                                    fontFamily: 'poppins',
-                                }),
-                            }}
-                        />
-
-                        <p className='font-poppins font-bold text-[24px] text-[#000000] text-left mt-8 mb-4'>
-                            <span className="font-normal">Which</span> airports can you depart from ? <span className="text-[#A32727]">*</span>
-                        </p>
-
-                        <Select
-                            isMulti
-                            options={airports}
-                            value={selectedAirports1}
-                            onChange={setSelectedAirports1}
-                            className="w-full sm:w-[436px] text-left font-poppins"
-                            placeholder="Select"
-                            styles={{
-                                control: (base) => ({
-                                    ...base,
-                                    height: 'auto',
-                                    minHeight: '50px',
-                                    backgroundColor: '#D9D9D966',
-                                    border: '2px solid #000000B2',
-                                    borderRadius: '8px',
-                                    fontSize: '24px',
-                                    fontFamily: 'poppins',
-                                    overflowX: 'auto', // this won't help unless container is changed
-                                }),
-                                valueContainer: (base) => ({
-                                    ...base,
-                                    display: 'flex',
-                                    flexWrap: 'nowrap', // key line
-                                    overflowX: 'auto',
-                                    scrollbarWidth: 'thin',
-                                    maxWidth: '100%',
-                                }),
-                                multiValue: (base) => ({
-                                    ...base,
-                                    backgroundColor: '#CCCCCC',
-                                    borderRadius: '0.25rem',
-                                    fontSize: '24px',
-                                    marginRight: '4px',
-                                    whiteSpace: 'nowrap',
-                                }),
-                                multiValueLabel: (base) => ({
-                                    ...base,
-                                    color: '#000000BF',
-                                    fontFamily: 'poppins',
-                                }),
-                                placeholder: (base) => ({
-                                    ...base,
-                                    color: '#000000BF',
-                                    fontSize: '24px',
-                                    fontFamily: 'poppins',
-                                }),
-                            }}
-                        />
-
-                        <p className='font-poppins font-normal text-[24px] text-[#000000] text-left mb-4 mt-8'>
-                            Do you need to <span className="font-bold">fly in and out of the same airport</span> (e.g., if you're leaving your car there)? <span className="text-[#A32727]">*</span>
-                        </p>
-                        
-                        <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
-                            <label className="flex items-center text-left">
-                                <input
-                                type="checkbox"
-                                name="sameAirports1"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.sameAirports1}
-                                onChange={handleCheckboxChange}
-                                />
-                                Yes
-                            </label>
-                            <label className="flex items-center text-left">
-                                <input
-                                type="checkbox"
-                                name="anyAirports1"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.anyAirports1}
-                                onChange={handleCheckboxChange}
-                                />
-                                No, I’m open to anywhere
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            ),
-            buttonText: "Done",
-            Heading: "Chapter 3: The Must-Knows"
-        },
-        {
-            Number: 26,
             type: "text",
             Content: (
                 <div className='w-full sm:w-[90%] md:w-[75%] lg:w-[50%] flex flex-col items-start px-4'>
@@ -2495,7 +2579,7 @@ export default function Questionnaire() {
             Heading: "Chapter 3: The Must-Knows"
         },
         {
-            Number: 27,
+            Number: 26,
             type: "text",
             Content: (
                 <div className='w-full sm:w-[90%] md:w-[75%] lg:w-[50%] flex flex-col items-start px-4'>
@@ -2547,7 +2631,7 @@ export default function Questionnaire() {
             Heading: "Chapter 3: The Must-Knows"
         },
         {
-            Number: 28,
+            Number: 27,
             type: "text",
             Content: (
                 <div className='w-full sm:w-[90%] md:w-[75%] lg:w-[50%] flex flex-col items-start px-4'>
@@ -2610,7 +2694,7 @@ export default function Questionnaire() {
             Heading: "Chapter 3: The Must-Knows"
         },
         {
-            Number: 29,
+            Number: 28,
             type: "text",
             Content: (
                 <div className='w-full sm:w-[90%] md:w-[75%] lg:w-[50%] flex flex-col items-start px-4'>
@@ -2655,7 +2739,7 @@ export default function Questionnaire() {
             Heading: "Chapter 3: The Must-Knows"
         },
         {
-            Number: 30,
+            Number: 29,
             type: "text",
             Content: (
                 <div className='w-full sm:w-[90%] md:w-[75%] lg:w-[50%] flex flex-col items-start px-4'>
@@ -2715,7 +2799,7 @@ export default function Questionnaire() {
             Heading: "Chapter 3: The Must-Knows"
         },
         {
-            Number: 31,
+            Number: 30,
             type: "text",
             Content: (
                 <div className="flex flex-col md:flex-row justify-center items-center">
@@ -2734,7 +2818,7 @@ export default function Questionnaire() {
             buttonText: "Continue"
         },
         {
-            Number: 32,
+            Number: 31,
             type: "form",
             Content: (
                 <div className="w-full sm:w-[90%] md:w-[75%] lg:w-[50%] flex flex-col items-start px-4">
@@ -2792,7 +2876,7 @@ export default function Questionnaire() {
             Heading: "Final Touch: You!"
         },
         {
-            Number: 33,
+            Number: 32,
             type: "text",
             Content: (
                 <div className='w-full sm:w-[90%] md:w-[75%] lg:w-[50%] flex flex-col items-start px-4'>
@@ -2812,9 +2896,9 @@ export default function Questionnaire() {
                                 checked={checkboxValues.yesCurious}
                                 onChange={handleCheckboxChange}
                                 />
-                                Yes
+                                I Agree
                             </label>
-                            <label className="flex items-center text-left">
+                            {/* <label className="flex items-center text-left">
                                 <input
                                 type="checkbox"
                                 name="notCurious"
@@ -2823,7 +2907,7 @@ export default function Questionnaire() {
                                 onChange={handleCheckboxChange}
                                 />
                                 No
-                            </label>
+                            </label> */}
                         </div>
                     </div>
                 </div>
@@ -2832,7 +2916,7 @@ export default function Questionnaire() {
             Heading: "Final Touch: You!"
         },
         {
-            Number: 34,
+            Number: 33,
             type: "text",
             Content: (
                 <div className='w-full sm:w-[90%] md:w-[75%] lg:w-[50%] flex flex-col items-start px-4'>
@@ -2903,7 +2987,7 @@ export default function Questionnaire() {
             Heading: "Final Touch: You!"
         },
         {
-            Number: 35,
+            Number: 34,
             type: "text",
             Content: (
                 <div className='w-full sm:w-[90%] md:w-[75%] lg:w-[50%] flex flex-col items-start px-4'>
@@ -3024,12 +3108,11 @@ export default function Questionnaire() {
         26: page27validator,
         27: page28validator,
         28: page29validator,
-        29: page30validator,
-        //Page 31 - Final Touch
-        31: () => page32validator(phone),
+        //Page 30 - Final Touch
+        30: () => page31validator(phone),
+        31: page32validator,
         32: page33validator,
         33: page34validator,
-        34: page35validator,
     };
 
     const currentValidator = validators[currentPageIndex];
