@@ -186,7 +186,7 @@ export default function Contact() {
                             <div className="space-y-4 font-poppins font-normal text-[14px] md:text-[20px] text-[#000000]">
                                 <div className="flex items-center gap-3">
                                 <FaEnvelope className="text-[#003566]" />
-                                <span>Email: hello@blindfoldtrips.com</span>
+                                <span>Email: info@blindfoldtrips.com</span>
                                 </div>
                                 <div className="flex items-center gap-3">
                                 <FaPhone className="text-[#003566]" />
