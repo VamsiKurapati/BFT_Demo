@@ -12,6 +12,46 @@ import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
 
 const TOTAL_PAGES = 34;
 
+const ImageCarousel = ({ images, alt }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  // Auto-advance the carousel
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 1500);
+
+    return () => clearInterval(interval);
+  }, [images.length]);
+
+  return (
+    <div className="relative w-full h-full overflow-hidden">
+      <AnimatePresence mode="wait">
+        <motion.img
+          key={currentIndex}
+          src={images[currentIndex]}
+          alt={`${alt} ${currentIndex + 1}`}
+          className="absolute top-0 left-0 w-full h-full object-cover"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 1 }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+        />
+      </AnimatePresence>
+    </div>
+  );
+};
+
+const Images = [
+    ["/Questionnaire/1.jpg", "/Questionnaire/2.jpg", "/Questionnaire/3.jpg","/Questionnaire/4.jpg"], 
+    ["/Questionnaire/5.jpg", "/Questionnaire/6.jpg", "/Questionnaire/7.jpg", "/Questionnaire/8.jpg"],
+    ["/Questionnaire/9.jpg", "/Questionnaire/10.jpg", "/Questionnaire/11.jpg", "/Questionnaire/12.jpg"],
+    ["/Questionnaire/13.jpg", "/Questionnaire/14.jpg", "/Questionnaire/15.jpg", "/Questionnaire/16.jpg"],
+    ["/Questionnaire/17.jpg", "/Questionnaire/18.jpg", "/Questionnaire/19.jpg", "/Questionnaire/20.jpg"],
+    ["/Questionnaire/21.jpg", "/Questionnaire/22.jpg", "/Questionnaire/23.jpg", "/Questionnaire/24.jpg"],
+    ["/Questionnaire/25.jpg", "/Questionnaire/26.jpg", "/Questionnaire/27.jpg", "/Questionnaire/28.jpg"],
+];
+
 export default function Questionnaire() {
     const carRef = useRef(null);
     const lineRef = useRef(null);
@@ -1535,6 +1575,11 @@ export default function Questionnaire() {
                             </label>
                         </div>
                         <img src="/page-13.jpg" alt="Page 13" className="w-[200px] md:w-[337px] h-[150px] md:h-[244px] rounded-lg mt-4 mb-4 bg-[#D9D9D9]" />
+                        <ImageCarousel 
+                            images={Images[0]}
+                            className="w-[200px] md:w-[337px] h-[150px] md:h-[244px] rounded-lg mt-4 mb-4 bg-[#D9D9D9]"
+                            alt="Page 13 Image Carousel"
+                        />
                     </div>
                 </div>
             ),
