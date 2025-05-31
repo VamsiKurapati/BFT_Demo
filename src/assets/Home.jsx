@@ -815,7 +815,7 @@ export default function Home() {
                 className="group mt-8 mb-4 md:mb-0 px-8 py-3 rounded-xl shadow-md bg-[#A11616E5] hover:bg-[#003566] hover:border hover:border-1 hover:border-[#FCD2B1] font-poppins font-bold text-[14px] sm:text-[16px] md:text-[20px] text-[#FCD2B1] transition-all flex items-center gap-2"
                 onClick={() => navigate("/questionnaire")}
               >
-                Start Your Mystery Trip
+                Get A Free Trip Proposal
                 <span className="hidden group-hover:inline-block transition-transform duration-300 translate-x-1">
                   <FaArrowRightLong />
                 </span>
@@ -937,7 +937,7 @@ export default function Home() {
                   className="group mt-12 mb-8 mx-auto px-8 py-3 rounded-xl shadow-md bg-[#A11616E5] hover:bg-[#003566] hover:border hover:border-1 hover:border-[#FCD2B1] font-poppins font-bold text-[14px] sm:text-[16px] md:text-[20px] text-[#FCD2B1] transition-all flex items-center justify-center gap-2"
                   onClick={() => navigate("/questionnaire")}
                 >
-                  Start Your Mystery Trip
+                  Get A Free Trip Proposal
                   <span className="hidden group-hover:inline-block transition-transform duration-300 translate-x-1">
                     <FaArrowRightLong />
                   </span>
