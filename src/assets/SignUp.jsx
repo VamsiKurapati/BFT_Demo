@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
@@ -15,8 +15,24 @@ const SignUp = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const handleChange = (e) =>
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const backgroundImages = [
+      "/SignUp_1.jpg",
+      "/SignUp_2.jpg",
+      "/SignUp_3.jpg",
+      "/SignUp_4.jpg",
+    ];
+  
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % backgroundImages.length);
+    }, 2000); // Change image every 2 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -59,14 +75,17 @@ const SignUp = () => {
 
   return (
     <div
-      className="w-full bg-cover bg-center relative flex items-center justify-center"
-      style={{ backgroundImage: "url('/signup_page.jpg')" }}
+      className="w-full h-full bg-white p-4 flex items-center justify-center"
     >
-      <div className="absolute inset-0 bg-black opacity-30"></div>
+      <div
+        className='w-full h-full relative left-0 bg-cover bg-center transition-all duration-500 ease-in-out rounded-xl'
+        style={{ backgroundImage: `url(${backgroundImages[currentIndex]})` }}
+      >
+      <div className="absolute inset-0 bg-black opacity-30 rounded-xl"></div>
 
-      <div className="relative w-[95%] max-w-md md:ml-20 md:mt-7 mt-14 mb-14 bg-[#D9D9D9] px-8 py-10 rounded-xl shadow-lg z-10">
-        <img src="/Logo_1.png" alt="Logo" className="w-[180px] h-[40px] mb-4" />
-        <h1 className="font-poppins font-extrabold text-[32px] md:text-[40px] text-black -mb-2">
+      <div className="relative w-[95%] max-w-md ml-1 sm:ml-20 my-14 bg-[#D9D9D9] px-8 py-10 rounded-xl shadow-lg z-10">
+        <img src="/Logo_1.png" alt="Logo" className="w-[180px] h-[40px] mb-16" />
+        <h1 className="font-poppins font-extrabold text-[32px] md:text-[40px] text-black">
           Sign Up ,
         </h1>
         <p className="font-poppins font-light text-[16px] md:text-[20px] text-black mb-4">
@@ -81,7 +100,7 @@ const SignUp = () => {
             value={formData.name}
             onChange={handleChange}
             required
-            className="w-full px-4 py-2 border border-2 border-[#003566] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#003566]"
+            className="w-full h-[50px] px-4 py-2 border border-2 border-[#003566] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#003566]"
           />
           <input
             type="email"
@@ -90,7 +109,7 @@ const SignUp = () => {
             value={formData.email}
             onChange={handleChange}
             required
-            className="w-full px-4 py-2 border border-2 border-[#003566] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#003566]"
+            className="w-full h-[50px] px-4 py-2 border border-2 border-[#003566] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#003566]"
           />
           <input
             type="text"
@@ -99,7 +118,7 @@ const SignUp = () => {
             value={formData.username}
             onChange={handleChange}
             required
-            className="w-full px-4 py-2 border border-2 border-[#003566] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#003566]"
+            className="w-full h-[50px] px-4 py-2 border border-2 border-[#003566] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#003566]"
           />
           <div className="relative">
             <input
@@ -109,7 +128,7 @@ const SignUp = () => {
               value={formData.password}
               onChange={handleChange}
               required
-              className="w-full px-4 py-2 border border-2 border-[#003566] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#003566]"
+              className="w-full h-[50px] px-4 py-2 border border-2 border-[#003566] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#003566]"
             />
             <span
               onClick={() => setShowPassword(!showPassword)}
@@ -126,7 +145,7 @@ const SignUp = () => {
               value={formData.confirmPassword}
               onChange={handleChange}
               required
-              className="w-full px-4 py-2 border border-2 border-[#003566] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#003566]"
+              className="w-full h-[50px] px-4 py-2 border border-2 border-[#003566] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#003566]"
             />
             <span
               onClick={() => setShowConfirmPassword(!showConfirmPassword)}
@@ -143,7 +162,7 @@ const SignUp = () => {
           <button
             type="submit"
             disabled={loading}
-            className={`w-full bg-[#003566] text-[24px] text-white py-2 rounded-md font-poppins font-regular hover:bg-[#002244] ${
+            className={`w-full bg-[#003566] text-[24px] text-white py-2 rounded-xl font-poppins font-regular hover:bg-[#A11616E5] ${
               loading && 'opacity-50 cursor-not-allowed'
             }`}
           >
@@ -168,6 +187,7 @@ const SignUp = () => {
       >
         <img src="/closeButton.png" alt="Close" />
       </button>
+    </div>
     </div>
   );
 };
