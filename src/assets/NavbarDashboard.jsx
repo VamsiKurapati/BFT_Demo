@@ -189,9 +189,9 @@ const NavbarDashboard = () => {
             ))}
 
             {!isLoggedIn ? (
-                <div className="lg:hidden ml-8 relative group">
+                <div className="lg:hidden mx-auto relative group">
                     <button
-                        className="mt-4 bg-[#A11716E5] text-[#FCD2B1] px-4 py-2 font-poppins font-bold rounded-full transition border border-1 group-hover:bg-[#003566]"
+                        className="w-full mt-4 bg-[#A11716E5] text-[#FCD2B1] px-4 py-2 font-poppins font-bold rounded-full transition border border-1 group-hover:bg-[#003566] flex items-center"
                         style={{ borderColor: '#FCD2B1' }}
                         onClick={() => navigate('/login')}
                         >
