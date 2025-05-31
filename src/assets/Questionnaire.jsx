@@ -9,6 +9,7 @@ import { parsePhoneNumberFromString } from 'libphonenumber-js';
 import car from "/car.png";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
+import { AnimatePresence, motion } from "framer-motion";
 
 const TOTAL_PAGES = 34;
 
@@ -1576,7 +1577,7 @@ export default function Questionnaire() {
                         </div>
                         <img src="/page-13.jpg" alt="Page 13" className="w-[200px] md:w-[337px] h-[150px] md:h-[244px] rounded-lg mt-4 mb-4 bg-[#D9D9D9]" />
                         <ImageCarousel 
-                            images={Images[0]}
+                            images={Images[5]}
                             className="w-[200px] md:w-[337px] h-[150px] md:h-[244px] rounded-lg mt-4 mb-4 bg-[#D9D9D9]"
                             alt="Page 13 Image Carousel"
                         />
