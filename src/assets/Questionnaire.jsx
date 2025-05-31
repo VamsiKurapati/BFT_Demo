@@ -396,6 +396,7 @@ export default function Questionnaire() {
                     exclusiveGroup.titles.forEach(title => {
                         newValues[title] = title === first;
                     });
+                    setTimeout(() => {handleNext()}, 300);
                 } else if (name === first && !checked) {
                     // First option unchecked → just uncheck it
                     newValues[name] = false;
@@ -408,9 +409,7 @@ export default function Questionnaire() {
             }
 
             // Not in any group → update normally
-            const updated = {...prev, [name]: checked };
-            if(checked) setTimeout(() => {handleNext()}, 300);
-            return updated;
+            return { ...prev, [name]: checked };
         });
     };
 
