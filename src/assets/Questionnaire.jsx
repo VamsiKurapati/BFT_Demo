@@ -13,7 +13,7 @@ import { AnimatePresence, motion } from "framer-motion";
 
 const TOTAL_PAGES = 34;
 
-const ImageCarousel = ({ images, alt }) => {
+const ImageCarousel = ({ images, alt, wrapperClass = "" }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   // Auto-advance the carousel
@@ -26,7 +26,7 @@ const ImageCarousel = ({ images, alt }) => {
   }, [images.length]);
 
   return (
-    <div className="relative w-full h-full overflow-hidden">
+    <div className={`relative overflow-hidden ${wrapperClass}`}>
       <AnimatePresence mode="wait">
         <motion.img
           key={currentIndex}
@@ -1578,7 +1578,7 @@ export default function Questionnaire() {
                         {/* <img src="/page-13.jpg" alt="Page 13" className="w-[200px] md:w-[337px] h-[150px] md:h-[244px] rounded-lg mt-4 mb-4 bg-[#D9D9D9]" /> */}
                         <ImageCarousel 
                             images={Images[5]}
-                            className="w-[200px] md:w-[337px] h-[150px] md:h-[244px] rounded-lg mt-4 mb-4 bg-[#D9D9D9]"
+                            wrapperClass="w-[200px] md:w-[337px] h-[150px] md:h-[244px] rounded-lg mt-4 mb-4 bg-[#D9D9D9]"
                             alt="Page 13 Image Carousel"
                         />
                     </div>
