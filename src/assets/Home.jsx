@@ -1238,10 +1238,10 @@ export default function Home() {
                     <img
                       src={item.image}
                       alt={item.name}
-                      className="object-cover w-full h-full rounded-xl"
+                      className="object-cover w-full h-full rounded-2xl"
                     />
                     <div className="absolute inset-0 bg-[#003566] opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl flex flex-col p-4 border border-[#FFBE55] border-4">
-                      <h3 className="font-titan-one font-normal text-[48px] text-[#FFBE55] text-center">{item.name}</h3>
+                      <h3 className="font-titan-one font-normal text-[36px] text-[#FFBE55] text-center">{item.name}</h3>
                       <p className="font-goudy font-normal text-[24px] text-[#FFBE55] text-right -mt-2 mb-4">{item.role}</p>
                       <p className="text-[#FFFFFFCC] text-[16px] font-poppins font-normal leading-snug">{item.text}</p>
                     </div>
