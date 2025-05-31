@@ -20,7 +20,7 @@ export default function Questionnaire() {
 
     const [currentPageIndex, setCurrentPageIndex] = useState(0);
     const [favouriteDestination, setFavouriteDestination] = useState("");
-    const [travelerCount, setTravelerCount] = useState(1);
+    const [travelerCount, setTravelerCount] = useState("");
     const [customTravelerCount, setCustomTravelerCount] = useState("");
     const [firstName, setFirstName] = useState("");
     const [otherAllergyDetails, setOtherAllergyDetails] = useState("");
@@ -33,7 +33,7 @@ export default function Questionnaire() {
     const [stayingDuration, setStayingDuration] = useState("");
     const [airports, setAirports] = useState([]);
     const [selectedAirports, setSelectedAirports] = useState([]);
-    const [selectedAirports1, setSelectedAirports1] = useState([]);
+    // const [selectedAirports1, setSelectedAirports1] = useState([]);
     const [budget, setBudget] = useState("");
     const [phone, setPhone] = useState('');
     const [preferredStartDate, setPreferredStartDate] = useState("");
@@ -289,7 +289,11 @@ export default function Questionnaire() {
     ];
 
     const handleTravelerCountChange = (e) => {
-        setTravelerCount(Number(e.target.value));
+        if (e.target.value === "other") {
+            setTravelerCount("other");
+            setCustomTravelerCount("");
+            return;
+        }
         // updateFormData({ travelerCount: Number(e.target.value) }); // Uncomment if you use form data globally
     };
 
