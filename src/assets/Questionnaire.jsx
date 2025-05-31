@@ -9,7 +9,6 @@ import { parsePhoneNumberFromString } from 'libphonenumber-js';
 import car from "/car.png";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { FaArrowRightLong } from "react-icons/fa6";
-import { tr } from "framer-motion/client";
 
 const TOTAL_PAGES = 34;
 
@@ -348,6 +347,28 @@ export default function Questionnaire() {
         setPreferredStartDate(date);
     }
 
+    const handleNext = async () => {
+        if (currentPageIndex < TOTAL_PAGES - 1) {
+            setCurrentPageIndex(prev => prev + 1);
+        } else {
+            const success = await handleSave();
+            if (success) {
+                // console.log("Responses save successful...")
+                setTimeout(() => {
+                    navigate("/stay_tuned");
+                }, 1500);
+            } else {
+            alert("Failed to save responses. Please try again.");
+            }
+        }
+    };
+
+    const handlePrev = () => {
+        if (currentPageIndex > 0) {
+            setCurrentPageIndex(prev => prev - 1);
+        }
+    };
+
     const handleCheckboxChange = (event) => {
         const { name, checked } = event.target;
 
@@ -361,6 +382,7 @@ export default function Questionnaire() {
                     group.titles.forEach(title => {
                         newValues[title] = title === name;
                     });
+                    setTimeout(() => {handleNext()}, 300);
                 } else {
                     newValues[name] = false;
                 }
@@ -389,7 +411,9 @@ export default function Questionnaire() {
             }
 
             // Not in any group → update normally
-            return { ...prev, [name]: checked };
+            const updated = {...prev, [name]: checked };
+            if(checked) setTimeout(() => {handleNext()}, 300);
+            return updated;
         });
     };
 
@@ -3030,22 +3054,6 @@ export default function Questionnaire() {
         },
     ];
 
-    const handleNext = async () => {
-        if (currentPageIndex < TOTAL_PAGES - 1) {
-            setCurrentPageIndex(prev => prev + 1);
-        } else {
-            const success = await handleSave();
-            if (success) {
-                // console.log("Responses save successful...")
-                setTimeout(() => {
-                    navigate("/stay_tuned");
-                }, 1500);
-            } else {
-            alert("Failed to save responses. Please try again.");
-            }
-        }
-    };
-
     useEffect(() => {
         const updateWidth = () => {
             if (lineRef.current) {
@@ -3177,6 +3185,17 @@ export default function Questionnaire() {
                 >
                     {Pages[currentPageIndex].buttonText}
                     <FaArrowRightLong size={20} />
+                </button>
+                <button>
+                    {currentPageIndex > 0 && (
+                        <button
+                            onClick={ handleBack }
+                            className="bg-[#A11616E5] hover:bg-[#003566] text-[#FCD2B1] font-poppins font-bold text-[20px] px-4 md:px-6 lg:px-8 py-2 rounded-full border border-1 border-[#FCD2B1] ml-4 flex items-center gap-2 transition"
+                        >
+                            <FaArrowLeftLong size={20} />
+                            Back
+                        </button>
+                    )}
                 </button>
             </div>
 
