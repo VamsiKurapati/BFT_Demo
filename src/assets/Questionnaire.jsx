@@ -254,6 +254,8 @@ export default function Questionnaire() {
         {
             name: "15",
             titles: ["preferredStartDate", "completelyFlexible"],
+            autoMove: false,
+            autoMoveKey: "completelyFlexible",
         },
         {
             name: "16",
@@ -297,8 +299,13 @@ export default function Questionnaire() {
     const handleCustomTravelerCountChange = (e) => {
         const value = e.target.value;
         if (/^\d*$/.test(value)) {
-            setCustomTravelerCount(Number(value));
-            //setTravelerCount(Number(value));
+            const num = Number(value);
+            if (num <= 0) {
+                alert("Traveler count must be greater than 0.");
+                return;
+            }
+
+            setCustomTravelerCount(num);
             // updateFormData({ travelerCount: Number(value) }); // Uncomment if you use form data globally
         } else {
             // If the input is not a valid number, you can handle it here (e.g., show an error message)
@@ -379,7 +386,11 @@ export default function Questionnaire() {
                     group.titles.forEach(title => {
                         newValues[title] = title === name;
                     });
-                    setTimeout(() => {handleNext()}, 300);
+                    // If the group has an autoMoveKey, check if it should auto-move
+                    if (group.autoMove && group.autoMoveKey && newValues[group.autoMoveKey]) {
+                        // If the autoMoveKey is checked, move to the next page after a short delay
+                        setTimeout(() => {handleNext()}, 300);
+                    }
                 } else {
                     newValues[name] = false;
                 }
@@ -562,16 +573,18 @@ export default function Questionnaire() {
     }
 
     const handleSave = async () => {
-        try {
-            if(travelerCount === "other") {
-                setTravelerCount(customTravelerCount);
-            }
+        let finalTravelerCount = travelerCount;
+        if (travelerCount === "other") {
+            finalTravelerCount = customTravelerCount;
+        }
+        finalTravelerCount = Number(finalTravelerCount);
 
+        try {
             const response = await fetch("https://bft-backend.vercel.app/api/data/saveData", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    travelerCount,
+                    travelerCount: finalTravelerCount,
                     firstName,
                     favouriteDestination,
                     avoidDestination,
@@ -2204,7 +2217,7 @@ export default function Questionnaire() {
                             }}
                         />
 
-                        <p className='font-poppins font-bold text-[24px] text-[#000000] text-left mb-4'>
+                        <p className='font-poppins font-bold text-[24px] text-[#000000] text-left MT-8 mb-4'>
                             <span className="font-normal">Which</span> State will you be flying out from ? <span className="text-[#A32727]">*</span>
                         </p>
 
@@ -3173,7 +3186,7 @@ export default function Questionnaire() {
             </div>
 
             {/* Navigation Button */}
-            <div className="w-full mt-8 px-6 pb-8 mb-4 flex flex-col sm:flex-col md:flex-row justify-center gap-4">
+            <div className="w-[100px] md:w-full mt-8 px-6 pb-8 mb-4 flex flex-col sm:flex-col md:flex-row justify-center gap-4">
                 {/* Back Button */}
                 {currentPageIndex > 0 && (
                     <button
