@@ -19,7 +19,7 @@ const ImageCarousel = ({ images, alt, clickTitle, activities }) => {
   }, [images.length]);
 
   return (
-    <div className="relative w-full h-full overflow-hidden">
+    <div className="relative w-full h-[120px] overflow-hidden">
       <AnimatePresence mode="wait">
         <motion.img
           key={currentIndex}
@@ -28,14 +28,14 @@ const ImageCarousel = ({ images, alt, clickTitle, activities }) => {
           className="absolute top-0 left-0 w-full h-[120px] object-cover"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.3 }}
+          exit={{ opacity: 1 }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
         />
       </AnimatePresence>
 
       {/* Overlay with text */}
-      <div className="absolute top-4 left-4 text-white px-2 py-1">
-        <div className="font-poppins font-bold text-[22px] text-[#FFFFFF]">{clickTitle}</div>
+      <div className="absolute top-4 left-4 text-white px-2 py-1 z-10">
+        <div className="font-poppins font-bold text-[18px] sm:text-[22px] text-[#FFFFFF]">{clickTitle}</div>
         <div className="font-poppins font-regular text-[12px] text-[#FFFFFF]">{activities[currentIndex]}</div>
       </div>
     </div>
@@ -984,7 +984,7 @@ export default function Home() {
                       onClick={() => canMoveLeft && moveCards('india', -1)}
                       // className={`w-[77px] h-[42px] rounded-lg flex items-center justify-center shadow-md transition 
                       //   ${canMoveLeft ? 'bg-[#003566]' : 'bg-[#003566BF]'} text-[#FCD2B1] text-[32px] border border-0.94px border-[#FCD2B1]`}
-                      className="absolute hidden sm:flex -left-8 top-24 transform -translate-y-1/2 z-10"
+                      className="absolute hidden sm:flex sm:left-2 md:-left-8 top-24 transform -translate-y-1/2 z-10"
                       // title={!canMoveLeft ? "No more cards" : ""}
                     >
                       <img src="/arrow-left.png" alt="Left" className="w-[60px] h-[60px]" />
@@ -995,7 +995,7 @@ export default function Home() {
                       onClick={() => canMoveRight && moveCards('india', 1)}
                       // className={`w-[77px] h-[42px] rounded-lg flex items-center justify-center shadow-md transition 
                       //   ${canMoveRight ? 'bg-[#003566]' : 'bg-[#003566BF]'} text-[#FCD2B1] text-[32px] border border-0.94px border-[#FCD2B1]`}
-                      className="absolute hidden sm:flex -right-8 top-24 transform -translate-y-1/2 z-10"
+                      className="absolute hidden sm:flex sm:right-2 md:-right-8 top-20 md:top-24 transform -translate-y-1/2 z-10"
                       // title={!canMoveRight ? "No more cards" : ""}
                     >
                       <img src="/arrow-left.png" alt="Right" className="w-[60px] h-[60px] rotate-180" />
@@ -1015,13 +1015,13 @@ export default function Home() {
                                   custom={slideDirection}
                                 >
                                     {activeCard === gem.id ? (
-                                        <div className="h-[300px] lg:h-[280px] bg-[#D9D9D9] overflow-y-auto">
+                                        <div className="h-[360px] sm:h-[300px] lg:h-[280px] bg-[#D9D9D9] overflow-y-auto">
                                           {gem.detailContent}
                                         </div>                                   
                                     ) : (
                                         <div className="relative group">
                                             <div 
-                                                className="h-[300px] lg:h-[280px] bg-cover bg-center transition-all duration-300"
+                                                className="h-[360px] sm:h-[300px] lg:h-[280px] bg-cover bg-center transition-all duration-300"
                                                 style={{ backgroundImage: `url('${gem.image}')` }}
                                             >
                                                 <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-20 transition-all duration-300">
@@ -1056,6 +1056,10 @@ export default function Home() {
                         </AnimatePresence>
                     </div>
                 </div>
+
+                <span className="text-[#00474C] text-[14px] sm:text-[16px] md:text-[18px] font-poppins font-normal">
+                  *Hover over a card to see more details
+                </span>
             </div>
 
             {/* Explore hidden gems Across the Globe Section */}
@@ -1068,7 +1072,7 @@ export default function Home() {
                     onClick={() => canMoveLeftGlobal && moveCards('global', -1)}
                     // className={`w-[77px] h-[42px] rounded-lg flex items-center justify-center shadow-md transition 
                     //   ${canMoveLeft ? 'bg-[#003566]' : 'bg-[#003566BF]'} text-[#FCD2B1] text-[32px] border border-0.94px border-[#FCD2B1]`}
-                    className="absolute hidden sm:flex -left-4 top-24 transform -translate-y-1/2 z-10"
+                    className="absolute hidden sm:flex sm:left-2 md:-left-8 top-24 transform -translate-y-1/2 z-10"
                     // title={!canMoveLeft ? "No more cards" : ""}
                   >
                     <img src="/arrow-left.png" alt="Left" className="w-[60px] h-[60px]" />
@@ -1079,7 +1083,7 @@ export default function Home() {
                     onClick={() => canMoveRightGlobal && moveCards('global', 1)}
                     // className={`w-[77px] h-[42px] rounded-lg flex items-center justify-center shadow-md transition 
                     //   ${canMoveRight ? 'bg-[#003566]' : 'bg-[#003566BF]'} text-[#FCD2B1] text-[32px] border border-0.94px border-[#FCD2B1]`}
-                    className="absolute hidden sm:flex -right-8 top-24 transform -translate-y-1/2 z-10"
+                    className="absolute hidden sm:flex sm:right-2 md:-right-8 top-20 md:top-24 transform -translate-y-1/2 z-10"
                     // title={!canMoveRight ? "No more cards" : ""}
                   >
                     <img src="/arrow-left.png" alt="Right" className="w-[60px] h-[60px] rotate-180" />
@@ -1099,13 +1103,13 @@ export default function Home() {
                                   custom={slideDirection}
                               >
                                   {activeCard === gem.id ? (
-                                      <div className="h-[300px] lg:h-[280px] bg-[#D9D9D9] overflow-y-auto">
+                                      <div className="h-[360px] sm:h-[300px] lg:h-[280px] bg-[#D9D9D9] overflow-y-auto">
                                         {gem.detailContent}
                                       </div>                                      
                                   ) : (
                                       <div className="relative group">
                                           <div 
-                                              className="h-[300px] lg:h-[280px] bg-cover bg-center transition-all duration-300"
+                                              className="h-[360px] sm:h-[300px] lg:h-[280px] bg-cover bg-center transition-all duration-300"
                                               style={{ backgroundImage: `url('${gem.image}')` }}
                                           >
                                               <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-20 transition-all duration-300">
@@ -1140,6 +1144,10 @@ export default function Home() {
                       </AnimatePresence>
                   </div>
                 </div>
+
+                <span className="text-[#00474C] text-[14px] sm:text-[16px] md:text-[18px] font-poppins font-normal">
+                  *Hover over a card to see more details
+                </span>
             </div>
           </div>
         </section>
