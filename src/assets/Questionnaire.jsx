@@ -21,7 +21,7 @@ export default function Questionnaire() {
     const [currentPageIndex, setCurrentPageIndex] = useState(0);
     const [favouriteDestination, setFavouriteDestination] = useState("");
     const [travelerCount, setTravelerCount] = useState(1);
-    const [customTravelerCount, setCustomTravelerCount] = useState(11);
+    const [customTravelerCount, setCustomTravelerCount] = useState("");
     const [firstName, setFirstName] = useState("");
     const [otherAllergyDetails, setOtherAllergyDetails] = useState("");
     const [avoidDestination, setAvoidDestination] = useState("");
