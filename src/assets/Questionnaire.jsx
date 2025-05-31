@@ -194,62 +194,92 @@ export default function Questionnaire() {
         {
             name: "0",
             titles: ["notInterested","openAndWilling","curious" , "excited", "superInterested"],
+            autoMove: true,
+            autoMoveKey: "Anything",
         },
         {
             name: "1",
             titles: ["notInterested1","openAndWilling1","curious1" , "excited1", "superInterested1"],
+            autoMove: true,
+            autoMoveKey: "Anything",
         },
         {
             name: "2",
             titles: ["notInterested2","openAndWilling2","curious2" , "excited2", "superInterested2"],
+            autoMove: true,
+            autoMoveKey: "Anything",
         },
         {
             name: "3",
             titles: ["notInterested3","openAndWilling3","curious3" , "excited3", "superInterested3"],
+            autoMove: true,
+            autoMoveKey: "Anything",
         },
         {
             name: "4",
             titles: ["notInterested4","openAndWilling4","curious4" , "excited4", "superInterested4"],
+            autoMove: true,
+            autoMoveKey: "Anything",
         },
         {
             name: "5",
             titles: ["notInterested5","openAndWilling5","curious5" , "excited5", "superInterested5"],
+            autoMove: true,
+            autoMoveKey: "Anything",
         },
         {
             name: "6",
             titles: ["notInterested6","openAndWilling6","curious6" , "excited6", "superInterested6"],
+            autoMove: true,
+            autoMoveKey: "Anything",
         },
         {
             name: "7",
             titles: ["qualityTime", "newDestination", "wellness", "specialOccasion"],
+            autoMove: true,
+            autoMoveKey: "Anything",
         },
         {
             name: "8",
             titles: ["totalChill", "mostlyRelaxed", "aBitOfBoth", "prettyActive", "nonStopAdventure"],
+            autoMove: true,
+            autoMoveKey: "Anything",
         },
         {
             name: "9",
             titles: ["surpriseMe", "coolerClimate", "bringOnTheSunshine"],
+            autoMove: true,
+            autoMoveKey: "Anything",
         },
         {
             name: "10",
             titles: ["yes", "openToAnywhere", "internationalTrip"],
+            autoMove: true,
+            autoMoveKey: "Anything",
         },
-        {
-            name: "11",
-            titles: ["india, otherCountry"],
-        },
+        // {
+        //     name: "11",
+        //     titles: ["india, otherCountry"],
+        //     autoMove: true,
+        //     autoMoveKey: "Anything",
+        // },
         {
             name: "12",
             titles: ["sameAirports", "anyAirports"],
+            autoMove: true,
+            autoMoveKey: "Anything",
         },
         {
             name: "13",
             titles: ["sameAirports1", "anyAirports1"],
+            autoMove: true,
+            autoMoveKey: "Anything",
         },
         {
             name: "14",
             titles: ["fDtN", "fDfN", "sDfN","userChoice"],
+            autoMove: true,
+            autoMoveKey: "Anything",
         },
         {
             name: "15",
@@ -260,10 +290,14 @@ export default function Questionnaire() {
         {
             name: "16",
             titles: ["eitherIsFine", "exclusiveResidence", "hotel"],
+            autoMove: true,
+            autoMoveKey: "Anything",
         },
         {
             name: "17",
             titles: ["maxBudget", "increaseBy5000", "increaseBy7500", "increaseBy10000"],
+            autoMove: true,
+            autoMoveKey: "Anything",
         },
         // {
         //     name: "18",
@@ -272,6 +306,8 @@ export default function Questionnaire() {
         {
             name: "19",
             titles: ["someoneIKnow", "influencer", "press", "randomCustomer", "paidAd"],
+            autoMove: true,
+            autoMoveKey: "Anything",
         },
     ];
 
@@ -386,10 +422,9 @@ export default function Questionnaire() {
                     group.titles.forEach(title => {
                         newValues[title] = title === name;
                     });
-                    // If the group has an autoMoveKey, check if it should auto-move
-                    if (group.autoMove && group.autoMoveKey && newValues[group.autoMoveKey]) {
-                        // If the autoMoveKey is checked, move to the next page after a short delay
-                        setTimeout(() => {handleNext()}, 300);
+                    const shouldAutoMove = group.autoMove || group.autoMoveKey === name;
+                    if (shouldAutoMove) {
+                        setTimeout(() => handleNext(), 300);
                     }
                 } else {
                     newValues[name] = false;
@@ -2217,7 +2252,7 @@ export default function Questionnaire() {
                             }}
                         />
 
-                        <p className='font-poppins font-bold text-[24px] text-[#000000] text-left MT-8 mb-4'>
+                        <p className='font-poppins font-bold text-[24px] text-[#000000] text-left mt-8 mb-4'>
                             <span className="font-normal">Which</span> State will you be flying out from ? <span className="text-[#A32727]">*</span>
                         </p>
 
@@ -2235,7 +2270,7 @@ export default function Questionnaire() {
                                 handleStateChange({ target: { value: selectedOption?.value || '' } })
                             }
                             placeholder="Select State"
-                            className="w-full sm:w-[436px] text-left font-poppins mt-2"
+                            className="w-full sm:w-[436px] text-left font-poppins"
                             styles={{
                                 control: (base) => ({
                                     ...base,
