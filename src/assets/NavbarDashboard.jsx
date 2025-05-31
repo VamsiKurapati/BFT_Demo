@@ -172,7 +172,7 @@ const NavbarDashboard = () => {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            className="absolute top-[100px] right-0 w-2/3 bg-[#FCD2B1] flex flex-col items-center py-6 z-20 lg:hidden overflow-hidden"
+            className="absolute top-[100px] right-0 w-3/4 sm:w-1/3 bg-[#003566] flex flex-col items-center py-6 z-20 lg:hidden overflow-hidden"
             >
             {navLinks.map((link) => (
                 <a
@@ -189,13 +189,20 @@ const NavbarDashboard = () => {
             ))}
 
             {!isLoggedIn ? (
-                <button
-                className="mt-4 bg-[#A11716E5] text-[#FCD2B1] px-6 py-2 font-poppins font-bold rounded-full transition border border-1"
-                style={{ borderColor: '#FCD2B1' }}
-                onClick={() => navigate('/login')}
-                >
-                Login / Register
-                </button>
+                <div className="lg:hidden ml-8 relative group">
+                    <button
+                        className="mt-4 bg-[#A11716E5] text-[#FCD2B1] px-4 py-2 font-poppins font-bold rounded-full transition border border-1 group-hover:bg-[#003566]"
+                        style={{ borderColor: '#FCD2B1' }}
+                        onClick={() => navigate('/login')}
+                        >
+                        Login / Register
+                        <img
+                            src="/Person.png"
+                            alt="Person"
+                            className="h-6 w-6 ml-2 absolute opacity-0 group-hover:opacity-100 group-hover:static transition-all duration-300"
+                        />
+                    </button>
+                </div>
             ) : (
                 <div className="w-full px-6 mt-4">
                 {/* Profile Toggle Button */}

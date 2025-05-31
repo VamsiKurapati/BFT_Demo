@@ -83,7 +83,7 @@ const SignUp = () => {
       >
       <div className="absolute inset-0 bg-black opacity-30 rounded-xl"></div>
 
-      <div className="relative w-[95%] max-w-md ml-1 sm:ml-20 my-14 bg-[#D9D9D9] px-8 py-10 rounded-xl shadow-lg z-10">
+      <div className="relative w-[95%] max-w-md ml-1 sm:ml-20 my-14 bg-[#FFFFFF] px-8 py-10 rounded-xl shadow-lg z-10">
         <img src="/Logo_1.png" alt="Logo" className="w-[180px] h-[40px] mb-16" />
         <h1 className="font-poppins font-extrabold text-[32px] md:text-[40px] text-black">
           Sign Up ,
@@ -182,7 +182,7 @@ const SignUp = () => {
       </div>
 
       <button
-        className="absolute top-3 right-4 z-20"
+        className="absolute top-4 md:top-12 right-4 z-20"
         onClick={() => navigate('/')}
       >
         <img src="/closeButton.png" alt="Close" />
