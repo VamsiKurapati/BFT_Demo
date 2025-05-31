@@ -9,6 +9,7 @@ import { parsePhoneNumberFromString } from 'libphonenumber-js';
 import car from "/car.png";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { FaArrowRightLong } from "react-icons/fa6";
+import { tr } from "framer-motion/client";
 
 const TOTAL_PAGES = 34;
 
@@ -301,7 +302,7 @@ export default function Questionnaire() {
         const value = e.target.value;
         if (/^\d*$/.test(value)) {
             setCustomTravelerCount(Number(value));
-            setTravelerCount(Number(value));
+            //setTravelerCount(Number(value));
             // updateFormData({ travelerCount: Number(value) }); // Uncomment if you use form data globally
         } else {
             // If the input is not a valid number, you can handle it here (e.g., show an error message)
@@ -542,6 +543,10 @@ export default function Questionnaire() {
 
     const handleSave = async () => {
         try {
+            if(travelerCount === "other") {
+                setTravelerCount(customTravelerCount);
+            }
+
             const response = await fetch("https://bft-backend.vercel.app/api/data/saveData", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -652,7 +657,7 @@ export default function Questionnaire() {
                                 value={customTravelerCount}
                                 onChange={handleCustomTravelerCountChange}
                                 placeholder="Enter number of travelers"
-                                className="w-full px-4 py-2 border border-2 border-[#000000B2] bg-[#D9D9D966] rounded-lg font-poppins font-normal text-[24px] text-[#000000]"
+                                className="w-full mt-3 px-4 py-2 border border-2 border-[#000000B2] bg-[#D9D9D966] rounded-lg font-poppins font-normal text-[24px] text-[#000000]"
                                 required
                             />
                         )}
