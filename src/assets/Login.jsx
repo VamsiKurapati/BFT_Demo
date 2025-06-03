@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { redirect, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -21,7 +22,7 @@ const Login = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % backgroundImages.length);
-    }, 1000); // Change image every 1 seconds
+    }, 2000); // Change image every 2 seconds
 
     return () => clearInterval(interval);
   }, []);
@@ -102,109 +103,119 @@ const Login = () => {
     <div
       className="max-w-screen min-h-screen bg-white p-4 flex items-center justify-center"
     >
-      <div
-        className='w-full h-full relative left-0 bg-cover bg-center transition-all duration-500 ease-in-out rounded-xl'
-        style={{ backgroundImage: `url(${backgroundImages[currentIndex]})` }}
-      >
-      <div className="absolute inset-0 bg-black opacity-30 rounded-xl"></div>
+      <div className="w-full h-full relative rounded-xl overflow-hidden">
+        <motion.div
+          key={currentIndex}
+          className="absolute inset-0 bg-cover bg-center z-0"
+          style={{ backgroundImage: `url(${backgroundImages[currentIndex]})` }}
+          animate={{ opacity: 1 }}
+          transition={{
+            type: "spring",
+            mass: 1,
+            stiffness: 80,
+            damping: 20
+          }}
+        >
+          <div className="absolute inset-0 bg-black opacity-30"></div>
+        </motion.div>
 
-      <div className="relative w-[95%] max-w-md ml-1 sm:ml-20 my-14 bg-[#FFFFFF] px-8 py-10 rounded-xl shadow-lg z-10">
-        <img src="/Logo_1.png" alt="Logo" className="w-[180px] h-[40px] mb-16" />
-        <h1 className="font-poppins font-extrabold text-[32px] md:text-[40px] text-black">
-          Welcome back ,
-        </h1>
-        <p className="font-poppins font-light text-[16px] md:text-[20px] text-black mb-6">
-          Enter to Escape the Ordinary
-        </p>
+        <div className="relative w-[95%] max-w-md ml-1 sm:ml-20 my-14 bg-[#FFFFFF] px-8 py-10 rounded-xl shadow-lg z-20">
+          <img src="/Logo_1.png" alt="Logo" className="w-[180px] h-[40px] mb-16" />
+          <h1 className="font-poppins font-extrabold text-[32px] md:text-[40px] text-black">
+            Welcome back ,
+          </h1>
+          <p className="font-poppins font-light text-[16px] md:text-[20px] text-black mb-6">
+            Enter to Escape the Ordinary
+          </p>
 
-        <form className="space-y-4" onSubmit={handleLogin}>
-          <input
-            type="text"
-            name="identifier"
-            placeholder="Email / Username"
-            value={formData.identifier}
-            onChange={handleChange}
-            required
-            className="w-full h-[50px] px-4 py-2 border border-2 border-[#003566] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#003566]"
-          />
-          <div className="relative">
+          <form className="space-y-4" onSubmit={handleLogin}>
             <input
-              type={showPassword ? 'text' : 'password'}
-              name="password"
-              placeholder="Password"
-              value={formData.password}
+              type="text"
+              name="identifier"
+              placeholder="Email / Username"
+              value={formData.identifier}
               onChange={handleChange}
               required
               className="w-full h-[50px] px-4 py-2 border border-2 border-[#003566] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#003566]"
             />
-            <span
-              onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-2.5 text-gray-500 cursor-pointer"
+            <div className="relative">
+              <input
+                type={showPassword ? 'text' : 'password'}
+                name="password"
+                placeholder="Password"
+                value={formData.password}
+                onChange={handleChange}
+                required
+                className="w-full h-[50px] px-4 py-2 border border-2 border-[#003566] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#003566]"
+              />
+              <span
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-2.5 text-gray-500 cursor-pointer"
+              >
+                {showPassword ? '🙈' : '👁️'}
+              </span>
+            </div>
+
+            <div className="text-right text-sm text-[#003566] cursor-pointer hover:underline">
+              <button
+                type="button"
+                className="font-poppins font-normal text-[16px] text-[#003566]"
+                onClick={() => navigate('/forgot-password')}
+              >
+                Forgot Password?
+              </button>
+            </div>
+
+            {error && (
+              <div className="text-red-600 font-semibold text-sm">{error}</div>
+            )}
+
+            <button
+              type="submit"
+              disabled={loading}
+              className={`w-full bg-[#003566] text-[24px] text-white py-2 rounded-xl font-poppins font-regular hover:bg-[#A11616E5] ${
+                loading && 'opacity-50 cursor-not-allowed'
+              }`}
             >
-              {showPassword ? '🙈' : '👁️'}
+              {loading ? 'Logging in...' : 'Login'}
+            </button>
+          </form>
+
+          <div className="mt-4 flex items-center gap-4 w-full max-w-xs mx-auto">
+            <div className="flex-1 border-t-[2px] border-[#00000033]" />
+            <div className="text-center font-poppins font-normal text-[#000000] text-[14px]">
+              or continue with
+            </div>
+            <div className="flex-1 border-t-[2px] border-[#00000033] "/>
+          </div>
+
+          <div className="mt-3 flex justify-center">
+            <img
+              src="/google_logo.png"
+              alt="Google Sign-In"
+              className="w-10 h-10 cursor-pointer hover:scale-105 transition"
+              onClick={handleGoogleLogin}
+            />
+          </div>
+
+          <div className="mt-6 text-center font-poppins font-normal text-[#000000] text-[16px]">
+            New to BFT?{' '}
+            <span
+              className="text-[#F5B501] hover:text-[#003566] font-semibold cursor-pointer"
+              onClick={() => navigate('/signup')}
+            >
+              Sign Up
             </span>
           </div>
-
-          <div className="text-right text-sm text-[#003566] cursor-pointer hover:underline">
-            <button
-              type="button"
-              className="font-poppins font-normal text-[16px] text-[#003566]"
-              onClick={() => navigate('/forgot-password')}
-            >
-              Forgot Password?
-            </button>
-          </div>
-
-          {error && (
-            <div className="text-red-600 font-semibold text-sm">{error}</div>
-          )}
-
-          <button
-            type="submit"
-            disabled={loading}
-            className={`w-full bg-[#003566] text-[24px] text-white py-2 rounded-xl font-poppins font-regular hover:bg-[#A11616E5] ${
-              loading && 'opacity-50 cursor-not-allowed'
-            }`}
-          >
-            {loading ? 'Logging in...' : 'Login'}
-          </button>
-        </form>
-
-        <div className="mt-4 flex items-center gap-4 w-full max-w-xs mx-auto">
-          <div className="flex-1 border-t-[2px] border-[#00000033]" />
-          <div className="text-center font-poppins font-normal text-[#000000] text-[14px]">
-            or continue with
-          </div>
-          <div className="flex-1 border-t-[2px] border-[#00000033] "/>
         </div>
 
-        <div className="mt-3 flex justify-center">
-          <img
-            src="/google_logo.png"
-            alt="Google Sign-In"
-            className="w-10 h-10 cursor-pointer hover:scale-105 transition"
-            onClick={handleGoogleLogin}
-          />
-        </div>
-
-        <div className="mt-6 text-center font-poppins font-normal text-[#000000] text-[16px]">
-          New to BFT?{' '}
-          <span
-            className="text-[#F5B501] hover:text-[#003566] font-semibold cursor-pointer"
-            onClick={() => navigate('/signup')}
-          >
-            Sign Up
-          </span>
-        </div>
+        <button
+          className="absolute top-4 md:top-12 right-4 z-20"
+          onClick={() => navigate('/')}
+        >
+          <img src="/closeButton.png" alt="Close" />
+        </button>
       </div>
-
-      <button
-        className="absolute top-4 md:top-12 right-4 z-20"
-        onClick={() => navigate('/')}
-      >
-        <img src="/closeButton.png" alt="Close" />
-      </button>
-    </div>
     </div>
   );
 };

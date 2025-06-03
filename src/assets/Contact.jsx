@@ -6,6 +6,7 @@ import NavbarDashboard from "./NavbarDashboard";
 
 export default function Contact() {
     const [activeFaq, setActiveFaq] = useState(null);
+    const [error, setError] = useState('');
     
     const toggleFaq = (id) => {
         if (activeFaq === id) {
@@ -66,6 +67,19 @@ export default function Contact() {
 
     const validateForm = () => {
       const { name, email, phone, subject, message } = form;
+        // Check if any required field is empty
+        if (!name)
+            setError('Name is required.');
+        else if (!email)
+            setError('Email is required.');
+        else if (!phone)
+            setError('Phone number is required.');
+        else if (!subject)
+            setError('Subject is required.');
+        else if (!message)
+            setError('Message is required.');
+        else
+            setError('');
       return !name || !email || !phone || !subject || !message;
     };
 
@@ -100,11 +114,15 @@ export default function Contact() {
           });
           return true;
         }else{
-          alert("Please try again.");
-          return false;
+        //   alert("Please try again.");
+            const errorData = await response.json();
+            setError(errorData.error || 'Submission failed. Please try again.');
+            // console.error('Submission error:', errorData);
+            return false;
         }
       } catch (error) {
-        console.error('Submission error:', error);
+        setError('Submission failed. Please try again.');
+        // console.error('Submission error:', error);
       } finally {
         setIsSubmitting(false);
       }
@@ -186,7 +204,7 @@ export default function Contact() {
                             <div className="space-y-4 font-poppins font-normal text-[14px] md:text-[20px] text-[#000000]">
                                 <div className="flex items-center gap-3">
                                 <FaEnvelope className="text-[#003566]" />
-                                <span>Email: info@blindfoldtrips.com</span>
+                                <span>Email: support@blindfoldtrips.com</span>
                                 </div>
                                 <div className="flex items-center gap-3">
                                 <FaPhone className="text-[#003566]" />
@@ -416,6 +434,12 @@ export default function Contact() {
                                         <option>Other</option>
                                     </select>
                                     </div>
+
+                                    {error && (
+                                      <div className="text-red-600 font-semibold text-sm mt-2">
+                                        {error}
+                                      </div>
+                                    )}
 
                                     <button
                                       type="submit"

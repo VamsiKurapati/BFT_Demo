@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -27,7 +28,7 @@ const SignUp = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % backgroundImages.length);
-    }, 1000); // Change image every 1 seconds
+    }, 2000); // Change image every 2 seconds
 
     return () => clearInterval(interval);
   }, []);
@@ -77,117 +78,127 @@ const SignUp = () => {
     <div
       className="max-w-screen min-h-screen bg-white p-4 flex items-center justify-center"
     >
-      <div
-        className='w-full h-full relative left-0 bg-cover bg-center transition-all duration-500 ease-in-out rounded-xl'
-        style={{ backgroundImage: `url(${backgroundImages[currentIndex]})` }}
-      >
-      <div className="absolute inset-0 bg-black opacity-30 rounded-xl"></div>
+      <div className="w-full h-full relative rounded-xl overflow-hidden">
+        <motion.div
+          key={currentIndex}
+          className="absolute inset-0 bg-cover bg-center z-0"
+          style={{ backgroundImage: `url(${backgroundImages[currentIndex]})` }}
+          animate={{ opacity: 1 }}
+          transition={{
+            type: "spring",
+            mass: 1,
+            stiffness: 80,
+            damping: 20
+          }}
+        >
+          <div className="absolute inset-0 bg-black opacity-30"></div>
+        </motion.div>
 
-      <div className="relative w-[95%] max-w-md ml-1 sm:ml-20 my-14 bg-[#FFFFFF] px-8 py-10 rounded-xl shadow-lg z-10">
-        <img src="/Logo_1.png" alt="Logo" className="w-[180px] h-[40px] mb-16" />
-        <h1 className="font-poppins font-extrabold text-[32px] md:text-[40px] text-black">
-          Sign Up ,
-        </h1>
-        <p className="font-poppins font-light text-[16px] md:text-[20px] text-black mb-4">
-          for Secrets, Surprises & Spontaneity
-        </p>
+        <div className="relative w-[95%] max-w-md ml-1 sm:ml-20 my-14 bg-[#FFFFFF] px-8 py-10 rounded-xl shadow-lg z-10">
+          <img src="/Logo_1.png" alt="Logo" className="w-[180px] h-[40px] mb-16" />
+          <h1 className="font-poppins font-extrabold text-[32px] md:text-[40px] text-black">
+            Sign Up ,
+          </h1>
+          <p className="font-poppins font-light text-[16px] md:text-[20px] text-black mb-4">
+            for Secrets, Surprises & Spontaneity
+          </p>
 
-        <form className="space-y-3" onSubmit={handleRegister}>
-          <input
-            type="text"
-            name="name"
-            placeholder="Name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-            className="w-full h-[50px] px-4 py-2 border border-2 border-[#003566] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#003566]"
-          />
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-            className="w-full h-[50px] px-4 py-2 border border-2 border-[#003566] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#003566]"
-          />
-          <input
-            type="text"
-            name="username"
-            placeholder="Username"
-            value={formData.username}
-            onChange={handleChange}
-            required
-            className="w-full h-[50px] px-4 py-2 border border-2 border-[#003566] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#003566]"
-          />
-          <div className="relative">
+          <form className="space-y-3" onSubmit={handleRegister}>
             <input
-              type={showPassword ? 'text' : 'password'}
-              name="password"
-              placeholder="Password"
-              value={formData.password}
+              type="text"
+              name="name"
+              placeholder="Name"
+              value={formData.name}
               onChange={handleChange}
               required
               className="w-full h-[50px] px-4 py-2 border border-2 border-[#003566] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#003566]"
             />
-            <span
-              onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-2.5 text-gray-500 cursor-pointer"
-            >
-              {showPassword ? '🙈' : '👁️'}
-            </span>
-          </div>
-          <div className="relative">
             <input
-              type={showConfirmPassword ? 'text' : 'password'}
-              name="confirmPassword"
-              placeholder="Confirm Password"
-              value={formData.confirmPassword}
+              type="email"
+              name="email"
+              placeholder="Email"
+              value={formData.email}
               onChange={handleChange}
               required
               className="w-full h-[50px] px-4 py-2 border border-2 border-[#003566] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#003566]"
             />
-            <span
-              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-              className="absolute right-3 top-2.5 text-gray-500 cursor-pointer"
+            <input
+              type="text"
+              name="username"
+              placeholder="Username"
+              value={formData.username}
+              onChange={handleChange}
+              required
+              className="w-full h-[50px] px-4 py-2 border border-2 border-[#003566] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#003566]"
+            />
+            <div className="relative">
+              <input
+                type={showPassword ? 'text' : 'password'}
+                name="password"
+                placeholder="Password"
+                value={formData.password}
+                onChange={handleChange}
+                required
+                className="w-full h-[50px] px-4 py-2 border border-2 border-[#003566] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#003566]"
+              />
+              <span
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-2.5 text-gray-500 cursor-pointer"
+              >
+                {showPassword ? '🙈' : '👁️'}
+              </span>
+            </div>
+            <div className="relative">
+              <input
+                type={showConfirmPassword ? 'text' : 'password'}
+                name="confirmPassword"
+                placeholder="Confirm Password"
+                value={formData.confirmPassword}
+                onChange={handleChange}
+                required
+                className="w-full h-[50px] px-4 py-2 border border-2 border-[#003566] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#003566]"
+              />
+              <span
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                className="absolute right-3 top-2.5 text-gray-500 cursor-pointer"
+              >
+                {showConfirmPassword ? '🙈' : '👁️'}
+              </span>
+            </div>
+
+            {error && (
+              <div className="text-red-600 font-semibold text-sm">{error}</div>
+            )}
+
+            <button
+              type="submit"
+              disabled={loading}
+              className={`w-full bg-[#003566] text-[24px] text-white py-2 rounded-xl font-poppins font-regular hover:bg-[#A11616E5] ${
+                loading && 'opacity-50 cursor-not-allowed'
+              }`}
             >
-              {showConfirmPassword ? '🙈' : '👁️'}
+              {loading ? 'Registering...' : 'Register'}
+            </button>
+          </form>
+
+          <div className="mt-6 text-center font-poppins font-normal text-[#000000] text-[16px]">
+            Already a member?{' '}
+            <span
+              className="text-[#F5B501] hover:text-[#003566] font-semibold cursor-pointer"
+              onClick={() => navigate('/login')}
+            >
+              Login
             </span>
           </div>
-
-          {error && (
-            <div className="text-red-600 font-semibold text-sm">{error}</div>
-          )}
-
-          <button
-            type="submit"
-            disabled={loading}
-            className={`w-full bg-[#003566] text-[24px] text-white py-2 rounded-xl font-poppins font-regular hover:bg-[#A11616E5] ${
-              loading && 'opacity-50 cursor-not-allowed'
-            }`}
-          >
-            {loading ? 'Registering...' : 'Register'}
-          </button>
-        </form>
-
-        <div className="mt-6 text-center font-poppins font-normal text-[#000000] text-[16px]">
-          Already a member?{' '}
-          <span
-            className="text-[#F5B501] hover:text-[#003566] font-semibold cursor-pointer"
-            onClick={() => navigate('/login')}
-          >
-            Login
-          </span>
         </div>
-      </div>
 
-      <button
-        className="absolute top-4 md:top-12 right-4 z-20"
-        onClick={() => navigate('/')}
-      >
-        <img src="/closeButton.png" alt="Close" />
-      </button>
-    </div>
+        <button
+          className="absolute top-4 md:top-12 right-4 z-20"
+          onClick={() => navigate('/')}
+        >
+          <img src="/closeButton.png" alt="Close" />
+        </button>
+      </div>
     </div>
   );
 };

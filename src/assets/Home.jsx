@@ -27,12 +27,10 @@ const ImageCarousel = ({ images, alt, clickTitle, activities }) => {
           alt={`${alt} ${currentIndex + 1}`}
           className="absolute top-0 left-0 w-full h-[120px] object-cover"
           animate={{ opacity: 1 }}
-          initial={{ opacity: 0 }}
           transition={{
-            type: "spring",
-            mass: 1,
-            stiffness: 80,
-            damping: 20
+            delay: 1, // 1000ms
+            duration: 0.3, // 300ms
+            ease: "easeIn",
           }}
         />
       </AnimatePresence>
@@ -918,7 +916,7 @@ export default function Home() {
                         </div>
 
                         {/* Column 2: Title + Subtitle */}
-                        <div className="flex flex-col w-full">
+                        <div className="flex flex-col w-full -ml-4 mt-2 md:mt-3">
                           <div className="text-[32px] md:text-[40px] lg:text-[48px] font-titan-one font-normal text-[#951A1AE5] group-hover:text-[#FFBE55] leading-tight">
                             {step.title}
                           </div>
