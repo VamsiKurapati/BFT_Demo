@@ -3259,7 +3259,7 @@ export default function Questionnaire() {
         <div className="min-h-screen flex flex-col bg-white">
             {/* Header */}
             <div className="flex flex-col justify-end items-end pt-[56px] px-6 py-4 border-b shadow-sm">
-                <img src="/Logo_1.png" alt="Logo" className="pl-[40px] h-16 mr-auto" />
+                <img src="/Logo_1.png" alt="Logo" className="lg:pl-[48px] h-16 mr-auto" />
                 {currentPageIndex===0 ? (
                     <button onClick={() => navigate("/")} className="text-red-600 text-xl pr-[60px] font-bold hover:text-red-800 transition">
                         <IoCloseCircleOutline size={30} />
