@@ -26,10 +26,14 @@ const ImageCarousel = ({ images, alt, clickTitle, activities }) => {
           src={images[currentIndex]}
           alt={`${alt} ${currentIndex + 1}`}
           className="absolute top-0 left-0 w-full h-[120px] object-cover"
-          initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          exit={{ opacity: 1 }}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
+          initial={{ opacity: 0 }}
+          transition={{
+            type: "spring",
+            mass: 1,
+            stiffness: 80,
+            damping: 20
+          }}
         />
       </AnimatePresence>
 

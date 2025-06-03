@@ -21,7 +21,7 @@ const Login = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % backgroundImages.length);
-    }, 2000); // Change image every 2 seconds
+    }, 1000); // Change image every 1 seconds
 
     return () => clearInterval(interval);
   }, []);

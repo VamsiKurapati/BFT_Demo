@@ -779,7 +779,7 @@ export default function Questionnaire() {
                             type="text"
                             value={firstName}
                             onChange={handleFirstNameChange}
-                            placeholder="John Doe"
+                            placeholder="E.g. Rohan"
                             className="w-full px-4 py-3 border border-2 border-[#000000B2] bg-[#D9D9D966] rounded-lg font-poppins font-normal text-[24px] text-[#000000]"
                             required
                         />

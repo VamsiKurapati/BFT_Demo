@@ -95,7 +95,7 @@ export default function Footer() {
                             <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
                                 <FaFacebookF className="hover:text-amber-400 transition-colors duration-200" />
                             </a>
-                            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+                            <a href="https://www.instagram.com/blind_fold_trips?igsh=OXR2amV0NWx6bnpv" target="_blank" rel="noopener noreferrer">
                                 <FaInstagram className="hover:text-amber-400 transition-colors duration-200" />
                             </a>
                             <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
@@ -166,7 +166,7 @@ export default function Footer() {
                                 <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
                                     <FaFacebookF className="hover:text-amber-400 transition-colors duration-200" />
                                 </a>
-                                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+                                <a href="https://www.instagram.com/blind_fold_trips?igsh=OXR2amV0NWx6bnpv" target="_blank" rel="noopener noreferrer">
                                     <FaInstagram className="hover:text-amber-400 transition-colors duration-200" />
                                 </a>
                                 <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
