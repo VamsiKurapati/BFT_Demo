@@ -1027,7 +1027,7 @@ export default function Home() {
                                                 style={{ backgroundImage: `url('${gem.image}')` }}
                                             >
                                                 <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-20 transition-all duration-300">
-                                                    <div className="p-6 absolute bottom-0 left-0 text-white transition-all duration-300 group-hover:opacity-0">
+                                                    <div className="p-6 absolute bottom-4 left-0 text-white transition-all duration-300 group-hover:opacity-0">
                                                         <h3 className="text-[24px] font-bold">{gem.title}</h3>
                                                         <p className="text-gray-200 text-[14px]">{gem.description}</p>
                                                     </div>
@@ -1115,7 +1115,7 @@ export default function Home() {
                                               style={{ backgroundImage: `url('${gem.image}')` }}
                                           >
                                               <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-20 transition-all duration-300">
-                                                  <div className="p-6 absolute bottom-0 left-0 text-white transition-all duration-300 group-hover:opacity-0">
+                                                  <div className="p-6 absolute bottom-4 left-0 text-white transition-all duration-300 group-hover:opacity-0">
                                                       <h3 className="text-[24px] font-bold">{gem.title}</h3>
                                                       <p className="text-gray-200 text-[14px]">{gem.description}</p>
                                                   </div>
