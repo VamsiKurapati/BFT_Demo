@@ -33,9 +33,7 @@ const ImageCarousel = ({ images, alt, wrapperClass = "" }) => {
           src={images[currentIndex]}
           alt={`${alt} ${currentIndex + 1}`}
           className="absolute top-0 left-0 w-full h-full object-cover"
-          initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          exit={{ opacity: 1 }}
           transition={{ duration: 0.3, ease: "easeInOut" }}
         />
       </AnimatePresence>
