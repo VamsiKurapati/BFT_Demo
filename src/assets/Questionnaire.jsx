@@ -61,6 +61,7 @@ export default function Questionnaire() {
     const [favouriteDestination, setFavouriteDestination] = useState("");
     const [travelerCount, setTravelerCount] = useState("1");
     const [customTravelerCount, setCustomTravelerCount] = useState("");
+    const [specialOccasion, setSpecialOccasion] = useState("");
     const [firstName, setFirstName] = useState("");
     const [otherAllergyDetails, setOtherAllergyDetails] = useState("");
     const [avoidDestination, setAvoidDestination] = useState("");
@@ -275,8 +276,9 @@ export default function Questionnaire() {
         {
             name: "7",
             titles: ["qualityTime", "newDestination", "wellness", "specialOccasion"],
-            autoMove: true,
+            autoMove: false,
             autoMoveKey: "Anything",
+            holdKey: "specialOccasion",
         },
         {
             name: "8",
@@ -319,6 +321,7 @@ export default function Questionnaire() {
             titles: ["fDtN", "fDfN", "sDfN","userChoice"],
             autoMove: false,
             autoMoveKey: "userChoice",
+            holdKey: "userChoice",
         },
         {
             name: "15",
@@ -461,7 +464,8 @@ export default function Questionnaire() {
                     group.titles.forEach(title => {
                         newValues[title] = title === name;
                     });
-                    const shouldAutoMove = name === "userChoice" ? stayingDuration !== "" : group.autoMove || group.autoMoveKey === name;
+                    // const shouldAutoMove = name === "userChoice" ? stayingDuration !== "" : group.autoMove || group.autoMoveKey === name;
+                    const shouldAutoMove = group.holdKey === name ? false : group.autoMove || group.autoMoveKey === name;
                     if (shouldAutoMove) {
                         setTimeout(() => handleNext(), 300);
                     }
@@ -555,7 +559,7 @@ export default function Questionnaire() {
     };
 
     const page16validator = () => {
-        return checkboxValues["qualityTime"] || checkboxValues["newDestination"] || checkboxValues["wellness"] || checkboxValues["specialOccasion"];
+        return checkboxValues["qualityTime"] || checkboxValues["newDestination"] || checkboxValues["wellness"] || (checkboxValues["specialOccasion"] && specialOccasion!==""); 
     };
 
     const page17validator = () => {
@@ -1751,6 +1755,16 @@ export default function Questionnaire() {
                             />
                             Celebrate a special occasion
                         </label>
+                        {checkboxValues.specialOccasion && (
+                            <input
+                                type="text"
+                                name="specialOccasion"
+                                placeholder="Please specify the occasion"
+                                className="w-full px-4 py-3 border border-2 border-[#000000B2] bg-[#D9D9D966] rounded-lg font-poppins font-normal text-[24px] text-[#000000]"
+                                value={specialOccasion}
+                                onChange={(e) => setSpecialOccasion(e.target.value)}
+                            />
+                        )}
                     </div>
                 </div>
             ),
