@@ -317,8 +317,8 @@ export default function Questionnaire() {
         {
             name: "14",
             titles: ["fDtN", "fDfN", "sDfN","userChoice"],
-            autoMove: true,
-            autoMoveKey: "Anything",
+            autoMove: false,
+            autoMoveKey: "userChoice",
         },
         {
             name: "15",
@@ -461,7 +461,7 @@ export default function Questionnaire() {
                     group.titles.forEach(title => {
                         newValues[title] = title === name;
                     });
-                    const shouldAutoMove = group.autoMove || group.autoMoveKey === name;
+                    const shouldAutoMove = name === "userChoice" ? stayingDuration !== "" : group.autoMove || group.autoMoveKey === name;
                     if (shouldAutoMove) {
                         setTimeout(() => handleNext(), 300);
                     }
