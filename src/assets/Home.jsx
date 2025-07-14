@@ -4,6 +4,10 @@ import { useNavigate } from "react-router-dom";
 import Footer from "./Footer";
 import { FaArrowRightLong } from "react-icons/fa6";
 import NavbarDashboard from "./NavbarDashboard";
+import { FaRegThumbsUp, FaRegThumbsDown } from "react-icons/fa6";
+import { IoCloseCircle } from "react-icons/io5";
+import { HiOutlineMap } from "react-icons/hi2";
+import { FaStar } from "react-icons/fa6";
 
 // ImageCarousel component for showing one image at a time with fade transition
 const ImageCarousel = ({ images, alt, clickTitle, activities }) => {
@@ -87,6 +91,8 @@ export default function Home() {
   const [indiaStartIndex, setIndiaStartIndex] = useState(0);
   const [globalStartIndex, setGlobalStartIndex] = useState(0);
   const [slideDirection, setSlideDirection] = useState("right");
+  const [showFeedbackPopup, setShowFeedbackPopup] = useState(false);
+  const [popupFeedback, setPopupFeedback] = useState(null);
 
   const images = [
     '/why_us_1.jpg',
@@ -111,6 +117,8 @@ export default function Home() {
       role: "College Student",
       text: "Blind Fold Trips gave me the thrill of the unknown! I ended up exploring a place I never expected and made unforgettable memories. Perfect for budget-conscious adventurers like me.",
       image: "/1.jpg",
+      images: ["/Cards/1_1.jpg", "/Cards/1_2.jpg", "/Cards/1_3.jpg", "/Cards/1_4.jpg", "/Cards/1_5.jpg", "/Cards/1_6.jpg"],
+      title: "The Best Kind of Unknown"
     },
     {
       id: 2,
@@ -118,6 +126,8 @@ export default function Home() {
       role: "Working Professional",
       text: "As someone with limited time, this trip was a blessing! Everything was sorted, and the surprise location brought a much-needed spark to my routine life. Highly recommend it!",
       image: "/2.jpg",
+      images: ["/Cards/2_1.jpg", "/Cards/2_2.jpg", "/Cards/2_3.jpg", "/Cards/2_4.jpg", "/Cards/2_5.jpg", "/Cards/2_6.jpg"],
+      title: "A Surprising Getaway"
     },
     {
       id: 3,
@@ -125,6 +135,8 @@ export default function Home() {
       role: "Travel Blogger",
       text: "I usually plan every detail, but Blind Fold Trips turned that on its head—in the best way possible. I discovered hidden gems I wouldn’t have considered. Loved the spontaneity!",
       image: "/3.jpg",
+      images: ["/Cards/3_1.jpg", "/Cards/3_2.jpg", "/Cards/3_3.jpg", "/Cards/3_4.jpg", "/Cards/3_5.jpg", "/Cards/3_6.jpg"],
+      title: "A Perfect Blend of Adventure and Relaxation"
     },
     {
       id: 4,
@@ -132,6 +144,8 @@ export default function Home() {
       role: "Freelance Designer",
       text: "I was skeptical about giving up control, but this surprise trip turned out to be just what I needed. Beautiful locations, smooth planning, and tons of excitement throughout!",
       image: "/4.jpg",
+      images: ["/Cards/4_1.jpg", "/Cards/4_2.jpg", "/Cards/4_3.jpg", "/Cards/4_4.jpg", "/Cards/4_5.jpg"],
+      title: "A True Adventure"
     },
     {
       id: 5,
@@ -139,6 +153,8 @@ export default function Home() {
       role: "Entrepreneur",
       text: "Life gets hectic, and Blind Fold Trips helped me hit reset. I didn’t have to think—just show up and enjoy. A refreshing escape that exceeded expectations!",
       image: "/5.jpg",
+      images: ["/Cards/5_1.jpg", "/Cards/5_2.jpg", "/Cards/5_3.jpg", "/Cards/5_4.jpg", "/Cards/5_5.jpg"],
+      title: "A Perfect Blend of Adventure and Relaxation"
     },
     {
       id: 6,
@@ -146,6 +162,8 @@ export default function Home() {
       role: "Graduate Student",
       text: "From the surprise reveal to the final day, it was a rollercoaster of joy! Budget-friendly, well-organized, and just the right amount of adventure. I'd do it again in a heartbeat!",
       image: "/6.jpg",
+      images: ["/Cards/6_1.jpg", "/Cards/6_2.jpg", "/Cards/6_3.jpg", "/Cards/6_4.jpg", "/Cards/6_5.jpg"],
+      title: "A Perfect Blend of Adventure and Relaxation"
     },
   ];
 
@@ -713,6 +731,7 @@ export default function Home() {
   const canMoveRightGlobal = globalStartIndex < globalGems.length - 3;
 
   const [itemsToShow, setItemsToShow] = useState(1);
+  const [showMap, setShowMap] = useState(false);
 
   useEffect(() => {
     const updateItemsToShow = () => {
@@ -792,7 +811,69 @@ export default function Home() {
     }
   ];
 
+  // Popup for feedback details
+  const FeedbackPopup = ({ feedback, onClose }) => {
+    if (!feedback) return null;
+    return (
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60">
+        <div className="relative bg-[#0B3760] rounded-2xl shadow-lg w-full h-auto overflow-y-auto max-h-[90vh] p-8 flex flex-col md:flex-row gap-8 border-l-[8.54px] border-[#FFBE55]">
+          {/* Left: Main Info */}
+          <div className="flex-1 min-w-[250px]">
+            <div className="flex items-center gap-4 mb-2">
+              <img src={feedback.image} alt={feedback.name} className="w-16 h-16 object-cover rounded-lg" />
+              <div>
+                <div className="font-poppins text-white text-[32px] sm:text-[48px] font-bold leading-none">{feedback.name}</div>
+                <div className="font-poppins text-[#D6E6F2] text-[16px] sm:text-[20px] font-light">{feedback.role}</div>
+              </div>
+            </div>
+            <div className="flex flex-col lg:flex-row items-center md:gap-2 md:mb-2">
+              <div className="flex items-center justify-start gap-2 -ml-12 lg:ml-0">
+                <span className="font-paytone-one font-regular text-[#FFBE5566] text-[54px] sm:text-[109px]">“</span>
+                <span className="font-poppins text-[#FFFFFF] text-[14px] sm:text-[16px] md:text-[31px] font-semibold -ml-8 -mt-4">{feedback.title}</span>
+              </div>
+              <span className="flex items-center -mt-4 gap-[2px]">
+                {[...Array(5)].map((_, i) => (
+                  <span key={i}>
+                    <FaStar className="w-8 h-8 text-[#FFBE55]" />
+                  </span>
+                ))}
+              </span>
+            </div>
+            <div className="font-poppins font-light text-[#FFFFFF] text-[20px] mb-6 leading-relaxed">
+              {feedback.text}
+            </div>
+            <div className="flex items-center gap-2 mb-2">
+              <div className="font-poppins text-[#FCD2B1] text-[16px] sm:text-[18px] md:text-[27px] font-medium mt-4 mb-2">Did you find this Review helpful ?</div>
+              <div className="flex gap-4 text-[28px] text-[#D6E6F2]">
+                <FaRegThumbsUp className="cursor-pointer hover:text-[#FCD2B1]" />
+                <FaRegThumbsDown className="cursor-pointer hover:text-[#FCD2B1]" />
+              </div>
+            </div>
+          </div>
+          {/* Right: Images */}
+          <div className="flex flex-col md:mt-12 gap-2 min-w-[180px] max-w-[220px]">
+            <div className="grid grid-cols-2 gap-2">
+              {feedback.images && feedback.images.slice(0, 4).map((img, idx) => (
+                <img key={idx} src={img} alt="trip" className="w-full h-[90px] object-cover rounded-lg" />
+              ))}
+            </div>
+            <div className="grid grid-cols-2 gap-2 mt-2">
+              {feedback.images && feedback.images.slice(4, 6).map((img, idx) => (
+                <img key={idx} src={img} alt="trip" className="w-full h-[90px] object-cover rounded-lg" />
+              ))}
+            </div>
+          </div>
+          {/* Close Button */}
+          <button onClick={onClose} className="absolute top-3 md:top-8 right-3 md:right-8 text-red-400 hover:text-red-600 text-3xl">
+            <IoCloseCircle />
+          </button>
+        </div>
+      </div>
+    );
+  };
+
   return (
+
     <section className="w-full">
       {/* Background Image and Navigation */}
       <section
@@ -900,10 +981,10 @@ export default function Home() {
             >
               <div
                 className={`group bg-[#FFEFCE] hover:bg-[#003566] hover:border hover:border-2 hover:border-[#FFBE55] rounded-xl shadow-lg p-4 ${idx === 0
-                    ? 'w-full md:w-[720px]'
-                    : idx === 1
-                      ? 'w-full md:w-[520px]'
-                      : 'w-full md:w-[475px]'
+                  ? 'w-full md:w-[720px]'
+                  : idx === 1
+                    ? 'w-full md:w-[520px]'
+                    : 'w-full md:w-[475px]'
                   }`}
               >
                 <div className={`flex items-start`}>
@@ -1234,7 +1315,7 @@ export default function Home() {
               {feedbacks.map((item) => (
                 <div
                   key={item.id}
-                  className="group relative transition-all duration-300 ease-in-out w-[220px] hover:w-[270px] h-[399px] rounded-xl overflow-hidden"
+                  className="group relative transition-all duration-300 ease-in-out w-[220px] hover:w-[270px] h-[450px] rounded-xl overflow-hidden"
                 >
                   <img
                     src={item.image}
@@ -1245,10 +1326,22 @@ export default function Home() {
                     <h3 className="font-titan-one font-normal text-[36px] text-[#FFBE55] text-center">{item.name}</h3>
                     <p className="font-goudy font-normal text-[24px] text-[#FFBE55] text-right -mt-2 mb-4">{item.role}</p>
                     <p className="text-[#FFFFFFCC] text-[16px] font-poppins font-normal leading-snug">{item.text}</p>
+                    <button
+                      className="group mt-4 flex flex-row items-center justify-center gap-2 w-full py-2 px-4 bg-[#FF6B6B] hover:bg-[#A11616] hover:border-[1px] hover:border-[#FFBE55] rounded-2xl hover:rounded-none font-poppins font-bold text-[16px] text-white transition"
+                      onClick={() => { setPopupFeedback(item); setShowFeedbackPopup(true); }}
+                      onMouseEnter={() => { setShowMap(true) }}
+                      onMouseLeave={() => { setShowMap(false) }}
+                    >
+                      Trace the Journey
+                      <HiOutlineMap className={`w-6 h-6 text-[#FFFFFF] ${showMap ? 'inline-block' : 'hidden'}`} />
+                    </button>
                   </div>
                 </div>
               ))}
             </div>
+            {showFeedbackPopup && (
+              <FeedbackPopup feedback={popupFeedback} onClose={() => setShowFeedbackPopup(false)} />
+            )}
           </div>
 
           <div className="group mt-16 z-10">

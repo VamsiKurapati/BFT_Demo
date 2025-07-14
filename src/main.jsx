@@ -32,14 +32,17 @@ import '@fontsource/archivo-black/400.css';
 // Titan One (Only weight 400)
 import '@fontsource/titan-one/400.css';
 
+// Paytone One (Only weight 400)
+import '@fontsource/paytone-one/400.css';
+
 // Sofia (Only weight 400)
 import '@fontsource/sofia/400.css';
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
-    <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
-      <App />
-    </GoogleOAuthProvider>
+      <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
+        <App />
+      </GoogleOAuthProvider>
     </BrowserRouter>
   </StrictMode>
 );

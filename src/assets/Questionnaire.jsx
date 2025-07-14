@@ -10,39 +10,41 @@ import car from "/car.png";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
 import { AnimatePresence, motion } from "framer-motion";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const TOTAL_PAGES = 34;
 
 const ImageCarousel = ({ images, alt, wrapperClass = "" }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+    const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Auto-advance the carousel
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 1500);
+    // Auto-advance the carousel
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+        }, 1500);
 
-    return () => clearInterval(interval);
-  }, [images.length]);
+        return () => clearInterval(interval);
+    }, [images.length]);
 
-  return (
-    <div className={`relative overflow-hidden ${wrapperClass}`}>
-      <AnimatePresence mode="wait">
-        <motion.img
-          key={currentIndex}
-          src={images[currentIndex]}
-          alt={`${alt} ${currentIndex + 1}`}
-          className="absolute top-0 left-0 w-full h-full object-cover"
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.3, ease: "easeInOut" }}
-        />
-      </AnimatePresence>
-    </div>
-  );
+    return (
+        <div className={`relative overflow-hidden ${wrapperClass}`}>
+            <AnimatePresence mode="wait">
+                <motion.img
+                    key={currentIndex}
+                    src={images[currentIndex]}
+                    alt={`${alt} ${currentIndex + 1}`}
+                    className="absolute top-0 left-0 w-full h-full object-cover"
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                />
+            </AnimatePresence>
+        </div>
+    );
 };
 
 const Images = [
-    ["/Questionnaire/1.jpg", "/Questionnaire/2.jpg", "/Questionnaire/3.jpg","/Questionnaire/4.jpg"], 
+    ["/Questionnaire/1.jpg", "/Questionnaire/2.jpg", "/Questionnaire/3.jpg", "/Questionnaire/4.jpg"],
     ["/Questionnaire/5.jpg", "/Questionnaire/6.jpg", "/Questionnaire/7.jpg", "/Questionnaire/8.jpg"],
     ["/Questionnaire/9.jpg", "/Questionnaire/10.jpg", "/Questionnaire/11.jpg", "/Questionnaire/12.jpg"],
     ["/Questionnaire/13.jpg", "/Questionnaire/14.jpg", "/Questionnaire/15.jpg", "/Questionnaire/16.jpg"],
@@ -73,7 +75,6 @@ export default function Questionnaire() {
     const [stayingDuration, setStayingDuration] = useState("");
     const [airports, setAirports] = useState([]);
     const [selectedAirports, setSelectedAirports] = useState([]);
-    // const [selectedAirports1, setSelectedAirports1] = useState([]);
     const [budget, setBudget] = useState("");
     const [phone, setPhone] = useState('');
     const [preferredStartDate, setPreferredStartDate] = useState("");
@@ -104,70 +105,70 @@ export default function Questionnaire() {
         noWineTasting: false,
         noBreweryTour: false,
         noSpaContact: false,
-        
+
         none: false,
         vegeterian: false,
         vegan: false,
         noAlcohol: false,
         otherAllergies: false,
-        
+
         notInterested: false,
         openAndWilling: false,
         curious: false,
         excited: false,
         superInterested: false,
-        
+
         notInterested1: false,
         openAndWilling1: false,
         curious1: false,
         excited1: false,
         superInterested1: false,
-        
+
         notInterested2: false,
         openAndWilling2: false,
         curious2: false,
         excited2: false,
         superInterested2: false,
-        
+
         notInterested3: false,
         openAndWilling3: false,
         curious3: false,
         excited3: false,
         superInterested3: false,
-        
+
         notInterested4: false,
         openAndWilling4: false,
         curious4: false,
         excited4: false,
         superInterested4: false,
-        
+
         notInterested5: false,
         openAndWilling5: false,
         curious5: false,
         excited5: false,
         superInterested5: false,
-        
+
         notInterested6: false,
         openAndWilling6: false,
         curious6: false,
         excited6: false,
         superInterested6: false,
-        
+
         qualityTime: false,
         newDestination: false,
         wellness: false,
         specialOccasion: false,
-        
+
         totalChill: false,
         mostlyRelaxed: false,
         aBitOfBoth: false,
         prettyActive: false,
         nonStopAdventure: false,
-        
+
         surpriseMe: false,
         coolerClimate: false,
         bringOnTheSunshine: false,
-        
+
         vibrantUrbanLife: false,
         creativeArtsyVibes: false,
         lushGreenLandscapes: false,
@@ -177,11 +178,11 @@ export default function Questionnaire() {
         calmSereneEscapes: false,
         eyeCatchingArchitecture: false,
         sandyBeaches: false,
-        
+
         yes: false,
         openToAnywhere: false,
         internationalTrip: false,
-        
+
         unsafeFemale: false,
         hostilityLGBTQ: false,
         hostilityBlack: false,
@@ -192,84 +193,76 @@ export default function Questionnaire() {
         discriminatoryTrans: false,
         racialProfiling: false,
 
-        // india: false,
-        // otherCountry: false,
-        
         sameAirports: false,
         anyAirports: false,
-
-        // sameAirports1: false,
-        // anyAirports1: false,
 
         fDtN: false,
         fDfN: false,
         sDfN: false,
         userChoice: false,
-        
+
         preferredStartDate: false,
         completelyFlexible: false,
-        
+
         eitherIsFine: false,
         exclusiveResidence: false,
         hotel: false,
-        
+
         maxBudget: false,
         increaseBy5000: false,
         increaseBy7500: false,
         increaseBy10000: false,
-        
+
         yesCurious: false,
-        // notCurious: false,
-        
         someoneIKnow: false,
         influencer: false,
         press: false,
         randomCustomer: false,
         paidAd: false,
-        
+
         agree: false,
     });
 
     const groups = [
         {
             name: "0",
-            titles: ["notInterested","openAndWilling","curious" , "excited", "superInterested"],
+            titles: ["notInterested", "openAndWilling", "curious", "excited", "superInterested"],
             autoMove: true,
             autoMoveKey: "Anything",
         },
         {
             name: "1",
-            titles: ["notInterested1","openAndWilling1","curious1" , "excited1", "superInterested1"],
+            titles: ["notInterested1", "openAndWilling1", "curious1", "excited1", "superInterested1"],
             autoMove: true,
             autoMoveKey: "Anything",
         },
         {
             name: "2",
-            titles: ["notInterested2","openAndWilling2","curious2" , "excited2", "superInterested2"],
+            titles: ["notInterested2", "openAndWilling2", "curious2", "excited2", "superInterested2"],
             autoMove: true,
             autoMoveKey: "Anything",
         },
         {
             name: "3",
-            titles: ["notInterested3","openAndWilling3","curious3" , "excited3", "superInterested3"],
+            titles: ["notInterested3", "openAndWilling3", "curious3", "excited3", "superInterested3"],
             autoMove: true,
             autoMoveKey: "Anything",
         },
         {
             name: "4",
-            titles: ["notInterested4","openAndWilling4","curious4" , "excited4", "superInterested4"],
+            titles: ["notInterested4", "openAndWilling4", "curious4", "excited4", "superInterested4"],
             autoMove: true,
             autoMoveKey: "Anything",
         },
         {
             name: "5",
-            titles: ["notInterested5","openAndWilling5","curious5" , "excited5", "superInterested5"],
+            titles: ["notInterested5", "openAndWilling5", "curious5", "excited5", "superInterested5"],
             autoMove: true,
             autoMoveKey: "Anything",
         },
         {
             name: "6",
-            titles: ["notInterested6","openAndWilling6","curious6" , "excited6", "superInterested6"],
+            titles: ["notInterested6", "openAndWilling6", "curious6", "excited6", "superInterested6"],
             autoMove: true,
             autoMoveKey: "Anything",
         },
@@ -298,12 +291,6 @@ export default function Questionnaire() {
             autoMove: true,
             autoMoveKey: "Anything",
         },
-        // {
-        //     name: "11",
-        //     titles: ["india, otherCountry"],
-        //     autoMove: true,
-        //     autoMoveKey: "Anything",
-        // },
         {
             name: "12",
             titles: ["sameAirports", "anyAirports"],
@@ -318,7 +305,7 @@ export default function Questionnaire() {
         },
         {
             name: "14",
-            titles: ["fDtN", "fDfN", "sDfN","userChoice"],
+            titles: ["fDtN", "fDfN", "sDfN", "userChoice"],
             autoMove: false,
             autoMoveKey: "userChoice",
             holdKey: "userChoice",
@@ -341,10 +328,6 @@ export default function Questionnaire() {
             autoMove: true,
             autoMoveKey: "Anything",
         },
-        // {
-        //     name: "18",
-        //     titles: ["yesCurious", "notCurious"],
-        // },
         {
             name: "19",
             titles: ["someoneIKnow", "influencer", "press", "randomCustomer", "paidAd"],
@@ -356,22 +339,21 @@ export default function Questionnaire() {
     const exclusiveGroups = [
         {
             name: "0",
-            titles: [ "awareOfNothing", "unableToDoPhysicalActivities", "pregnancy", "fearOfHeights","cantSwim", "seaSickness", "claustrophobia", "fearOfDogs" ],
+            titles: ["awareOfNothing", "unableToDoPhysicalActivities", "pregnancy", "fearOfHeights", "cantSwim", "seaSickness", "claustrophobia", "fearOfDogs"],
         },
         {
             name: "1",
-            titles: [ "comfortableWithAll", "noNatureWalk", "noHiking", "noBikingSegway", "noBoatTrips", "noSwimmingSnorkeling", "noKayakingSUP", "noRafting", "noSurfing", "noScubaDiving", "noCanyoningCaving", "noParagliding", "noHorseCamelRiding", "noWineTasting", "noBreweryTour", "noSpaContact" ],
+            titles: ["comfortableWithAll", "noNatureWalk", "noHiking", "noBikingSegway", "noBoatTrips", "noSwimmingSnorkeling", "noKayakingSUP", "noRafting", "noSurfing", "noScubaDiving", "noCanyoningCaving", "noParagliding", "noHorseCamelRiding", "noWineTasting", "noBreweryTour", "noSpaContact"],
         },
         {
             name: "2",
-            titles: [ "none", "vegeterian", "vegan", "noAlcohol", "otherAllergies", ],
+            titles: ["none", "vegeterian", "vegan", "noAlcohol", "otherAllergies",],
         },
     ];
 
     const handleTravelerCountChange = (e) => {
         const value = e.target.value;
         setTravelerCount(value);
-        // updateFormData({ travelerCount: Number(e.target.value) }); // Uncomment if you use form data globally
     };
 
     const handleCustomTravelerCountChange = (e) => {
@@ -379,22 +361,17 @@ export default function Questionnaire() {
         if (/^\d*$/.test(value)) {
             const num = Number(value);
             if (num <= 0) {
-                alert("Traveler count must be greater than 0.");
+                toast.error("Traveler count must be greater than 0.");
                 return;
             }
-
             setCustomTravelerCount(num);
-            // updateFormData({ travelerCount: Number(value) }); // Uncomment if you use form data globally
         } else {
-            // If the input is not a valid number, you can handle it here (e.g., show an error message)
-            console.error("Invalid input for traveler count");
-            alert("Please enter a valid number for the traveler count.");
+            toast.error("Please enter a valid number for the traveler count.");
         }
     };
 
     const handleFirstNameChange = (e) => {
         setFirstName(e.target.value);
-        // updateFormData({ firstName: e.target.value }); // Uncomment if you use form data globally
     };
 
     const handleOtherAllergyDetailsChange = (e) => {
@@ -409,11 +386,10 @@ export default function Questionnaire() {
     const handleAvoidDestinationChange = (event) => {
         const destination = event.target.value;
         setAvoidDestination(destination);
-        // updateFormData({ avoidDestination }); // Uncomment if you use form data globally
     };
 
     const handleCountryChange = (event) => {
-        const coun = countries.find(c=> c.name === event.target.value);
+        const coun = countries.find(c => c.name === event.target.value);
         setSelectedCountryCode(coun?.isoCode || '');
         setSelectedCountry(coun?.name || '');
     }
@@ -425,7 +401,6 @@ export default function Questionnaire() {
 
     const handlepreferredStartDateChange = (event) => {
         const date = event.target.value;
-        console.log("Date:",date);
         setPreferredStartDate(date);
     }
 
@@ -435,12 +410,11 @@ export default function Questionnaire() {
         } else {
             const success = await handleSave();
             if (success) {
-                // console.log("Responses save successful...")
                 setTimeout(() => {
                     navigate("/stay_tuned");
                 }, 1500);
             } else {
-            alert("Failed to save responses. Please try again.");
+                toast.error("Failed to save responses. Please try again.");
             }
         }
     };
@@ -464,7 +438,6 @@ export default function Questionnaire() {
                     group.titles.forEach(title => {
                         newValues[title] = title === name;
                     });
-                    // const shouldAutoMove = name === "userChoice" ? stayingDuration !== "" : group.autoMove || group.autoMoveKey === name;
                     const shouldAutoMove = group.holdKey === name ? false : group.autoMove || group.autoMoveKey === name;
                     if (shouldAutoMove) {
                         setTimeout(() => handleNext(), 300);
@@ -485,7 +458,7 @@ export default function Questionnaire() {
                     exclusiveGroup.titles.forEach(title => {
                         newValues[title] = title === first;
                     });
-                    setTimeout(() => {handleNext()}, 300);
+                    setTimeout(() => { handleNext() }, 300);
                 } else if (name === first && !checked) {
                     // First option unchecked → just uncheck it
                     newValues[name] = false;
@@ -517,7 +490,7 @@ export default function Questionnaire() {
         setPhone(val);
     };
 
-    const page3validator = () =>{
+    const page3validator = () => {
         return firstName.trim() !== "" && (travelerCount !== "" && (travelerCount !== "other" || customTravelerCount !== ""));
     }
 
@@ -548,7 +521,7 @@ export default function Questionnaire() {
     };
 
     const page7validator = () => {
-        return checkboxValues["none"] || checkboxValues["vegeterian"] || checkboxValues["vegan"] || checkboxValues["noAlcohol"] || (checkboxValues["otherAllergies"] && otherAllergyDetails!=="");
+        return checkboxValues["none"] || checkboxValues["vegeterian"] || checkboxValues["vegan"] || checkboxValues["noAlcohol"] || (checkboxValues["otherAllergies"] && otherAllergyDetails !== "");
     }
 
     const page8to14validator = (suffix) => {
@@ -559,7 +532,7 @@ export default function Questionnaire() {
     };
 
     const page16validator = () => {
-        return checkboxValues["qualityTime"] || checkboxValues["newDestination"] || checkboxValues["wellness"] || (checkboxValues["specialOccasion"] && specialOccasion!==""); 
+        return checkboxValues["qualityTime"] || checkboxValues["newDestination"] || checkboxValues["wellness"] || (checkboxValues["specialOccasion"] && specialOccasion !== "");
     };
 
     const page17validator = () => {
@@ -595,24 +568,19 @@ export default function Questionnaire() {
     }
 
     const page21validator = () => {
-        return favouriteDestination!=="" && avoidDestination!=="";
+        return favouriteDestination !== "" && avoidDestination !== "";
     }
 
     const page24validator = () => {
-        // return (checkboxValues["india"] || (checkboxValues["otherCountry"] && country!="")) && (selectedAirports!="") && (checkboxValues["sameAirports"] || checkboxValues["anyAirports"]);
-        return (selectedCountry!="") && (selectedState!="") && (selectedAirports!="") && (checkboxValues["sameAirports"] || checkboxValues["anyAirports"]);
+        return (selectedCountry != "") && (selectedState != "") && (selectedAirports != "") && (checkboxValues["sameAirports"] || checkboxValues["anyAirports"]);
     }
 
-    // const page25validator = () => {
-    //     return (selectedState!="") && (selectedAirports1!="") && (checkboxValues["sameAirports1"] || checkboxValues["anyAirports1"]);
-    // }
-
     const page25validator = () => {
-        return checkboxValues["fDfN"] || checkboxValues["fDtN"] || checkboxValues["sDfN"] || ( checkboxValues["userChoice"] && stayingDuration!=="") ;
+        return checkboxValues["fDfN"] || checkboxValues["fDtN"] || checkboxValues["sDfN"] || (checkboxValues["userChoice"] && stayingDuration !== "");
     }
 
     const page26validator = () => {
-        return (checkboxValues["preferredStartDate"] && preferredStartDate!=="") || checkboxValues["completelyFlexible"];
+        return (checkboxValues["preferredStartDate"] && preferredStartDate !== "") || checkboxValues["completelyFlexible"];
     }
 
     const page27validator = () => {
@@ -638,7 +606,6 @@ export default function Questionnaire() {
     }
 
     const page32validator = () => {
-        // return checkboxValues["yesCurious"] || checkboxValues["notCurious"];
         return checkboxValues["yesCurious"];
     }
 
@@ -669,7 +636,6 @@ export default function Questionnaire() {
                     stayingDuration,
                     otherAllergyDetails,
                     selectedAirports,
-                    // selectedAirports1,
                     budget,
                     phone,
                     selectedCountry,
@@ -680,15 +646,14 @@ export default function Questionnaire() {
             });
 
             if (response.ok) {
-                alert("Saved successfully!");
+                toast.success("Saved successfully!");
                 return true;
             } else {
-                alert("Failed to save. Please try again.");
+                toast.error("Failed to save. Please try again.");
                 return false;
             }
         } catch (error) {
-            console.error("Save failed:", error);
-            alert("Something went wrong while saving.");
+            toast.error("Something went wrong while saving.");
             return false;
         }
     };
@@ -718,7 +683,7 @@ export default function Questionnaire() {
             Content: (
                 <div className='w-full sm:w-[90%] md:w-[75%] lg:w-[50%] flex flex-col items-center'>
                     <p className='font-poppins font-bold text-[24px] text-[#000000] text-left mb-4'>
-                        Before we send you on a mystery ride, let’s check if Blind Fold Trip is your vibe :
+                        Before we send you on a mystery ride, let's check if Blind Fold Trip is your vibe :
                     </p>
                     <div className='items-start mb-4'>
                         <p className='font-poppins font-normal text-[24px] text-[#000000] text-left mb-4'>
@@ -730,7 +695,7 @@ export default function Questionnaire() {
                     </div>
                 </div>
             ),
-            buttonText: "Let’s dive in!"
+            buttonText: "Let's dive in!"
         },
         {
             Number: 3,
@@ -821,88 +786,88 @@ export default function Questionnaire() {
                     <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-poppins">
                         <label className="flex items-center text-left">
                             <input
-                            type="checkbox"
-                            name="awareOfNothing"
-                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                            checked={checkboxValues.awareOfNothing}
-                            onChange={handleCheckboxChange}
+                                type="checkbox"
+                                name="awareOfNothing"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                checked={checkboxValues.awareOfNothing}
+                                onChange={handleCheckboxChange}
                             />
                             Nothing you need to be aware of
                         </label>
 
                         {!checkboxValues["awareOfNothing"] && (
                             <>
-                            <div className="w-full h-[1px] bg-gray-300 my-2"></div>
-                            <label className="flex items-center text-left">
-                                <input
-                                type="checkbox"
-                                name="unableToDoPhysicalActivities"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.unableToDoPhysicalActivities}
-                                onChange={handleCheckboxChange}
-                                />
-                                Unable to do prolonged physical activities
-                            </label>
-                            <label className="flex items-center text-left">
-                                <input
-                                type="checkbox"
-                                name="pregnancy"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.pregnancy}
-                                onChange={handleCheckboxChange}
-                                />
-                                Pregnancy
-                            </label>
-                            <label className="flex items-center text-left">
-                                <input
-                                type="checkbox"
-                                name="fearOfHeights"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.fearOfHeights}
-                                onChange={handleCheckboxChange}
-                                />
-                                Severe fear of heights
-                            </label>
-                            <label className="flex items-center text-left">
-                                <input
-                                type="checkbox"
-                                name="cantSwim"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.cantSwim}
-                                onChange={handleCheckboxChange}
-                                />
-                                Can't swim
-                            </label>
-                            <label className="flex items-center text-left">
-                                <input
-                                type="checkbox"
-                                name="seaSickness"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.seaSickness}
-                                onChange={handleCheckboxChange}
-                                />
-                                Sea sickness
-                            </label>
-                            <label className="flex items-center text-left">
-                                <input
-                                type="checkbox"
-                                name="claustrophobia"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.claustrophobia}
-                                onChange={handleCheckboxChange}
-                                />
-                                Claustrophobia
-                            </label>
-                            <label className="flex items-center text-left mb-8">
-                                <input
-                                type="checkbox"
-                                name="fearOfDogs"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.fearOfDogs}
-                                onChange={handleCheckboxChange}
-                                />
-                                Fear of dogs
-                            </label>
+                                <div className="w-full h-[1px] bg-gray-300 my-2"></div>
+                                <label className="flex items-center text-left">
+                                    <input
+                                        type="checkbox"
+                                        name="unableToDoPhysicalActivities"
+                                        className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                        checked={checkboxValues.unableToDoPhysicalActivities}
+                                        onChange={handleCheckboxChange}
+                                    />
+                                    Unable to do prolonged physical activities
+                                </label>
+                                <label className="flex items-center text-left">
+                                    <input
+                                        type="checkbox"
+                                        name="pregnancy"
+                                        className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                        checked={checkboxValues.pregnancy}
+                                        onChange={handleCheckboxChange}
+                                    />
+                                    Pregnancy
+                                </label>
+                                <label className="flex items-center text-left">
+                                    <input
+                                        type="checkbox"
+                                        name="fearOfHeights"
+                                        className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                        checked={checkboxValues.fearOfHeights}
+                                        onChange={handleCheckboxChange}
+                                    />
+                                    Severe fear of heights
+                                </label>
+                                <label className="flex items-center text-left">
+                                    <input
+                                        type="checkbox"
+                                        name="cantSwim"
+                                        className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                        checked={checkboxValues.cantSwim}
+                                        onChange={handleCheckboxChange}
+                                    />
+                                    Can't swim
+                                </label>
+                                <label className="flex items-center text-left">
+                                    <input
+                                        type="checkbox"
+                                        name="seaSickness"
+                                        className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                        checked={checkboxValues.seaSickness}
+                                        onChange={handleCheckboxChange}
+                                    />
+                                    Sea sickness
+                                </label>
+                                <label className="flex items-center text-left">
+                                    <input
+                                        type="checkbox"
+                                        name="claustrophobia"
+                                        className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                        checked={checkboxValues.claustrophobia}
+                                        onChange={handleCheckboxChange}
+                                    />
+                                    Claustrophobia
+                                </label>
+                                <label className="flex items-center text-left mb-8">
+                                    <input
+                                        type="checkbox"
+                                        name="fearOfDogs"
+                                        className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                        checked={checkboxValues.fearOfDogs}
+                                        onChange={handleCheckboxChange}
+                                    />
+                                    Fear of dogs
+                                </label>
                             </>
                         )}
                     </div>
@@ -917,175 +882,175 @@ export default function Questionnaire() {
             Content: (
                 <div className="w-full sm:w-[90%] md:w-[75%] lg:w-[567px] flex flex-col items-center">
                     <p className="font-poppins font-normal text-[20px] text-[#000000BF] text-left mb-4">
-                        Every BFT adventure is designed with beginners in mind and guided by seasoned experts. We’ll always factor in any fears, phobias, or medical conditions you’ve shared with us.<br /><br />
-                        <span className="text-[24px]">We’d love to gently nudge you out of your comfort zone—but are there any <span className="font-bold text-[#000000]">activities that are a definite no for you? </span><span className="text-[#A32727]">*</span></span><br /><br />
-                        If you’re unsure about an activity, don't say no to it!
+                        Every BFT adventure is designed with beginners in mind and guided by seasoned experts. We'll always factor in any fears, phobias, or medical conditions you've shared with us.<br /><br />
+                        <span className="text-[24px]">We'd love to gently nudge you out of your comfort zone—but are there any <span className="font-bold text-[#000000]">activities that are a definite no for you? </span><span className="text-[#A32727]">*</span></span><br /><br />
+                        If you're unsure about an activity, don't say no to it!
                     </p>
                     <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-poppins">
                         <label className="flex items-center text-left">
                             <input
-                            type="checkbox"
-                            name="comfortableWithAll"
-                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                            checked={checkboxValues.comfortableWithAll}
-                            onChange={handleCheckboxChange}
+                                type="checkbox"
+                                name="comfortableWithAll"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                checked={checkboxValues.comfortableWithAll}
+                                onChange={handleCheckboxChange}
                             />
                             Comfortable with them all
                         </label>
 
                         {!checkboxValues["comfortableWithAll"] && (
                             <>
-                            <div className="w-full h-[1px] bg-gray-300 my-2"></div>
-                            <label className="flex items-center text-left">
-                                <input
-                                type="checkbox"
-                                name="noNatureWalk"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.noNatureWalk}
-                                onChange={handleCheckboxChange}
-                                />
-                                No to nature walk
-                            </label>
-                            <label className="flex items-center text-left">
-                                <input
-                                type="checkbox"
-                                name="noHiking"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.noHiking}
-                                onChange={handleCheckboxChange}
-                                />
-                                No to hiking
-                            </label>
-                            <label className="flex items-center text-left">
-                                <input
-                                type="checkbox"
-                                name="noBikingSegway"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.noBikingSegway}
-                                onChange={handleCheckboxChange}
-                                />
-                                No to biking/Segway
-                            </label>
-                            <label className="flex items-center text-left">
-                                <input
-                                type="checkbox"
-                                name="noBoatTrips"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.noBoatTrips}
-                                onChange={handleCheckboxChange}
-                                />
-                                No to boat trips
-                            </label>
-                            <label className="flex items-center text-left">
-                                <input
-                                type="checkbox"
-                                name="noSwimmingSnorkeling"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.noSwimmingSnorkeling}
-                                onChange={handleCheckboxChange}
-                                />
-                                No to swimming/snorkeling
-                            </label>
-                            <label className="flex items-center text-left">
-                                <input
-                                type="checkbox"
-                                name="noKayakingSUP"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.noKayakingSUP}
-                                onChange={handleCheckboxChange}
-                                />
-                                No to kayaking/SUP
-                            </label>
-                            <label className="flex items-center text-left">
-                                <input
-                                type="checkbox"
-                                name="noRafting"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.noRafting}
-                                onChange={handleCheckboxChange}
-                                />
-                                No to rafting
-                            </label>
-                            <label className="flex items-center text-left">
-                                <input
-                                type="checkbox"
-                                name="noSurfing"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.noSurfing}
-                                onChange={handleCheckboxChange}
-                                />
-                                No to surfing
-                            </label>
-                            <label className="flex items-center text-left">
-                                <input
-                                type="checkbox"
-                                name="noScubaDiving"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.noScubaDiving}
-                                onChange={handleCheckboxChange}
-                                />
-                                No to scuba diving
-                            </label>
-                            <label className="flex items-center text-left">
-                                <input
-                                type="checkbox"
-                                name="noCanyoningCaving"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.noCanyoningCaving}
-                                onChange={handleCheckboxChange}
-                                />
-                                No to canyoning/caving
-                            </label>
-                            <label className="flex items-center text-left">
-                                <input
-                                type="checkbox"
-                                name="noParagliding"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.noParagliding}
-                                onChange={handleCheckboxChange}
-                                />
-                                No to paragliding
-                            </label>
-                            <label className="flex items-center text-left">
-                                <input
-                                type="checkbox"
-                                name="noHorseCamelRiding"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.noHorseCamelRiding}
-                                onChange={handleCheckboxChange}
-                                />
-                                No to horse riding/camel riding
-                            </label>
-                            <label className="flex items-center text-left">
-                                <input
-                                type="checkbox"
-                                name="noWineTasting"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.noWineTasting}
-                                onChange={handleCheckboxChange}
-                                />
-                                No to wine tasting
-                            </label>
-                            <label className="flex items-center text-left">
-                                <input
-                                type="checkbox"
-                                name="noBreweryTour"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.noBreweryTour}
-                                onChange={handleCheckboxChange}
-                                />
-                                No to brewery/distillery tour
-                            </label>
-                            <label className="flex items-center text-left mb-8">
-                                <input
-                                type="checkbox"
-                                name="noSpaContact"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.noSpaContact}
-                                onChange={handleCheckboxChange}
-                                />
-                                No to spa treatments with physical contact
-                            </label>
+                                <div className="w-full h-[1px] bg-gray-300 my-2"></div>
+                                <label className="flex items-center text-left">
+                                    <input
+                                        type="checkbox"
+                                        name="noNatureWalk"
+                                        className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                        checked={checkboxValues.noNatureWalk}
+                                        onChange={handleCheckboxChange}
+                                    />
+                                    No to nature walk
+                                </label>
+                                <label className="flex items-center text-left">
+                                    <input
+                                        type="checkbox"
+                                        name="noHiking"
+                                        className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                        checked={checkboxValues.noHiking}
+                                        onChange={handleCheckboxChange}
+                                    />
+                                    No to hiking
+                                </label>
+                                <label className="flex items-center text-left">
+                                    <input
+                                        type="checkbox"
+                                        name="noBikingSegway"
+                                        className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                        checked={checkboxValues.noBikingSegway}
+                                        onChange={handleCheckboxChange}
+                                    />
+                                    No to biking/Segway
+                                </label>
+                                <label className="flex items-center text-left">
+                                    <input
+                                        type="checkbox"
+                                        name="noBoatTrips"
+                                        className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                        checked={checkboxValues.noBoatTrips}
+                                        onChange={handleCheckboxChange}
+                                    />
+                                    No to boat trips
+                                </label>
+                                <label className="flex items-center text-left">
+                                    <input
+                                        type="checkbox"
+                                        name="noSwimmingSnorkeling"
+                                        className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                        checked={checkboxValues.noSwimmingSnorkeling}
+                                        onChange={handleCheckboxChange}
+                                    />
+                                    No to swimming/snorkeling
+                                </label>
+                                <label className="flex items-center text-left">
+                                    <input
+                                        type="checkbox"
+                                        name="noKayakingSUP"
+                                        className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                        checked={checkboxValues.noKayakingSUP}
+                                        onChange={handleCheckboxChange}
+                                    />
+                                    No to kayaking/SUP
+                                </label>
+                                <label className="flex items-center text-left">
+                                    <input
+                                        type="checkbox"
+                                        name="noRafting"
+                                        className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                        checked={checkboxValues.noRafting}
+                                        onChange={handleCheckboxChange}
+                                    />
+                                    No to rafting
+                                </label>
+                                <label className="flex items-center text-left">
+                                    <input
+                                        type="checkbox"
+                                        name="noSurfing"
+                                        className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                        checked={checkboxValues.noSurfing}
+                                        onChange={handleCheckboxChange}
+                                    />
+                                    No to surfing
+                                </label>
+                                <label className="flex items-center text-left">
+                                    <input
+                                        type="checkbox"
+                                        name="noScubaDiving"
+                                        className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                        checked={checkboxValues.noScubaDiving}
+                                        onChange={handleCheckboxChange}
+                                    />
+                                    No to scuba diving
+                                </label>
+                                <label className="flex items-center text-left">
+                                    <input
+                                        type="checkbox"
+                                        name="noCanyoningCaving"
+                                        className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                        checked={checkboxValues.noCanyoningCaving}
+                                        onChange={handleCheckboxChange}
+                                    />
+                                    No to canyoning/caving
+                                </label>
+                                <label className="flex items-center text-left">
+                                    <input
+                                        type="checkbox"
+                                        name="noParagliding"
+                                        className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                        checked={checkboxValues.noParagliding}
+                                        onChange={handleCheckboxChange}
+                                    />
+                                    No to paragliding
+                                </label>
+                                <label className="flex items-center text-left">
+                                    <input
+                                        type="checkbox"
+                                        name="noHorseCamelRiding"
+                                        className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                        checked={checkboxValues.noHorseCamelRiding}
+                                        onChange={handleCheckboxChange}
+                                    />
+                                    No to horse riding/camel riding
+                                </label>
+                                <label className="flex items-center text-left">
+                                    <input
+                                        type="checkbox"
+                                        name="noWineTasting"
+                                        className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                        checked={checkboxValues.noWineTasting}
+                                        onChange={handleCheckboxChange}
+                                    />
+                                    No to wine tasting
+                                </label>
+                                <label className="flex items-center text-left">
+                                    <input
+                                        type="checkbox"
+                                        name="noBreweryTour"
+                                        className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                        checked={checkboxValues.noBreweryTour}
+                                        onChange={handleCheckboxChange}
+                                    />
+                                    No to brewery/distillery tour
+                                </label>
+                                <label className="flex items-center text-left mb-8">
+                                    <input
+                                        type="checkbox"
+                                        name="noSpaContact"
+                                        className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                        checked={checkboxValues.noSpaContact}
+                                        onChange={handleCheckboxChange}
+                                    />
+                                    No to spa treatments with physical contact
+                                </label>
                             </>
                         )}
                     </div>
@@ -1105,69 +1070,69 @@ export default function Questionnaire() {
                     <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-poppins">
                         <label className="flex items-center text-left">
                             <input
-                            type="checkbox"
-                            name="none"
-                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                            checked={checkboxValues.none}
-                            onChange={handleCheckboxChange}
+                                type="checkbox"
+                                name="none"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                checked={checkboxValues.none}
+                                onChange={handleCheckboxChange}
                             />
                             None
                         </label>
 
                         {!checkboxValues.none && (
                             <>
-                            <div className="w-full h-[1px] bg-gray-300 my-2"></div>
-                            <label className="flex items-center text-left">
-                                <input
-                                type="checkbox"
-                                name="vegeterian"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.vegeterian}
-                                onChange={handleCheckboxChange}
-                                />
-                                Vegetarian
-                            </label>
-                            <label className="flex items-center text-left">
-                                <input
-                                type="checkbox"
-                                name="vegan"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.vegan}
-                                onChange={handleCheckboxChange}
-                                />
-                                Vegan
-                            </label>
-                            <label className="flex items-center text-left">
-                                <input
-                                type="checkbox"
-                                name="noAlcohol"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.noAlcohol}
-                                onChange={handleCheckboxChange}
-                                />
-                                Don’t Drink Alcohol
-                            </label>
-                            <label className="flex items-center text-left">
-                                <input
-                                type="checkbox"
-                                name="otherAllergies"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.otherAllergies}
-                                onChange={handleCheckboxChange}
-                                />
-                                Other allergies or dietary restrictions
-                            </label>
+                                <div className="w-full h-[1px] bg-gray-300 my-2"></div>
+                                <label className="flex items-center text-left">
+                                    <input
+                                        type="checkbox"
+                                        name="vegeterian"
+                                        className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                        checked={checkboxValues.vegeterian}
+                                        onChange={handleCheckboxChange}
+                                    />
+                                    Vegetarian
+                                </label>
+                                <label className="flex items-center text-left">
+                                    <input
+                                        type="checkbox"
+                                        name="vegan"
+                                        className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                        checked={checkboxValues.vegan}
+                                        onChange={handleCheckboxChange}
+                                    />
+                                    Vegan
+                                </label>
+                                <label className="flex items-center text-left">
+                                    <input
+                                        type="checkbox"
+                                        name="noAlcohol"
+                                        className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                        checked={checkboxValues.noAlcohol}
+                                        onChange={handleCheckboxChange}
+                                    />
+                                    Don't Drink Alcohol
+                                </label>
+                                <label className="flex items-center text-left">
+                                    <input
+                                        type="checkbox"
+                                        name="otherAllergies"
+                                        className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                        checked={checkboxValues.otherAllergies}
+                                        onChange={handleCheckboxChange}
+                                    />
+                                    Other allergies or dietary restrictions
+                                </label>
 
-                            {checkboxValues.otherAllergies && (
-                                <input
-                                type="text"
-                                name="otherAllergyDetails"
-                                className="mt-2 p-2 mb-4 border rounded bg-[#D9D9D966]"
-                                placeholder="Please specify"
-                                value={otherAllergyDetails}
-                                onChange={handleOtherAllergyDetailsChange}
-                                />
-                            )}
+                                {checkboxValues.otherAllergies && (
+                                    <input
+                                        type="text"
+                                        name="otherAllergyDetails"
+                                        className="mt-2 p-2 mb-4 border rounded bg-[#D9D9D966]"
+                                        placeholder="Please specify"
+                                        value={otherAllergyDetails}
+                                        onChange={handleOtherAllergyDetailsChange}
+                                    />
+                                )}
                             </>
                         )}
                     </div>
@@ -1188,57 +1153,56 @@ export default function Questionnaire() {
                         <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
                             <label className="flex items-center text-left">
                                 <input
-                                type="checkbox"
-                                name="notInterested"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.notInterested}
-                                onChange={handleCheckboxChange}
+                                    type="checkbox"
+                                    name="notInterested"
+                                    className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                    checked={checkboxValues.notInterested}
+                                    onChange={handleCheckboxChange}
                                 />
                                 Not interested
                             </label>
                             <label className="flex items-center text-left">
                                 <input
-                                type="checkbox"
-                                name="openAndWilling"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.openAndWilling}
-                                onChange={handleCheckboxChange}
+                                    type="checkbox"
+                                    name="openAndWilling"
+                                    className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                    checked={checkboxValues.openAndWilling}
+                                    onChange={handleCheckboxChange}
                                 />
                                 Open & willing
                             </label>
                             <label className="flex items-center text-left">
                                 <input
-                                type="checkbox"
-                                name="curious"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.curious}
-                                onChange={handleCheckboxChange}
+                                    type="checkbox"
+                                    name="curious"
+                                    className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                    checked={checkboxValues.curious}
+                                    onChange={handleCheckboxChange}
                                 />
                                 Curious
                             </label>
                             <label className="flex items-center text-left">
                                 <input
-                                type="checkbox"
-                                name="excited"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.excited}
-                                onChange={handleCheckboxChange}
+                                    type="checkbox"
+                                    name="excited"
+                                    className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                    checked={checkboxValues.excited}
+                                    onChange={handleCheckboxChange}
                                 />
                                 Excited
                             </label>
                             <label className="flex items-center text-left">
                                 <input
-                                type="checkbox"
-                                name="superInterested"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.superInterested}
-                                onChange={handleCheckboxChange}
+                                    type="checkbox"
+                                    name="superInterested"
+                                    className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                    checked={checkboxValues.superInterested}
+                                    onChange={handleCheckboxChange}
                                 />
                                 Super interested
                             </label>
                         </div>
-                        {/* <img src="/page-8.jpg" alt="Page 8" className="w-[200px] md:w-[337px] h-[150px] md:h-[244px] rounded-lg mt-4 mb-4 bg-[#D9D9D9]" /> */}
-                        <ImageCarousel 
+                        <ImageCarousel
                             images={Images[0]}
                             wrapperClass="w-[200px] md:w-[337px] h-[150px] md:h-[244px] rounded-lg mt-4 mb-4 bg-[#D9D9D9]"
                             alt="Page 8 Image Carousel"
@@ -1261,57 +1225,56 @@ export default function Questionnaire() {
                         <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
                             <label className="flex items-center text-left">
                                 <input
-                                type="checkbox"
-                                name="notInterested1"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.notInterested1}
-                                onChange={handleCheckboxChange}
+                                    type="checkbox"
+                                    name="notInterested1"
+                                    className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                    checked={checkboxValues.notInterested1}
+                                    onChange={handleCheckboxChange}
                                 />
                                 Not interested
                             </label>
                             <label className="flex items-center text-left">
                                 <input
-                                type="checkbox"
-                                name="openAndWilling1"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.openAndWilling1}
-                                onChange={handleCheckboxChange}
+                                    type="checkbox"
+                                    name="openAndWilling1"
+                                    className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                    checked={checkboxValues.openAndWilling1}
+                                    onChange={handleCheckboxChange}
                                 />
                                 Open & willing
                             </label>
                             <label className="flex items-center text-left">
                                 <input
-                                type="checkbox"
-                                name="curious1"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.curious1}
-                                onChange={handleCheckboxChange}
+                                    type="checkbox"
+                                    name="curious1"
+                                    className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                    checked={checkboxValues.curious1}
+                                    onChange={handleCheckboxChange}
                                 />
                                 Curious
                             </label>
                             <label className="flex items-center text-left">
                                 <input
-                                type="checkbox"
-                                name="excited1"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.excited1}
-                                onChange={handleCheckboxChange}
+                                    type="checkbox"
+                                    name="excited1"
+                                    className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                    checked={checkboxValues.excited1}
+                                    onChange={handleCheckboxChange}
                                 />
                                 Excited
                             </label>
                             <label className="flex items-center text-left">
                                 <input
-                                type="checkbox"
-                                name="superInterested1"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.superInterested1}
-                                onChange={handleCheckboxChange}
+                                    type="checkbox"
+                                    name="superInterested1"
+                                    className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                    checked={checkboxValues.superInterested1}
+                                    onChange={handleCheckboxChange}
                                 />
                                 Super interested
                             </label>
                         </div>
-                        {/* <img src="/page-9.jpg" alt="Page 9" className="w-[200px] md:w-[337px] h-[150px] md:h-[244px] rounded-lg mt-4 mb-4 bg-[#D9D9D9]" /> */}
-                        <ImageCarousel 
+                        <ImageCarousel
                             images={Images[1]}
                             wrapperClass="w-[200px] md:w-[337px] h-[150px] md:h-[244px] rounded-lg mt-4 mb-4 bg-[#D9D9D9]"
                             alt="Page 9 Image Carousel"
@@ -1334,57 +1297,56 @@ export default function Questionnaire() {
                         <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
                             <label className="flex items-center text-left">
                                 <input
-                                type="checkbox"
-                                name="notInterested2"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.notInterested2}
-                                onChange={handleCheckboxChange}
+                                    type="checkbox"
+                                    name="notInterested2"
+                                    className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                    checked={checkboxValues.notInterested2}
+                                    onChange={handleCheckboxChange}
                                 />
                                 Not interested
                             </label>
                             <label className="flex items-center text-left">
                                 <input
-                                type="checkbox"
-                                name="openAndWilling2"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.openAndWilling2}
-                                onChange={handleCheckboxChange}
+                                    type="checkbox"
+                                    name="openAndWilling2"
+                                    className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                    checked={checkboxValues.openAndWilling2}
+                                    onChange={handleCheckboxChange}
                                 />
                                 Open & willing
                             </label>
                             <label className="flex items-center text-left">
                                 <input
-                                type="checkbox"
-                                name="curious2"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.curious2}
-                                onChange={handleCheckboxChange}
+                                    type="checkbox"
+                                    name="curious2"
+                                    className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                    checked={checkboxValues.curious2}
+                                    onChange={handleCheckboxChange}
                                 />
                                 Curious
                             </label>
                             <label className="flex items-center text-left">
                                 <input
-                                type="checkbox"
-                                name="excited2"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.excited2}
-                                onChange={handleCheckboxChange}
+                                    type="checkbox"
+                                    name="excited2"
+                                    className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                    checked={checkboxValues.excited2}
+                                    onChange={handleCheckboxChange}
                                 />
                                 Excited
                             </label>
                             <label className="flex items-center text-left">
                                 <input
-                                type="checkbox"
-                                name="superInterested2"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.superInterested2}
-                                onChange={handleCheckboxChange}
+                                    type="checkbox"
+                                    name="superInterested2"
+                                    className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                    checked={checkboxValues.superInterested2}
+                                    onChange={handleCheckboxChange}
                                 />
                                 Super interested
                             </label>
                         </div>
-                        {/* <img src="/page-10.jpg" alt="Page 10" className="w-[200px] md:w-[337px] h-[150px] md:h-[244px] rounded-lg mt-4 mb-4 bg-[#D9D9D9]" /> */}
-                        <ImageCarousel 
+                        <ImageCarousel
                             images={Images[2]}
                             wrapperClass="w-[200px] md:w-[337px] h-[150px] md:h-[244px] rounded-lg mt-4 mb-4 bg-[#D9D9D9]"
                             alt="Page 10 Image Carousel"
@@ -1407,57 +1369,56 @@ export default function Questionnaire() {
                         <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
                             <label className="flex items-center text-left">
                                 <input
-                                type="checkbox"
-                                name="notInterested3"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.notInterested3}
-                                onChange={handleCheckboxChange}
+                                    type="checkbox"
+                                    name="notInterested3"
+                                    className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                    checked={checkboxValues.notInterested3}
+                                    onChange={handleCheckboxChange}
                                 />
                                 Not interested
                             </label>
                             <label className="flex items-center text-left">
                                 <input
-                                type="checkbox"
-                                name="openAndWilling3"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.openAndWilling3}
-                                onChange={handleCheckboxChange}
+                                    type="checkbox"
+                                    name="openAndWilling3"
+                                    className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                    checked={checkboxValues.openAndWilling3}
+                                    onChange={handleCheckboxChange}
                                 />
                                 Open & willing
                             </label>
                             <label className="flex items-center text-left">
                                 <input
-                                type="checkbox"
-                                name="curious3"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.curious3}
-                                onChange={handleCheckboxChange}
+                                    type="checkbox"
+                                    name="curious3"
+                                    className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                    checked={checkboxValues.curious3}
+                                    onChange={handleCheckboxChange}
                                 />
                                 Curious
                             </label>
                             <label className="flex items-center text-left">
                                 <input
-                                type="checkbox"
-                                name="excited3"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.excited3}
-                                onChange={handleCheckboxChange}
+                                    type="checkbox"
+                                    name="excited3"
+                                    className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                    checked={checkboxValues.excited3}
+                                    onChange={handleCheckboxChange}
                                 />
                                 Excited
                             </label>
                             <label className="flex items-center text-left">
                                 <input
-                                type="checkbox"
-                                name="superInterested3"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.superInterested3}
-                                onChange={handleCheckboxChange}
+                                    type="checkbox"
+                                    name="superInterested3"
+                                    className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                    checked={checkboxValues.superInterested3}
+                                    onChange={handleCheckboxChange}
                                 />
                                 Super interested
                             </label>
                         </div>
-                        {/* <img src="/page-11.jpg" alt="Page 11" className="w-[200px] md:w-[337px] h-[150px] md:h-[244px] rounded-lg mt-4 mb-4 bg-[#D9D9D9]" /> */}
-                        <ImageCarousel 
+                        <ImageCarousel
                             images={Images[3]}
                             wrapperClass="w-[200px] md:w-[337px] h-[150px] md:h-[244px] rounded-lg mt-4 mb-4 bg-[#D9D9D9]"
                             alt="Page 11 Image Carousel"
@@ -1480,57 +1441,56 @@ export default function Questionnaire() {
                         <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
                             <label className="flex items-center text-left">
                                 <input
-                                type="checkbox"
-                                name="notInterested4"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.notInterested4}
-                                onChange={handleCheckboxChange}
+                                    type="checkbox"
+                                    name="notInterested4"
+                                    className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                    checked={checkboxValues.notInterested4}
+                                    onChange={handleCheckboxChange}
                                 />
                                 Not interested
                             </label>
                             <label className="flex items-center text-left">
                                 <input
-                                type="checkbox"
-                                name="openAndWilling4"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.openAndWilling4}
-                                onChange={handleCheckboxChange}
+                                    type="checkbox"
+                                    name="openAndWilling4"
+                                    className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                    checked={checkboxValues.openAndWilling4}
+                                    onChange={handleCheckboxChange}
                                 />
                                 Open & willing
                             </label>
                             <label className="flex items-center text-left">
                                 <input
-                                type="checkbox"
-                                name="curious4"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.curious4}
-                                onChange={handleCheckboxChange}
+                                    type="checkbox"
+                                    name="curious4"
+                                    className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                    checked={checkboxValues.curious4}
+                                    onChange={handleCheckboxChange}
                                 />
                                 Curious
                             </label>
                             <label className="flex items-center text-left">
                                 <input
-                                type="checkbox"
-                                name="excited4"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.excited4}
-                                onChange={handleCheckboxChange}
+                                    type="checkbox"
+                                    name="excited4"
+                                    className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                    checked={checkboxValues.excited4}
+                                    onChange={handleCheckboxChange}
                                 />
                                 Excited
                             </label>
                             <label className="flex items-center text-left">
                                 <input
-                                type="checkbox"
-                                name="superInterested4"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.superInterested4}
-                                onChange={handleCheckboxChange}
+                                    type="checkbox"
+                                    name="superInterested4"
+                                    className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                    checked={checkboxValues.superInterested4}
+                                    onChange={handleCheckboxChange}
                                 />
                                 Super interested
                             </label>
                         </div>
-                        {/* <img src="/page-12.jpg" alt="Page 12" className="w-[200px] md:w-[337px] h-[150px] md:h-[244px] rounded-lg mt-4 mb-4 bg-[#D9D9D9]" /> */}
-                        <ImageCarousel 
+                        <ImageCarousel
                             images={Images[4]}
                             wrapperClass="w-[200px] md:w-[337px] h-[150px] md:h-[244px] rounded-lg mt-4 mb-4 bg-[#D9D9D9]"
                             alt="Page 12 Image Carousel"
@@ -1553,57 +1513,56 @@ export default function Questionnaire() {
                         <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
                             <label className="flex items-center text-left">
                                 <input
-                                type="checkbox"
-                                name="notInterested5"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.notInterested5}
-                                onChange={handleCheckboxChange}
+                                    type="checkbox"
+                                    name="notInterested5"
+                                    className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                    checked={checkboxValues.notInterested5}
+                                    onChange={handleCheckboxChange}
                                 />
                                 Not interested
                             </label>
                             <label className="flex items-center text-left">
                                 <input
-                                type="checkbox"
-                                name="openAndWilling5"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.openAndWilling5}
-                                onChange={handleCheckboxChange}
+                                    type="checkbox"
+                                    name="openAndWilling5"
+                                    className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                    checked={checkboxValues.openAndWilling5}
+                                    onChange={handleCheckboxChange}
                                 />
                                 Open & willing
                             </label>
                             <label className="flex items-center text-left">
                                 <input
-                                type="checkbox"
-                                name="curious5"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.curious5}
-                                onChange={handleCheckboxChange}
+                                    type="checkbox"
+                                    name="curious5"
+                                    className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                    checked={checkboxValues.curious5}
+                                    onChange={handleCheckboxChange}
                                 />
                                 Curious
                             </label>
                             <label className="flex items-center text-left">
                                 <input
-                                type="checkbox"
-                                name="excited5"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.excited5}
-                                onChange={handleCheckboxChange}
+                                    type="checkbox"
+                                    name="excited5"
+                                    className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                    checked={checkboxValues.excited5}
+                                    onChange={handleCheckboxChange}
                                 />
                                 Excited
                             </label>
                             <label className="flex items-center text-left">
                                 <input
-                                type="checkbox"
-                                name="superInterested5"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.superInterested5}
-                                onChange={handleCheckboxChange}
+                                    type="checkbox"
+                                    name="superInterested5"
+                                    className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                    checked={checkboxValues.superInterested5}
+                                    onChange={handleCheckboxChange}
                                 />
                                 Super interested
                             </label>
                         </div>
-                        {/* <img src="/page-13.jpg" alt="Page 13" className="w-[200px] md:w-[337px] h-[150px] md:h-[244px] rounded-lg mt-4 mb-4 bg-[#D9D9D9]" /> */}
-                        <ImageCarousel 
+                        <ImageCarousel
                             images={Images[5]}
                             wrapperClass="w-[200px] md:w-[337px] h-[150px] md:h-[244px] rounded-lg mt-4 mb-4 bg-[#D9D9D9]"
                             alt="Page 13 Image Carousel"
@@ -1626,57 +1585,56 @@ export default function Questionnaire() {
                         <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
                             <label className="flex items-center text-left">
                                 <input
-                                type="checkbox"
-                                name="notInterested6"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.notInterested6}
-                                onChange={handleCheckboxChange}
+                                    type="checkbox"
+                                    name="notInterested6"
+                                    className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                    checked={checkboxValues.notInterested6}
+                                    onChange={handleCheckboxChange}
                                 />
                                 Not interested
                             </label>
                             <label className="flex items-center text-left">
                                 <input
-                                type="checkbox"
-                                name="openAndWilling6"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.openAndWilling6}
-                                onChange={handleCheckboxChange}
+                                    type="checkbox"
+                                    name="openAndWilling6"
+                                    className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                    checked={checkboxValues.openAndWilling6}
+                                    onChange={handleCheckboxChange}
                                 />
                                 Open & willing
                             </label>
                             <label className="flex items-center text-left">
                                 <input
-                                type="checkbox"
-                                name="curious6"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.curious6}
-                                onChange={handleCheckboxChange}
+                                    type="checkbox"
+                                    name="curious6"
+                                    className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                    checked={checkboxValues.curious6}
+                                    onChange={handleCheckboxChange}
                                 />
                                 Curious
                             </label>
                             <label className="flex items-center text-left">
                                 <input
-                                type="checkbox"
-                                name="excited6"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.excited6}
-                                onChange={handleCheckboxChange}
+                                    type="checkbox"
+                                    name="excited6"
+                                    className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                    checked={checkboxValues.excited6}
+                                    onChange={handleCheckboxChange}
                                 />
                                 Excited
                             </label>
                             <label className="flex items-center text-left">
                                 <input
-                                type="checkbox"
-                                name="superInterested6"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.superInterested6}
-                                onChange={handleCheckboxChange}
+                                    type="checkbox"
+                                    name="superInterested6"
+                                    className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                    checked={checkboxValues.superInterested6}
+                                    onChange={handleCheckboxChange}
                                 />
                                 Super interested
                             </label>
                         </div>
-                        {/* <img src="/page-14.jpg" alt="Page 14" className="w-[200px] md:w-[337px] h-[150px] md:h-[244px] rounded-lg mt-4 mb-4 bg-[#D9D9D9]" /> */}
-                        <ImageCarousel 
+                        <ImageCarousel
                             images={Images[6]}
                             wrapperClass="w-[200px] md:w-[337px] h-[150px] md:h-[244px] rounded-lg mt-4 mb-4 bg-[#D9D9D9]"
                             alt="Page 14 Image Carousel"
@@ -1712,46 +1670,46 @@ export default function Questionnaire() {
             Content: (
                 <div className="w-full flex flex-col items-start px-4 sm:px-8 md:px-32 lg:px-64">
                     <p className="font-poppins font-normal text-[24px] text-[#000000] text-center mb-4">
-                        What’s the <span className="font-bold">#1 thing you’re hoping for from this trip?</span> <span className="text-[#A32727]">*</span>
+                        What's the <span className="font-bold">#1 thing you're hoping for from this trip?</span> <span className="text-[#A32727]">*</span>
                     </p>
                     <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
                         <label className="flex items-center text-left">
                             <input
-                            type="checkbox"
-                            name="qualityTime"
-                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                            checked={checkboxValues.qualityTime}
-                            onChange={handleCheckboxChange}
+                                type="checkbox"
+                                name="qualityTime"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                checked={checkboxValues.qualityTime}
+                                onChange={handleCheckboxChange}
                             />
                             Quality time together / by myself
                         </label>
                         <label className="flex items-center text-left">
                             <input
-                            type="checkbox"
-                            name="newDestination"
-                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                            checked={checkboxValues.newDestination}
-                            onChange={handleCheckboxChange}
+                                type="checkbox"
+                                name="newDestination"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                checked={checkboxValues.newDestination}
+                                onChange={handleCheckboxChange}
                             />
                             Visit a new destination
                         </label>
                         <label className="flex items-center text-left">
                             <input
-                            type="checkbox"
-                            name="wellness"
-                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                            checked={checkboxValues.wellness}
-                            onChange={handleCheckboxChange}
+                                type="checkbox"
+                                name="wellness"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                checked={checkboxValues.wellness}
+                                onChange={handleCheckboxChange}
                             />
                             Emotional wellness
                         </label>
                         <label className="flex items-center text-left">
                             <input
-                            type="checkbox"
-                            name="specialOccasion"
-                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                            checked={checkboxValues.specialOccasion}
-                            onChange={handleCheckboxChange}
+                                type="checkbox"
+                                name="specialOccasion"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                checked={checkboxValues.specialOccasion}
+                                onChange={handleCheckboxChange}
                             />
                             Celebrate a special occasion
                         </label>
@@ -1777,16 +1735,16 @@ export default function Questionnaire() {
             Content: (
                 <div className="w-full flex flex-col items-start px-4 sm:px-8 md:px-32 lg:px-64">
                     <p className="font-poppins font-normal text-[24px] text-[#000000] text-center mb-4">
-                       How <span className="font-bold text-[#000000]">active or chill</span> do you want your <span className="font-bold">trip</span> to be? <span className="text-[#A32727]">*</span>
+                        How <span className="font-bold text-[#000000]">active or chill</span> do you want your <span className="font-bold">trip</span> to be? <span className="text-[#A32727]">*</span>
                     </p>
                     <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
                         <label className="flex items-center text-left">
                             <input
-                            type="checkbox"
-                            name="totalChill"
-                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                            checked={checkboxValues.totalChill}
-                            onChange={handleCheckboxChange}
+                                type="checkbox"
+                                name="totalChill"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                checked={checkboxValues.totalChill}
+                                onChange={handleCheckboxChange}
                             />
                             <div>
                                 Total Chill<br />
@@ -1797,11 +1755,11 @@ export default function Questionnaire() {
                         </label>
                         <label className="flex items-center text-left">
                             <input
-                            type="checkbox"
-                            name="mostlyRelaxed"
-                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                            checked={checkboxValues.mostlyRelaxed}
-                            onChange={handleCheckboxChange}
+                                type="checkbox"
+                                name="mostlyRelaxed"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                checked={checkboxValues.mostlyRelaxed}
+                                onChange={handleCheckboxChange}
                             />
                             <div>
                                 Mostly Relaxed<br />
@@ -1812,11 +1770,11 @@ export default function Questionnaire() {
                         </label>
                         <label className="flex items-center text-left">
                             <input
-                            type="checkbox"
-                            name="aBitOfBoth"
-                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                            checked={checkboxValues.aBitOfBoth}
-                            onChange={handleCheckboxChange}
+                                type="checkbox"
+                                name="aBitOfBoth"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                checked={checkboxValues.aBitOfBoth}
+                                onChange={handleCheckboxChange}
                             />
                             <div>
                                 A Bit of Both<br />
@@ -1827,11 +1785,11 @@ export default function Questionnaire() {
                         </label>
                         <label className="flex items-center text-left">
                             <input
-                            type="checkbox"
-                            name="prettyActive"
-                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                            checked={checkboxValues.prettyActive}
-                            onChange={handleCheckboxChange}
+                                type="checkbox"
+                                name="prettyActive"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                checked={checkboxValues.prettyActive}
+                                onChange={handleCheckboxChange}
                             />
                             <div>
                                 Pretty Active<br />
@@ -1842,11 +1800,11 @@ export default function Questionnaire() {
                         </label>
                         <label className="flex items-center text-left">
                             <input
-                            type="checkbox"
-                            name="nonStopAdventure"
-                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                            checked={checkboxValues.nonStopAdventure}
-                            onChange={handleCheckboxChange}
+                                type="checkbox"
+                                name="nonStopAdventure"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                checked={checkboxValues.nonStopAdventure}
+                                onChange={handleCheckboxChange}
                             />
                             <div className="mb-4">
                                 Non-Stop Adventure<br />
@@ -1868,7 +1826,7 @@ export default function Questionnaire() {
                 <div className="w-full flex flex-col items-start px-4 sm:px-8 md:px-32 lg:px-64">
                     <div className="flex flex-col items-start mb-4">
                         <p className="font-poppins font-normal text-[24px] text-[#000000] text-left">
-                        Got a <span className="text-[#000000] font-bold">temperature preference</span> for your trip? <span className="text-[#A32727]">*</span>
+                            Got a <span className="text-[#000000] font-bold">temperature preference</span> for your trip? <span className="text-[#A32727]">*</span>
                         </p>
                         <p className="text-[#000000BF] mt-2 text-[20px]">Warm = Above 15°C / 60°F</p>
                         <p className="text-[#000000BF] mt-2 text-[20px]">Cool = Below 15°C / 60°F</p>
@@ -1876,38 +1834,38 @@ export default function Questionnaire() {
                     <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
                         <label className="flex items-center text-left">
                             <input
-                            type="checkbox"
-                            name="surpriseMe"
-                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                            checked={checkboxValues.surpriseMe}
-                            onChange={handleCheckboxChange}
+                                type="checkbox"
+                                name="surpriseMe"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                checked={checkboxValues.surpriseMe}
+                                onChange={handleCheckboxChange}
                             />
-                            Surprise me—I’m easygoing!
+                            Surprise me—I'm easygoing!
                         </label>
                         <label className="flex items-center text-left">
                             <input
-                            type="checkbox"
-                            name="coolerClimate"
-                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                            checked={checkboxValues.coolerClimate}
-                            onChange={handleCheckboxChange}
+                                type="checkbox"
+                                name="coolerClimate"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                checked={checkboxValues.coolerClimate}
+                                onChange={handleCheckboxChange}
                             />
                             Cooler climates, please!
                         </label>
                         <label className="flex items-center text-left mb-4">
                             <input
-                            type="checkbox"
-                            name="bringOnTheSunshine"
-                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                            checked={checkboxValues.bringOnTheSunshine}
-                            onChange={handleCheckboxChange}
+                                type="checkbox"
+                                name="bringOnTheSunshine"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                checked={checkboxValues.bringOnTheSunshine}
+                                onChange={handleCheckboxChange}
                             />
                             Bring on the sunshine!
                         </label>
                     </div>
                     <p className="font-poppins font-normal text-[20px] text-[#000000BF] text-left mb-4">
-                        Sun, snow, or something in between—you’ll be ready for anything!<br /><br />
-                        Two weeks before you jet off, we’ll drop a live weather update and a custom packing list right into your inbox. No guesswork, just great outfits.
+                        Sun, snow, or something in between—you'll be ready for anything!<br /><br />
+                        Two weeks before you jet off, we'll drop a live weather update and a custom packing list right into your inbox. No guesswork, just great outfits.
                     </p>
                 </div>
             ),
@@ -1920,97 +1878,97 @@ export default function Questionnaire() {
             Content: (
                 <div className="w-full flex flex-col items-start px-4 sm:px-8 md:px-32 lg:px-64">
                     <p className="font-poppins font-normal text-[24px] text-[#000000] text-left mb-4">
-                        What kind of <span className="font-bold">vibes</span> are you hoping for in your surprise destination? <span className="text-[#A32727]">*</span><br /> <br/>
+                        What kind of <span className="font-bold">vibes</span> are you hoping for in your surprise destination? <span className="text-[#A32727]">*</span><br /><br />
                         <span className="text-[#000000BF] text-[20px]">Make between 2 and 5 choices.</span>
                     </p>
                     <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
                         <label className="flex items-center text-left">
                             <input
-                            type="checkbox"
-                            name="vibrantUrbanLife"
-                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                            checked={checkboxValues.vibrantUrbanLife}
-                            onChange={handleCheckboxChange}
+                                type="checkbox"
+                                name="vibrantUrbanLife"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                checked={checkboxValues.vibrantUrbanLife}
+                                onChange={handleCheckboxChange}
                             />
                             Vibrant urban life
                         </label>
                         <label className="flex items-center text-left">
                             <input
-                            type="checkbox"
-                            name="creativeArtsyVibes"
-                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                            checked={checkboxValues.creativeArtsyVibes}
-                            onChange={handleCheckboxChange}
+                                type="checkbox"
+                                name="creativeArtsyVibes"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                checked={checkboxValues.creativeArtsyVibes}
+                                onChange={handleCheckboxChange}
                             />
                             Creative and artsy vibes
                         </label>
                         <label className="flex items-center text-left">
                             <input
-                            type="checkbox"
-                            name="lushGreenLandscapes"
-                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                            checked={checkboxValues.lushGreenLandscapes}
-                            onChange={handleCheckboxChange}
+                                type="checkbox"
+                                name="lushGreenLandscapes"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                checked={checkboxValues.lushGreenLandscapes}
+                                onChange={handleCheckboxChange}
                             />
                             Lush green landscapes
                         </label>
                         <label className="flex items-center text-left">
                             <input
-                            type="checkbox"
-                            name="photogenic"
-                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                            checked={checkboxValues.photogenic}
-                            onChange={handleCheckboxChange}
+                                type="checkbox"
+                                name="photogenic"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                checked={checkboxValues.photogenic}
+                                onChange={handleCheckboxChange}
                             />
                             Photogenic
                         </label>
                         <label className="flex items-center text-left">
                             <input
-                            type="checkbox"
-                            name="budgetFriendlyAdventures"
-                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                            checked={checkboxValues.budgetFriendlyAdventures}
-                            onChange={handleCheckboxChange}
+                                type="checkbox"
+                                name="budgetFriendlyAdventures"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                checked={checkboxValues.budgetFriendlyAdventures}
+                                onChange={handleCheckboxChange}
                             />
                             Budget-friendly adventures
                         </label>
                         <label className="flex items-center text-left">
                             <input
-                            type="checkbox"
-                            name="mountainous"
-                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                            checked={checkboxValues.mountainous}
-                            onChange={handleCheckboxChange}
+                                type="checkbox"
+                                name="mountainous"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                checked={checkboxValues.mountainous}
+                                onChange={handleCheckboxChange}
                             />
                             Mountainous
                         </label>
                         <label className="flex items-center text-left">
                             <input
-                            type="checkbox"
-                            name="calmSereneEscapes"
-                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                            checked={checkboxValues.calmSereneEscapes}
-                            onChange={handleCheckboxChange}
+                                type="checkbox"
+                                name="calmSereneEscapes"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                checked={checkboxValues.calmSereneEscapes}
+                                onChange={handleCheckboxChange}
                             />
                             Calm and serene escapes
                         </label>
                         <label className="flex items-center text-left">
                             <input
-                            type="checkbox"
-                            name="eyeCatchingArchitecture"
-                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                            checked={checkboxValues.eyeCatchingArchitecture}
-                            onChange={handleCheckboxChange}
+                                type="checkbox"
+                                name="eyeCatchingArchitecture"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                checked={checkboxValues.eyeCatchingArchitecture}
+                                onChange={handleCheckboxChange}
                             />
                             Eye-catching architecture
                         </label>
                         <label className="flex items-center text-left mb-4">
                             <input
-                            type="checkbox"
-                            name="sandyBeaches"
-                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                            checked={checkboxValues.sandyBeaches}
-                            onChange={handleCheckboxChange}
+                                type="checkbox"
+                                name="sandyBeaches"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                checked={checkboxValues.sandyBeaches}
+                                onChange={handleCheckboxChange}
                             />
                             Sandy beaches
                         </label>
@@ -2031,31 +1989,31 @@ export default function Questionnaire() {
                     <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
                         <label className="flex items-center text-left">
                             <input
-                            type="checkbox"
-                            name="yes"
-                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                            checked={checkboxValues.yes}
-                            onChange={handleCheckboxChange}
+                                type="checkbox"
+                                name="yes"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                checked={checkboxValues.yes}
+                                onChange={handleCheckboxChange}
                             />
                             Yes
                         </label>
                         <label className="flex items-center text-left">
                             <input
-                            type="checkbox"
-                            name="openToAnywhere"
-                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                            checked={checkboxValues.openToAnywhere}
-                            onChange={handleCheckboxChange}
+                                type="checkbox"
+                                name="openToAnywhere"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                checked={checkboxValues.openToAnywhere}
+                                onChange={handleCheckboxChange}
                             />
-                            No, I’m open to anywhere
+                            No, I'm open to anywhere
                         </label>
                         <label className="flex items-center text-left mb-4">
                             <input
-                            type="checkbox"
-                            name="internationalTrip"
-                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                            checked={checkboxValues.internationalTrip}
-                            onChange={handleCheckboxChange}
+                                type="checkbox"
+                                name="internationalTrip"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                checked={checkboxValues.internationalTrip}
+                                onChange={handleCheckboxChange}
                             />
                             International Trip
                         </label>
@@ -2071,7 +2029,7 @@ export default function Questionnaire() {
             Content: (
                 <div className="w-full flex flex-col items-center px-4 sm:px-8 md:px-32 lg:px-64">
                     <p className="font-poppins font-normal text-[24px] text-[#000000] text-center mb-4">
-                        Which <span className="font-bold">Places / Countries</span> are <span className="font-bold">on your bucket list? </span><span className="text-[#A32727]">*</span> 
+                        Which <span className="font-bold">Places / Countries</span> are <span className="font-bold">on your bucket list? </span><span className="text-[#A32727]">*</span>
                     </p>
                     <input
                         type="text"
@@ -2081,7 +2039,7 @@ export default function Questionnaire() {
                         className="w-[90%] md:w-[50%] px-4 py-3 border border-2 border-[#000000B2] bg-[#D9D9D966] rounded-lg font-poppins font-normal text-[24px] text-[#000000]"
                     />
                     <p className='font-poppins font-normal text-[20px] text-[#000000] text-left mt-8 mb-4'>
-                        Where have you already been that you’d <span className="font-bold">prefer not to revisit? </span><span className="text-[#A32727]">*</span>
+                        Where have you already been that you'd <span className="font-bold">prefer not to revisit? </span><span className="text-[#A32727]">*</span>
                     </p>
                     <input
                         type="text"
@@ -2101,109 +2059,109 @@ export default function Questionnaire() {
             Content: (
                 <div className="w-full flex flex-col items-center px-4 sm:px-8 md:px-32 lg:px-64">
                     <p className="font-poppins font-normal text-[20px] text-[#000000BF] text-center mb-4">
-                        Our mission at BFT is to connect people with cultures far from their own. But let’s be clear: <span className="font-bold">your safety is non-negotiable on any of our trips.</span>
+                        Our mission at BFT is to connect people with cultures far from their own. But let's be clear: <span className="font-bold">your safety is non-negotiable on any of our trips.</span>
                     </p>
                     <p className="font-poppins font-normal text-[24px] text-[#000000] text-center mb-4">
-                        Any <span className="font-bold">destination types that wouldn’t be safe or suitable for you? </span><span className="text-[#A32727]">*</span>
+                        Any <span className="font-bold">destination types that wouldn't be safe or suitable for you? </span><span className="text-[#A32727]">*</span>
                     </p>
                     <div className="flex flex-col items-start gap-4 text-[16px] mb-4 sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
                         <label className="flex items-center text-left">
-                        <input
-                            type="checkbox"
-                            name="unsafeFemale"
-                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                            checked={checkboxValues.unsafeFemale}
-                            onChange={handleCheckboxChange}
-                        />
+                            <input
+                                type="checkbox"
+                                name="unsafeFemale"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                checked={checkboxValues.unsafeFemale}
+                                onChange={handleCheckboxChange}
+                            />
                             Considered unsafe for solo female travellers
                         </label>
 
                         <label className="flex items-center text-left">
-                        <input
-                            type="checkbox"
-                            name="hostilityLGBTQ"
-                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                            checked={checkboxValues.hostilityLGBTQ}
-                            onChange={handleCheckboxChange}
-                        />
-                            Regular instances of hostility towards the LGBTQ community
+                            <input
+                                type="checkbox"
+                                name="hostilityLGBTQ"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                checked={checkboxValues.hostilityLGBTQ}
+                                onChange={handleCheckboxChange}
+                            />
+                            Hostile toward LGBTQ+ individuals
                         </label>
 
                         <label className="flex items-center text-left">
-                        <input
-                            type="checkbox"
-                            name="hostilityBlack"
-                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                            checked={checkboxValues.hostilityBlack}
-                            onChange={handleCheckboxChange}
-                        />
-                            Regular instances of hostility towards the Black community
+                            <input
+                                type="checkbox"
+                                name="hostilityBlack"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                checked={checkboxValues.hostilityBlack}
+                                onChange={handleCheckboxChange}
+                            />
+                            Hostile toward Black travelers
                         </label>
 
                         <label className="flex items-center text-left">
-                        <input
-                            type="checkbox"
-                            name="attitudeIslam"
-                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                            checked={checkboxValues.attitudeIslam}
-                            onChange={handleCheckboxChange}
-                        />
-                            Unfavourable attitude towards followers of Islam
+                            <input
+                                type="checkbox"
+                                name="attitudeIslam"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                checked={checkboxValues.attitudeIslam}
+                                onChange={handleCheckboxChange}
+                            />
+                            Unwelcoming to Muslims
                         </label>
 
                         <label className="flex items-center text-left">
-                        <input
-                            type="checkbox"
-                            name="attitudeJewish"
-                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                            checked={checkboxValues.attitudeJewish}
-                            onChange={handleCheckboxChange}
-                        />
-                            Unfavourable attitude towards people of Jewish faith
+                            <input
+                                type="checkbox"
+                                name="attitudeJewish"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                checked={checkboxValues.attitudeJewish}
+                                onChange={handleCheckboxChange}
+                            />
+                            Unwelcoming to Jewish people
                         </label>
 
                         <label className="flex items-center text-left">
-                        <input
-                            type="checkbox"
-                            name="hostilityIndigenous"
-                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                            checked={checkboxValues.hostilityIndigenous}
-                            onChange={handleCheckboxChange}
-                        />
-                            Regular instances of hostility towards Indigenous communities
+                            <input
+                                type="checkbox"
+                                name="hostilityIndigenous"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                checked={checkboxValues.hostilityIndigenous}
+                                onChange={handleCheckboxChange}
+                            />
+                            Hostile toward Indigenous communities
                         </label>
 
                         <label className="flex items-center text-left">
-                        <input
-                            type="checkbox"
-                            name="unsafeReligiousAttire"
-                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                            checked={checkboxValues.unsafeReligiousAttire}
-                            onChange={handleCheckboxChange}
-                        />
-                            Considered unsafe for people with visible religious attire
+                            <input
+                                type="checkbox"
+                                name="unsafeReligiousAttire"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                checked={checkboxValues.unsafeReligiousAttire}
+                                onChange={handleCheckboxChange}
+                            />
+                            Unsafe for visible religious attire
                         </label>
 
                         <label className="flex items-center text-left">
-                        <input
-                            type="checkbox"
-                            name="discriminatoryTrans"
-                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                            checked={checkboxValues.discriminatoryTrans}
-                            onChange={handleCheckboxChange}
-                        />
-                            Discriminatory laws or policies against transgender individuals
+                            <input
+                                type="checkbox"
+                                name="discriminatoryTrans"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                checked={checkboxValues.discriminatoryTrans}
+                                onChange={handleCheckboxChange}
+                            />
+                            Discriminatory toward transgender people
                         </label>
 
                         <label className="flex items-center text-left">
-                        <input
-                            type="checkbox"
-                            name="racialProfiling"
-                            className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                            checked={checkboxValues.racialProfiling}
-                            onChange={handleCheckboxChange}
-                        />
-                            Known for racial profiling by law enforcement
+                            <input
+                                type="checkbox"
+                                name="racialProfiling"
+                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                checked={checkboxValues.racialProfiling}
+                                onChange={handleCheckboxChange}
+                            />
+                            Known for racial profiling
                         </label>
                     </div>
                 </div>
@@ -2239,54 +2197,6 @@ export default function Questionnaire() {
                         <p className='font-poppins font-bold text-[24px] text-[#000000] text-left mb-4'>
                             <span className="font-normal">Which</span> Country will you be flying out from ? <span className="text-[#A32727]">*</span>
                         </p>
-
-                        {/* <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins mb-8">
-                            <label className="flex items-center text-left">
-                                <input
-                                type="checkbox"
-                                name="india"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.india}
-                                onChange={handleCheckboxChange}
-                                />
-                                India
-                            </label>
-                            <label className="flex items-center text-left">
-                                <input
-                                type="checkbox"
-                                name="otherCountry"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.otherCountry}
-                                onChange={handleCheckboxChange}
-                                />
-                                Other Country
-                            </label>
-                            
-                            {checkboxValues["otherCountry"] && (
-                                <input
-                                    type="text"
-                                    value={country}
-                                    onChange={handleCountryChange}
-                                    placeholder="Name of the Country"
-                                    className="w-full px-4 py-3 border border-2 border-[#000000B2] bg-[#D9D9D966] rounded-lg font-poppins font-normal text-[12px] sm:text-[16px] md:text-[24px] text-[#000000]"
-                                />
-                            )}
-
-                            
-                        </div> */}
-                        {/* <select
-                            value={selectedCountry}
-                            onChange={handleCountryChange}
-                            className="mt-2 w-full sm:w-[436px] h-[50px] px-4 py-3 border border-[#000000B2] bg-[#D9D9D966] rounded-lg font-poppins font-normal text-[12px] sm:text-[16px] md:text-[24px] text-[#000000]"
-                            >
-                            <option value="">Select Country</option>
-                            {countries.map((country) => (
-                                <option key={country.isoCode} value={country.name}>
-                                {country.name}
-                                </option>
-                            ))}
-                        </select> */}
-
                         <Select
                             options={countries.map((country) => ({
                                 value: country.name,
@@ -2294,8 +2204,8 @@ export default function Questionnaire() {
                             }))}
                             value={
                                 selectedCountry
-                                ? { value: selectedCountry, label: selectedCountry }
-                                : null
+                                    ? { value: selectedCountry, label: selectedCountry }
+                                    : null
                             }
                             onChange={(selectedOption) =>
                                 handleCountryChange({ target: { value: selectedOption?.value || '' } })
@@ -2304,38 +2214,38 @@ export default function Questionnaire() {
                             className="w-full sm:w-[436px] text-left font-poppins"
                             styles={{
                                 control: (base) => ({
-                                ...base,
-                                height: 'auto',
-                                minHeight: '50px',
-                                backgroundColor: '#D9D9D966',
-                                border: '2px solid #000000B2',
-                                borderRadius: '8px',
-                                fontSize: '24px',
-                                fontFamily: 'poppins',
+                                    ...base,
+                                    height: 'auto',
+                                    minHeight: '50px',
+                                    backgroundColor: '#D9D9D966',
+                                    border: '2px solid #000000B2',
+                                    borderRadius: '8px',
+                                    fontSize: '24px',
+                                    fontFamily: 'poppins',
                                 }),
                                 placeholder: (base) => ({
-                                ...base,
-                                color: '#000000BF',
-                                fontSize: '24px',
-                                fontFamily: 'poppins',
+                                    ...base,
+                                    color: '#000000BF',
+                                    fontSize: '24px',
+                                    fontFamily: 'poppins',
                                 }),
                                 singleValue: (base) => ({
-                                ...base,
-                                color: '#000000',
-                                fontFamily: 'poppins',
-                                fontSize: '24px',
+                                    ...base,
+                                    color: '#000000',
+                                    fontFamily: 'poppins',
+                                    fontSize: '24px',
                                 }),
                                 menu: (base) => ({
-                                ...base,
-                                fontFamily: 'poppins',
-                                fontSize: '20px',
+                                    ...base,
+                                    fontFamily: 'poppins',
+                                    fontSize: '20px',
                                 }),
                                 option: (base, state) => ({
-                                ...base,
-                                backgroundColor: state.isFocused ? '#CCCCCC' : 'white',
-                                color: '#000000',
-                                cursor: 'pointer',
-                                fontFamily: 'poppins',
+                                    ...base,
+                                    backgroundColor: state.isFocused ? '#CCCCCC' : 'white',
+                                    color: '#000000',
+                                    cursor: 'pointer',
+                                    fontFamily: 'poppins',
                                 }),
                             }}
                         />
@@ -2351,8 +2261,8 @@ export default function Questionnaire() {
                             }))}
                             value={
                                 selectedState
-                                ? { value: selectedState, label: selectedState }
-                                : null
+                                    ? { value: selectedState, label: selectedState }
+                                    : null
                             }
                             onChange={(selectedOption) =>
                                 handleStateChange({ target: { value: selectedOption?.value || '' } })
@@ -2453,27 +2363,27 @@ export default function Questionnaire() {
                         <p className='font-poppins font-normal text-[24px] text-[#000000] text-left mb-4 mt-8'>
                             Do you need to <span className="font-bold">fly in and out of the same airport</span> (e.g., if you're leaving your car there)? <span className="text-[#A32727]">*</span>
                         </p>
-                        
+
                         <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
                             <label className="flex items-center text-left">
                                 <input
-                                type="checkbox"
-                                name="sameAirports"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.sameAirports}
-                                onChange={handleCheckboxChange}
+                                    type="checkbox"
+                                    name="sameAirports"
+                                    className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                    checked={checkboxValues.sameAirports}
+                                    onChange={handleCheckboxChange}
                                 />
                                 Yes
                             </label>
                             <label className="flex items-center text-left">
                                 <input
-                                type="checkbox"
-                                name="anyAirports"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.anyAirports}
-                                onChange={handleCheckboxChange}
+                                    type="checkbox"
+                                    name="anyAirports"
+                                    className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                    checked={checkboxValues.anyAirports}
+                                    onChange={handleCheckboxChange}
                                 />
-                                No, I’m open to anywhere
+                                No, I'm open to anywhere
                             </label>
                         </div>
                     </div>
@@ -2482,201 +2392,6 @@ export default function Questionnaire() {
             buttonText: "Done",
             Heading: "Chapter 3: The Must-Knows"
         },
-        // {
-        //     Number: 25,
-        //     type: "text",
-        //     Content: (
-        //         <div className="w-full sm:w-[90%] md:w-[75%] lg:w-[50%] flex flex-col items-center">
-        //             <div className="w-full mb-8">
-        //                 <p className='font-poppins font-bold text-[24px] text-[#000000] text-left mb-4'>
-        //                     <span className="font-normal">Which</span> State will you be flying out from ? <span className="text-[#A32727]">*</span>
-        //                 </p>
-
-        //                 {/* <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins mb-8">
-        //                     <label className="flex items-center text-left">
-        //                         <input
-        //                         type="checkbox"
-        //                         name="india"
-        //                         className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-        //                         checked={checkboxValues.india}
-        //                         onChange={handleCheckboxChange}
-        //                         />
-        //                         India
-        //                     </label>
-        //                     <label className="flex items-center text-left">
-        //                         <input
-        //                         type="checkbox"
-        //                         name="otherCountry"
-        //                         className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-        //                         checked={checkboxValues.otherCountry}
-        //                         onChange={handleCheckboxChange}
-        //                         />
-        //                         Other Country
-        //                     </label>
-                            
-        //                     {checkboxValues["otherCountry"] && (
-        //                         <input
-        //                             type="text"
-        //                             value={country}
-        //                             onChange={handleCountryChange}
-        //                             placeholder="Name of the Country"
-        //                             className="w-full px-4 py-3 border border-2 border-[#000000B2] bg-[#D9D9D966] rounded-lg font-poppins font-normal text-[12px] sm:text-[16px] md:text-[24px] text-[#000000]"
-        //                         />
-        //                     )}
-
-                            
-        //                 </div> */}
-        //                 {/* <select
-        //                     value={selectedState}
-        //                     onChange={handleStateChange}
-        //                     className="mt-2 w-full sm:w-[436px] h-[50px] px-4 py-3 border border-[#000000B2] bg-[#D9D9D966] rounded-lg font-poppins font-normal text-[12px] sm:text-[16px] md:text-[24px] text-[#000000]"
-        //                     >
-        //                     <option value="">Select State</option>
-        //                     {states.map((state) => (
-        //                         <option key={state.isoCode} value={state.name}>
-        //                         {state.name}
-        //                         </option>
-        //                     ))}
-        //                 </select> */}
-
-        //                 <Select
-        //                     options={states.map((state) => ({
-        //                         value: state.name,
-        //                         label: state.name,
-        //                     }))}
-        //                     value={
-        //                         selectedState
-        //                         ? { value: selectedState, label: selectedState }
-        //                         : null
-        //                     }
-        //                     onChange={(selectedOption) =>
-        //                         handleStateChange({ target: { value: selectedOption?.value || '' } })
-        //                     }
-        //                     placeholder="Select State"
-        //                     className="w-full sm:w-[436px] text-left font-poppins mt-2"
-        //                     styles={{
-        //                         control: (base) => ({
-        //                             ...base,
-        //                             height: 'auto',
-        //                             minHeight: '50px',
-        //                             backgroundColor: '#D9D9D966',
-        //                             border: '2px solid #000000B2',
-        //                             borderRadius: '8px',
-        //                             fontSize: '24px',
-        //                             fontFamily: 'poppins',
-        //                         }),
-        //                         placeholder: (base) => ({
-        //                             ...base,
-        //                             color: '#000000BF',
-        //                             fontSize: '24px',
-        //                             fontFamily: 'poppins',
-        //                         }),
-        //                         singleValue: (base) => ({
-        //                             ...base,
-        //                             color: '#000000',
-        //                             fontFamily: 'poppins',
-        //                             fontSize: '24px',
-        //                         }),
-        //                         menu: (base) => ({
-        //                             ...base,
-        //                             fontFamily: 'poppins',
-        //                             fontSize: '20px',
-        //                         }),
-        //                         option: (base, state) => ({
-        //                             ...base,
-        //                             backgroundColor: state.isFocused ? '#CCCCCC' : 'white',
-        //                             color: '#000000',
-        //                             cursor: 'pointer',
-        //                             fontFamily: 'poppins',
-        //                         }),
-        //                     }}
-        //                 />
-
-        //                 <p className='font-poppins font-bold text-[24px] text-[#000000] text-left mt-8 mb-4'>
-        //                     <span className="font-normal">Which</span> airports can you depart from ? <span className="text-[#A32727]">*</span>
-        //                 </p>
-
-        //                 <Select
-        //                     isMulti
-        //                     options={airports}
-        //                     value={selectedAirports1}
-        //                     onChange={setSelectedAirports1}
-        //                     className="w-full sm:w-[436px] text-left font-poppins"
-        //                     placeholder="Select"
-        //                     styles={{
-        //                         control: (base) => ({
-        //                             ...base,
-        //                             height: 'auto',
-        //                             minHeight: '50px',
-        //                             backgroundColor: '#D9D9D966',
-        //                             border: '2px solid #000000B2',
-        //                             borderRadius: '8px',
-        //                             fontSize: '24px',
-        //                             fontFamily: 'poppins',
-        //                             overflowX: 'auto', // this won't help unless container is changed
-        //                         }),
-        //                         valueContainer: (base) => ({
-        //                             ...base,
-        //                             display: 'flex',
-        //                             flexWrap: 'nowrap', // key line
-        //                             overflowX: 'auto',
-        //                             scrollbarWidth: 'thin',
-        //                             maxWidth: '100%',
-        //                         }),
-        //                         multiValue: (base) => ({
-        //                             ...base,
-        //                             backgroundColor: '#CCCCCC',
-        //                             borderRadius: '0.25rem',
-        //                             fontSize: '24px',
-        //                             marginRight: '4px',
-        //                             whiteSpace: 'nowrap',
-        //                         }),
-        //                         multiValueLabel: (base) => ({
-        //                             ...base,
-        //                             color: '#000000BF',
-        //                             fontFamily: 'poppins',
-        //                         }),
-        //                         placeholder: (base) => ({
-        //                             ...base,
-        //                             color: '#000000BF',
-        //                             fontSize: '24px',
-        //                             fontFamily: 'poppins',
-        //                         }),
-        //                     }}
-        //                 />
-
-        //                 <p className='font-poppins font-normal text-[24px] text-[#000000] text-left mb-4 mt-8'>
-        //                     Do you need to <span className="font-bold">fly in and out of the same airport</span> (e.g., if you're leaving your car there)? <span className="text-[#A32727]">*</span>
-        //                 </p>
-                        
-        //                 <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
-        //                     <label className="flex items-center text-left">
-        //                         <input
-        //                         type="checkbox"
-        //                         name="sameAirports1"
-        //                         className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-        //                         checked={checkboxValues.sameAirports1}
-        //                         onChange={handleCheckboxChange}
-        //                         />
-        //                         Yes
-        //                     </label>
-        //                     <label className="flex items-center text-left">
-        //                         <input
-        //                         type="checkbox"
-        //                         name="anyAirports1"
-        //                         className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-        //                         checked={checkboxValues.anyAirports1}
-        //                         onChange={handleCheckboxChange}
-        //                         />
-        //                         No, I’m open to anywhere
-        //                     </label>
-        //                 </div>
-        //             </div>
-        //         </div>
-        //     ),
-        //     buttonText: "Done",
-        //     Heading: "Chapter 3: The Must-Knows"
-        // },
         {
             Number: 25,
             type: "text",
@@ -2689,41 +2404,41 @@ export default function Questionnaire() {
                         <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
                             <label className="flex items-center text-left">
                                 <input
-                                type="checkbox"
-                                name="fDtN"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.fDtN}
-                                onChange={handleCheckboxChange}
+                                    type="checkbox"
+                                    name="fDtN"
+                                    className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                    checked={checkboxValues.fDtN}
+                                    onChange={handleCheckboxChange}
                                 />
                                 4 Days / 3 Nights
                             </label>
                             <label className="flex items-center text-left">
                                 <input
-                                type="checkbox"
-                                name="fDfN"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.fDfN}
-                                onChange={handleCheckboxChange}
+                                    type="checkbox"
+                                    name="fDfN"
+                                    className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                    checked={checkboxValues.fDfN}
+                                    onChange={handleCheckboxChange}
                                 />
                                 5 Days / 4 Nights
                             </label>
                             <label className="flex items-center text-left">
                                 <input
-                                type="checkbox"
-                                name="sDfN"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.sDfN}
-                                onChange={handleCheckboxChange}
+                                    type="checkbox"
+                                    name="sDfN"
+                                    className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                    checked={checkboxValues.sDfN}
+                                    onChange={handleCheckboxChange}
                                 />
                                 7 Days / 5 Nights
                             </label>
                             <label className="flex items-center text-left mb-2">
                                 <input
-                                type="checkbox"
-                                name="userChoice"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.userChoice}
-                                onChange={handleCheckboxChange}
+                                    type="checkbox"
+                                    name="userChoice"
+                                    className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                    checked={checkboxValues.userChoice}
+                                    onChange={handleCheckboxChange}
                                 />
                                 Others
                             </label>
@@ -2755,11 +2470,11 @@ export default function Questionnaire() {
                         <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
                             <label className="flex items-center text-left">
                                 <input
-                                type="checkbox"
-                                name="preferredStartDate"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.preferredStartDate}
-                                onChange={handleCheckboxChange}
+                                    type="checkbox"
+                                    name="preferredStartDate"
+                                    className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                    checked={checkboxValues.preferredStartDate}
+                                    onChange={handleCheckboxChange}
                                 />
                                 I have a preferred start date, but can be flexible by +/- 1 day
                             </label>
@@ -2780,11 +2495,11 @@ export default function Questionnaire() {
                             )}
                             <label className="flex items-center text-left">
                                 <input
-                                type="checkbox"
-                                name="completelyFlexible"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.completelyFlexible}
-                                onChange={handleCheckboxChange}
+                                    type="checkbox"
+                                    name="completelyFlexible"
+                                    className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                    checked={checkboxValues.completelyFlexible}
+                                    onChange={handleCheckboxChange}
                                 />
                                 I'm completely flexible and want to go on the best value dates
                             </label>
@@ -2807,7 +2522,7 @@ export default function Questionnaire() {
                         <div className="font-poppins font-normal text-[20px] text-[#000000BF] text-left mb-4">
                             <p>
                                 Stay your way!<br /><br />
-                                Whether it’s a snug apartment with your own chill zone and kitchenette, or a comfy hotel with friendly reception and daily housekeeping—we’ve got you covered.<br /><br />
+                                Whether it's a snug apartment with your own chill zone and kitchenette, or a comfy hotel with friendly reception and daily housekeeping—we've got you covered.<br /><br />
                             </p>
                             <p>
                                 Wherever you land, expect:
@@ -2816,38 +2531,38 @@ export default function Questionnaire() {
                                 <li>Prime locations close to the action</li>
                                 <li>Sparkling clean, cozy, and totally safe</li>
                                 <li>Your own private space (yes, with your own bathroom!)</li>
-                                <li>Wi-Fi, towels, and toiletries—no need to pack ‘em</li>
+                                <li>Wi-Fi, towels, and toiletries—no need to pack 'em</li>
                                 <li>Top-rated 3-star spots (fancy an upgrade? 4-star+ awaits!)</li>
                             </ul>
                         </div>
                         <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
                             <label className="flex items-center text-left">
                                 <input
-                                type="checkbox"
-                                name="eitherIsFine"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.eitherIsFine}
-                                onChange={handleCheckboxChange}
+                                    type="checkbox"
+                                    name="eitherIsFine"
+                                    className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                    checked={checkboxValues.eitherIsFine}
+                                    onChange={handleCheckboxChange}
                                 />
                                 Either is fine
                             </label>
                             <label className="flex items-center text-left">
                                 <input
-                                type="checkbox"
-                                name="exclusiveResidence"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.exclusiveResidence}
-                                onChange={handleCheckboxChange}
+                                    type="checkbox"
+                                    name="exclusiveResidence"
+                                    className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                    checked={checkboxValues.exclusiveResidence}
+                                    onChange={handleCheckboxChange}
                                 />
                                 Exclusive residence
                             </label>
                             <label className="flex items-center text-left">
                                 <input
-                                type="checkbox"
-                                name="hotel"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.hotel}
-                                onChange={handleCheckboxChange}
+                                    type="checkbox"
+                                    name="hotel"
+                                    className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                    checked={checkboxValues.hotel}
+                                    onChange={handleCheckboxChange}
                                 />
                                 Hotel
                             </label>
@@ -2865,7 +2580,7 @@ export default function Questionnaire() {
                 <div className='w-full sm:w-[90%] md:w-[75%] lg:w-[50%] flex flex-col items-start px-4'>
                     <div className="w-full mb-8">
                         <p className='font-poppins font-bold text-[24px] text-[#000000] text-left mb-4'>
-                            <span className="font-normal">What’s</span> your total budget for a 7-day trip ? <span className="text-[#A32727]">*</span>
+                            <span className="font-normal">What's</span> your total budget for a 7-day trip ? <span className="text-[#A32727]">*</span>
                         </p>
                         <div className="font-poppins font-normal text-[20px] text-[#000000BF] text-left mb-4">
                             <p>
@@ -2880,8 +2595,8 @@ export default function Questionnaire() {
                             </ul>
                             <p>
                                 Most solo travellers set a budget of ₹88,000 for a 5-day trip, with a minimum starting at ₹78,000.<br /><br />
-                                If we find the perfect experience for less, we’ll automatically adjust your budget down—yes, really!<br /><br />
-                                You can lock in your surprise trip with a flexible deposit, and pay the rest whenever you’re ready—just make sure it's done at least 21 days before your trip.
+                                If we find the perfect experience for less, we'll automatically adjust your budget down—yes, really!<br /><br />
+                                You can lock in your surprise trip with a flexible deposit, and pay the rest whenever you're ready—just make sure it's done at least 21 days before your trip.
                             </p>
                         </div>
                         <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
@@ -2891,7 +2606,7 @@ export default function Questionnaire() {
                                     type="text"
                                     value={budget}
                                     onChange={handleBudgetChange}
-                                    placeholder="90,000"
+                                    placeholder="38,999"
                                     className="w-full pl-10 pr-4 py-3 border-2 border-[#000000B2] bg-[#D9D9D966] rounded-lg font-poppins font-normal text-[24px] text-[#000000]"
                                     required
                                 />
@@ -2918,41 +2633,41 @@ export default function Questionnaire() {
                         <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
                             <label className="flex items-center text-left">
                                 <input
-                                type="checkbox"
-                                name="maxBudget"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.maxBudget}
-                                onChange={handleCheckboxChange}
+                                    type="checkbox"
+                                    name="maxBudget"
+                                    className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                    checked={checkboxValues.maxBudget}
+                                    onChange={handleCheckboxChange}
                                 />
                                 Nope, that's my max budget
                             </label>
                             <label className="flex items-center text-left">
                                 <input
-                                type="checkbox"
-                                name="increaseBy5000"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.increaseBy5000}
-                                onChange={handleCheckboxChange}
+                                    type="checkbox"
+                                    name="increaseBy5000"
+                                    className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                    checked={checkboxValues.increaseBy5000}
+                                    onChange={handleCheckboxChange}
                                 />
                                 Yes, increase it by ₹5000
                             </label>
                             <label className="flex items-center text-left">
                                 <input
-                                type="checkbox"
-                                name="increaseBy7500"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.increaseBy7500}
-                                onChange={handleCheckboxChange}
+                                    type="checkbox"
+                                    name="increaseBy7500"
+                                    className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                    checked={checkboxValues.increaseBy7500}
+                                    onChange={handleCheckboxChange}
                                 />
                                 Yes, increase it by ₹7500
                             </label>
                             <label className="flex items-center text-left">
                                 <input
-                                type="checkbox"
-                                name="increaseBy10000"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.increaseBy10000}
-                                onChange={handleCheckboxChange}
+                                    type="checkbox"
+                                    name="increaseBy10000"
+                                    className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                    checked={checkboxValues.increaseBy10000}
+                                    onChange={handleCheckboxChange}
                                 />
                                 Yes, increase it by ₹10000
                             </label>
@@ -3055,24 +2770,14 @@ export default function Questionnaire() {
                         <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
                             <label className="flex items-center text-left">
                                 <input
-                                type="checkbox"
-                                name="yesCurious"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.yesCurious}
-                                onChange={handleCheckboxChange}
+                                    type="checkbox"
+                                    name="yesCurious"
+                                    className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                    checked={checkboxValues.yesCurious}
+                                    onChange={handleCheckboxChange}
                                 />
                                 I Agree
                             </label>
-                            {/* <label className="flex items-center text-left">
-                                <input
-                                type="checkbox"
-                                name="notCurious"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.notCurious}
-                                onChange={handleCheckboxChange}
-                                />
-                                No
-                            </label> */}
                         </div>
                     </div>
                 </div>
@@ -3099,51 +2804,51 @@ export default function Questionnaire() {
                                     onChange={handleCheckboxChange}
                                 />
                                 Someone I know IRL
-                                </label>
+                            </label>
 
-                                <label className="flex items-center text-left">
-                                    <input
-                                        type="checkbox"
-                                        name="influencer"
-                                        className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                        checked={checkboxValues.influencer}
-                                        onChange={handleCheckboxChange}
-                                    />
-                                    Influencer
-                                </label>
+                            <label className="flex items-center text-left">
+                                <input
+                                    type="checkbox"
+                                    name="influencer"
+                                    className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                    checked={checkboxValues.influencer}
+                                    onChange={handleCheckboxChange}
+                                />
+                                Influencer
+                            </label>
 
-                                <label className="flex items-center text-left">
-                                    <input
-                                        type="checkbox"
-                                        name="press"
-                                        className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                        checked={checkboxValues.press}
-                                        onChange={handleCheckboxChange}
-                                    />
-                                    Press / blog feature
-                                </label>
+                            <label className="flex items-center text-left">
+                                <input
+                                    type="checkbox"
+                                    name="press"
+                                    className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                    checked={checkboxValues.press}
+                                    onChange={handleCheckboxChange}
+                                />
+                                Press / blog feature
+                            </label>
 
-                                <label className="flex items-center text-left">
-                                    <input
-                                        type="checkbox"
-                                        name="randomCustomer"
-                                        className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                        checked={checkboxValues.randomCustomer}
-                                        onChange={handleCheckboxChange}
-                                    />
-                                    Random BFT customer online
-                                </label>
+                            <label className="flex items-center text-left">
+                                <input
+                                    type="checkbox"
+                                    name="randomCustomer"
+                                    className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                    checked={checkboxValues.randomCustomer}
+                                    onChange={handleCheckboxChange}
+                                />
+                                Random BFT customer online
+                            </label>
 
-                                <label className="flex items-center text-left">
-                                    <input
-                                        type="checkbox"
-                                        name="paidAd"
-                                        className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                        checked={checkboxValues.paidAd}
-                                        onChange={handleCheckboxChange}
-                                    />
-                                    Paid ad from @blind fold trips (Facebook / Instagram)
-                                </label>
+                            <label className="flex items-center text-left">
+                                <input
+                                    type="checkbox"
+                                    name="paidAd"
+                                    className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                    checked={checkboxValues.paidAd}
+                                    onChange={handleCheckboxChange}
+                                />
+                                Paid ad from @blind fold trips (Facebook / Instagram)
+                            </label>
                         </div>
                     </div>
                 </div>
@@ -3158,7 +2863,7 @@ export default function Questionnaire() {
                 <div className='w-full sm:w-[90%] md:w-[75%] lg:w-[50%] flex flex-col items-start px-4'>
                     <div className="w-full mb-8">
                         <p className='font-poppins font-bold text-[24px] text-[#000000] text-left mb-4'>
-                            To send your BFT proposal, we’ll need your OK on our Privacy Policy !!!! <span className="text-[#A32727]">*</span>
+                            To send your BFT proposal, we'll need your OK on our Privacy Policy !!!! <span className="text-[#A32727]">*</span>
                         </p>
                         <p className="font-poppins font-normal text-left text-[20px] text-[#000000BF]">
                             We don't misuse your data.
@@ -3169,11 +2874,11 @@ export default function Questionnaire() {
                         <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
                             <label className="flex items-center text-left">
                                 <input
-                                type="checkbox"
-                                name="agree"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.agree}
-                                onChange={handleCheckboxChange}
+                                    type="checkbox"
+                                    name="agree"
+                                    className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                    checked={checkboxValues.agree}
+                                    onChange={handleCheckboxChange}
                                 />
                                 I Agree
                             </label>
@@ -3212,9 +2917,9 @@ export default function Questionnaire() {
 
     useEffect(() => {
         fetch('https://bft-backend.vercel.app/api/data/airportsData') // Replace with your actual backend URL if deployed
-        .then((res) => res.json())
-        .then((data) => setAirports(data))
-        .catch((err) => console.error('Failed to fetch airport data', err));
+            .then((res) => res.json())
+            .then((data) => setAirports(data))
+            .catch((err) => console.error('Failed to fetch airport data', err));
     }, []);
 
     useEffect(() => {
@@ -3269,10 +2974,25 @@ export default function Questionnaire() {
 
     return (
         <div className="min-h-screen flex flex-col bg-white">
+            <ToastContainer
+                position="top-right"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop
+                closeOnClick
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                toastClassName={(context) =>
+                    context?.type === "success"
+                        ? "bg-green-500 text-white font-poppins rounded-lg"
+                        : undefined
+                }
+            />
             {/* Header */}
             <div className="flex flex-col justify-end items-end pt-[56px] px-6 py-4 border-b shadow-sm">
                 <img src="/Logo_1.png" alt="Logo" className="lg:pl-[48px] h-16 mr-auto" />
-                {currentPageIndex===0 ? (
+                {currentPageIndex === 0 ? (
                     <button onClick={() => navigate("/")} className="text-red-600 text-xl pr-[60px] font-bold hover:text-red-800 transition">
                         <IoCloseCircleOutline size={30} />
                     </button>
@@ -3331,11 +3051,6 @@ export default function Questionnaire() {
                     <FaArrowRightLong size={20} />
                 </button>
             </div>
-
-            {/* Page Counter */}
-            {/* <div className="text-center text-gray-600 text-sm mb-6">
-                {currentPageIndex + 1} of {TOTAL_PAGES}
-            </div> */}
         </div>
     );
 }

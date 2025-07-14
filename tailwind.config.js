@@ -14,6 +14,7 @@ export default {
         'archivo-black': ['"Archivo Black"', 'sans-serif'],
         'titan-one': ['"Titan One"', 'cursive'],
         'sofia': ['Sofia', 'cursive'],
+        'paytone-one': ['"Paytone One"', 'sans-serif'],
       },
     },
   },
