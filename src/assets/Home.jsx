@@ -818,7 +818,7 @@ export default function Home() {
       <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60">
         <div className="relative bg-[#0B3760] rounded-2xl shadow-lg w-full h-auto overflow-y-auto max-h-[90vh] p-8 flex flex-col md:flex-row gap-8 border-l-[8.54px] border-[#FFBE55]">
           {/* Left: Main Info */}
-          <div className="flex-1 min-w-[250px]">
+          <div className="flex-1 w-full md:w-[60%] flex flex-col">
             <div className="flex items-center gap-4 mb-2">
               <img src={feedback.image} alt={feedback.name} className="w-16 h-16 object-cover rounded-lg" />
               <div>
@@ -826,41 +826,51 @@ export default function Home() {
                 <div className="font-poppins text-[#D6E6F2] text-[16px] sm:text-[20px] font-light">{feedback.role}</div>
               </div>
             </div>
-            <div className="flex flex-col lg:flex-row items-center md:gap-2 md:mb-2">
-              <div className="flex items-center justify-start gap-2 -ml-12 lg:ml-0">
-                <span className="font-paytone-one font-regular text-[#FFBE5566] text-[54px] sm:text-[109px]">“</span>
-                <span className="font-poppins text-[#FFFFFF] text-[14px] sm:text-[16px] md:text-[31px] font-semibold -ml-8 -mt-4">{feedback.title}</span>
+            {/* Title and Stars - always stacked */}
+            <div className="flex flex-col gap-1 mt-2 mb-2 w-full">
+              <div className="flex items-center w-full min-w-0">
+                <span className="font-paytone-one font-regular text-[#FFBE5566] text-[54px] sm:text-[72px] md:text-[109px] flex-shrink-0 leading-none">“</span>
+                <span className="font-poppins text-[#FFFFFF] text-[18px] sm:text-[24px] md:text-[31px] font-semibold ml-[-16px] sm:ml-[-32px] mt-[-8px] sm:mt-0 block max-w-full whitespace-normal overflow-visible leading-tight">{feedback.title}</span>
               </div>
-              <span className="flex items-center -mt-4 gap-[2px]">
+              <span className="flex items-center gap-[2px] mt-2">
                 {[...Array(5)].map((_, i) => (
                   <span key={i}>
-                    <FaStar className="w-8 h-8 text-[#FFBE55]" />
+                    <FaStar className="w-6 h-6 sm:w-8 sm:h-8 text-[#FFBE55]" />
                   </span>
                 ))}
               </span>
             </div>
-            <div className="font-poppins font-light text-[#FFFFFF] text-[20px] mb-6 leading-relaxed">
+            <div className="w-full md:w-[80%] font-poppins font-light text-[#FFFFFF] text-[16px] sm:text-[20px] mb-6 leading-relaxed">
               {feedback.text}
             </div>
-            <div className="flex items-center gap-2 mb-2">
-              <div className="font-poppins text-[#FCD2B1] text-[16px] sm:text-[18px] md:text-[27px] font-medium mt-4 mb-2">Did you find this Review helpful ?</div>
-              <div className="flex gap-4 text-[28px] text-[#D6E6F2]">
+            {/* Feedback Buttons - below text on md+ */}
+            <div className="hidden md:flex flex-row items-center justify-start gap-2 mt-2 w-full">
+              <div className="font-poppins text-[#FCD2B1] text-[18px] md:text-[20px] font-medium text-left">Did you find this Review helpful?</div>
+              <div className="flex gap-4 text-[18px] md:text-[28px] text-[#D6E6F2] ml-4">
                 <FaRegThumbsUp className="cursor-pointer hover:text-[#FCD2B1]" />
                 <FaRegThumbsDown className="cursor-pointer hover:text-[#FCD2B1]" />
               </div>
             </div>
           </div>
-          {/* Right: Images */}
-          <div className="flex flex-col md:mt-12 gap-2 min-w-[180px] max-w-[220px]">
+          {/* Right: Images and Feedback Buttons */}
+          <div className="flex flex-col w-full md:w-[45%] gap-2 mt-0 md:mt-12">
             <div className="grid grid-cols-2 gap-2">
               {feedback.images && feedback.images.slice(0, 4).map((img, idx) => (
-                <img key={idx} src={img} alt="trip" className="w-full h-[90px] object-cover rounded-lg" />
+                <img key={idx} src={img} alt="trip" className="w-full h-[100px] object-cover rounded-lg" />
               ))}
             </div>
             <div className="grid grid-cols-2 gap-2 mt-2">
               {feedback.images && feedback.images.slice(4, 6).map((img, idx) => (
-                <img key={idx} src={img} alt="trip" className="w-full h-[90px] object-cover rounded-lg" />
+                <img key={idx} src={img} alt="trip" className="w-full h-[100px] object-cover rounded-lg" />
               ))}
+            </div>
+            {/* Feedback Buttons - below images on mobile only */}
+            <div className="flex flex-row items-center justify-start gap-2 mt-4 w-full md:hidden">
+              <div className="font-poppins text-[#FCD2B1] text-[16px] sm:text-[18px] font-medium text-left">Did you find this Review helpful?</div>
+              <div className="flex gap-4 text-[18px] sm:text-[28px] text-[#D6E6F2] ml-4">
+                <FaRegThumbsUp className="cursor-pointer hover:text-[#FCD2B1]" />
+                <FaRegThumbsDown className="cursor-pointer hover:text-[#FCD2B1]" />
+              </div>
             </div>
           </div>
           {/* Close Button */}
