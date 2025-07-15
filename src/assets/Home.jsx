@@ -117,7 +117,7 @@ export default function Home() {
       role: "College Student",
       text: "Blind Fold Trips gave me the thrill of the unknown! I ended up exploring a place I never expected and made unforgettable memories. Perfect for budget-conscious adventurers like me.",
       image: "/1.jpg",
-      images: ["/Cards/1_1.jpg", "/Cards/1_2.jpg", "/Cards/1_3.jpg", "/Cards/1_4.jpg", "/Cards/1_5.jpg", "/Cards/1_6.jpg"],
+      images: ["/Cards/1_1.jpg", "/Cards/1_2.jpg", "/Cards/1_3.jpg", "/Cards/1_4.jpg", "/Cards/1_5.jpg"],
       title: "The Best Kind of Unknown"
     },
     {
@@ -126,7 +126,7 @@ export default function Home() {
       role: "Working Professional",
       text: "As someone with limited time, this trip was a blessing! Everything was sorted, and the surprise location brought a much-needed spark to my routine life. Highly recommend it!",
       image: "/2.jpg",
-      images: ["/Cards/2_1.jpg", "/Cards/2_2.jpg", "/Cards/2_3.jpg", "/Cards/2_4.jpg", "/Cards/2_5.jpg", "/Cards/2_6.jpg"],
+      images: ["/Cards/2_1.jpg", "/Cards/2_2.jpg", "/Cards/2_3.jpg", "/Cards/2_4.jpg", "/Cards/2_5.jpg"],
       title: "A Surprising Getaway"
     },
     {
@@ -135,7 +135,7 @@ export default function Home() {
       role: "Travel Blogger",
       text: "I usually plan every detail, but Blind Fold Trips turned that on its head—in the best way possible. I discovered hidden gems I wouldn’t have considered. Loved the spontaneity!",
       image: "/3.jpg",
-      images: ["/Cards/3_1.jpg", "/Cards/3_2.jpg", "/Cards/3_3.jpg", "/Cards/3_4.jpg", "/Cards/3_5.jpg", "/Cards/3_6.jpg"],
+      images: ["/Cards/3_1.jpg", "/Cards/3_2.jpg", "/Cards/3_3.jpg", "/Cards/3_4.jpg", "/Cards/3_5.jpg"],
       title: "A Perfect Blend of Adventure and Relaxation"
     },
     {
@@ -816,7 +816,7 @@ export default function Home() {
     if (!feedback) return null;
     return (
       <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60">
-        <div className="relative bg-[#0B3760] rounded-2xl shadow-lg w-full h-auto overflow-y-auto max-h-[90vh] p-8 flex flex-col md:flex-row gap-8 border-l-[8.54px] border-[#FFBE55]">
+        <div className="relative bg-[#0B3760] rounded-2xl shadow-lg w-full md:w-[80%] h-[95vh] overflow-y-auto p-8 flex flex-col md:flex-row gap-8 border-l-[8.54px] border-[#FFBE55]">
           {/* Left: Main Info */}
           <div className="flex-1 w-full md:w-[60%] flex flex-col">
             <div className="flex items-center gap-4 mb-2">
@@ -853,17 +853,23 @@ export default function Home() {
             </div>
           </div>
           {/* Right: Images and Feedback Buttons */}
-          <div className="flex flex-col w-full md:w-[45%] gap-2 mt-0 md:mt-12">
-            <div className="grid grid-cols-2 gap-2">
-              {feedback.images && feedback.images.slice(0, 4).map((img, idx) => (
-                <img key={idx} src={img} alt="trip" className="w-full h-[100px] object-cover rounded-lg" />
-              ))}
+          <div className="flex flex-col w-full md:w-[35%] gap-2 mt-0 md:mt-12">
+            <div className="flex gap-2">
+              {/* Left column */}
+              <div className="flex flex-col gap-2 w-1/2">
+                <img src={feedback.images && feedback.images[0]} alt="trip" className="w-full h-[140px] object-cover rounded-lg" />
+                <img src={feedback.images && feedback.images[2]} alt="trip" className="w-full h-[180px] object-cover rounded-lg" />
+              </div>
+              {/* Right column */}
+              <div className="flex flex-col gap-2 w-1/2">
+                <img src={feedback.images && feedback.images[1]} alt="trip" className="w-full h-[200px] object-cover rounded-lg" />
+                <img src={feedback.images && feedback.images[3]} alt="trip" className="w-full h-[120px] object-cover rounded-lg" />
+              </div>
             </div>
-            <div className="grid grid-cols-2 gap-2 mt-2">
-              {feedback.images && feedback.images.slice(4, 6).map((img, idx) => (
-                <img key={idx} src={img} alt="trip" className="w-full h-[100px] object-cover rounded-lg" />
-              ))}
-            </div>
+            {/* 5th image spanning both columns */}
+            {feedback.images && feedback.images[4] && (
+              <img src={feedback.images[4]} alt="trip" className="w-full h-[137px] object-cover rounded-lg mt-2" />
+            )}
             {/* Feedback Buttons - below images on mobile only */}
             <div className="flex flex-row items-center justify-start gap-2 mt-4 w-full md:hidden">
               <div className="font-poppins text-[#FCD2B1] text-[16px] sm:text-[18px] font-medium text-left">Did you find this Review helpful?</div>
