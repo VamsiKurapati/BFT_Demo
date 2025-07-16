@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { FaFacebookF, FaInstagram, FaXTwitter } from 'react-icons/fa6';
+import ToastContainer from './ToastContainer';
+import { toast } from 'react-toastify';
 
 export default function Footer() {
     const [email, setEmail] = useState("");
@@ -19,15 +21,15 @@ export default function Footer() {
             if (res.ok) {
                 console.log("Email submitted successfully!");
                 setEmail("");
-                alert("Thanks for subscribing");
+                toast.success("Thanks for subscribing");
                 return true;
             } else {
-                alert("Please try again.");
+                toast.error("Please try again.");
                 return false;
             }
         } catch (err) {
             console.error("Error submitting email:", err.message);
-            alert("Please try again...");
+            toast.error("Please try again...");
         }
     };
 
@@ -43,7 +45,7 @@ export default function Footer() {
                             <img src="Footer.png" alt="Footer Image" className="h-[222px] w-[332px] hidden md:block -scale-x-100" />
                         </div>
                     </div>
-                    
+
                     {/* For screens >= sm and <= md, Quick Links and Legal Information in 2 rows */}
                     <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row justify-between items-center md:items-start lg:items-start mt-0 sm:mt-6">
                         {/* Quick Links */}
@@ -55,7 +57,7 @@ export default function Footer() {
                                 <li><a href="/contact" className="hover:text-red-200">Contact Us</a></li>
                             </ul>
                         </div>
-                        
+
                         {/* Legal Information */}
                         <div className="w-full sm:w-full md:w-1/2 lg:w-1/4 mb-6 sm:mb-0 flex flex-col items-center text-center">
                             <h4 className="font-archivo-black font-normal text-[24px] mb-4">Legal Information</h4>
@@ -84,10 +86,9 @@ export default function Footer() {
                                 type="submit"
                                 disabled={!validEmail(email)}
                                 onClick={handleSubmit}
-                                className={`p-2 ml-2 transition-transform duration-200 ${
-                                    !validEmail(email) ? 'opacity-50 cursor-not-allowed' : 'hover:scale-105'
-                                }`}
-                                >
+                                className={`p-2 ml-2 transition-transform duration-200 ${!validEmail(email) ? 'opacity-50 cursor-not-allowed' : 'hover:scale-105'
+                                    }`}
+                            >
                                 <img src="/send-icon.png" alt="Send" className="w-6 h-6" />
                             </button>
                         </div>
@@ -103,7 +104,7 @@ export default function Footer() {
                             </a>
                         </div>
                     </div>
-                    
+
                     {/* Copyright */}
                     <div className="mt-4 text-center text-[16px] font-goudy font-normal">
                         <p>© 2025 BlindFold Trips. All rights reserved.</p>
@@ -117,7 +118,7 @@ export default function Footer() {
                             <img src="/logo.png" alt="BlindFold Trips Logo" className="h-12 mb-4" />
                             <img src="Footer.png" alt="Footer Image" className="h-[222px] w-[332px] hidden md:block -scale-x-100" />
                         </div>
-                        
+
                         {/* Quick Links */}
                         <div className="w-full sm:w-full md:w-1/2 lg:w-1/5 mb-6 sm:mb-0 flex flex-col items-center text-center">
                             <h4 className="font-archivo-black font-normal text-[24px] mb-4">Quick Links</h4>
@@ -127,7 +128,7 @@ export default function Footer() {
                                 <li><a href="/contact" className="hover:text-red-200">Contact Us</a></li>
                             </ul>
                         </div>
-                        
+
                         {/* Legal Information */}
                         <div className="w-full sm:w-full md:w-1/2 lg:w-1/5 mb-6 sm:mb-0 flex flex-col items-center text-center">
                             <h4 className="font-archivo-black font-normal text-[24px] mb-4">Legal Information</h4>
@@ -137,7 +138,7 @@ export default function Footer() {
                                 <li><a href="/privacy_policy" className="hover:text-red-200">Privacy Policy</a></li>
                             </ul>
                         </div>
-                        
+
                         {/* Contact */}
                         <div className="w-full sm:w-full md:w-1/2 lg:w-1/4 sm:flex sm:flex-col items-center text-center">
                             <h4 className="font-archivo-black font-normal text-[24px]">Subscribe to Our Newsletter</h4>
@@ -155,10 +156,9 @@ export default function Footer() {
                                     type="submit"
                                     disabled={!validEmail(email)}
                                     onClick={handleSubmit}
-                                    className={`p-2 ml-2 transition-transform duration-200 ${
-                                        !validEmail(email) ? 'opacity-50 cursor-not-allowed' : 'hover:scale-105'
-                                    }`}
-                                    >
+                                    className={`p-2 ml-2 transition-transform duration-200 ${!validEmail(email) ? 'opacity-50 cursor-not-allowed' : 'hover:scale-105'
+                                        }`}
+                                >
                                     <img src="/send-icon.png" alt="Send" className="w-6 h-6" />
                                 </button>
                             </div>
@@ -175,13 +175,14 @@ export default function Footer() {
                             </div>
                         </div>
                     </div>
-                    
+
                     {/* Copyright */}
                     <div className="mt-4 text-left text-[16px] font-goudy font-normal">
                         <p>© 2025 BlindFold Trips. All rights reserved.</p>
                     </div>
                 </div>
             </footer>
+            <ToastContainer />
         </>
     )
 }

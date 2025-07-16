@@ -3,6 +3,8 @@ import { FaEnvelope, FaPhone, FaClock, FaFacebook, FaInstagram, FaXTwitter, FaAr
 import Footer from "./Footer";
 import { useEffect } from "react";
 import NavbarDashboard from "./NavbarDashboard";
+import ToastContainer from './ToastContainer';
+import { toast } from 'react-toastify';
 
 export default function Contact() {
     const [activeFaq, setActiveFaq] = useState(null);
@@ -120,7 +122,7 @@ export default function Contact() {
             });
 
             if (response.ok) {
-                alert('Form submitted successfully!');
+                toast.success("Form submitted successfully!");
                 setForm({
                     name: '',
                     email: '',
@@ -132,10 +134,12 @@ export default function Contact() {
                 return true;
             } else {
                 const errorData = await response.json();
+                toast.error(errorData.error || "Submission failed. Please try again.");
                 setError(errorData.error || 'Submission failed. Please try again.');
                 return false;
             }
         } catch (error) {
+            toast.error("Submission failed. Please try again.");
             setError('Submission failed. Please try again.');
         } finally {
             setIsSubmitting(false);
@@ -144,6 +148,8 @@ export default function Contact() {
 
     return (
         <section className="w-full">
+            <ToastContainer />
+
             {/* Background Image and Navigation */}
             <section
                 className="relative min-h-screen md:h-[750px] bg-cover bg-center bg-no-repeat overflow-hidden"

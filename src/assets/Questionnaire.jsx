@@ -10,8 +10,8 @@ import car from "/car.png";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
 import { AnimatePresence, motion } from "framer-motion";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import ToastContainer from './ToastContainer';
+import { toast } from 'react-toastify';
 
 const TOTAL_PAGES = 34;
 
@@ -2070,7 +2070,7 @@ export default function Questionnaire() {
                         Our mission at BFT is to connect people with cultures far from their own. But let's be clear: <span className="font-bold">your safety is non-negotiable on any of our trips.</span>
                     </p>
                     <p className="font-poppins font-normal text-[24px] text-[#000000] text-center mb-4">
-                        Any <span className="font-bold">destination types that wouldn't be safe or suitable for you? </span><span className="text-[#A32727]">*</span>
+                        Any <span className="font-bold">destination types that wouldn't be safe or suitable for you?</span>
                     </p>
                     <div className="flex flex-col items-start gap-4 text-[16px] mb-4 sm:text-[20px] md:text-[24px] text-left font-normal font-poppins">
                         <label className="flex items-center text-left">
@@ -3008,21 +3008,8 @@ export default function Questionnaire() {
 
     return (
         <div className="min-h-screen flex flex-col bg-white">
-            <ToastContainer
-                position="top-right"
-                autoClose={3000}
-                hideProgressBar={false}
-                newestOnTop
-                closeOnClick
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                toastClassName={(context) =>
-                    context?.type === "success"
-                        ? "bg-green-500 text-white font-poppins rounded-lg"
-                        : undefined
-                }
-            />
+            <ToastContainer />
+
             {/* Header */}
             <div className="flex flex-col justify-end items-end pt-[56px] px-6 py-4 border-b shadow-sm">
                 <img src="/Logo_1.png" alt="Logo" className="lg:pl-[48px] h-16 mr-auto" />
