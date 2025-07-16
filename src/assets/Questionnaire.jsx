@@ -77,7 +77,8 @@ export default function Questionnaire() {
     const [selectedAirports, setSelectedAirports] = useState([]);
     const [budget, setBudget] = useState("");
     const [phone, setPhone] = useState('');
-    const [preferredStartDate, setPreferredStartDate] = useState("");
+    const [preferredStartDateValue, setPreferredStartDateValue] = useState("");
+    const [fixedStartDateValue, setFixedStartDateValue] = useState("");
 
     const [checkboxValues, setCheckboxValues] = useState({
         awareOfNothing: false,
@@ -198,9 +199,10 @@ export default function Questionnaire() {
 
         fDtN: false,
         fDfN: false,
-        sDfN: false,
+        sDsN: false,
         userChoice: false,
 
+        fixedStartDate: false,
         preferredStartDate: false,
         completelyFlexible: false,
 
@@ -305,14 +307,14 @@ export default function Questionnaire() {
         },
         {
             name: "14",
-            titles: ["fDtN", "fDfN", "sDfN", "userChoice"],
+            titles: ["fDtN", "fDfN", "sDsN", "userChoice"],
             autoMove: false,
             autoMoveKey: "userChoice",
             holdKey: "userChoice",
         },
         {
             name: "15",
-            titles: ["preferredStartDate", "completelyFlexible"],
+            titles: ["preferredStartDate", "completelyFlexible", "fixedStartDate"],
             autoMove: false,
             autoMoveKey: "completelyFlexible",
         },
@@ -401,7 +403,12 @@ export default function Questionnaire() {
 
     const handlepreferredStartDateChange = (event) => {
         const date = event.target.value;
-        setPreferredStartDate(date);
+        setPreferredStartDateValue(date);
+    }
+
+    const handlefixedStartDateChange = (event) => {
+        const date = event.target.value;
+        setFixedStartDateValue(date);
     }
 
     const handleNext = async () => {
@@ -576,11 +583,11 @@ export default function Questionnaire() {
     }
 
     const page25validator = () => {
-        return checkboxValues["fDfN"] || checkboxValues["fDtN"] || checkboxValues["sDfN"] || (checkboxValues["userChoice"] && stayingDuration !== "");
+        return checkboxValues["fDfN"] || checkboxValues["fDtN"] || checkboxValues["sDsN"] || (checkboxValues["userChoice"] && stayingDuration !== "");
     }
 
     const page26validator = () => {
-        return (checkboxValues["preferredStartDate"] && preferredStartDate !== "") || checkboxValues["completelyFlexible"];
+        return (checkboxValues["preferredStartDate"] && preferredStartDateValue !== "") || checkboxValues["completelyFlexible"] || (checkboxValues["fixedStartDate"] && fixedStartDateValue !== "");
     }
 
     const page27validator = () => {
@@ -640,7 +647,8 @@ export default function Questionnaire() {
                     phone,
                     selectedCountry,
                     selectedState,
-                    preferredStartDate,
+                    preferredStartDateValue,
+                    fixedStartDateValue,
                     ...checkboxValues,
                 }),
             });
@@ -2425,12 +2433,12 @@ export default function Questionnaire() {
                             <label className="flex items-center text-left">
                                 <input
                                     type="checkbox"
-                                    name="sDfN"
+                                    name="sDsN"
                                     className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                    checked={checkboxValues.sDfN}
+                                    checked={checkboxValues.sDsN}
                                     onChange={handleCheckboxChange}
                                 />
-                                7 Days / 5 Nights
+                                7 Days / 6 Nights
                             </label>
                             <label className="flex items-center text-left mb-2">
                                 <input
@@ -2471,6 +2479,32 @@ export default function Questionnaire() {
                             <label className="flex items-center text-left">
                                 <input
                                     type="checkbox"
+                                    name="fixedStartDate"
+                                    className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
+                                    checked={checkboxValues.fixedStartDate}
+                                    onChange={handleCheckboxChange}
+                                />
+                                I have a fixed start date
+                            </label>
+                            {checkboxValues.fixedStartDate && (
+                                <div className="pl-8">
+                                    <p className="font-poppins font-normal text-[#000000] text-[16px] sm:text-[20px] md:text-[24px] mb-2">
+                                        What's your <span className="font-bold">fixed start date ? <span className="text-[#A32727]">*</span></span>
+                                    </p>
+                                    <input
+                                        type="date"
+                                        name="fixedStartDateValue"
+                                        value={fixedStartDateValue || ""}
+                                        onChange={handlefixedStartDateChange}
+                                        className="border border-2 border-[#000000B2] bg-[#D9D9D966] rounded-lg px-4 py-2 text-black"
+                                        min={new Date(Date.now() + 86400000).toISOString().split("T")[0]} // Tomorrow's date
+                                    />
+                                </div>
+                            )}
+
+                            <label className="flex items-center text-left">
+                                <input
+                                    type="checkbox"
                                     name="preferredStartDate"
                                     className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
                                     checked={checkboxValues.preferredStartDate}
@@ -2486,7 +2520,7 @@ export default function Questionnaire() {
                                     <input
                                         type="date"
                                         name="preferredStartDateValue"
-                                        value={preferredStartDate || ""}
+                                        value={preferredStartDateValue || ""}
                                         onChange={handlepreferredStartDateChange}
                                         className="border border-2 border-[#000000B2] bg-[#D9D9D966] rounded-lg px-4 py-2 text-black"
                                         min={new Date(Date.now() + 86400000).toISOString().split("T")[0]} // Tomorrow's date

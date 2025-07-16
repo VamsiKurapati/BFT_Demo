@@ -807,7 +807,7 @@ export default function Home() {
     {
       id: 3,
       question: "How much does it cost?",
-      answer: "The minimum is 10K per person for a 4-day trip from India ."
+      answer: "The minimum is ₹38,999 per person for a 4-day trip from India."
     }
   ];
 
