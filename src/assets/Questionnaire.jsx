@@ -417,9 +417,10 @@ export default function Questionnaire() {
         } else {
             const success = await handleSave();
             if (success) {
+                toast.success("Responses saved successfully!");
                 setTimeout(() => {
                     navigate("/stay_tuned");
-                }, 1500);
+                }, 2000);
             } else {
                 toast.error("Failed to save responses. Please try again.");
             }

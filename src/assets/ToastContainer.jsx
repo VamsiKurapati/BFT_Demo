@@ -3,7 +3,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const ToastContainer = () => {
     return (
-        <ToastContainerComponent position="top-right" autoClose={3000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover
+        <ToastContainerComponent position="top-right" autoClose={3000} hideProgressBar={false} newestOnTop={false} closeOnClick={false} rtl={false} pauseOnFocusLoss draggable pauseOnHover
             toastClassName={(context) =>
                 context?.type === "success"
                     ? "bg-green-500 text-white font-poppins rounded-lg text-center px-4 py-2 w-[300px] text-sm font-bold flex items-center justify-center"
