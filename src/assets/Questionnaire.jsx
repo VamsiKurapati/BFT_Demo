@@ -3050,10 +3050,9 @@ export default function Questionnaire() {
     }, []);
 
     const validators = {
-        //Page 1 Intro
-        //Page 2 Intro
+        //0: Page 1 Intro
         1: page2validator,
-        //Page 4 - Chapter-1
+        //2: Page 3 - Shows clickable chapters
         4: page5validator,
         5: page6validator,
         6: page7validator,
