@@ -7,29 +7,33 @@
   .font-goudy {
     font-family: 'Goudy Bookletter 1911', serif;
   }
-  
+
   .font-poppins {
     font-family: 'Poppins', sans-serif;
   }
-  
+
   .font-dela-gothic {
     font-family: 'Dela Gothic One', cursive;
   }
-  
+
   .font-baloo-bhai {
     font-family: 'Baloo Bhai 2', cursive;
   }
-  
+
   .font-archivo-black {
     font-family: 'Archivo Black', sans-serif;
   }
-  
+
   .font-titan-one {
     font-family: 'Titan One', cursive;
   }
-  
+
   .font-sofia {
     font-family: 'Sofia', cursive;
+  }
+
+  .font-lora {
+    font-family: 'Lora', serif;
   }
 }
 
@@ -43,12 +47,14 @@
 }
 
 .slider::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 0, 0, 0.2); /* Lower opacity */
+  background-color: rgba(0, 0, 0, 0.2);
+  /* Lower opacity */
   border-radius: 10px;
 }
 
 .slider {
-  scrollbar-color: rgba(0, 0, 0, 0.2) transparent; /* Firefox */
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+  /* Firefox */
 }
 
 /* Only hides horizontal scrollbar, not vertical ones */
@@ -88,7 +94,8 @@
 
 .custom-scroll {
   scrollbar-width: thin;
-  scrollbar-color: rgba(0, 0, 0, 0.2) transparent; /* Firefox */
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+  /* Firefox */
 }
 
 .custom-scroll::-webkit-scrollbar {
@@ -108,8 +115,8 @@
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
-

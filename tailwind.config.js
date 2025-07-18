@@ -15,6 +15,7 @@ export default {
         'titan-one': ['"Titan One"', 'cursive'],
         'sofia': ['Sofia', 'cursive'],
         'paytone-one': ['"Paytone One"', 'sans-serif'],
+        'lora': ['Lora', 'serif'],
       },
     },
   },

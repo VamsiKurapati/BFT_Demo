@@ -1,17 +1,14 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import Select from 'react-select';
-import { gsap } from "gsap";
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 import { Country, State } from 'country-state-city';
 import { parsePhoneNumberFromString } from 'libphonenumber-js';
-import car from "/car.png";
-import { IoCloseCircleOutline } from "react-icons/io5";
-import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
-import { AnimatePresence, motion } from "framer-motion";
+import { FaArrowRightLong } from "react-icons/fa6";
 import ToastContainer from './ToastContainer';
 import { toast } from 'react-toastify';
+import { MdLocationOn, MdPerson } from 'react-icons/md';
 
 const TOTAL_PAGES = 34;
 
@@ -54,9 +51,6 @@ const Images = [
 ];
 
 export default function Questionnaire() {
-    const carRef = useRef(null);
-    const lineRef = useRef(null);
-    const [lineWidth, setLineWidth] = useState(0);
     const navigate = useNavigate();
 
     const [currentPageIndex, setCurrentPageIndex] = useState(0);
@@ -427,12 +421,6 @@ export default function Questionnaire() {
         }
     };
 
-    const handlePrev = () => {
-        if (currentPageIndex > 0) {
-            setCurrentPageIndex(prev => prev - 1);
-        }
-    };
-
     const handleCheckboxChange = (event) => {
         const { name, checked } = event.target;
 
@@ -498,7 +486,7 @@ export default function Questionnaire() {
         setPhone(val);
     };
 
-    const page3validator = () => {
+    const page2validator = () => {
         return firstName.trim() !== "" && (travelerCount !== "" && (travelerCount !== "other" || customTravelerCount !== ""));
     }
 
@@ -672,39 +660,155 @@ export default function Questionnaire() {
             Number: 1,
             type: "text",
             Content: (
-                <div className='w-full sm:w-[90%] md:w-[75%] lg:w-[60%] flex flex-col items-center'>
-                    <h1 className='font-titan-one font-normal text-[36px] text-[#000000E5] text-center mb-4'>
-                        Blind Fold Trips Questionnaire
-                    </h1>
-                    <p className='font-poppins font-normal text-[24px] text-[#000000BF] text-center mb-4'>
-                        <span className="font-bold text-[#000000]">Welcome, explorer.</span> What you share here unlocks the journey meant just for you. Soon, the details will find their way to you.
-                    </p>
-                    <p className='font-poppins font-normal text-[24px] text-[#000000BF] text-center mb-4'>
-                        Unlock the first step to the unknown. <span className="font-bold text-[#000000]">Fill in the details, receive your surprise proposal — all for free.</span>
-                    </p>
+                <div
+                    className="w-full h-[100vh] flex flex-col md:flex-row items-center justify-between relative overflow-hidden px-4 md:px-8 pb-8"
+                    style={{
+                        background: "linear-gradient(180deg, rgba(255, 255, 255,0.3), rgba(191, 231, 255, 0.2), rgba(96, 194, 255, 0.2))",
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                        backgroundRepeat: "no-repeat"
+                    }}
+                >
+                    {/* World map background - lower opacity and z-index to ensure gradient is visible */}
+                    <img
+                        src="/Questionnaire/Map.png"
+                        alt="World Map"
+                        className="absolute inset-0 w-full h-full lg:left-0 lg:top-[24px] lg:w-[70%] lg:h-[70%] object-cover opacity-20 pointer-events-none z-0"
+                    />
+                    {/* Left: Text Content (and Home.png on small screens) */}
+                    <div className="relative z-10 flex-1 flex flex-col justify-center items-start w-full md:max-w-xl">
+                        {/* Home.png above text on small screens */}
+                        <div className="block md:hidden w-full flex justify-center mb-4">
+                            <div className="relative max-w-[320px] max-h-[240px] flex items-end justify-center">
+                                <img
+                                    src="/Questionnaire/Home.png"
+                                    alt="Choose Your Trip Illustration"
+                                    className="w-full h-full object-contain"
+                                />
+                            </div>
+                        </div>
+                        <h1 className="font-lora text-[#003566] font-semibold text-[32px] md:text-[42px] lg:text-[52px] mb-4 text-left mt-4 md:mt-0">Welcome, explorer!</h1>
+                        <p className="font-poppins text-[#000000BF] text-[18px] md:text-[22px] mb-2 text-left">
+                            What you share here unlocks the journey meant just for you. Soon, the details will find their way to you.<br />
+                            Unlock the first step to the unknown.
+                        </p>
+                        <div className="mt-6 mb-4">
+                            <p className="font-poppins text-[#174D51] font-medium text-[16px] md:text-[20px] text-left">
+                                Fill in the details, receive your surprise proposal - all for free. What happens next is up to you!
+                            </p>
+                        </div>
+                        <button
+                            onClick={handleNext}
+                            className="mt-2 bg-[#003566] text-white font-poppins text-[16px] md:text-[20px] px-8 py-3 rounded-lg flex items-center gap-2 shadow-md transition"
+                        >
+                            Get Started
+                            <FaArrowRightLong size={20} />
+                        </button>
+                    </div>
+                    {/* Right: Illustration (hidden on small screens) */}
+                    <div className="relative z-10 flex-1 flex-col items-center justify-center mt-10 md:mt-0 md:ml-8 hidden md:flex">
+                        <div className="relative max-w-[593px] max-h-[439px] flex items-end justify-center">
+                            <img
+                                src="/Questionnaire/Home.png"
+                                alt="Choose Your Trip Illustration"
+                                className="w-full h-full object-contain"
+                            />
+                        </div>
+                    </div>
                 </div>
             ),
-            buttonText: "Know your destination"
         },
         {
             Number: 2,
             type: "text",
             Content: (
-                <div className='w-full sm:w-[90%] md:w-[75%] lg:w-[50%] flex flex-col items-center'>
-                    <p className='font-poppins font-bold text-[24px] text-[#000000] text-left mb-4'>
-                        Before we send you on a mystery ride, let's check if Blind Fold Trip is your vibe :
-                    </p>
-                    <div className='items-start mb-4'>
-                        <p className='font-poppins font-normal text-[24px] text-[#000000] text-left mb-4'>
-                            <span className="font-titan-one text-[32px] text-[#000000BF]">01.</span>  Choose any airport across India to begin your trip.
-                        </p>
-                        <p className='font-poppins font-normal text-[24px] text-[#000000] text-left mb-4'>
-                            <span className="font-titan-one text-[32px] text-[#000000BF]">02.</span>  Everyone is at least 10 years old with at least one person who is 18 or older.
-                        </p>
+                <div
+                    className="w-full h-full flex flex-col md:flex-row items-center justify-between relative overflow-hidden px-4 md:px-8 pb-8"
+                    style={{
+                        background: "linear-gradient(180deg, rgba(255, 255, 255,0.3), rgba(191, 231, 255, 0.2), rgba(96, 194, 255, 0.2))",
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                        backgroundRepeat: "no-repeat"
+                    }}
+                >
+                    {/* World map background - lower opacity and z-index to ensure gradient is visible */}
+                    <img
+                        src="/Questionnaire/Map.png"
+                        alt="World Map"
+                        className="absolute inset-0 w-full h-full lg:left-0 lg:top-[24px] lg:w-[70%] lg:h-[70%] object-cover opacity-20 pointer-events-none z-0"
+                    />
+                    {/* Left: Main Content */}
+                    <div className="relative z-10 flex-1 flex flex-col justify-center items-start w-full md:max-w-xl">
+                        {/* Blue box with heading and bullet points */}
+                        <div className="bg-[#003566] rounded-2xl p-6 md:p-8 mb-8 w-full max-w-2xl border-1 border-[#182132] mt-8">
+                            <h2 className="text-[#DFF3FF] font-semibold text-[20px] md:text-[24px] mb-4 font-poppins">Before we send you on a mystery ride, let's check if Blind Fold Trip is your vibe!</h2>
+                            <ul className="space-y-3">
+                                <li className="flex items-start gap-3 text-white text-[16px] md:text-[20px] font-poppins">
+                                    <MdLocationOn size={22} />
+                                    Choose any airport across India to begin your trip.
+                                </li>
+                                <li className="flex items-start gap-3 text-white text-[16px] md:text-[20px] font-poppins">
+                                    <MdPerson size={22} />
+                                    Everyone is at least 10 years old with at least one person who is 18 or older.
+                                </li>
+                            </ul>
+                        </div>
+                        {/* Form Section */}
+                        <div className="w-full max-w-2xl">
+                            <label className="text-[#174D51] font-semibold text-[20px] md:text-[24px] mb-2 font-poppins">How many travelers are in your crew?</label>
+                            <div className="flex items-center gap-4 mb-6">
+                                <select
+                                    value={travelerCount}
+                                    onChange={handleTravelerCountChange}
+                                    className="border border-[#B0B0B0] rounded-lg px-4 py-2 text-[18px] font-poppins focus:outline-none focus:ring-2 focus:ring-[#60C2FF]"
+                                >
+                                    {[...Array(10)].map((_, i) => (
+                                        <option key={i + 1} value={i + 1}>{i + 1}</option>
+                                    ))}
+                                    <option value="other">Other</option>
+                                </select>
+                                {travelerCount === "other" && (
+                                    <input
+                                        type="number"
+                                        min="1"
+                                        value={customTravelerCount}
+                                        onChange={handleCustomTravelerCountChange}
+                                        placeholder="Enter number of travelers"
+                                        className="w-[120px] border border-[#B0B0B0] rounded-lg px-4 py-2 text-[18px] font-poppins focus:outline-none focus:ring-2 focus:ring-[#60C2FF]"
+                                    />
+                                )}
+                                <span className="text-[#5B5B5B] text-[16px] font-poppins italic">(If you're not sure, <span className="text-[#174D51]">start with 1</span>. You can always add more people later – after receiving your Blind Fold Trip Proposal.)</span>
+                            </div>
+                            <label className="text-[#174D51] font-semibold text-[20px] md:text-[24px] mb-2 font-poppins">Your Name, please!</label>
+                            <input
+                                type="text"
+                                value={firstName}
+                                onChange={handleFirstNameChange}
+                                placeholder="Enter your name"
+                                className="w-full border border-[#B0B0B0] rounded-lg px-4 py-3 text-[18px] font-poppins mb-8 focus:outline-none focus:ring-2 focus:ring-[#60C2FF]"
+                            />
+                            <button
+                                onClick={handleNext}
+                                disabled={!page2validator()}
+                                className="bg-[#003566] text-white font-poppins text-[16px] md:text-[20px] px-8 py-3 rounded-lg flex items-center gap-2 shadow-md transition mt-2"
+                            >
+                                Let's go
+                                <FaArrowRightLong size={20} />
+                            </button>
+                        </div>
+                    </div>
+                    {/* Right: Illustration (traveler with suitcase and globe) */}
+                    <div className="relative z-10 flex-1 flex-col items-center justify-center mt-10 md:mt-0 md:ml-8 hidden md:flex">
+                        <div className="relative max-w-[400px] max-h-[400px] flex items-end justify-center">
+                            <img
+                                src="/Questionnaire/Page-2.png"
+                                alt="Traveler Illustration"
+                                className="w-full h-full object-contain"
+                            />
+                        </div>
                     </div>
                 </div>
             ),
-            buttonText: "Let's dive in!"
         },
         {
             Number: 3,
@@ -2927,18 +3031,6 @@ export default function Questionnaire() {
     ];
 
     useEffect(() => {
-        const updateWidth = () => {
-            if (lineRef.current) {
-                const adjustedWidth = lineRef.current.offsetWidth - 70;
-                setLineWidth(adjustedWidth);
-            }
-        };
-        updateWidth();
-        window.addEventListener("resize", updateWidth);
-        return () => window.removeEventListener("resize", updateWidth);
-    }, []);
-
-    useEffect(() => {
         const allCountries = Country.getAllCountries();
         setCountries(allCountries);
     }, []);
@@ -2957,20 +3049,10 @@ export default function Questionnaire() {
             .catch((err) => console.error('Failed to fetch airport data', err));
     }, []);
 
-    useEffect(() => {
-        const progress = currentPageIndex / (TOTAL_PAGES - 1);
-        const moveDistance = progress * lineWidth;
-        gsap.to(carRef.current, {
-            x: moveDistance,
-            duration: 0.6,
-            ease: "power2.out",
-        });
-    }, [currentPageIndex, lineWidth]);
-
     const validators = {
         //Page 1 Intro
         //Page 2 Intro
-        2: page3validator,
+        1: page2validator,
         //Page 4 - Chapter-1
         4: page5validator,
         5: page6validator,
@@ -3012,66 +3094,13 @@ export default function Questionnaire() {
             <ToastContainer />
 
             {/* Header */}
-            <div className="flex flex-col justify-end items-end pt-[56px] px-6 py-4 border-b shadow-sm">
-                <img src="/Logo_1.png" alt="Logo" className="lg:pl-[48px] h-16 mr-auto" />
-                {currentPageIndex === 0 ? (
-                    <button onClick={() => navigate("/")} className="text-red-600 text-xl pr-[60px] font-bold hover:text-red-800 transition">
-                        <IoCloseCircleOutline size={30} />
-                    </button>
-                ) : (
-                    <p className="font-poppins font-bold text-[#A42828] text-[20px] md:text-[24px] md:pr-[60px]">
-                        {Pages[currentPageIndex].Heading}
-                    </p>
-                )}
-            </div>
-
-            {/* Dashed Line Path + Car */}
-            <div className="relative w-full px-12 mt-8 mb-3 h-[60px] mx-auto max-w-[95%]">
-                <div
-                    ref={lineRef}
-                    className="absolute top-1/2 transform -translate-y-1/2 h-1"
-                    style={{
-                        backgroundImage: 'repeating-linear-gradient(to right, #000000BF 0 60px, transparent 60px 72px)',
-                        width: 'calc(100% - 60px)',
-                        right: '30px',
-                        marginLeft: '30px'
-                    }}
-                ></div>
-                <img
-                    ref={carRef}
-                    src={car}
-                    alt="car"
-                    className="w-[60px] md:w-[75px] h-[60px] md:h-[60px] absolute top-1/2 transform -translate-y-1/2 left-4"
-                />
+            <div className="flex flex-col items-start justify-start px-6 pt-6">
+                <img src="/Logo_1.png" alt="Logo" className="h-[52px] w-[240px]" />
             </div>
 
             {/* Page Content */}
-            <div className="flex-grow flex flex-col justify-center items-center px-6 text-center text-[#000000]">
+            <div className="flex flex-col items-center justify-center">
                 {Pages[currentPageIndex].Content || ''}
-            </div>
-
-            {/* Navigation Button */}
-            <div className="w-full mt-8 px-6 pb-8 mb-4 flex flex-col sm:flex-col md:flex-row justify-center md:gap-4 space-y-4 md:space-y-0 mx-auto">
-                {/* Back Button */}
-                {currentPageIndex > 0 && (
-                    <button
-                        onClick={handlePrev}
-                        className="mx-auto bg-[#A11616E5] hover:bg-[#003566] text-[#FCD2B1] font-poppins font-bold text-[20px] px-8 py-2 rounded-full border border-[#FCD2B1] flex items-center justify-center gap-2 transition"
-                    >
-                        <FaArrowLeftLong size={20} />
-                        Back
-                    </button>
-                )}
-
-                {/* Next Button */}
-                <button
-                    onClick={handleNext}
-                    className="mx-auto bg-[#A11616E5] hover:bg-[#003566] text-[#FCD2B1] font-poppins font-bold text-[20px] px-8 py-2 rounded-full border border-[#FCD2B1] flex items-center justify-center gap-2 transition"
-                    disabled={isDisabled}
-                >
-                    {Pages[currentPageIndex].buttonText}
-                    <FaArrowRightLong size={20} />
-                </button>
             </div>
         </div>
     );

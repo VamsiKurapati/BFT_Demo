@@ -37,6 +37,14 @@ import '@fontsource/paytone-one/400.css';
 
 // Sofia (Only weight 400)
 import '@fontsource/sofia/400.css';
+
+// Lora (All weights)
+import '@fontsource/lora/400.css';
+import '@fontsource/lora/500.css';
+import '@fontsource/lora/600.css';
+import '@fontsource/lora/700.css';
+
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
