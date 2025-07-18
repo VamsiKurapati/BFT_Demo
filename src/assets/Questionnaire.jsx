@@ -9,6 +9,7 @@ import { FaArrowRightLong } from "react-icons/fa6";
 import ToastContainer from './ToastContainer';
 import { toast } from 'react-toastify';
 import { MdLocationOn, MdPerson } from 'react-icons/md';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const TOTAL_PAGES = 34;
 
@@ -667,6 +668,67 @@ export default function Questionnaire() {
         }
     };
 
+    const validators = {
+        //0: Page 1 Intro
+        1: page2validator,
+        //2: Page 3 - Shows clickable chapters
+        //Chapter 1
+        3: page4validator,
+        4: page5validator,
+        5: page6validator,
+        6: page7to13validator(""),
+        7: page7to13validator("1"),
+        8: page7to13validator("2"),
+        9: page7to13validator("3"),
+        10: page7to13validator("4"),
+        11: page7to13validator("5"),
+        12: page7to13validator("6"),
+        //Chapter 2
+        13: page14validator,
+        14: page15validator,
+        15: page16validator,
+        16: page17validator,
+        17: page18validator,
+        18: page19validator,
+        //Page 20 - No validation required
+        //Chapter 3
+        20: page21validator,
+        21: page22validator,
+        22: page23validator,
+        23: page24validator,
+        24: page25validator,
+        25: page26validator,
+        //Chapter 4
+        26: () => page27validator(phone),
+        27: page28validator,
+        28: page29validator,
+        29: page30validator,
+    };
+
+    // --- Chapter Navigation Click Handlers ---
+    const chapterPageIndexes = [4, 14, 21, 27];
+    const chapterValidators = [
+        () => true, // Chapter 1 always accessible
+        () => validators[4] && validators[4](), // Chapter 2: page 4 must be valid
+        () => validators[14] && validators[14](), // Chapter 3: page 14 must be valid
+        () => validators[21] && validators[21](), // Chapter 4: page 21 must be valid
+    ];
+
+    const handleChapterClick = (chapterIdx) => {
+        // Only allow if all previous chapters are valid
+        for (let i = 0; i < chapterIdx; i++) {
+            if (!chapterValidators[i]()) {
+                toast.error("Please complete previous chapters before proceeding.");
+                return;
+            }
+        }
+        setCurrentPageIndex(chapterPageIndexes[chapterIdx]);
+    };
+
+    const currentValidator = validators[currentPageIndex];
+    const isDisabled = currentValidator ? !currentValidator() : false;
+
+
     const Pages = [
         {
             Number: 1,
@@ -826,14 +888,7 @@ export default function Questionnaire() {
             Number: 3,
             type: "text",
             Content: (
-                <div className="relative w-full min-h-screen flex flex-col items-center justify-center px-2 md:px-8 py-8 overflow-hidden"
-                    style={{
-                        background: "linear-gradient(180deg, rgba(255, 255, 255,0.3), rgba(191, 231, 255, 0.2), rgba(96, 194, 255, 0.2))",
-                        backgroundSize: "cover",
-                        backgroundPosition: "center",
-                        backgroundRepeat: "no-repeat"
-                    }}
-                >
+                <div className="relative w-full min-h-[60vh] flex flex-col items-center justify-center px-2 md:px-8 py-8 overflow-hidden">
                     {/* World map background */}
                     <img
                         src="/Questionnaire/Map.png"
@@ -841,44 +896,50 @@ export default function Questionnaire() {
                         className="absolute inset-0 w-full h-full object-cover opacity-20 pointer-events-none z-0"
                     />
                     {/* Headline */}
-                    <h2 className="relative z-10 text-[#003566] font-semibold text-[24px] md:text-[32px] text-center mb-10 font-poppins">
+                    <h2 className="relative z-10 text-[#0A3761] font-bold text-[22px] md:text-[28px] text-center mb-10 font-lora">
                         Navigate through different chapters to reach your destination
                     </h2>
-                    <p className="font-poppins font-medium text-[#003566] text-[12px] text-center mb-10"> ( Note: Please click over a Chapter to fill in the details )</p>
                     {/* Progress line with icons */}
                     <div className="relative z-10 w-full max-w-5xl flex flex-col items-center">
                         {/* Dotted line */}
                         <div className="w-full flex items-center justify-between mb-2">
-                            {/* Plane icons */}
+                            {/* Plane icons as clickable buttons */}
                             {[0, 1, 2, 3].map((i) => (
-                                <div key={i} className="flex flex-col items-center w-1/4">
+                                <button
+                                    key={i}
+                                    onClick={() => handleChapterClick(i)}
+                                    aria-label={`Go to Chapter ${i + 1}`}
+                                    className={`focus:outline-none transition-transform active:scale-95 flex flex-col items-center w-1/4 group ${i === 0 || chapterValidators[i]() ? 'cursor-pointer' : 'cursor-not-allowed opacity-60'}`}
+                                    disabled={i !== 0 && !chapterValidators[i]()}
+                                    type="button"
+                                >
                                     <div className="relative flex flex-col items-center">
-                                        <div className="bg-[#FFE6B0] rounded-full w-16 h-16 flex items-center justify-center shadow-md border-2 border-[#FFF6E0] z-10 mt-2">
+                                        <div className="bg-[#FFE6B0] rounded-full w-16 h-16 flex items-center justify-center shadow-md border-2 border-[#FFF6E0] z-10 mt-2 group-hover:scale-105 group-focus:scale-105 transition-transform">
                                             <img src="/Questionnaire/Page-3.png" alt="plane" className="w-8 h-8 object-contain" />
                                         </div>
                                     </div>
-                                </div>
+                                </button>
                             ))}
                         </div>
                         {/* Dotted line behind icons */}
-                        <div className="absolute left-0 right-0 mx-auto top-8 w-[70%] h-0 border-t-4 border-dashed border-[#174D51] z-0" style={{ top: '2.5rem' }}></div>
+                        <div className="absolute left-0 right-0 top-8 w-full h-0 border-t-4 border-dashed border-[#174D51] z-0" style={{ top: '2.5rem' }}></div>
                         {/* Chapter labels */}
                         <div className="w-full flex items-start justify-between mt-8">
                             <div className="flex flex-col items-center w-1/4">
-                                <span className="font-semibold text-[#003566] text-[20px] md:text-[32px] font-poppins">Chapter 1</span>
-                                <span className="font-poppins font-medium text-[#003566] text-[16px] md:text-[24px] text-center mt-1">You & Your Getaway Style</span>
+                                <span className="font-bold text-[#0A3761] text-lg md:text-xl font-lora">Chapter 1</span>
+                                <span className="font-poppins text-[#0A3761] text-base md:text-lg text-center mt-1">You & Your Getaway Style</span>
                             </div>
                             <div className="flex flex-col items-center w-1/4">
-                                <span className="font-semibold text-[#003566] text-[20px] md:text-[32px] font-poppins">Chapter 2</span>
-                                <span className="font-poppins font-medium text-[#003566] text-[16px] md:text-[24px] text-center mt-1">Your Mystery Trip Begins</span>
+                                <span className="font-bold text-[#6B6B6B] text-lg md:text-xl font-lora">Chapter 2</span>
+                                <span className="font-poppins text-[#6B6B6B] text-base md:text-lg text-center mt-1">Your Mystery Trip Begins</span>
                             </div>
                             <div className="flex flex-col items-center w-1/4">
-                                <span className="font-semibold text-[#003566] text-[20px] md:text-[32px] font-poppins">Chapter 3</span>
-                                <span className="font-poppins font-medium text-[#003566] text-[16px] md:text-[24px] text-center mt-1">The Must Knows</span>
+                                <span className="font-bold text-[#6B6B6B] text-lg md:text-xl font-lora">Chapter 3</span>
+                                <span className="font-poppins text-[#6B6B6B] text-base md:text-lg text-center mt-1">The Must Knows</span>
                             </div>
                             <div className="flex flex-col items-center w-1/4">
-                                <span className="font-semibold text-[#003566] text-[20px] md:text-[32px] font-poppins">Chapter 4</span>
-                                <span className="font-poppins font-medium text-[#003566] text-[16px] md:text-[24px] text-center mt-1">The Final Touch: You</span>
+                                <span className="font-bold text-[#6B6B6B] text-lg md:text-xl font-lora">Chapter 4</span>
+                                <span className="font-poppins text-[#6B6B6B] text-base md:text-lg text-center mt-1">The Final Touch: You</span>
                             </div>
                         </div>
                     </div>
@@ -2820,49 +2881,85 @@ export default function Questionnaire() {
             .catch((err) => console.error('Failed to fetch airport data', err));
     }, []);
 
-    const validators = {
-        //0: Page 1 Intro
-        1: page2validator,
-        //2: Page 3 - Shows clickable chapters
+    // --- LocalStorage Autosave/Restore ---
+    useEffect(() => {
+        // On mount, check for saved progress
+        const saved = localStorage.getItem("bft_questionnaire_progress");
+        if (saved) {
+            if (window.confirm("You have unsaved progress. Do you want to continue where you left off?")) {
+                const data = JSON.parse(saved);
+                // Restore all relevant state
+                setCurrentPageIndex(data.currentPageIndex || 0);
+                setFavouriteDestination(data.favouriteDestination || "");
+                setTravelerCount(data.travelerCount || "1");
+                setCustomTravelerCount(data.customTravelerCount || "");
+                setSpecialOccasion(data.specialOccasion || "");
+                setFirstName(data.firstName || "");
+                setOtherAllergyDetails(data.otherAllergyDetails || "");
+                setAvoidDestination(data.avoidDestination || "");
+                setSelectedCountry(data.selectedCountry || "");
+                setSelectedCountryCode(data.selectedCountryCode || "");
+                setSelectedState(data.selectedState || "");
+                setStayingDuration(data.stayingDuration || "");
+                setAirports(data.airports || []);
+                setSelectedAirports(data.selectedAirports || []);
+                setBudget(data.budget || "");
+                setPhone(data.phone || "");
+                setPreferredStartDateValue(data.preferredStartDateValue || "");
+                setFixedStartDateValue(data.fixedStartDateValue || "");
+                setCheckboxValues(data.checkboxValues || {});
+            } else {
+                localStorage.removeItem("bft_questionnaire_progress");
+                // Optionally reset all state
+                setCurrentPageIndex(0);
+                setFavouriteDestination("");
+                setTravelerCount("1");
+                setCustomTravelerCount("");
+                setSpecialOccasion("");
+                setFirstName("");
+                setOtherAllergyDetails("");
+                setAvoidDestination("");
+                setSelectedCountry("");
+                setSelectedCountryCode("");
+                setSelectedState("");
+                setStayingDuration("");
+                setAirports([]);
+                setSelectedAirports([]);
+                setBudget("");
+                setPhone("");
+                setPreferredStartDateValue("");
+                setFixedStartDateValue("");
+                setCheckboxValues({});
+            }
+        }
+    }, []);
 
-        //Chapter 1
-        3: page4validator,
-        4: page5validator,
-        5: page6validator,
-        6: page7to13validator(""),
-        7: page7to13validator("1"),
-        8: page7to13validator("2"),
-        9: page7to13validator("3"),
-        10: page7to13validator("4"),
-        11: page7to13validator("5"),
-        12: page7to13validator("6"),
+    // Save progress to localStorage on every relevant state change
+    useEffect(() => {
+        const data = {
+            currentPageIndex,
+            favouriteDestination,
+            travelerCount,
+            customTravelerCount,
+            specialOccasion,
+            firstName,
+            otherAllergyDetails,
+            avoidDestination,
+            selectedCountry,
+            selectedCountryCode,
+            selectedState,
+            stayingDuration,
+            airports,
+            selectedAirports,
+            budget,
+            phone,
+            preferredStartDateValue,
+            fixedStartDateValue,
+            checkboxValues,
+        };
+        localStorage.setItem("bft_questionnaire_progress", JSON.stringify(data));
+    }, [currentPageIndex, favouriteDestination, travelerCount, customTravelerCount, specialOccasion, firstName, otherAllergyDetails, avoidDestination, selectedCountry, selectedCountryCode, selectedState, stayingDuration, airports, selectedAirports, budget, phone, preferredStartDateValue, fixedStartDateValue, checkboxValues]);
 
-        //Chapter 2
-        13: page14validator,
-        14: page15validator,
-        15: page16validator,
-        16: page17validator,
-        17: page18validator,
-        18: page19validator,
-        //Page 20 - No validation required
-
-        //Chapter 3
-        20: page21validator,
-        21: page22validator,
-        22: page23validator,
-        23: page24validator,
-        24: page25validator,
-        25: page26validator,
-
-        //Chapter 4
-        26: () => page27validator(phone),
-        27: page28validator,
-        28: page29validator,
-        29: page30validator,
-    };
-
-    const currentValidator = validators[currentPageIndex];
-    const isDisabled = currentValidator ? !currentValidator() : false;
 
     return (
         <div className="min-h-screen flex flex-col bg-white">
