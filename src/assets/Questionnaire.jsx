@@ -490,11 +490,12 @@ export default function Questionnaire() {
         return firstName.trim() !== "" && (travelerCount !== "" && (travelerCount !== "other" || customTravelerCount !== ""));
     }
 
-    const page5validator = () => {
+    // Chapter-1
+    const page4validator = () => {
         return checkboxValues["awareOfNothing"] || checkboxValues["unableToDoPhysicalActivities"] || checkboxValues["pregnancy"] || checkboxValues["fearOfHeights"] || checkboxValues["cantSwim"] || checkboxValues["seaSickness"] || checkboxValues["claustrophobia"] || checkboxValues["fearOfDogs"];
     }
 
-    const page6validator = () => {
+    const page5validator = () => {
         const keysToCheck = [
             "comfortableWithAll",
             "noNatureWalk",
@@ -516,30 +517,33 @@ export default function Questionnaire() {
         return keysToCheck.some((key) => checkboxValues[key]);
     };
 
-    const page7validator = () => {
+    const page6validator = () => {
         return checkboxValues["none"] || checkboxValues["vegeterian"] || checkboxValues["vegan"] || checkboxValues["noAlcohol"] || (checkboxValues["otherAllergies"] && otherAllergyDetails !== "");
     }
 
-    const page8to14validator = (suffix) => {
+    const page7to13validator = (suffix) => {
         const keys = ["notInterested", "openAndWilling", "curious", "excited", "superInterested"];
         return () => {
             return keys.some(key => checkboxValues[`${key}${suffix}`]);
         };
     };
 
-    const page16validator = () => {
+
+
+    // Chapter-2
+    const page14validator = () => {
         return checkboxValues["qualityTime"] || checkboxValues["newDestination"] || checkboxValues["wellness"] || (checkboxValues["specialOccasion"] && specialOccasion !== "");
     };
 
-    const page17validator = () => {
+    const page15validator = () => {
         return checkboxValues["totalChill"] || checkboxValues["mostlyRelaxed"] || checkboxValues["aBitOfBoth"] || checkboxValues["prettyActive"] || checkboxValues["nonStopAdventure"];
     }
 
-    const page18validator = () => {
+    const page16validator = () => {
         return checkboxValues["surpriseMe"] || checkboxValues["coolerClimate"] || checkboxValues["bringOnTheSunshine"];
     }
 
-    const page19validator = () => {
+    const page17validator = () => {
         const keysToCheck = [
             "vibrantUrbanLife",
             "creativeArtsyVibes",
@@ -559,40 +563,48 @@ export default function Questionnaire() {
         return checkedCount >= 2 && checkedCount <= 5;
     };
 
-    const page20validator = () => {
+    const page18validator = () => {
         return checkboxValues["yes"] || checkboxValues["openToAnywhere"] || checkboxValues["internationalTrip"];
     }
 
-    const page21validator = () => {
+    const page19validator = () => {
         return favouriteDestination !== "" && avoidDestination !== "";
     }
 
-    const page24validator = () => {
+    //No validation required for page 20
+
+
+
+    // Chapter-3 
+    const page21validator = () => {
         return (selectedCountry != "") && (selectedState != "") && (selectedAirports != "") && (checkboxValues["sameAirports"] || checkboxValues["anyAirports"]);
     }
 
-    const page25validator = () => {
+    const page22validator = () => {
         return checkboxValues["fDfN"] || checkboxValues["fDtN"] || checkboxValues["sDsN"] || (checkboxValues["userChoice"] && stayingDuration !== "");
     }
 
-    const page26validator = () => {
+    const page23validator = () => {
         return (checkboxValues["preferredStartDate"] && preferredStartDateValue !== "") || checkboxValues["completelyFlexible"] || (checkboxValues["fixedStartDate"] && fixedStartDateValue !== "");
     }
 
-    const page27validator = () => {
+    const page24validator = () => {
         return checkboxValues["eitherIsFine"] || checkboxValues["exclusiveResidence"] || checkboxValues["hotel"];
     }
 
-    const page28validator = () => {
+    const page25validator = () => {
         const numericBudget = Number(budget.replace(/,/g, ''));
         return numericBudget > 0;
     };
 
-    const page29validator = () => {
+    const page26validator = () => {
         return checkboxValues["maxBudget"] || checkboxValues["increaseBy5000"] || checkboxValues["increaseBy7500"] || checkboxValues["increaseBy10000"];
     }
 
-    const page31validator = (val) => {
+
+
+    // Chapter-4
+    const page27validator = (val) => {
         try {
             const phoneNumber = parsePhoneNumberFromString(`+${val}`);
             return (phoneNumber ? phoneNumber.isValid() : false);
@@ -601,15 +613,15 @@ export default function Questionnaire() {
         }
     }
 
-    const page32validator = () => {
+    const page28validator = () => {
         return checkboxValues["yesCurious"];
     }
 
-    const page33validator = () => {
+    const page29validator = () => {
         return checkboxValues["someoneIKnow"] || checkboxValues["influencer"] || checkboxValues["press"] || checkboxValues["randomCustomer"] || checkboxValues["paidAd"];
     }
 
-    const page34validator = () => {
+    const page30validator = () => {
         return checkboxValues["agree"];
     }
 
@@ -720,7 +732,7 @@ export default function Questionnaire() {
         },
         {
             Number: 2,
-            type: "text",
+            type: "form",
             Content: (
                 <div
                     className="w-full h-full flex flex-col md:flex-row items-center justify-between relative overflow-hidden px-4 md:px-8 pb-8"
@@ -812,83 +824,18 @@ export default function Questionnaire() {
         },
         {
             Number: 3,
-            type: "form",
+            type: "text",
             Content: (
-                <div className='w-full sm:w-[90%] md:w-[75%] lg:w-[50%] flex flex-col items-start px-4'>
-                    <div className="w-full mb-8">
-                        <h2 className='font-poppins font-bold text-[24px] text-[#000000] text-left mb-4'>
-                            <span className="font-titan-one font-normal text-[32px] text-[#000000BF]">01.</span> How many travelers are in your crew ? <span className="text-[#A32727]">*</span>
-                        </h2>
-                        <p className='font-poppins font-normal text-[20px] text-[#000000BF] text-left mb-4'>
-                            If you're <span className="font-bold text-[#000000]">not sure, start with 1</span>. You can always add more people later—after receiving your Blind Fold Trip Proposal.
-                        </p>
-                        <div className="relative w-[120px]">
-                            <select
-                                value={travelerCount}
-                                onChange={handleTravelerCountChange}
-                                className="w-full px-4 py-2 border border-2 border-[#000000B2] rounded-lg appearance-none bg-[#D9D9D966] font-poppins font-bold text-[#000000] text-[20px]"
-                            >
-                                {[...Array(10)].map((_, i) => (
-                                    <option key={i + 1} value={i + 1}>{i + 1}</option>
-                                ))}
-                                <option value="other">Other</option>
-                            </select>
-                            <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                                <svg className="w-5 h-5 text-[#000000]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                                </svg>
-                            </div>
-                        </div>
-                        {travelerCount === "other" && (
-                            <input
-                                type="number"
-                                min="1"
-                                value={customTravelerCount}
-                                onChange={handleCustomTravelerCountChange}
-                                placeholder="Enter number of travelers"
-                                className="w-full mt-3 px-4 py-2 border border-2 border-[#000000B2] bg-[#D9D9D966] rounded-lg font-poppins font-normal text-[24px] text-[#000000]"
-                                required
-                            />
-                        )}
-                    </div>
-                    <div className="w-full mb-8">
-                        <h2 className='font-poppins font-normal text-[24px] text-[#000000BF] text-left mb-4'>
-                            <span className="font-titan-one text-[32px]">02.</span> Your <span className="font-bold text-[#000000]">first name</span>, please <span className="text-[#A32626]">*</span>
-                        </h2>
-                        <input
-                            type="text"
-                            value={firstName}
-                            onChange={handleFirstNameChange}
-                            placeholder="E.g. Rohan"
-                            className="w-full px-4 py-3 border border-2 border-[#000000B2] bg-[#D9D9D966] rounded-lg font-poppins font-normal text-[24px] text-[#000000]"
-                            required
-                        />
-                    </div>
+                <div className="w-full sm:w-[90%] md:w-[75%] lg:w-[567px] flex flex-col items-center">
+                    <p className="font-poppins font-normal text-[20px] text-[#000000BF] text-left mb-4">
+                        With BFT, the world becomes your playground for adventure and self-discovery.<br /><br />
+                        <span className="text-[24px]">We totally get that <span className="font-bold text-[#000000]">fears, phobias, or medical conditions</span> can affect your travel experience. Is there <span className="font-bold text-[#000000]">anything we should keep in mind? </span><span className="text-[#A32727]">*</span></span>
+                    </p>
                 </div>
             ),
-            buttonText: "Done"
         },
         {
             Number: 4,
-            type: "text",
-            Content: (
-                <div className="flex flex-col md:flex-row justify-center items-center">
-                    <div className="text-center mr-8">
-                        <p className="font-poppins font-bold text-[40px] text-[#A42828]">
-                            Chapter 1: You & Your Getaway Style
-                        </p>
-                    </div>
-                    <img
-                        src="/chapter-1.png"
-                        alt="Chapter 1"
-                        className="w-[249px] h-[241px] mt-4 mb-4"
-                    />
-                </div>
-            ),
-            buttonText: "Continue"
-        },
-        {
-            Number: 5,
             type: "text",
             Content: (
                 <div className="w-full sm:w-[90%] md:w-[75%] lg:w-[567px] flex flex-col items-center">
@@ -990,7 +937,7 @@ export default function Questionnaire() {
             Heading: "Chapter 1: You & Your Getaway Style"
         },
         {
-            Number: 6,
+            Number: 5,
             type: "text",
             Content: (
                 <div className="w-full sm:w-[90%] md:w-[75%] lg:w-[567px] flex flex-col items-center">
@@ -1173,7 +1120,7 @@ export default function Questionnaire() {
             Heading: "Chapter 1: You & Your Getaway Style"
         },
         {
-            Number: 7,
+            Number: 6,
             type: "text",
             Content: (
                 <div className="w-full sm:w-[90%] md:w-[75%] lg:w-[567px] flex flex-col items-center">
@@ -1255,7 +1202,7 @@ export default function Questionnaire() {
             Heading: "Chapter 1: You & Your Getaway Style"
         },
         {
-            Number: 8,
+            Number: 7,
             type: "text",
             Content: (
                 <div className="w-full flex flex-col items-center">
@@ -1327,7 +1274,7 @@ export default function Questionnaire() {
             Heading: "Chapter 1: You & Your Getaway Style"
         },
         {
-            Number: 9,
+            Number: 8,
             type: "text",
             Content: (
                 <div className="w-full flex flex-col items-center">
@@ -1399,7 +1346,7 @@ export default function Questionnaire() {
             Heading: "Chapter 1: You & Your Getaway Style"
         },
         {
-            Number: 10,
+            Number: 9,
             type: "text",
             Content: (
                 <div className="w-full flex flex-col items-center">
@@ -1471,7 +1418,7 @@ export default function Questionnaire() {
             Heading: "Chapter 1: You & Your Getaway Style"
         },
         {
-            Number: 11,
+            Number: 10,
             type: "text",
             Content: (
                 <div className="w-full flex flex-col items-center">
@@ -1543,7 +1490,7 @@ export default function Questionnaire() {
             Heading: "Chapter 1: You & Your Getaway Style"
         },
         {
-            Number: 12,
+            Number: 11,
             type: "text",
             Content: (
                 <div className="w-full flex flex-col items-center">
@@ -1615,7 +1562,7 @@ export default function Questionnaire() {
             Heading: "Chapter 1: You & Your Getaway Style"
         },
         {
-            Number: 13,
+            Number: 12,
             type: "text",
             Content: (
                 <div className="w-full flex flex-col items-center">
@@ -1687,7 +1634,7 @@ export default function Questionnaire() {
             Heading: "Chapter 1: You & Your Getaway Style"
         },
         {
-            Number: 14,
+            Number: 13,
             type: "text",
             Content: (
                 <div className="w-full flex flex-col items-center">
@@ -1759,26 +1706,7 @@ export default function Questionnaire() {
             Heading: "Chapter 1: You & Your Getaway Style"
         },
         {
-            Number: 15,
-            type: "text",
-            Content: (
-                <div className="flex flex-col md:flex-row justify-center items-center">
-                    <div className="text-center mr-8">
-                        <p className="font-poppins font-bold text-[40px] text-[#A42828]">
-                            Chapter 2: Your Mystery Trip Begins
-                        </p>
-                    </div>
-                    <img
-                        src="/chapter-2.png"
-                        alt="Chapter 2"
-                        className="w-[249px] h-[241px] mt-4 mb-4"
-                    />
-                </div>
-            ),
-            buttonText: "Continue"
-        },
-        {
-            Number: 16,
+            Number: 14,
             type: "text",
             Content: (
                 <div className="w-full flex flex-col items-start px-4 sm:px-8 md:px-32 lg:px-64">
@@ -1843,7 +1771,7 @@ export default function Questionnaire() {
             Heading: "Chapter 2: Your Mystery Trip Begins"
         },
         {
-            Number: 17,
+            Number: 15,
             type: "text",
             Content: (
                 <div className="w-full flex flex-col items-start px-4 sm:px-8 md:px-32 lg:px-64">
@@ -1933,7 +1861,7 @@ export default function Questionnaire() {
             Heading: "Chapter 2: Your Mystery Trip Begins"
         },
         {
-            Number: 18,
+            Number: 16,
             type: "text",
             Content: (
                 <div className="w-full flex flex-col items-start px-4 sm:px-8 md:px-32 lg:px-64">
@@ -1986,7 +1914,7 @@ export default function Questionnaire() {
             Heading: "Chapter 2: Your Mystery Trip Begins"
         },
         {
-            Number: 19,
+            Number: 17,
             type: "text",
             Content: (
                 <div className="w-full flex flex-col items-start px-4 sm:px-8 md:px-32 lg:px-64">
@@ -2092,7 +2020,7 @@ export default function Questionnaire() {
             Heading: "Chapter 2: Your Mystery Trip Begins"
         },
         {
-            Number: 20,
+            Number: 18,
             type: "text",
             Content: (
                 <div className="w-full flex flex-col items-start px-4 sm:px-8 md:px-32 lg:px-64">
@@ -2137,7 +2065,7 @@ export default function Questionnaire() {
             Heading: "Chapter 2: Your Mystery Trip Begins"
         },
         {
-            Number: 21,
+            Number: 19,
             type: "form",
             Content: (
                 <div className="w-full flex flex-col items-center px-4 sm:px-8 md:px-32 lg:px-64">
@@ -2167,7 +2095,7 @@ export default function Questionnaire() {
             Heading: "Chapter 2: Your Mystery Trip Begins"
         },
         {
-            Number: 22,
+            Number: 20,
             type: "form",
             Content: (
                 <div className="w-full flex flex-col items-center px-4 sm:px-8 md:px-32 lg:px-64">
@@ -2283,26 +2211,7 @@ export default function Questionnaire() {
             Heading: "Chapter 2: Your Mystery Trip Begins"
         },
         {
-            Number: 23,
-            type: "text",
-            Content: (
-                <div className="flex flex-col md:flex-row justify-center items-center">
-                    <div className="text-center mr-8">
-                        <p className="font-poppins font-bold text-[40px] text-[#A42828]">
-                            Chapter 3: The Must-Knows
-                        </p>
-                    </div>
-                    <img
-                        src="/chapter-3.png"
-                        alt="Chapter 3"
-                        className="w-[249px] h-[241px] mt-4 mb-4"
-                    />
-                </div>
-            ),
-            buttonText: "Continue"
-        },
-        {
-            Number: 24,
+            Number: 21,
             type: "text",
             Content: (
                 <div className="w-full sm:w-[90%] md:w-[75%] lg:w-[50%] flex flex-col items-center">
@@ -2506,7 +2415,7 @@ export default function Questionnaire() {
             Heading: "Chapter 3: The Must-Knows"
         },
         {
-            Number: 25,
+            Number: 22,
             type: "text",
             Content: (
                 <div className='w-full sm:w-[90%] md:w-[75%] lg:w-[50%] flex flex-col items-start px-4'>
@@ -2572,7 +2481,7 @@ export default function Questionnaire() {
             Heading: "Chapter 3: The Must-Knows"
         },
         {
-            Number: 26,
+            Number: 23,
             type: "text",
             Content: (
                 <div className='w-full sm:w-[90%] md:w-[75%] lg:w-[50%] flex flex-col items-start px-4'>
@@ -2650,7 +2559,7 @@ export default function Questionnaire() {
             Heading: "Chapter 3: The Must-Knows"
         },
         {
-            Number: 27,
+            Number: 24,
             type: "text",
             Content: (
                 <div className='w-full sm:w-[90%] md:w-[75%] lg:w-[50%] flex flex-col items-start px-4'>
@@ -2713,7 +2622,7 @@ export default function Questionnaire() {
             Heading: "Chapter 3: The Must-Knows"
         },
         {
-            Number: 28,
+            Number: 25,
             type: "text",
             Content: (
                 <div className='w-full sm:w-[90%] md:w-[75%] lg:w-[50%] flex flex-col items-start px-4'>
@@ -2758,7 +2667,7 @@ export default function Questionnaire() {
             Heading: "Chapter 3: The Must-Knows"
         },
         {
-            Number: 29,
+            Number: 26,
             type: "text",
             Content: (
                 <div className='w-full sm:w-[90%] md:w-[75%] lg:w-[50%] flex flex-col items-start px-4'>
@@ -2818,26 +2727,7 @@ export default function Questionnaire() {
             Heading: "Chapter 3: The Must-Knows"
         },
         {
-            Number: 30,
-            type: "text",
-            Content: (
-                <div className="flex flex-col md:flex-row justify-center items-center">
-                    <div className="text-center mr-8">
-                        <p className="font-poppins font-bold text-[40px] text-[#A42828]">
-                            Final Touch: You!
-                        </p>
-                    </div>
-                    <img
-                        src="/final-touch.png"
-                        alt="Final Touch"
-                        className="w-[249px] h-[241px] mt-4 mb-4"
-                    />
-                </div>
-            ),
-            buttonText: "Continue"
-        },
-        {
-            Number: 31,
+            Number: 27,
             type: "form",
             Content: (
                 <div className="w-full sm:w-[90%] md:w-[75%] lg:w-[50%] flex flex-col items-start px-4">
@@ -2895,7 +2785,7 @@ export default function Questionnaire() {
             Heading: "Final Touch: You!"
         },
         {
-            Number: 32,
+            Number: 28,
             type: "text",
             Content: (
                 <div className='w-full sm:w-[90%] md:w-[75%] lg:w-[50%] flex flex-col items-start px-4'>
@@ -2925,7 +2815,7 @@ export default function Questionnaire() {
             Heading: "Final Touch: You!"
         },
         {
-            Number: 33,
+            Number: 29,
             type: "text",
             Content: (
                 <div className='w-full sm:w-[90%] md:w-[75%] lg:w-[50%] flex flex-col items-start px-4'>
@@ -2996,7 +2886,7 @@ export default function Questionnaire() {
             Heading: "Final Touch: You!"
         },
         {
-            Number: 34,
+            Number: 30,
             type: "text",
             Content: (
                 <div className='w-full sm:w-[90%] md:w-[75%] lg:w-[50%] flex flex-col items-start px-4'>
@@ -3053,36 +2943,41 @@ export default function Questionnaire() {
         //0: Page 1 Intro
         1: page2validator,
         //2: Page 3 - Shows clickable chapters
+
+        //Chapter 1
+        3: page4validator,
         4: page5validator,
         5: page6validator,
-        6: page7validator,
-        7: page8to14validator(""),
-        8: page8to14validator("1"),
-        9: page8to14validator("2"),
-        10: page8to14validator("3"),
-        11: page8to14validator("4"),
-        12: page8to14validator("5"),
-        13: page8to14validator("6"),
-        //Page 15 - Chapter-2
+        6: page7to13validator(""),
+        7: page7to13validator("1"),
+        8: page7to13validator("2"),
+        9: page7to13validator("3"),
+        10: page7to13validator("4"),
+        11: page7to13validator("5"),
+        12: page7to13validator("6"),
+
+        //Chapter 2
+        13: page14validator,
+        14: page15validator,
         15: page16validator,
         16: page17validator,
         17: page18validator,
         18: page19validator,
-        19: page20validator,
+        //Page 20 - No validation required
+
+        //Chapter 3
         20: page21validator,
-        //Page 22 - No validation required
-        //Page 23 - Chapter-3
+        21: page22validator,
+        22: page23validator,
         23: page24validator,
         24: page25validator,
         25: page26validator,
-        26: page27validator,
+
+        //Chapter 4
+        26: () => page27validator(phone),
         27: page28validator,
         28: page29validator,
-        //Page 30 - Final Touch
-        30: () => page31validator(phone),
-        31: page32validator,
-        32: page33validator,
-        33: page34validator,
+        29: page30validator,
     };
 
     const currentValidator = validators[currentPageIndex];
