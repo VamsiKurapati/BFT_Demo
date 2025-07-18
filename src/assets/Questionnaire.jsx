@@ -826,6 +826,70 @@ export default function Questionnaire() {
             Number: 3,
             type: "text",
             Content: (
+                <div className="relative w-full min-h-screen flex flex-col items-center justify-center px-2 md:px-8 py-8 overflow-hidden"
+                    style={{
+                        background: "linear-gradient(180deg, rgba(255, 255, 255,0.3), rgba(191, 231, 255, 0.2), rgba(96, 194, 255, 0.2))",
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                        backgroundRepeat: "no-repeat"
+                    }}
+                >
+                    {/* World map background */}
+                    <img
+                        src="/Questionnaire/Map.png"
+                        alt="World Map"
+                        className="absolute inset-0 w-full h-full object-cover opacity-20 pointer-events-none z-0"
+                    />
+                    {/* Headline */}
+                    <h2 className="relative z-10 text-[#003566] font-semibold text-[24px] md:text-[32px] text-center mb-10 font-poppins">
+                        Navigate through different chapters to reach your destination
+                    </h2>
+                    <p className="font-poppins font-medium text-[#003566] text-[12px] text-center mb-10"> ( Note: Please click over a Chapter to fill in the details )</p>
+                    {/* Progress line with icons */}
+                    <div className="relative z-10 w-full max-w-5xl flex flex-col items-center">
+                        {/* Dotted line */}
+                        <div className="w-full flex items-center justify-between mb-2">
+                            {/* Plane icons */}
+                            {[0, 1, 2, 3].map((i) => (
+                                <div key={i} className="flex flex-col items-center w-1/4">
+                                    <div className="relative flex flex-col items-center">
+                                        <div className="bg-[#FFE6B0] rounded-full w-16 h-16 flex items-center justify-center shadow-md border-2 border-[#FFF6E0] z-10 mt-2">
+                                            <img src="/Questionnaire/Page-3.png" alt="plane" className="w-8 h-8 object-contain" />
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                        {/* Dotted line behind icons */}
+                        <div className="absolute left-0 right-0 mx-auto top-8 w-[70%] h-0 border-t-4 border-dashed border-[#174D51] z-0" style={{ top: '2.5rem' }}></div>
+                        {/* Chapter labels */}
+                        <div className="w-full flex items-start justify-between mt-8">
+                            <div className="flex flex-col items-center w-1/4">
+                                <span className="font-semibold text-[#003566] text-[20px] md:text-[32px] font-poppins">Chapter 1</span>
+                                <span className="font-poppins font-medium text-[#003566] text-[16px] md:text-[24px] text-center mt-1">You & Your Getaway Style</span>
+                            </div>
+                            <div className="flex flex-col items-center w-1/4">
+                                <span className="font-semibold text-[#003566] text-[20px] md:text-[32px] font-poppins">Chapter 2</span>
+                                <span className="font-poppins font-medium text-[#003566] text-[16px] md:text-[24px] text-center mt-1">Your Mystery Trip Begins</span>
+                            </div>
+                            <div className="flex flex-col items-center w-1/4">
+                                <span className="font-semibold text-[#003566] text-[20px] md:text-[32px] font-poppins">Chapter 3</span>
+                                <span className="font-poppins font-medium text-[#003566] text-[16px] md:text-[24px] text-center mt-1">The Must Knows</span>
+                            </div>
+                            <div className="flex flex-col items-center w-1/4">
+                                <span className="font-semibold text-[#003566] text-[20px] md:text-[32px] font-poppins">Chapter 4</span>
+                                <span className="font-poppins font-medium text-[#003566] text-[16px] md:text-[24px] text-center mt-1">The Final Touch: You</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
+            buttonText: "Continue"
+        },
+        {
+            Number: 4,
+            type: "text",
+            Content: (
                 <div className="w-full sm:w-[90%] md:w-[75%] lg:w-[567px] flex flex-col items-center">
                     <p className="font-poppins font-normal text-[20px] text-[#000000BF] text-left mb-4">
                         With BFT, the world becomes your playground for adventure and self-discovery.<br /><br />
@@ -835,7 +899,7 @@ export default function Questionnaire() {
             ),
         },
         {
-            Number: 4,
+            Number: 5,
             type: "text",
             Content: (
                 <div className="w-full sm:w-[90%] md:w-[75%] lg:w-[567px] flex flex-col items-center">
@@ -927,189 +991,6 @@ export default function Questionnaire() {
                                         onChange={handleCheckboxChange}
                                     />
                                     Fear of dogs
-                                </label>
-                            </>
-                        )}
-                    </div>
-                </div>
-            ),
-            buttonText: "Done",
-            Heading: "Chapter 1: You & Your Getaway Style"
-        },
-        {
-            Number: 5,
-            type: "text",
-            Content: (
-                <div className="w-full sm:w-[90%] md:w-[75%] lg:w-[567px] flex flex-col items-center">
-                    <p className="font-poppins font-normal text-[20px] text-[#000000BF] text-left mb-4">
-                        Every BFT adventure is designed with beginners in mind and guided by seasoned experts. We'll always factor in any fears, phobias, or medical conditions you've shared with us.<br /><br />
-                        <span className="text-[24px]">We'd love to gently nudge you out of your comfort zone—but are there any <span className="font-bold text-[#000000]">activities that are a definite no for you? </span><span className="text-[#A32727]">*</span></span><br /><br />
-                        If you're unsure about an activity, don't say no to it!
-                    </p>
-                    <div className="flex flex-col items-start gap-4 text-[16px] sm:text-[20px] md:text-[24px] text-left font-poppins">
-                        <label className="flex items-center text-left">
-                            <input
-                                type="checkbox"
-                                name="comfortableWithAll"
-                                className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                checked={checkboxValues.comfortableWithAll}
-                                onChange={handleCheckboxChange}
-                            />
-                            Comfortable with them all
-                        </label>
-
-                        {!checkboxValues["comfortableWithAll"] && (
-                            <>
-                                <div className="w-full h-[1px] bg-gray-300 my-2"></div>
-                                <label className="flex items-center text-left">
-                                    <input
-                                        type="checkbox"
-                                        name="noNatureWalk"
-                                        className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                        checked={checkboxValues.noNatureWalk}
-                                        onChange={handleCheckboxChange}
-                                    />
-                                    No to nature walk
-                                </label>
-                                <label className="flex items-center text-left">
-                                    <input
-                                        type="checkbox"
-                                        name="noHiking"
-                                        className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                        checked={checkboxValues.noHiking}
-                                        onChange={handleCheckboxChange}
-                                    />
-                                    No to hiking
-                                </label>
-                                <label className="flex items-center text-left">
-                                    <input
-                                        type="checkbox"
-                                        name="noBikingSegway"
-                                        className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                        checked={checkboxValues.noBikingSegway}
-                                        onChange={handleCheckboxChange}
-                                    />
-                                    No to biking/Segway
-                                </label>
-                                <label className="flex items-center text-left">
-                                    <input
-                                        type="checkbox"
-                                        name="noBoatTrips"
-                                        className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                        checked={checkboxValues.noBoatTrips}
-                                        onChange={handleCheckboxChange}
-                                    />
-                                    No to boat trips
-                                </label>
-                                <label className="flex items-center text-left">
-                                    <input
-                                        type="checkbox"
-                                        name="noSwimmingSnorkeling"
-                                        className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                        checked={checkboxValues.noSwimmingSnorkeling}
-                                        onChange={handleCheckboxChange}
-                                    />
-                                    No to swimming/snorkeling
-                                </label>
-                                <label className="flex items-center text-left">
-                                    <input
-                                        type="checkbox"
-                                        name="noKayakingSUP"
-                                        className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                        checked={checkboxValues.noKayakingSUP}
-                                        onChange={handleCheckboxChange}
-                                    />
-                                    No to kayaking/SUP
-                                </label>
-                                <label className="flex items-center text-left">
-                                    <input
-                                        type="checkbox"
-                                        name="noRafting"
-                                        className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                        checked={checkboxValues.noRafting}
-                                        onChange={handleCheckboxChange}
-                                    />
-                                    No to rafting
-                                </label>
-                                <label className="flex items-center text-left">
-                                    <input
-                                        type="checkbox"
-                                        name="noSurfing"
-                                        className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                        checked={checkboxValues.noSurfing}
-                                        onChange={handleCheckboxChange}
-                                    />
-                                    No to surfing
-                                </label>
-                                <label className="flex items-center text-left">
-                                    <input
-                                        type="checkbox"
-                                        name="noScubaDiving"
-                                        className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                        checked={checkboxValues.noScubaDiving}
-                                        onChange={handleCheckboxChange}
-                                    />
-                                    No to scuba diving
-                                </label>
-                                <label className="flex items-center text-left">
-                                    <input
-                                        type="checkbox"
-                                        name="noCanyoningCaving"
-                                        className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                        checked={checkboxValues.noCanyoningCaving}
-                                        onChange={handleCheckboxChange}
-                                    />
-                                    No to canyoning/caving
-                                </label>
-                                <label className="flex items-center text-left">
-                                    <input
-                                        type="checkbox"
-                                        name="noParagliding"
-                                        className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                        checked={checkboxValues.noParagliding}
-                                        onChange={handleCheckboxChange}
-                                    />
-                                    No to paragliding
-                                </label>
-                                <label className="flex items-center text-left">
-                                    <input
-                                        type="checkbox"
-                                        name="noHorseCamelRiding"
-                                        className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                        checked={checkboxValues.noHorseCamelRiding}
-                                        onChange={handleCheckboxChange}
-                                    />
-                                    No to horse riding/camel riding
-                                </label>
-                                <label className="flex items-center text-left">
-                                    <input
-                                        type="checkbox"
-                                        name="noWineTasting"
-                                        className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                        checked={checkboxValues.noWineTasting}
-                                        onChange={handleCheckboxChange}
-                                    />
-                                    No to wine tasting
-                                </label>
-                                <label className="flex items-center text-left">
-                                    <input
-                                        type="checkbox"
-                                        name="noBreweryTour"
-                                        className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                        checked={checkboxValues.noBreweryTour}
-                                        onChange={handleCheckboxChange}
-                                    />
-                                    No to brewery/distillery tour
-                                </label>
-                                <label className="flex items-center text-left mb-8">
-                                    <input
-                                        type="checkbox"
-                                        name="noSpaContact"
-                                        className="mr-4 w-[20px] h-[20px] text-[#FFFFFF] rounded-md"
-                                        checked={checkboxValues.noSpaContact}
-                                        onChange={handleCheckboxChange}
-                                    />
-                                    No to spa treatments with physical contact
                                 </label>
                             </>
                         )}
