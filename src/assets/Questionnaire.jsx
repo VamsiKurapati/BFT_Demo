@@ -254,18 +254,6 @@ export default function Questionnaire() {
             autoMoveKey: "Anything",
         },
         {
-            name: "12",
-            titles: ["sameAirports", "anyAirports"],
-            autoMove: true,
-            autoMoveKey: "Anything",
-        },
-        {
-            name: "13",
-            titles: ["sameAirports1", "anyAirports1"],
-            autoMove: true,
-            autoMoveKey: "Anything",
-        },
-        {
             name: "14",
             titles: ["fDtN", "fDfN", "sDsN", "userChoice"],
             autoMove: false,
@@ -470,6 +458,25 @@ export default function Questionnaire() {
                 return newValues;
             }
 
+            // Check if it's airport preference
+            if (name === "sameAirports") {
+                if (checked) {
+                    newValues["sameAirports"] = true;
+                    newValues["anyAirports"] = false;
+                } else {
+                    newValues["sameAirports"] = false;
+                }
+                return newValues;
+            } else if (name === "anyAirports") {
+                if (checked) {
+                    newValues["anyAirports"] = true;
+                    newValues["sameAirports"] = false;
+                } else {
+                    newValues["anyAirports"] = false;
+                }
+                return newValues;
+            }
+
             // Not in any group → update normally
             return { ...prev, [name]: checked };
         });
@@ -578,14 +585,14 @@ export default function Questionnaire() {
     }
 
     const page20validator = () => {
-        return checkboxValues["noSafetyConcerns"] || checkboxValues["unsafeFemale"] || checkboxValues["hostilityLGBTQ"] || checkboxValues["hostilityBlack"] || checkboxValues["attitudeIslam"] || checkboxValues["attitudeJewish"] || checkboxValues["hostilityIndigenous"] || checkboxValues["unsafeReligiousAttire"] || checkboxValues["discriminatoryTrans"] || checkboxValues["racialProfiling"] || checkboxValues["none"];
+        return checkboxValues["noSafetyConcerns"] || checkboxValues["unsafeFemale"] || checkboxValues["hostilityLGBTQ"] || checkboxValues["hostilityBlack"] || checkboxValues["attitudeIslam"] || checkboxValues["attitudeJewish"] || checkboxValues["hostilityIndigenous"] || checkboxValues["unsafeReligiousAttire"] || checkboxValues["discriminatoryTrans"] || checkboxValues["racialProfiling"];
     }
 
 
 
     // Chapter-3 
     const page21validator = () => {
-        return (selectedCountry != "") && (selectedState != "") && (selectedAirports != "") && (checkboxValues["sameAirports"] || checkboxValues["anyAirports"]);
+        return (selectedCountry !== "") && (selectedState !== "") && (selectedAirports.length > 0) && (checkboxValues["sameAirports"] || checkboxValues["anyAirports"]);
     }
 
     const page22validator = () => {
@@ -906,14 +913,16 @@ export default function Questionnaire() {
                                 )}
                                 <span className="text-[#5B5B5B] text-[16px] font-poppins italic">(If you're not sure, <span className="text-[#174D51]">start with 1</span>. You can always add more people later – after receiving your Blind Fold Trip Proposal.)</span>
                             </div>
-                            <label className="text-[#174D51] font-semibold text-[20px] md:text-[24px] mb-2 font-poppins">Your Name, please!</label>
-                            <input
-                                type="text"
-                                value={firstName}
-                                onChange={handleFirstNameChange}
-                                placeholder="Enter your name"
-                                className="w-full border border-[#B0B0B0] rounded-lg px-4 py-3 text-[18px] font-poppins mb-8 focus:outline-none focus:ring-2 focus:ring-[#60C2FF]"
-                            />
+                            <div className="flex flex-col">
+                                <label className="text-[#174D51] font-semibold text-[20px] md:text-[24px] mb-2 font-poppins">Your Name, please!</label>
+                                <input
+                                    type="text"
+                                    value={firstName}
+                                    onChange={handleFirstNameChange}
+                                    placeholder="Enter your name"
+                                    className="w-full max-w-[350px] border border-[#B0B0B0] rounded-lg px-4 py-3 text-[18px] font-poppins mb-8 focus:outline-none focus:ring-2 focus:ring-[#60C2FF]"
+                                />
+                            </div>
                             <button
                                 onClick={handleNext}
                                 disabled={!page2validator()}
@@ -1038,7 +1047,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="awareOfNothing"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] shrink-0 mt-[2px]"
                                     checked={checkboxValues.awareOfNothing}
                                     onChange={handleCheckboxChange}
                                 />
@@ -1051,7 +1060,7 @@ export default function Questionnaire() {
                                         <input
                                             type="checkbox"
                                             name="unableToDoPhysicalActivities"
-                                            className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                            className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                             checked={checkboxValues.unableToDoPhysicalActivities}
                                             onChange={handleCheckboxChange}
                                         />
@@ -1061,7 +1070,7 @@ export default function Questionnaire() {
                                         <input
                                             type="checkbox"
                                             name="pregnancy"
-                                            className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                            className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                             checked={checkboxValues.pregnancy}
                                             onChange={handleCheckboxChange}
                                         />
@@ -1071,7 +1080,7 @@ export default function Questionnaire() {
                                         <input
                                             type="checkbox"
                                             name="severeFearOfHeights"
-                                            className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                            className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                             checked={checkboxValues.fearOfHeights}
                                             onChange={handleCheckboxChange}
                                         />
@@ -1081,7 +1090,7 @@ export default function Questionnaire() {
                                         <input
                                             type="checkbox"
                                             name="cantSwim"
-                                            className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                            className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                             checked={checkboxValues.cantSwim}
                                             onChange={handleCheckboxChange}
                                         />
@@ -1091,7 +1100,7 @@ export default function Questionnaire() {
                                         <input
                                             type="checkbox"
                                             name="seaSickness"
-                                            className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                            className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                             checked={checkboxValues.seaSickness}
                                             onChange={handleCheckboxChange}
                                         />
@@ -1101,7 +1110,7 @@ export default function Questionnaire() {
                                         <input
                                             type="checkbox"
                                             name="claustrophobia"
-                                            className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                            className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                             checked={checkboxValues.claustrophobia}
                                             onChange={handleCheckboxChange}
                                         />
@@ -1111,7 +1120,7 @@ export default function Questionnaire() {
                                         <input
                                             type="checkbox"
                                             name="fearOfDogs"
-                                            className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                            className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                             checked={checkboxValues.fearOfDogs}
                                             onChange={handleCheckboxChange}
                                         />
@@ -1174,7 +1183,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="comfortableWithAll"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] shrink-0 mt-[2px]"
                                     checked={checkboxValues.comfortableWithAll}
                                     onChange={handleCheckboxChange}
                                 />
@@ -1188,7 +1197,7 @@ export default function Questionnaire() {
                                         <input
                                             type="checkbox"
                                             name="noNatureWalk"
-                                            className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                            className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                             checked={checkboxValues.noNatureWalk}
                                             onChange={handleCheckboxChange}
                                         />
@@ -1198,7 +1207,7 @@ export default function Questionnaire() {
                                         <input
                                             type="checkbox"
                                             name="noHiking"
-                                            className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                            className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                             checked={checkboxValues.noHiking}
                                             onChange={handleCheckboxChange}
                                         />
@@ -1208,7 +1217,7 @@ export default function Questionnaire() {
                                         <input
                                             type="checkbox"
                                             name="noBikingSegway"
-                                            className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                            className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                             checked={checkboxValues.noBikingSegway}
                                             onChange={handleCheckboxChange}
                                         />
@@ -1218,7 +1227,7 @@ export default function Questionnaire() {
                                         <input
                                             type="checkbox"
                                             name="noBoatTrips"
-                                            className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                            className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                             checked={checkboxValues.noBoatTrips}
                                             onChange={handleCheckboxChange}
                                         />
@@ -1228,7 +1237,7 @@ export default function Questionnaire() {
                                         <input
                                             type="checkbox"
                                             name="noSwimmingSnorkeling"
-                                            className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                            className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                             checked={checkboxValues.noSwimmingSnorkeling}
                                             onChange={handleCheckboxChange}
                                         />
@@ -1238,7 +1247,7 @@ export default function Questionnaire() {
                                         <input
                                             type="checkbox"
                                             name="noKayakingSUP"
-                                            className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                            className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                             checked={checkboxValues.noKayakingSUP}
                                             onChange={handleCheckboxChange}
                                         />
@@ -1248,7 +1257,7 @@ export default function Questionnaire() {
                                         <input
                                             type="checkbox"
                                             name="noRafting"
-                                            className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                            className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                             checked={checkboxValues.noRafting}
                                             onChange={handleCheckboxChange}
                                         />
@@ -1258,7 +1267,7 @@ export default function Questionnaire() {
                                         <input
                                             type="checkbox"
                                             name="noSurfing"
-                                            className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                            className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                             checked={checkboxValues.noSurfing}
                                             onChange={handleCheckboxChange}
                                         />
@@ -1268,7 +1277,7 @@ export default function Questionnaire() {
                                         <input
                                             type="checkbox"
                                             name="noScubaDiving"
-                                            className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                            className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                             checked={checkboxValues.noScubaDiving}
                                             onChange={handleCheckboxChange}
                                         />
@@ -1278,7 +1287,7 @@ export default function Questionnaire() {
                                         <input
                                             type="checkbox"
                                             name="noCanyoningCaving"
-                                            className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                            className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                             checked={checkboxValues.noCanyoningCaving}
                                             onChange={handleCheckboxChange}
                                         />
@@ -1288,7 +1297,7 @@ export default function Questionnaire() {
                                         <input
                                             type="checkbox"
                                             name="noParagliding"
-                                            className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                            className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                             checked={checkboxValues.noParagliding}
                                             onChange={handleCheckboxChange}
                                         />
@@ -1298,7 +1307,7 @@ export default function Questionnaire() {
                                         <input
                                             type="checkbox"
                                             name="noHorseCamelRiding"
-                                            className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                            className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                             checked={checkboxValues.noHorseCamelRiding}
                                             onChange={handleCheckboxChange}
                                         />
@@ -1308,7 +1317,7 @@ export default function Questionnaire() {
                                         <input
                                             type="checkbox"
                                             name="noWineTasting"
-                                            className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                            className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                             checked={checkboxValues.noWineTasting}
                                             onChange={handleCheckboxChange}
                                         />
@@ -1318,7 +1327,7 @@ export default function Questionnaire() {
                                         <input
                                             type="checkbox"
                                             name="noBreweryTour"
-                                            className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                            className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                             checked={checkboxValues.noBreweryTour}
                                             onChange={handleCheckboxChange}
                                         />
@@ -1328,7 +1337,7 @@ export default function Questionnaire() {
                                         <input
                                             type="checkbox"
                                             name="noSpaContact"
-                                            className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                            className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                             checked={checkboxValues.noSpaContact}
                                             onChange={handleCheckboxChange}
                                         />
@@ -1384,7 +1393,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="none"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] shrink-0 mt-[2px]"
                                     checked={checkboxValues.none}
                                     onChange={handleCheckboxChange}
                                 />
@@ -1398,7 +1407,7 @@ export default function Questionnaire() {
                                         <input
                                             type="checkbox"
                                             name="vegeterian"
-                                            className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                            className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                             checked={checkboxValues.vegeterian}
                                             onChange={handleCheckboxChange}
                                         />
@@ -1408,7 +1417,7 @@ export default function Questionnaire() {
                                         <input
                                             type="checkbox"
                                             name="vegan"
-                                            className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                            className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                             checked={checkboxValues.vegan}
                                             onChange={handleCheckboxChange}
                                         />
@@ -1418,7 +1427,7 @@ export default function Questionnaire() {
                                         <input
                                             type="checkbox"
                                             name="noAlcohol"
-                                            className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                            className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                             checked={checkboxValues.noAlcohol}
                                             onChange={handleCheckboxChange}
                                         />
@@ -1428,7 +1437,7 @@ export default function Questionnaire() {
                                         <input
                                             type="checkbox"
                                             name="otherAllergies"
-                                            className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                            className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                             checked={checkboxValues.otherAllergies}
                                             onChange={handleCheckboxChange}
                                         />
@@ -1493,7 +1502,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="notInterested"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.notInterested}
                                     onChange={handleCheckboxChange}
                                 />
@@ -1503,7 +1512,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="openAndWilling"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.openAndWilling}
                                     onChange={handleCheckboxChange}
                                 />
@@ -1513,7 +1522,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="curious"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.curious}
                                     onChange={handleCheckboxChange}
                                 />
@@ -1523,7 +1532,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="excited"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.excited}
                                     onChange={handleCheckboxChange}
                                 />
@@ -1533,7 +1542,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="superInterested"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.superInterested}
                                     onChange={handleCheckboxChange}
                                 />
@@ -1584,7 +1593,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="notInterested1"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.notInterested1}
                                     onChange={handleCheckboxChange}
                                 />
@@ -1594,7 +1603,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="openAndWilling1"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.openAndWilling1}
                                     onChange={handleCheckboxChange}
                                 />
@@ -1604,7 +1613,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="curious1"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.curious1}
                                     onChange={handleCheckboxChange}
                                 />
@@ -1614,7 +1623,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="excited1"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.excited1}
                                     onChange={handleCheckboxChange}
                                 />
@@ -1624,7 +1633,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="superInterested1"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.superInterested1}
                                     onChange={handleCheckboxChange}
                                 />
@@ -1675,7 +1684,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="notInterested2"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.notInterested2}
                                     onChange={handleCheckboxChange}
                                 />
@@ -1685,7 +1694,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="openAndWilling2"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.openAndWilling2}
                                     onChange={handleCheckboxChange}
                                 />
@@ -1695,7 +1704,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="curious2"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.curious2}
                                     onChange={handleCheckboxChange}
                                 />
@@ -1705,7 +1714,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="excited2"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.excited2}
                                     onChange={handleCheckboxChange}
                                 />
@@ -1715,7 +1724,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="superInterested2"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.superInterested2}
                                     onChange={handleCheckboxChange}
                                 />
@@ -1766,7 +1775,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="notInterested3"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.notInterested3}
                                     onChange={handleCheckboxChange}
                                 />
@@ -1776,7 +1785,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="openAndWilling3"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.openAndWilling3}
                                     onChange={handleCheckboxChange}
                                 />
@@ -1786,7 +1795,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="curious3"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.curious3}
                                     onChange={handleCheckboxChange}
                                 />
@@ -1796,7 +1805,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="excited3"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.excited3}
                                     onChange={handleCheckboxChange}
                                 />
@@ -1806,7 +1815,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="superInterested3"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.superInterested3}
                                     onChange={handleCheckboxChange}
                                 />
@@ -1857,7 +1866,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="notInterested4"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.notInterested4}
                                     onChange={handleCheckboxChange}
                                 />
@@ -1867,7 +1876,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="openAndWilling4"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.openAndWilling4}
                                     onChange={handleCheckboxChange}
                                 />
@@ -1877,7 +1886,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="curious4"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.curious4}
                                     onChange={handleCheckboxChange}
                                 />
@@ -1887,7 +1896,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="excited4"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.excited4}
                                     onChange={handleCheckboxChange}
                                 />
@@ -1897,7 +1906,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="superInterested4"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.superInterested4}
                                     onChange={handleCheckboxChange}
                                 />
@@ -1948,7 +1957,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="notInterested5"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.notInterested5}
                                     onChange={handleCheckboxChange}
                                 />
@@ -1958,7 +1967,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="openAndWilling5"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.openAndWilling5}
                                     onChange={handleCheckboxChange}
                                 />
@@ -1968,7 +1977,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="curious5"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.curious5}
                                     onChange={handleCheckboxChange}
                                 />
@@ -1978,7 +1987,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="excited5"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.excited5}
                                     onChange={handleCheckboxChange}
                                 />
@@ -1988,7 +1997,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="superInterested5"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.superInterested5}
                                     onChange={handleCheckboxChange}
                                 />
@@ -2039,7 +2048,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="notInterested6"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.notInterested6}
                                     onChange={handleCheckboxChange}
                                 />
@@ -2049,7 +2058,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="openAndWilling6"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.openAndWilling6}
                                     onChange={handleCheckboxChange}
                                 />
@@ -2059,7 +2068,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="curious6"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.curious6}
                                     onChange={handleCheckboxChange}
                                 />
@@ -2069,7 +2078,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="excited6"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.excited6}
                                     onChange={handleCheckboxChange}
                                 />
@@ -2079,7 +2088,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="superInterested6"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.superInterested6}
                                     onChange={handleCheckboxChange}
                                 />
@@ -2133,7 +2142,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="qualityTime"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.qualityTime}
                                     onChange={handleCheckboxChange}
                                 />
@@ -2143,7 +2152,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="newDestination"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.newDestination}
                                     onChange={handleCheckboxChange}
                                 />
@@ -2153,7 +2162,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="wellness"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.wellness}
                                     onChange={handleCheckboxChange}
                                 />
@@ -2163,7 +2172,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="specialOccasion"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.specialOccasion}
                                     onChange={handleCheckboxChange}
                                 />
@@ -2174,7 +2183,7 @@ export default function Questionnaire() {
                                     type="text"
                                     name="specialOccasion"
                                     placeholder="Please specify the occasion"
-                                    className="mt-2 p-2 mb-4 border rounded bg-[#FFFFFF] w-full"
+                                    className="mt-2 p-2 mb-4 border rounded bg-[#FFFFFF] w-full max-w-[300px]"
                                     value={specialOccasion}
                                     onChange={(e) => setSpecialOccasion(e.target.value)}
                                 />
@@ -2224,7 +2233,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="totalChill"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.totalChill}
                                     onChange={handleCheckboxChange}
                                 />
@@ -2234,7 +2243,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="mostlyRelaxed"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.mostlyRelaxed}
                                     onChange={handleCheckboxChange}
                                 />
@@ -2244,7 +2253,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="aBitOfBoth"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.aBitOfBoth}
                                     onChange={handleCheckboxChange}
                                 />
@@ -2254,7 +2263,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="prettyActive"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.prettyActive}
                                     onChange={handleCheckboxChange}
                                 />
@@ -2264,7 +2273,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="nonStopAdventure"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.nonStopAdventure}
                                     onChange={handleCheckboxChange}
                                 />
@@ -2317,7 +2326,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="surpriseMe"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.surpriseMe}
                                     onChange={handleCheckboxChange}
                                 />
@@ -2327,7 +2336,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="coolerClimate"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.coolerClimate}
                                     onChange={handleCheckboxChange}
                                 />
@@ -2337,7 +2346,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="bringOnTheSunshine"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.bringOnTheSunshine}
                                     onChange={handleCheckboxChange}
                                 />
@@ -2393,7 +2402,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="vibrantUrbanLife"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.vibrantUrbanLife}
                                     onChange={handleCheckboxChange}
                                 />
@@ -2403,7 +2412,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="creativeArtsyVibes"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.creativeArtsyVibes}
                                     onChange={handleCheckboxChange}
                                 />
@@ -2413,7 +2422,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="lushGreenLandscapes"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.lushGreenLandscapes}
                                     onChange={handleCheckboxChange}
                                 />
@@ -2423,7 +2432,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="photogenic"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.photogenic}
                                     onChange={handleCheckboxChange}
                                 />
@@ -2433,7 +2442,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="budgetFriendlyAdventures"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.budgetFriendlyAdventures}
                                     onChange={handleCheckboxChange}
                                 />
@@ -2443,7 +2452,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="mountainous"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.mountainous}
                                     onChange={handleCheckboxChange}
                                 />
@@ -2453,7 +2462,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="calmSereneEscapes"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.calmSereneEscapes}
                                     onChange={handleCheckboxChange}
                                 />
@@ -2463,7 +2472,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="eyeCatchingArchitecture"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.eyeCatchingArchitecture}
                                     onChange={handleCheckboxChange}
                                 />
@@ -2473,7 +2482,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="sandyBeaches"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.sandyBeaches}
                                     onChange={handleCheckboxChange}
                                 />
@@ -2524,7 +2533,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="yes"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.yes}
                                     onChange={handleCheckboxChange}
                                 />
@@ -2534,7 +2543,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="openToAnywhere"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.openToAnywhere}
                                     onChange={handleCheckboxChange}
                                 />
@@ -2544,7 +2553,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="internationalTrip"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.internationalTrip}
                                     onChange={handleCheckboxChange}
                                 />
@@ -2595,7 +2604,7 @@ export default function Questionnaire() {
                             value={favouriteDestination}
                             onChange={handlefavouriteDestinationChange}
                             placeholder="e.g. Paris, France"
-                            className="w-full px-4 py-3 border border-2 border-[#000000B2] bg-[#FFFFFF] rounded-lg font-poppins font-normal text-[24px] text-[#000000] mb-4"
+                            className="w-full max-w-[350px] px-4 py-3 border border-2 border-[#000000B2] bg-[#FFFFFF] rounded-lg font-poppins font-normal text-[24px] text-[#000000] mb-4"
                         />
                         <h2 className="font-poppins text-[#174D51] text-[22px] md:text-[26px] mb-6 text-left">
                             Where have you already been that you'd <span className="font-bold">prefer not to revisit?</span> *
@@ -2605,7 +2614,7 @@ export default function Questionnaire() {
                             value={avoidDestination}
                             onChange={handleAvoidDestinationChange}
                             placeholder="e.g. Paris, France"
-                            className="w-full px-4 py-3 border border-2 border-[#000000B2] bg-[#FFFFFF] rounded-lg font-poppins font-normal text-[24px] text-[#000000] mb-4"
+                            className="w-full max-w-[350px] px-4 py-3 border border-2 border-[#000000B2] bg-[#FFFFFF] rounded-lg font-poppins font-normal text-[24px] text-[#000000] mb-4"
                         />
                         <button
                             onClick={() => handleNext()}
@@ -2651,7 +2660,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="unsafeFemale"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.unsafeFemale}
                                     onChange={handleCheckboxChange}
                                 />
@@ -2661,7 +2670,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="hostilityLGBTQ"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.hostilityLGBTQ}
                                     onChange={handleCheckboxChange}
                                 />
@@ -2671,7 +2680,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="hostilityBlack"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.hostilityBlack}
                                     onChange={handleCheckboxChange}
                                 />
@@ -2681,7 +2690,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="attitudeIslam"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.attitudeIslam}
                                     onChange={handleCheckboxChange}
                                 />
@@ -2691,7 +2700,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="attitudeJewish"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.attitudeJewish}
                                     onChange={handleCheckboxChange}
                                 />
@@ -2701,7 +2710,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="hostilityIndigenous"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.hostilityIndigenous}
                                     onChange={handleCheckboxChange}
                                 />
@@ -2711,7 +2720,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="unsafeReligiousAttire"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.unsafeReligiousAttire}
                                     onChange={handleCheckboxChange}
                                 />
@@ -2721,7 +2730,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="discriminatoryTrans"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.discriminatoryTrans}
                                     onChange={handleCheckboxChange}
                                 />
@@ -2731,7 +2740,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="racialProfiling"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.racialProfiling}
                                     onChange={handleCheckboxChange}
                                 />
@@ -2741,7 +2750,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="noSafetyConcerns"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.noSafetyConcerns}
                                     onChange={handleCheckboxChange}
                                 />
@@ -2804,7 +2813,7 @@ export default function Questionnaire() {
                                 handleCountryChange({ target: { value: selectedOption?.value || '' } })
                             }
                             placeholder="Select Country"
-                            className="w-full text-left font-poppins mb-4"
+                            className="w-full max-w-[350px] text-left font-poppins mb-4"
                             styles={{
                                 control: (base) => ({
                                     ...base,
@@ -2861,7 +2870,7 @@ export default function Questionnaire() {
                                 handleStateChange({ target: { value: selectedOption?.value || '' } })
                             }
                             placeholder="Select State"
-                            className="w-full text-left font-poppins mb-4"
+                            className="w-full max-w-[350px] text-left font-poppins mb-4"
                             styles={{
                                 control: (base) => ({
                                     ...base,
@@ -2909,7 +2918,7 @@ export default function Questionnaire() {
                             options={airports}
                             value={selectedAirports}
                             onChange={setSelectedAirports}
-                            className="w-full text-left font-poppins mb-4"
+                            className="w-full max-w-[350px] text-left font-poppins mb-4"
                             placeholder="Select"
                             styles={{
                                 control: (base) => ({
@@ -2962,7 +2971,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="sameAirports"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.sameAirports}
                                     onChange={handleCheckboxChange}
                                 />
@@ -2972,7 +2981,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="anyAirports"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.anyAirports}
                                     onChange={handleCheckboxChange}
                                 />
@@ -3025,7 +3034,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="fDtN"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.fDtN}
                                     onChange={handleCheckboxChange}
                                 />
@@ -3035,7 +3044,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="fDfN"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.fDfN}
                                     onChange={handleCheckboxChange}
                                 />
@@ -3045,7 +3054,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="sDsN"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.sDsN}
                                     onChange={handleCheckboxChange}
                                 />
@@ -3055,7 +3064,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="userChoice"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.userChoice}
                                     onChange={handleCheckboxChange}
                                 />
@@ -3067,7 +3076,7 @@ export default function Questionnaire() {
                                     value={stayingDuration}
                                     onChange={handleStayingDurationChange}
                                     placeholder="Enter No.of Day and Nights"
-                                    className="w-full px-4 py-3 border border-2 border-[#000000B2] bg-[#FFFFFF] rounded-lg font-poppins font-normal text-[12px] sm:text-[16px] md:text-[24px] text-[#000000] mb-4"
+                                    className="w-full max-w-[350px] px-4 py-3 border border-2 border-[#000000B2] bg-[#FFFFFF] rounded-lg font-poppins font-normal text-[12px] sm:text-[16px] md:text-[24px] text-[#000000] mb-4"
                                 />
                             )}
                         </div>
@@ -3117,7 +3126,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="fixedStartDate"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.fixedStartDate}
                                     onChange={handleCheckboxChange}
                                 />
@@ -3143,7 +3152,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="preferredStartDate"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.preferredStartDate}
                                     onChange={handleCheckboxChange}
                                 />
@@ -3168,7 +3177,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="completelyFlexible"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.completelyFlexible}
                                     onChange={handleCheckboxChange}
                                 />
@@ -3237,7 +3246,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="eitherIsFine"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.eitherIsFine}
                                     onChange={handleCheckboxChange}
                                 />
@@ -3247,7 +3256,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="exclusiveResidence"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.exclusiveResidence}
                                     onChange={handleCheckboxChange}
                                 />
@@ -3257,7 +3266,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="hotel"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.hotel}
                                     onChange={handleCheckboxChange}
                                 />
@@ -3330,7 +3339,7 @@ export default function Questionnaire() {
                                     value={budget}
                                     onChange={handleBudgetChange}
                                     placeholder="38,999"
-                                    className="w-full pl-10 pr-4 py-3 border-2 border-[#000000B2] bg-[#FFFFFF] rounded-lg font-poppins font-normal text-[24px] text-[#000000]"
+                                    className="w-full max-w-[350px] pl-10 pr-4 py-3 border-2 border-[#000000B2] bg-[#FFFFFF] rounded-lg font-poppins font-normal text-[24px] text-[#000000]"
                                     required
                                 />
                             </div>
@@ -3384,7 +3393,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="maxBudget"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.maxBudget}
                                     onChange={handleCheckboxChange}
                                 />
@@ -3394,7 +3403,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="increaseBy5000"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.increaseBy5000}
                                     onChange={handleCheckboxChange}
                                 />
@@ -3404,7 +3413,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="increaseBy7500"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.increaseBy7500}
                                     onChange={handleCheckboxChange}
                                 />
@@ -3414,7 +3423,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="increaseBy10000"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.increaseBy10000}
                                     onChange={handleCheckboxChange}
                                 />
@@ -3505,7 +3514,7 @@ export default function Questionnaire() {
                                     borderRadius: "10px 0 0 10px",
                                     boxSizing: "border-box"
                                 }}
-                                containerClass="w-full"
+                                containerClass="w-full max-w-[350px]"
                             />
                         </div>
                         <button
@@ -3557,7 +3566,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="yesCurious"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.yesCurious}
                                     onChange={handleCheckboxChange}
                                 />
@@ -3610,7 +3619,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="someoneIKnow"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.someoneIKnow}
                                     onChange={handleCheckboxChange}
                                 />
@@ -3621,7 +3630,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="influencer"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.influencer}
                                     onChange={handleCheckboxChange}
                                 />
@@ -3632,7 +3641,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="press"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.press}
                                     onChange={handleCheckboxChange}
                                 />
@@ -3643,7 +3652,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="randomCustomer"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.randomCustomer}
                                     onChange={handleCheckboxChange}
                                 />
@@ -3654,7 +3663,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="paidAd"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.paidAd}
                                     onChange={handleCheckboxChange}
                                 />
@@ -3713,7 +3722,7 @@ export default function Questionnaire() {
                                 <input
                                     type="checkbox"
                                     name="agree"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[2px]"
                                     checked={checkboxValues.agree}
                                     onChange={handleCheckboxChange}
                                 />
@@ -3745,103 +3754,145 @@ export default function Questionnaire() {
         },
     ];
 
-    // useEffect(() => {
-    //     const allCountries = Country.getAllCountries();
-    //     setCountries(allCountries);
-    // }, []);
+    useEffect(() => {
+        const allCountries = Country.getAllCountries();
+        setCountries(allCountries);
+    }, []);
 
-    // useEffect(() => {
-    //     if (selectedCountryCode) {
-    //         const stateList = State.getStatesOfCountry(selectedCountryCode);
-    //         setStates(stateList);
-    //     }
-    // }, [selectedCountryCode]);
+    useEffect(() => {
+        if (selectedCountryCode) {
+            const stateList = State.getStatesOfCountry(selectedCountryCode);
+            setStates(stateList);
+        }
+    }, [selectedCountryCode]);
 
-    // useEffect(() => {
-    //     fetch('https://bft-backend.vercel.app/api/data/airportsData') // Replace with your actual backend URL if deployed
-    //         .then((res) => res.json())
-    //         .then((data) => setAirports(data))
-    //         .catch((err) => console.error('Failed to fetch airport data', err));
-    // }, []);
+    const hasFetchedAirports = useRef(false);
 
-    // --- LocalStorage Autosave/Restore ---
-    // useEffect(() => {
-    //     // On mount, check for saved progress
-    //     const saved = localStorage.getItem("bft_questionnaire_progress");
-    //     if (saved) {
-    //         if (window.confirm("You have unsaved progress. Do you want to continue where you left off?")) {
-    //             const data = JSON.parse(saved);
-    //             // Restore all relevant state
-    //             setCurrentPageIndex(data.currentPageIndex || 0);
-    //             setFavouriteDestination(data.favouriteDestination || "");
-    //             setTravelerCount(data.travelerCount || "1");
-    //             setCustomTravelerCount(data.customTravelerCount || "");
-    //             setSpecialOccasion(data.specialOccasion || "");
-    //             setFirstName(data.firstName || "");
-    //             setOtherAllergyDetails(data.otherAllergyDetails || "");
-    //             setAvoidDestination(data.avoidDestination || "");
-    //             setSelectedCountry(data.selectedCountry || "");
-    //             setSelectedCountryCode(data.selectedCountryCode || "");
-    //             setSelectedState(data.selectedState || "");
-    //             setStayingDuration(data.stayingDuration || "");
-    //             setAirports(data.airports || []);
-    //             setSelectedAirports(data.selectedAirports || []);
-    //             setBudget(data.budget || "");
-    //             setPhone(data.phone || "");
-    //             setPreferredStartDateValue(data.preferredStartDateValue || "");
-    //             setFixedStartDateValue(data.fixedStartDateValue || "");
-    //             setCheckboxValues(data.checkboxValues || {});
-    //         } else {
-    //             localStorage.removeItem("bft_questionnaire_progress");
-    //             // Optionally reset all state
-    //             setCurrentPageIndex(0);
-    //             setFavouriteDestination("");
-    //             setTravelerCount("1");
-    //             setCustomTravelerCount("");
-    //             setSpecialOccasion("");
-    //             setFirstName("");
-    //             setOtherAllergyDetails("");
-    //             setAvoidDestination("");
-    //             setSelectedCountry("");
-    //             setSelectedCountryCode("");
-    //             setSelectedState("");
-    //             setStayingDuration("");
-    //             setAirports([]);
-    //             setSelectedAirports([]);
-    //             setBudget("");
-    //             setPhone("");
-    //             setPreferredStartDateValue("");
-    //             setFixedStartDateValue("");
-    //             setCheckboxValues({});
-    //         }
-    //     }
-    // }, []);
+    useEffect(() => {
+        if (!hasFetchedAirports.current) {
+            fetch('https://bft-backend.vercel.app/api/data/airportsData')
+                .then((res) => res.json())
+                .then((data) => setAirports(data))
+                .catch((err) => console.error('Failed to fetch airport data', err));
+            hasFetchedAirports.current = true;
+        }
+    }, []);
 
-    // // Save progress to localStorage on every relevant state change
-    // useEffect(() => {
-    //     const data = {
-    //         currentPageIndex,
-    //         favouriteDestination,
-    //         travelerCount,
-    //         customTravelerCount,
-    //         specialOccasion,
-    //         firstName,
-    //         otherAllergyDetails,
-    //         avoidDestination,
-    //         selectedCountry,
-    //         selectedCountryCode,
-    //         selectedState,
-    //         stayingDuration,
-    //         airports,
-    //         selectedAirports,
-    //         budget,
-    //         phone,
-    //         preferredStartDateValue,
-    //         fixedStartDateValue,
-    //         checkboxValues,
-    //     };
-    //     localStorage.setItem("bft_questionnaire_progress", JSON.stringify(data));
-    // }, [currentPageIndex, favouriteDestination, travelerCount, customTravelerCount, specialOccasion, firstName, otherAllergyDetails, avoidDestination, selectedCountry, selectedCountryCode, selectedState, stayingDuration, airports, selectedAirports, budget, phone, preferredStartDateValue, fixedStartDateValue, checkboxValues]);
+    // Ref to track if confirmation dialog has been shown
+    const hasShownConfirmation = useRef(false);
+
+    // LocalStorage Autosave/Restore with improvements
+    useEffect(() => {
+        // On mount, check for saved progress
+        const saved = localStorage.getItem("bft_questionnaire_progress");
+        if (saved && !hasShownConfirmation.current) {
+            try {
+                const data = JSON.parse(saved);
+
+                // Validate data structure before restoring
+                if (data && typeof data === 'object' && data.currentPageIndex !== undefined) {
+                    hasShownConfirmation.current = true; // Mark as shown
+
+                    if (window.confirm("You have unsaved progress. Do you want to continue where you left off?")) {
+                        // Restore all relevant state with validation
+                        setCurrentPageIndex(Math.min(data.currentPageIndex || 0, TOTAL_PAGES - 1));
+                        setFavouriteDestination(data.favouriteDestination || "");
+                        setTravelerCount(data.travelerCount || "1");
+                        setCustomTravelerCount(data.customTravelerCount || "");
+                        setSpecialOccasion(data.specialOccasion || "");
+                        setFirstName(data.firstName || "");
+                        setOtherAllergyDetails(data.otherAllergyDetails || "");
+                        setAvoidDestination(data.avoidDestination || "");
+                        setSelectedCountry(data.selectedCountry || "");
+                        setSelectedCountryCode(data.selectedCountryCode || "");
+                        setSelectedState(data.selectedState || "");
+                        setStayingDuration(data.stayingDuration || "");
+                        setAirports(Array.isArray(data.airports) ? data.airports : []);
+                        setSelectedAirports(Array.isArray(data.selectedAirports) ? data.selectedAirports : []);
+                        setBudget(data.budget || "");
+                        setPhone(data.phone || "");
+                        setPreferredStartDateValue(data.preferredStartDateValue || "");
+                        setFixedStartDateValue(data.fixedStartDateValue || "");
+                        setCheckboxValues(data.checkboxValues || {});
+                    } else {
+                        localStorage.removeItem("bft_questionnaire_progress");
+                        resetAllState();
+                    }
+                } else {
+                    // Invalid data structure, clear it
+                    localStorage.removeItem("bft_questionnaire_progress");
+                    resetAllState();
+                }
+            } catch (error) {
+                console.error("Error parsing saved progress:", error);
+                localStorage.removeItem("bft_questionnaire_progress");
+                resetAllState();
+            }
+        }
+    }, []);
+
+    // Helper function to reset all state
+    const resetAllState = () => {
+        setCurrentPageIndex(0);
+        setFavouriteDestination("");
+        setTravelerCount("1");
+        setCustomTravelerCount("");
+        setSpecialOccasion("");
+        setFirstName("");
+        setOtherAllergyDetails("");
+        setAvoidDestination("");
+        setSelectedCountry("");
+        setSelectedCountryCode("");
+        setSelectedState("");
+        setStayingDuration("");
+        setAirports([]);
+        setSelectedAirports([]);
+        setBudget("");
+        setPhone("");
+        setPreferredStartDateValue("");
+        setFixedStartDateValue("");
+        setCheckboxValues({});
+    };
+
+    // Debounced save progress to localStorage
+    useEffect(() => {
+        const timeoutId = setTimeout(() => {
+            try {
+                const data = {
+                    currentPageIndex,
+                    favouriteDestination,
+                    travelerCount,
+                    customTravelerCount,
+                    specialOccasion,
+                    firstName,
+                    otherAllergyDetails,
+                    avoidDestination,
+                    selectedCountry,
+                    selectedCountryCode,
+                    selectedState,
+                    stayingDuration,
+                    airports,
+                    selectedAirports,
+                    budget,
+                    phone,
+                    preferredStartDateValue,
+                    fixedStartDateValue,
+                    checkboxValues,
+                };
+
+                // Only save if we have meaningful data
+                if (currentPageIndex > 0 || Object.keys(checkboxValues).some(key => checkboxValues[key])) {
+                    localStorage.setItem("bft_questionnaire_progress", JSON.stringify(data));
+                }
+            } catch (error) {
+                console.error("Error saving progress:", error);
+                // Clear corrupted data
+                localStorage.removeItem("bft_questionnaire_progress");
+            }
+        }, 1000); // Debounce for 1 second
+
+        return () => clearTimeout(timeoutId);
+    }, [currentPageIndex, favouriteDestination, travelerCount, customTravelerCount, specialOccasion, firstName, otherAllergyDetails, avoidDestination, selectedCountry, selectedCountryCode, selectedState, stayingDuration, airports, selectedAirports, budget, phone, preferredStartDateValue, fixedStartDateValue, checkboxValues]);
 
     return (
         <div className="min-h-screen flex flex-col bg-white overflow-y-auto">
