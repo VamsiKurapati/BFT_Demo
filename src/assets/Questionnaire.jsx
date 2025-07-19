@@ -150,6 +150,7 @@ export default function Questionnaire() {
         unsafeReligiousAttire: false,
         discriminatoryTrans: false,
         racialProfiling: false,
+        noSafetyConcerns: false,
 
         sameAirports: false,
         anyAirports: false,
@@ -310,6 +311,10 @@ export default function Questionnaire() {
             name: "2",
             titles: ["none", "vegeterian", "vegan", "noAlcohol", "otherAllergies",],
         },
+        {
+            name: "3",
+            titles: ["noSafetyConcerns", "unsafeFemale", "hostilityLGBTQ", "hostilityBlack", "attitudeIslam", "attitudeJewish", "hostilityIndigenous", "unsafeReligiousAttire", "discriminatoryTrans", "racialProfiling"],
+        }
     ];
 
     const handleTravelerCountChange = (e) => {
@@ -489,6 +494,8 @@ export default function Questionnaire() {
         return firstName.trim() !== "" && (travelerCount !== "" && (travelerCount !== "other" || customTravelerCount !== ""));
     }
 
+
+
     // Chapter-1
     const page4validator = () => {
         return checkboxValues["awareOfNothing"] || checkboxValues["unableToDoPhysicalActivities"] || checkboxValues["pregnancy"] || checkboxValues["fearOfHeights"] || checkboxValues["cantSwim"] || checkboxValues["seaSickness"] || checkboxValues["claustrophobia"] || checkboxValues["fearOfDogs"];
@@ -570,7 +577,9 @@ export default function Questionnaire() {
         return favouriteDestination !== "" && avoidDestination !== "";
     }
 
-    //No validation required for page 20
+    const page20validator = () => {
+        return checkboxValues["noSafetyConcerns"] || checkboxValues["unsafeFemale"] || checkboxValues["hostilityLGBTQ"] || checkboxValues["hostilityBlack"] || checkboxValues["attitudeIslam"] || checkboxValues["attitudeJewish"] || checkboxValues["hostilityIndigenous"] || checkboxValues["unsafeReligiousAttire"] || checkboxValues["discriminatoryTrans"] || checkboxValues["racialProfiling"] || checkboxValues["none"];
+    }
 
 
 
@@ -691,8 +700,7 @@ export default function Questionnaire() {
         16: page17validator,
         17: page18validator,
         18: page19validator,
-        //Page 20 - No validation required
-        19: noValidation,
+        19: page20validator,
         //Chapter 3
         20: page21validator,
         21: page22validator,
@@ -716,9 +724,9 @@ export default function Questionnaire() {
         () => {
             // Check if all pages in Chapter 1 (pages 3-12) are valid
             for (let i = 3; i < 13; i++) {
-                console.log("i = ", i);
+                //console.log("i = ", i);
                 if (validators[i] && !validators[i]()) {
-                    console.log('Validation failed for page', i);
+                    //console.log('Validation failed for page', i);
                     return false;
                 }
             }
@@ -728,7 +736,7 @@ export default function Questionnaire() {
             // Check if all pages in Chapter 2 (pages 13-19) are valid
             for (let i = 13; i < 20; i++) {
                 if (validators[i] && !validators[i]()) {
-                    console.log('Validation failed for page - ', i);
+                    //console.log('Validation failed for page - ', i);
                     return false;
                 }
             }
@@ -738,7 +746,7 @@ export default function Questionnaire() {
             // Check if all pages in Chapter 3 (pages 20-25) are valid
             for (let i = 20; i < 26; i++) {
                 if (validators[i] && !validators[i]()) {
-                    console.log('Validation failed for page = ', i);
+                    //console.log('Validation failed for page = ', i);
                     return false;
                 }
             }
@@ -746,21 +754,14 @@ export default function Questionnaire() {
         }
     ];
 
-    // const chapterValidators = [
-    //     () => true,
-    //     () => true,
-    //     () => true,
-    //     () => true,
-    // ];
-
     const handleChapterClick = (chapterIdx) => {
         // Only allow if all previous chapters are valid
-        console.log("chapterIdx = ", chapterIdx);
+        //console.log("chapterIdx = ", chapterIdx);
 
         // Check if all previous chapters are completed
         for (let i = 0; i < chapterIdx; i++) {
             if (!chapterValidators[i]()) {
-                console.log("Please complete previous chapters before proceeding.");
+                //console.log("Please complete previous chapters before proceeding.");
                 toast.error("Please complete previous chapters before proceeding.");
                 return;
             }
@@ -771,7 +772,7 @@ export default function Questionnaire() {
             // Check if all pages in Chapter 1 (pages 3-12) are valid
             for (let i = 3; i < 13; i++) {
                 if (validators[i] && !validators[i]()) {
-                    console.log('Chapter 1 not completed - validation failed for page', i);
+                    //console.log('Chapter 1 not completed - validation failed for page', i);
                     toast.error("Please complete Chapter 1 before proceeding to other chapters.");
                     return;
                 }
@@ -780,9 +781,6 @@ export default function Questionnaire() {
 
         setCurrentPageIndex(chapterPageIndexes[chapterIdx]);
     };
-
-    const currentValidator = validators[currentPageIndex];
-    const isDisabled = currentValidator ? !currentValidator() : false;
 
     const Pages = [
         {
@@ -2689,9 +2687,70 @@ export default function Questionnaire() {
                                 />
                                 <span className="font-poppins text-[#5B5B5B] text-[16px] md:text-[18px] lg:text-[24px] leading-relaxed">Unwelcoming to Muslims</span>
                             </label>
+                            <label className="flex items-start text-left w-full cursor-pointer">
+                                <input
+                                    type="checkbox"
+                                    name="attitudeJewish"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    checked={checkboxValues.attitudeJewish}
+                                    onChange={handleCheckboxChange}
+                                />
+                                <span className="font-poppins text-[#5B5B5B] text-[16px] md:text-[18px] lg:text-[24px] leading-relaxed">Unwelcoming to Jews</span>
+                            </label>
+                            <label className="flex items-start text-left w-full cursor-pointer">
+                                <input
+                                    type="checkbox"
+                                    name="hostilityIndigenous"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    checked={checkboxValues.hostilityIndigenous}
+                                    onChange={handleCheckboxChange}
+                                />
+                                <span className="font-poppins text-[#5B5B5B] text-[16px] md:text-[18px] lg:text-[24px] leading-relaxed">Hostile toward Indigenous travelers</span>
+                            </label>
+                            <label className="flex items-start text-left w-full cursor-pointer">
+                                <input
+                                    type="checkbox"
+                                    name="unsafeReligiousAttire"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    checked={checkboxValues.unsafeReligiousAttire}
+                                    onChange={handleCheckboxChange}
+                                />
+                                <span className="font-poppins text-[#5B5B5B] text-[16px] md:text-[18px] lg:text-[24px] leading-relaxed">Unwelcoming to religious attire</span>
+                            </label>
+                            <label className="flex items-start text-left w-full cursor-pointer">
+                                <input
+                                    type="checkbox"
+                                    name="discriminatoryTrans"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    checked={checkboxValues.discriminatoryTrans}
+                                    onChange={handleCheckboxChange}
+                                />
+                                <span className="font-poppins text-[#5B5B5B] text-[16px] md:text-[18px] lg:text-[24px] leading-relaxed">Discriminatory toward transgender travelers</span>
+                            </label>
+                            <label className="flex items-start text-left w-full cursor-pointer">
+                                <input
+                                    type="checkbox"
+                                    name="racialProfiling"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    checked={checkboxValues.racialProfiling}
+                                    onChange={handleCheckboxChange}
+                                />
+                                <span className="font-poppins text-[#5B5B5B] text-[16px] md:text-[18px] lg:text-[24px] leading-relaxed">Racial profiling</span>
+                            </label>
+                            <label className="flex items-start text-left w-full cursor-pointer">
+                                <input
+                                    type="checkbox"
+                                    name="noSafetyConcerns"
+                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-[6px]"
+                                    checked={checkboxValues.noSafetyConcerns}
+                                    onChange={handleCheckboxChange}
+                                />
+                                <span className="font-poppins text-[#5B5B5B] text-[16px] md:text-[18px] lg:text-[24px] leading-relaxed">None of the above</span>
+                            </label>
                         </div>
                         <button
                             onClick={() => handleNext()}
+                            disabled={!page20validator()}
                             className="bg-[#003566] text-white font-poppins text-[16px] md:text-[20px] px-8 py-3 rounded-lg flex items-center gap-2 shadow-md transition mt-2"
                         >
                             Next <FaArrowRightLong size={20} />
@@ -3785,7 +3844,7 @@ export default function Questionnaire() {
     // }, [currentPageIndex, favouriteDestination, travelerCount, customTravelerCount, specialOccasion, firstName, otherAllergyDetails, avoidDestination, selectedCountry, selectedCountryCode, selectedState, stayingDuration, airports, selectedAirports, budget, phone, preferredStartDateValue, fixedStartDateValue, checkboxValues]);
 
     return (
-        <div className="min-h-screen flex flex-col bg-white">
+        <div className="min-h-screen flex flex-col bg-white overflow-y-auto">
             <ToastContainer />
 
             {/* Header */}
@@ -3815,55 +3874,46 @@ export default function Questionnaire() {
 
                         {dropdownOpen && (
                             <div className="absolute top-full left-0 right-0 bg-white border-2 border-[#003566] rounded-lg mt-1 z-50 shadow-lg">
-                                <div
-                                    className="flex items-center gap-3 p-3 hover:bg-gray-100 cursor-pointer border-b border-gray-200"
-                                    onClick={() => {
-                                        handleChapterClick(0);
-                                        setDropdownOpen(false);
-                                    }}
-                                >
-                                    <img src="/Questionnaire/Icon.png" alt="Chapter 1" className="w-6 h-6" />
-                                    <span className="text-[#003566] font-poppins font-semibold">Chapter 1: You & Your Getaway Style</span>
-                                </div>
-                                <div
-                                    className={`flex items-center gap-3 p-3 border-b border-gray-200 ${chapterValidators[1]() ? 'hover:bg-gray-100 cursor-pointer' : 'cursor-not-allowed opacity-50'
-                                        }`}
-                                    onClick={() => {
-                                        if (chapterValidators[1]()) {
-                                            handleChapterClick(1);
-                                            setDropdownOpen(false);
-                                        }
-                                    }}
-                                >
-                                    <img src="/Questionnaire/Icon.png" alt="Chapter 2" className="w-6 h-6" />
-                                    <span className="text-[#003566] font-poppins font-semibold">Chapter 2: Your Mystery Trip Begins</span>
-                                </div>
-                                <div
-                                    className={`flex items-center gap-3 p-3 border-b border-gray-200 ${chapterValidators[2]() ? 'hover:bg-gray-100 cursor-pointer' : 'cursor-not-allowed opacity-50'
-                                        }`}
-                                    onClick={() => {
-                                        if (chapterValidators[2]()) {
-                                            handleChapterClick(2);
-                                            setDropdownOpen(false);
-                                        }
-                                    }}
-                                >
-                                    <img src="/Questionnaire/Icon.png" alt="Chapter 3" className="w-6 h-6" />
-                                    <span className="text-[#003566] font-poppins font-semibold">Chapter 3: The Must-Knows</span>
-                                </div>
-                                <div
-                                    className={`flex items-center gap-3 p-3 ${chapterValidators[3]() ? 'hover:bg-gray-100 cursor-pointer' : 'cursor-not-allowed opacity-50'
-                                        }`}
-                                    onClick={() => {
-                                        if (chapterValidators[3]()) {
-                                            handleChapterClick(3);
-                                            setDropdownOpen(false);
-                                        }
-                                    }}
-                                >
-                                    <img src="/Questionnaire/Icon.png" alt="Chapter 4" className="w-6 h-6" />
-                                    <span className="text-[#003566] font-poppins font-semibold">Chapter 4: The Final Touch: You!</span>
-                                </div>
+                                {[
+                                    {
+                                        id: 0,
+                                        title: "Chapter 1: You & Your Getaway Style",
+                                        validator: () => true, // Chapter 1 is always accessible
+                                        isLast: false
+                                    },
+                                    {
+                                        id: 1,
+                                        title: "Chapter 2: Your Mystery Trip Begins",
+                                        validator: chapterValidators[1],
+                                        isLast: false
+                                    },
+                                    {
+                                        id: 2,
+                                        title: "Chapter 3: The Must-Knows",
+                                        validator: chapterValidators[2],
+                                        isLast: false
+                                    },
+                                    {
+                                        id: 3,
+                                        title: "Chapter 4: The Final Touch: You!",
+                                        validator: chapterValidators[3],
+                                        isLast: true
+                                    }
+                                ].map((chapter, index) => (
+                                    <div
+                                        key={chapter.id}
+                                        className={`flex items-center gap-3 p-3 ${!chapter.isLast ? 'border-b border-gray-200' : ''} ${chapter.validator() ? 'hover:bg-gray-100 cursor-pointer' : 'cursor-not-allowed opacity-50'}`}
+                                        onClick={() => {
+                                            if (chapter.validator()) {
+                                                handleChapterClick(chapter.id);
+                                                setDropdownOpen(false);
+                                            }
+                                        }}
+                                    >
+                                        <img src="/Questionnaire/Icon.png" alt={`Chapter ${chapter.id + 1}`} className="w-6 h-6" />
+                                        <span className="text-[#003566] font-poppins font-semibold">{chapter.title}</span>
+                                    </div>
+                                ))}
                             </div>
                         )}
                     </div>
