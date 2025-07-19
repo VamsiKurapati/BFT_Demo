@@ -17,6 +17,9 @@ export default {
         'paytone-one': ['"Paytone One"', 'sans-serif'],
         'lora': ['Lora', 'serif'],
       },
+      screens: {
+        'xs': '510px',
+      },
     },
   },
   plugins: [],
