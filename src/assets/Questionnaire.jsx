@@ -756,6 +756,8 @@ export default function Questionnaire() {
     const handleChapterClick = (chapterIdx) => {
         // Only allow if all previous chapters are valid
         console.log("chapterIdx = ", chapterIdx);
+
+        // Check if all previous chapters are completed
         for (let i = 0; i < chapterIdx; i++) {
             if (!chapterValidators[i]()) {
                 console.log("Please complete previous chapters before proceeding.");
@@ -763,6 +765,19 @@ export default function Questionnaire() {
                 return;
             }
         }
+
+        // Additional check: if trying to access Chapter 2 or later, ensure Chapter 1 is fully completed
+        if (chapterIdx >= 1) {
+            // Check if all pages in Chapter 1 (pages 3-12) are valid
+            for (let i = 3; i < 13; i++) {
+                if (validators[i] && !validators[i]()) {
+                    console.log('Chapter 1 not completed - validation failed for page', i);
+                    toast.error("Please complete Chapter 1 before proceeding to other chapters.");
+                    return;
+                }
+            }
+        }
+
         setCurrentPageIndex(chapterPageIndexes[chapterIdx]);
     };
 
@@ -3803,7 +3818,7 @@ export default function Questionnaire() {
                                 <div
                                     className="flex items-center gap-3 p-3 hover:bg-gray-100 cursor-pointer border-b border-gray-200"
                                     onClick={() => {
-                                        setCurrentPageIndex(3);
+                                        handleChapterClick(0);
                                         setDropdownOpen(false);
                                     }}
                                 >
@@ -3811,30 +3826,39 @@ export default function Questionnaire() {
                                     <span className="text-[#003566] font-poppins font-semibold">Chapter 1: You & Your Getaway Style</span>
                                 </div>
                                 <div
-                                    className="flex items-center gap-3 p-3 hover:bg-gray-100 cursor-pointer border-b border-gray-200"
+                                    className={`flex items-center gap-3 p-3 border-b border-gray-200 ${chapterValidators[1]() ? 'hover:bg-gray-100 cursor-pointer' : 'cursor-not-allowed opacity-50'
+                                        }`}
                                     onClick={() => {
-                                        setCurrentPageIndex(13);
-                                        setDropdownOpen(false);
+                                        if (chapterValidators[1]()) {
+                                            handleChapterClick(1);
+                                            setDropdownOpen(false);
+                                        }
                                     }}
                                 >
                                     <img src="/Questionnaire/Icon.png" alt="Chapter 2" className="w-6 h-6" />
                                     <span className="text-[#003566] font-poppins font-semibold">Chapter 2: Your Mystery Trip Begins</span>
                                 </div>
                                 <div
-                                    className="flex items-center gap-3 p-3 hover:bg-gray-100 cursor-pointer border-b border-gray-200"
+                                    className={`flex items-center gap-3 p-3 border-b border-gray-200 ${chapterValidators[2]() ? 'hover:bg-gray-100 cursor-pointer' : 'cursor-not-allowed opacity-50'
+                                        }`}
                                     onClick={() => {
-                                        setCurrentPageIndex(20);
-                                        setDropdownOpen(false);
+                                        if (chapterValidators[2]()) {
+                                            handleChapterClick(2);
+                                            setDropdownOpen(false);
+                                        }
                                     }}
                                 >
                                     <img src="/Questionnaire/Icon.png" alt="Chapter 3" className="w-6 h-6" />
                                     <span className="text-[#003566] font-poppins font-semibold">Chapter 3: The Must-Knows</span>
                                 </div>
                                 <div
-                                    className="flex items-center gap-3 p-3 hover:bg-gray-100 cursor-pointer"
+                                    className={`flex items-center gap-3 p-3 ${chapterValidators[3]() ? 'hover:bg-gray-100 cursor-pointer' : 'cursor-not-allowed opacity-50'
+                                        }`}
                                     onClick={() => {
-                                        setCurrentPageIndex(26);
-                                        setDropdownOpen(false);
+                                        if (chapterValidators[3]()) {
+                                            handleChapterClick(3);
+                                            setDropdownOpen(false);
+                                        }
                                     }}
                                 >
                                     <img src="/Questionnaire/Icon.png" alt="Chapter 4" className="w-6 h-6" />
