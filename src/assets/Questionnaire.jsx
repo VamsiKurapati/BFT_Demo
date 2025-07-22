@@ -675,7 +675,7 @@ export default function Questionnaire() {
                     setPreferredStartDateValue("");
                     setFixedStartDateValue("");
                     setCheckboxValues({});
-                    localStorage.removeItem("questionnaireData");
+                    localStorage.removeItem("bft_questionnaire_progress");
                     handleNext();
                 } else {
                     toast.error("Something went wrong. Please try again.");
