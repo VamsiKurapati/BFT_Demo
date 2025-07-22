@@ -658,7 +658,6 @@ export default function Questionnaire() {
 
                 if (response.ok) {
                     toast.success("Responses saved successfully!");
-                    setCurrentPageIndex(31);
                     setFavouriteDestination("");
                     setTravelerCount("1");
                     setCustomTravelerCount("");
@@ -676,6 +675,7 @@ export default function Questionnaire() {
                     setPreferredStartDateValue("");
                     setFixedStartDateValue("");
                     setCheckboxValues({});
+                    handleNext();
                 } else {
                     toast.error("Something went wrong. Please try again.");
                 }
