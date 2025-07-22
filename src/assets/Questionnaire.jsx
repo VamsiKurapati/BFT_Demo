@@ -10,7 +10,7 @@ import ToastContainer from './ToastContainer';
 import { toast } from 'react-toastify';
 import { MdLocationOn, MdPerson } from 'react-icons/md';
 
-const TOTAL_PAGES = 30;
+const TOTAL_PAGES = 31;
 
 export default function Questionnaire() {
     const navigate = useNavigate();
@@ -377,31 +377,7 @@ export default function Questionnaire() {
                 isNavigating.current = false;
             }, 100);
         } else {
-            const success = await handleSave();
-            if (success) {
-                toast.success("Responses saved successfully!");
-                setCurrentPageIndex(0);
-                setFavouriteDestination("");
-                setTravelerCount("1");
-                setCustomTravelerCount("");
-                setSpecialOccasion("");
-                setFirstName("");
-                setOtherAllergyDetails("");
-                setAvoidDestination("");
-                setSelectedCountry("");
-                setSelectedCountryCode("");
-                setSelectedState("");
-                setSelectedAirports("");
-                setStayingDuration("");
-                setBudget("");
-                setPhone("");
-                setPreferredStartDateValue("");
-                setFixedStartDateValue("");
-                setCheckboxValues({});
-                setTimeout(() => {
-                    navigate("/stay_tuned");
-                }, 2000);
-            }
+            toast.error("Something went wrong. Please try again.");
         }
     };
 
@@ -641,42 +617,67 @@ export default function Questionnaire() {
     }
 
     const handleSave = async () => {
-        let finalTravelerCount = travelerCount;
-        if (travelerCount === "other") {
-            finalTravelerCount = customTravelerCount;
-        }
-        finalTravelerCount = Number(finalTravelerCount);
+        toast.confirm("Are you sure you want to submit your responses?", {
+            onConfirm: async () => {
+                let finalTravelerCount = travelerCount;
+                if (travelerCount === "other") {
+                    finalTravelerCount = customTravelerCount;
+                }
+                finalTravelerCount = Number(finalTravelerCount);
 
-        try {
-            const response = await fetch("https://bft-backend.vercel.app/api/data/saveData", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    travelerCount: finalTravelerCount,
-                    firstName,
-                    favouriteDestination,
-                    avoidDestination,
-                    stayingDuration,
-                    otherAllergyDetails,
-                    selectedAirports,
-                    budget,
-                    phone,
-                    selectedCountry,
-                    selectedState,
-                    preferredStartDateValue,
-                    fixedStartDateValue,
-                    ...checkboxValues,
-                }),
-            });
+                try {
+                    const response = await fetch("https://bft-backend.vercel.app/api/data/saveData", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            travelerCount: finalTravelerCount,
+                            firstName,
+                            favouriteDestination,
+                            avoidDestination,
+                            stayingDuration,
+                            otherAllergyDetails,
+                            selectedAirports,
+                            budget,
+                            phone,
+                            selectedCountry,
+                            selectedState,
+                            preferredStartDateValue,
+                            fixedStartDateValue,
+                            ...checkboxValues,
+                        }),
+                    });
 
-            if (response.ok) {
-                return true;
-            } else {
-                return false;
+                    if (response.ok) {
+                        toast.success("Responses saved successfully!");
+                        setCurrentPageIndex(31);
+                        setFavouriteDestination("");
+                        setTravelerCount("1");
+                        setCustomTravelerCount("");
+                        setSpecialOccasion("");
+                        setFirstName("");
+                        setOtherAllergyDetails("");
+                        setAvoidDestination("");
+                        setSelectedCountry("");
+                        setSelectedCountryCode("");
+                        setSelectedState("");
+                        setSelectedAirports("");
+                        setStayingDuration("");
+                        setBudget("");
+                        setPhone("");
+                        setPreferredStartDateValue("");
+                        setFixedStartDateValue("");
+                        setCheckboxValues({});
+                    } else {
+                        toast.error("Something went wrong. Please try again.");
+                    }
+                } catch (error) {
+                    toast.error("Something went wrong. Please try again.");
+                }
+            },
+            onCancel: () => {
+                toast.error("Responses not saved.");
             }
-        } catch (error) {
-            return false;
-        }
+        });
     };
 
     const noValidation = () => {
@@ -3008,8 +3009,6 @@ export default function Questionnaire() {
                     </div>
                 </div>
             ),
-            buttonText: "Done",
-            Heading: "Chapter 3: The Must-Knows"
         },
         {
             Number: 22,
@@ -3100,8 +3099,6 @@ export default function Questionnaire() {
                     </div>
                 </div>
             ),
-            buttonText: "Done",
-            Heading: "Chapter 3: The Must-Knows"
         },
         {
             Number: 23,
@@ -3204,8 +3201,6 @@ export default function Questionnaire() {
                     </div>
                 </div>
             ),
-            buttonText: "Done",
-            Heading: "Chapter 3: The Must-Knows"
         },
         {
             Number: 24,
@@ -3293,8 +3288,6 @@ export default function Questionnaire() {
                     </div>
                 </div>
             ),
-            buttonText: "Done",
-            Heading: "Chapter 3: The Must-Knows"
         },
         {
             Number: 25,
@@ -3364,8 +3357,6 @@ export default function Questionnaire() {
                     </div>
                 </div>
             ),
-            buttonText: "Done",
-            Heading: "Chapter 3: The Must-Knows"
         },
         {
             Number: 26,
@@ -3450,8 +3441,6 @@ export default function Questionnaire() {
                     </div>
                 </div>
             ),
-            buttonText: "Done",
-            Heading: "Chapter 3: The Must-Knows"
         },
 
 
@@ -3537,8 +3526,6 @@ export default function Questionnaire() {
                     </div>
                 </div>
             ),
-            buttonText: "Done",
-            Heading: "Final Touch: You!"
         },
         {
             Number: 28,
@@ -3593,8 +3580,6 @@ export default function Questionnaire() {
                     </div>
                 </div>
             ),
-            buttonText: "Done",
-            Heading: "Final Touch: You!"
         },
         {
             Number: 29,
@@ -3690,8 +3675,6 @@ export default function Questionnaire() {
                     </div>
                 </div>
             ),
-            buttonText: "Done",
-            Heading: "Final Touch: You!"
         },
         {
             Number: 30,
@@ -3749,8 +3732,32 @@ export default function Questionnaire() {
                     </div>
                 </div>
             ),
-            buttonText: "Done",
-            Heading: "Final Touch: You!"
+        },
+        {
+            Number: 31,
+            type: "text",
+            Content: (
+                <div className="flex flex-col min-h-screen mt-8">
+                    {/* Centered Content */}
+                    <div className="flex flex-1 flex-col items-center justify-center text-center">
+                        <h1 className="font-poppins font-semibold text-[28px] md:text-[36px] text-[#003566]">Stay tuned!</h1>
+                        <p className="font-poppins text-[20px] text-[#174D51] mb-2">Your blindfolded adventure is on its way!</p>
+                        <button
+                            className="bg-[#174D51] text-white font-poppins text-[16px] md:text-[20px] px-8 py-3 rounded-lg flex items-center gap-2 shadow-md transition mt-2"
+                            onClick={() => navigate('/')}
+                        >
+                            Go back Home
+                        </button>
+                        <div className="w-full flex justify-center">
+                            <img
+                                src="/Questionnaire/Stay_Tuned.jpg"
+                                alt="Travelers Illustration"
+                                className="max-w-3xl w-full h-auto"
+                            />
+                        </div>
+                    </div>
+                </div>
+            ),
         },
     ];
 
@@ -3904,7 +3911,7 @@ export default function Questionnaire() {
             </div>
 
             {/* Dropdown to select chapter */}
-            {currentPageIndex > 2 && (
+            {currentPageIndex > 2 && currentPageIndex < 30 && (
                 <div className="flex flex-col items-start justify-center px-6 pt-6 mb-8 bg-white">
                     <div className="relative">
                         <button
@@ -3972,7 +3979,7 @@ export default function Questionnaire() {
             )}
 
             {/* Circle buttons to select the question */}
-            {currentPageIndex > 2 && (
+            {currentPageIndex > 2 && currentPageIndex < 30 && (
                 <div className="flex flex-col items-start justify-center px-6 pb-6 mb-8 bg-white">
                     <div className="flex flex-row items-center justify-center gap-2 xs:gap-4">
                         {(() => {
