@@ -621,7 +621,7 @@ export default function Questionnaire() {
         const result = await Swal.fire({
             title: 'Confirmation',
             text: "Do you want to submit your responses?",
-            icon: 'question',
+            icon: 'warning',
             showCancelButton: true,
             confirmButtonText: 'Yes',
             cancelButtonText: 'No'
@@ -675,6 +675,7 @@ export default function Questionnaire() {
                     setPreferredStartDateValue("");
                     setFixedStartDateValue("");
                     setCheckboxValues({});
+                    localStorage.removeItem("questionnaireData");
                     handleNext();
                 } else {
                     toast.error("Something went wrong. Please try again.");
