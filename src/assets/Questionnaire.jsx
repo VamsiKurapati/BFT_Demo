@@ -3894,7 +3894,7 @@ export default function Questionnaire() {
                 };
 
                 // Only save if we have meaningful data
-                if (currentPageIndex > 0 || Object.keys(checkboxValues).some(key => checkboxValues[key])) {
+                if (currentPageIndex > 0 && currentPageIndex < 30 || Object.keys(checkboxValues).some(key => checkboxValues[key])) {
                     localStorage.setItem("bft_questionnaire_progress", JSON.stringify(data));
                 }
             } catch (error) {
