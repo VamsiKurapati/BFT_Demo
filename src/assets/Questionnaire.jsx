@@ -17,7 +17,7 @@ export default function Questionnaire() {
     const navigate = useNavigate();
     const isNavigating = useRef(false);
 
-    const [currentPageIndex, setCurrentPageIndex] = useState(20);
+    const [currentPageIndex, setCurrentPageIndex] = useState(0);
     const [favouriteDestination, setFavouriteDestination] = useState("");
     const [travelerCount, setTravelerCount] = useState("1");
     const [customTravelerCount, setCustomTravelerCount] = useState("");
@@ -2833,7 +2833,6 @@ export default function Questionnaire() {
                 >
                     {/* Left: Main Content */}
                     <div className="relative z-10 flex-1 flex flex-col justify-center items-start w-full md:max-w-xl">
-
                         <h2 className="font-poppins text-[#174D51] text-[22px] md:text-[26px] mb-6 text-left">
                             How will you be traveling to your destination? *
                         </h2>
@@ -2843,7 +2842,7 @@ export default function Questionnaire() {
                                 options={modeOfTravelOptions}
                                 value={modeOfTravelOptions.find(option => option.value === modeOfTravel)}
                                 onChange={handleModeOfTravelChange}
-                                placeholder="Select Mode of Transport"
+                                placeholder="Select Mode of Travel"
                                 className="w-full max-w-[350px] text-left font-poppins mb-4"
                                 styles={{
                                     control: (base) => ({
@@ -2859,7 +2858,7 @@ export default function Questionnaire() {
                                     placeholder: (base) => ({
                                         ...base,
                                         color: '#000000BF',
-                                        fontSize: '24px',
+                                        fontSize: '20px',
                                         fontFamily: 'poppins',
                                     }),
                                     singleValue: (base) => ({
