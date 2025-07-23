@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Select from 'react-select';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
-import { Country, State } from 'country-state-city';
+import { Country, State, City } from 'country-state-city';
 import { parsePhoneNumberFromString } from 'libphonenumber-js';
 import { FaArrowRightLong } from "react-icons/fa6";
 import ToastContainer from './ToastContainer';
@@ -17,7 +17,7 @@ export default function Questionnaire() {
     const navigate = useNavigate();
     const isNavigating = useRef(false);
 
-    const [currentPageIndex, setCurrentPageIndex] = useState(0);
+    const [currentPageIndex, setCurrentPageIndex] = useState(20);
     const [favouriteDestination, setFavouriteDestination] = useState("");
     const [travelerCount, setTravelerCount] = useState("1");
     const [customTravelerCount, setCustomTravelerCount] = useState("");
@@ -28,8 +28,12 @@ export default function Questionnaire() {
     const [selectedCountry, setSelectedCountry] = useState("");
     const [selectedCountryCode, setSelectedCountryCode] = useState("");
     const [selectedState, setSelectedState] = useState("");
+    const [selectedStateCode, setSelectedStateCode] = useState("");
+    const [selectedCity, setSelectedCity] = useState("");
+    const [modeOfTravel, setModeOfTravel] = useState("");
     const [countries, setCountries] = useState([]);
     const [states, setStates] = useState([]);
+    const [cities, setCities] = useState([]);
     const [stayingDuration, setStayingDuration] = useState("");
     const [airports, setAirports] = useState([]);
     const [selectedAirports, setSelectedAirports] = useState([]);
@@ -37,6 +41,12 @@ export default function Questionnaire() {
     const [phone, setPhone] = useState('');
     const [preferredStartDateValue, setPreferredStartDateValue] = useState("");
     const [fixedStartDateValue, setFixedStartDateValue] = useState("");
+
+    const modeOfTravelOptions = [
+        { value: "Plane", label: "Plane" },
+        { value: "Train", label: "Train" },
+        { value: "Road", label: "Road" },
+    ];
 
     const [checkboxValues, setCheckboxValues] = useState({
         awareOfNothing: false,
@@ -343,6 +353,11 @@ export default function Questionnaire() {
         setAvoidDestination(destination);
     };
 
+    const handleModeOfTravelChange = (event) => {
+        const mode = event.value;
+        setModeOfTravel(mode);
+    }
+
     const handleCountryChange = (event) => {
         const coun = countries.find(c => c.name === event.target.value);
         setSelectedCountryCode(coun?.isoCode || '');
@@ -350,8 +365,14 @@ export default function Questionnaire() {
     }
 
     const handleStateChange = (event) => {
-        const stat = event.target.value;
-        setSelectedState(stat);
+        const stat = states.find(s => s.name === event.target.value);
+        setSelectedState(stat?.name || '');
+        setSelectedStateCode(stat?.isoCode || '');
+    }
+
+    const handleCityChange = (event) => {
+        const city = event.target.value;
+        setSelectedCity(city);
     }
 
     const handlepreferredStartDateChange = (event) => {
@@ -569,7 +590,12 @@ export default function Questionnaire() {
 
     // Chapter-3 
     const page21validator = () => {
-        return (selectedCountry !== "") && (selectedState !== "") && (selectedAirports.length > 0) && (checkboxValues["sameAirports"] || checkboxValues["anyAirports"]);
+        if (modeOfTravel === "Plane") {
+            return (selectedCountry !== "") && (selectedState !== "") && (selectedAirports.length > 0) && (checkboxValues["sameAirports"] || checkboxValues["anyAirports"]);
+        } else if (modeOfTravel === "Road" || modeOfTravel === "Train") {
+            return (selectedCountry !== "") && (selectedState !== "") && (selectedCity !== "");
+        }
+        return false;
     }
 
     const page22validator = () => {
@@ -650,6 +676,7 @@ export default function Questionnaire() {
                         phone,
                         selectedCountry,
                         selectedState,
+                        selectedCity,
                         preferredStartDateValue,
                         fixedStartDateValue,
                         ...checkboxValues,
@@ -665,9 +692,12 @@ export default function Questionnaire() {
                     setFirstName("");
                     setOtherAllergyDetails("");
                     setAvoidDestination("");
+                    setModeOfTravel("");
                     setSelectedCountry("");
                     setSelectedCountryCode("");
                     setSelectedState("");
+                    setSelectedStateCode("");
+                    setSelectedCity("");
                     setSelectedAirports("");
                     setStayingDuration("");
                     setBudget("");
@@ -886,7 +916,7 @@ export default function Questionnaire() {
                             <ul className="space-y-3">
                                 <li className="flex items-start gap-3 text-white text-[16px] md:text-[20px] font-poppins">
                                     <MdLocationOn size={22} />
-                                    Choose any airport across India to begin your trip.
+                                    Choose the mode of travel you would like to use for your trip.
                                 </li>
                                 <li className="flex items-start gap-3 text-white text-[16px] md:text-[20px] font-poppins">
                                     <MdPerson size={22} />
@@ -2793,7 +2823,7 @@ export default function Questionnaire() {
             type: "text",
             Content: (
                 <div
-                    className="w-full h-full flex flex-col md:flex-row items-center justify-between relative overflow-hidden px-4 md:px-8 pb-8"
+                    className="w-full flex flex-col md:flex-row items-center justify-between relative overflow-hidden px-4 md:px-8 pb-8"
                     style={{
                         background: "linear-gradient(180deg, rgba(255, 255, 255,0.3), rgba(191, 231, 255, 0.2), rgba(2, 107, 205, 0.3))",
                         backgroundSize: "cover",
@@ -2803,202 +2833,432 @@ export default function Questionnaire() {
                 >
                     {/* Left: Main Content */}
                     <div className="relative z-10 flex-1 flex flex-col justify-center items-start w-full md:max-w-xl">
-                        <h2 className="font-poppins text-[#174D51] text-[22px] md:text-[26px] mb-6 text-left">
-                            <span className="font-normal">Which</span> Country will you be flying out from? *
-                        </h2>
-                        <Select
-                            options={countries.map((country) => ({
-                                value: country.name,
-                                label: country.name,
-                            }))}
-                            value={
-                                selectedCountry
-                                    ? { value: selectedCountry, label: selectedCountry }
-                                    : null
-                            }
-                            onChange={(selectedOption) =>
-                                handleCountryChange({ target: { value: selectedOption?.value || '' } })
-                            }
-                            placeholder="Select Country"
-                            className="w-full max-w-[350px] text-left font-poppins mb-4"
-                            styles={{
-                                control: (base) => ({
-                                    ...base,
-                                    height: 'auto',
-                                    minHeight: '50px',
-                                    backgroundColor: '#FFFFFF',
-                                    border: '2px solid #000000B2',
-                                    borderRadius: '8px',
-                                    fontSize: '24px',
-                                    fontFamily: 'poppins',
-                                }),
-                                placeholder: (base) => ({
-                                    ...base,
-                                    color: '#000000BF',
-                                    fontSize: '24px',
-                                    fontFamily: 'poppins',
-                                }),
-                                singleValue: (base) => ({
-                                    ...base,
-                                    color: '#000000',
-                                    fontFamily: 'poppins',
-                                    fontSize: '24px',
-                                }),
-                                menu: (base) => ({
-                                    ...base,
-                                    fontFamily: 'poppins',
-                                    fontSize: '20px',
-                                }),
-                                option: (base, state) => ({
-                                    ...base,
-                                    backgroundColor: state.isFocused ? '#CCCCCC' : 'white',
-                                    color: '#000000',
-                                    cursor: 'pointer',
-                                    fontFamily: 'poppins',
-                                }),
-                            }}
-                        />
 
                         <h2 className="font-poppins text-[#174D51] text-[22px] md:text-[26px] mb-6 text-left">
-                            <span className="font-normal">Which</span> State will you be flying out from? *
+                            How will you be traveling to your destination? *
                         </h2>
-
-                        <Select
-                            options={states.map((state) => ({
-                                value: state.name,
-                                label: state.name,
-                            }))}
-                            value={
-                                selectedState
-                                    ? { value: selectedState, label: selectedState }
-                                    : null
-                            }
-                            onChange={(selectedOption) =>
-                                handleStateChange({ target: { value: selectedOption?.value || '' } })
-                            }
-                            placeholder="Select State"
-                            className="w-full max-w-[350px] text-left font-poppins mb-4"
-                            styles={{
-                                control: (base) => ({
-                                    ...base,
-                                    height: 'auto',
-                                    minHeight: '50px',
-                                    backgroundColor: '#FFFFFF',
-                                    border: '2px solid #000000B2',
-                                    borderRadius: '8px',
-                                    fontSize: '24px',
-                                    fontFamily: 'poppins',
-                                }),
-                                placeholder: (base) => ({
-                                    ...base,
-                                    color: '#000000BF',
-                                    fontSize: '24px',
-                                    fontFamily: 'poppins',
-                                }),
-                                singleValue: (base) => ({
-                                    ...base,
-                                    color: '#000000',
-                                    fontFamily: 'poppins',
-                                    fontSize: '24px',
-                                }),
-                                menu: (base) => ({
-                                    ...base,
-                                    fontFamily: 'poppins',
-                                    fontSize: '20px',
-                                }),
-                                option: (base, state) => ({
-                                    ...base,
-                                    backgroundColor: state.isFocused ? '#CCCCCC' : 'white',
-                                    color: '#000000',
-                                    cursor: 'pointer',
-                                    fontFamily: 'poppins',
-                                }),
-                            }}
-                        />
-
-                        <h2 className="font-poppins text-[#174D51] text-[22px] md:text-[26px] mb-6 text-left">
-                            <span className="font-normal">Which</span> airports can you depart from? *
-                        </h2>
-
-                        <Select
-                            isMulti
-                            options={airports}
-                            value={selectedAirports}
-                            onChange={setSelectedAirports}
-                            className="w-full max-w-[350px] text-left font-poppins mb-4"
-                            placeholder="Select"
-                            styles={{
-                                control: (base) => ({
-                                    ...base,
-                                    height: 'auto',
-                                    minHeight: '50px',
-                                    backgroundColor: '#FFFFFF',
-                                    border: '2px solid #000000B2',
-                                    borderRadius: '8px',
-                                    fontSize: '24px',
-                                    fontFamily: 'poppins',
-                                    overflowX: 'auto',
-                                }),
-                                valueContainer: (base) => ({
-                                    ...base,
-                                    display: 'flex',
-                                    flexWrap: 'nowrap',
-                                    overflowX: 'auto',
-                                    scrollbarWidth: 'thin',
-                                    maxWidth: '100%',
-                                }),
-                                multiValue: (base) => ({
-                                    ...base,
-                                    backgroundColor: '#CCCCCC',
-                                    borderRadius: '0.25rem',
-                                    fontSize: '24px',
-                                    marginRight: '4px',
-                                    whiteSpace: 'nowrap',
-                                }),
-                                multiValueLabel: (base) => ({
-                                    ...base,
-                                    color: '#000000BF',
-                                    fontFamily: 'poppins',
-                                }),
-                                placeholder: (base) => ({
-                                    ...base,
-                                    color: '#000000BF',
-                                    fontSize: '24px',
-                                    fontFamily: 'poppins',
-                                }),
-                            }}
-                        />
-
-                        <h2 className="font-poppins text-[#174D51] text-[22px] md:text-[26px] mb-6 text-left">
-                            Do you need to <span className="font-bold">fly in and out of the same airport</span> (e.g., if you're leaving your car there)? *
-                        </h2>
-
                         <div className="flex flex-col items-start gap-4 text-[16px] md:text-[18px] text-left font-poppins w-full mb-4">
-                            <label className="flex items-start text-left w-full cursor-pointer">
-                                <input
-                                    type="checkbox"
-                                    name="sameAirports"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-1 lg:mt-[6px]"
-                                    checked={checkboxValues.sameAirports}
-                                    onChange={handleCheckboxChange}
-                                />
-                                <span className="font-poppins text-[#5B5B5B] text-[16px] md:text-[18px] lg:text-[24px] leading-relaxed">Yes</span>
-                            </label>
-                            <label className="flex items-start text-left w-full cursor-pointer">
-                                <input
-                                    type="checkbox"
-                                    name="anyAirports"
-                                    className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-1 lg:mt-[6px]"
-                                    checked={checkboxValues.anyAirports}
-                                    onChange={handleCheckboxChange}
-                                />
-                                <span className="font-poppins text-[#5B5B5B] text-[16px] md:text-[18px] lg:text-[24px] leading-relaxed">No, I'm open to anywhere</span>
-                            </label>
+                            {/* Dropdown to select mode of transport */}
+                            <Select
+                                options={modeOfTravelOptions}
+                                value={modeOfTravelOptions.find(option => option.value === modeOfTravel)}
+                                onChange={handleModeOfTravelChange}
+                                placeholder="Select Mode of Transport"
+                                className="w-full max-w-[350px] text-left font-poppins mb-4"
+                                styles={{
+                                    control: (base) => ({
+                                        ...base,
+                                        height: 'auto',
+                                        minHeight: '50px',
+                                        backgroundColor: '#FFFFFF',
+                                        border: '2px solid #000000B2',
+                                        borderRadius: '8px',
+                                        fontSize: '24px',
+                                        fontFamily: 'poppins',
+                                    }),
+                                    placeholder: (base) => ({
+                                        ...base,
+                                        color: '#000000BF',
+                                        fontSize: '24px',
+                                        fontFamily: 'poppins',
+                                    }),
+                                    singleValue: (base) => ({
+                                        ...base,
+                                        color: '#000000',
+                                        fontFamily: 'poppins',
+                                        fontSize: '24px',
+                                    }),
+                                    menu: (base) => ({
+                                        ...base,
+                                        fontFamily: 'poppins',
+                                        fontSize: '20px',
+                                    }),
+                                    option: (base, state) => ({
+                                        ...base,
+                                        backgroundColor: state.isFocused ? '#CCCCCC' : 'white',
+                                        color: '#000000',
+                                        cursor: 'pointer',
+                                        fontFamily: 'poppins',
+                                    }),
+                                }}
+                            />
                         </div>
+
+                        {modeOfTravel === "Plane" && (
+                            <>
+                                <h2 className="font-poppins text-[#174D51] text-[22px] md:text-[26px] mb-6 text-left">
+                                    <span className="font-normal">Which</span> Country will you be flying out from? *
+                                </h2>
+                                <Select
+                                    options={countries.map((country) => ({
+                                        value: country.name,
+                                        label: country.name,
+                                    }))}
+                                    value={
+                                        selectedCountry
+                                            ? { value: selectedCountry, label: selectedCountry }
+                                            : null
+                                    }
+                                    onChange={(selectedOption) =>
+                                        handleCountryChange({ target: { value: selectedOption?.value || '' } })
+                                    }
+                                    placeholder="Select Country"
+                                    className="w-full max-w-[350px] text-left font-poppins mb-4"
+                                    styles={{
+                                        control: (base) => ({
+                                            ...base,
+                                            height: 'auto',
+                                            minHeight: '50px',
+                                            backgroundColor: '#FFFFFF',
+                                            border: '2px solid #000000B2',
+                                            borderRadius: '8px',
+                                            fontSize: '24px',
+                                            fontFamily: 'poppins',
+                                        }),
+                                        placeholder: (base) => ({
+                                            ...base,
+                                            color: '#000000BF',
+                                            fontSize: '24px',
+                                            fontFamily: 'poppins',
+                                        }),
+                                        singleValue: (base) => ({
+                                            ...base,
+                                            color: '#000000',
+                                            fontFamily: 'poppins',
+                                            fontSize: '24px',
+                                        }),
+                                        menu: (base) => ({
+                                            ...base,
+                                            fontFamily: 'poppins',
+                                            fontSize: '20px',
+                                        }),
+                                        option: (base, state) => ({
+                                            ...base,
+                                            backgroundColor: state.isFocused ? '#CCCCCC' : 'white',
+                                            color: '#000000',
+                                            cursor: 'pointer',
+                                            fontFamily: 'poppins',
+                                        }),
+                                    }}
+                                />
+
+                                <h2 className="font-poppins text-[#174D51] text-[22px] md:text-[26px] mb-6 text-left">
+                                    <span className="font-normal">Which</span> State will you be flying out from? *
+                                </h2>
+
+                                <Select
+                                    options={states.map((state) => ({
+                                        value: state.name,
+                                        label: state.name,
+                                    }))}
+                                    value={
+                                        selectedState
+                                            ? { value: selectedState, label: selectedState }
+                                            : null
+                                    }
+                                    onChange={(selectedOption) =>
+                                        handleStateChange({ target: { value: selectedOption?.value || '' } })
+                                    }
+                                    placeholder="Select State"
+                                    className="w-full max-w-[350px] text-left font-poppins mb-4"
+                                    styles={{
+                                        control: (base) => ({
+                                            ...base,
+                                            height: 'auto',
+                                            minHeight: '50px',
+                                            backgroundColor: '#FFFFFF',
+                                            border: '2px solid #000000B2',
+                                            borderRadius: '8px',
+                                            fontSize: '24px',
+                                            fontFamily: 'poppins',
+                                        }),
+                                        placeholder: (base) => ({
+                                            ...base,
+                                            color: '#000000BF',
+                                            fontSize: '24px',
+                                            fontFamily: 'poppins',
+                                        }),
+                                        singleValue: (base) => ({
+                                            ...base,
+                                            color: '#000000',
+                                            fontFamily: 'poppins',
+                                            fontSize: '24px',
+                                        }),
+                                        menu: (base) => ({
+                                            ...base,
+                                            fontFamily: 'poppins',
+                                            fontSize: '20px',
+                                        }),
+                                        option: (base, state) => ({
+                                            ...base,
+                                            backgroundColor: state.isFocused ? '#CCCCCC' : 'white',
+                                            color: '#000000',
+                                            cursor: 'pointer',
+                                            fontFamily: 'poppins',
+                                        }),
+                                    }}
+                                />
+
+                                <h2 className="font-poppins text-[#174D51] text-[22px] md:text-[26px] mb-6 text-left">
+                                    <span className="font-normal">Which</span> airports can you depart from? *
+                                </h2>
+
+                                <Select
+                                    isMulti
+                                    options={airports}
+                                    value={selectedAirports}
+                                    onChange={setSelectedAirports}
+                                    className="w-full max-w-[350px] text-left font-poppins mb-4"
+                                    placeholder="Select"
+                                    styles={{
+                                        control: (base) => ({
+                                            ...base,
+                                            height: 'auto',
+                                            minHeight: '50px',
+                                            backgroundColor: '#FFFFFF',
+                                            border: '2px solid #000000B2',
+                                            borderRadius: '8px',
+                                            fontSize: '24px',
+                                            fontFamily: 'poppins',
+                                            overflowX: 'auto',
+                                        }),
+                                        valueContainer: (base) => ({
+                                            ...base,
+                                            display: 'flex',
+                                            flexWrap: 'nowrap',
+                                            overflowX: 'auto',
+                                            scrollbarWidth: 'thin',
+                                            maxWidth: '100%',
+                                        }),
+                                        multiValue: (base) => ({
+                                            ...base,
+                                            backgroundColor: '#CCCCCC',
+                                            borderRadius: '0.25rem',
+                                            fontSize: '24px',
+                                            marginRight: '4px',
+                                            whiteSpace: 'nowrap',
+                                        }),
+                                        multiValueLabel: (base) => ({
+                                            ...base,
+                                            color: '#000000BF',
+                                            fontFamily: 'poppins',
+                                        }),
+                                        placeholder: (base) => ({
+                                            ...base,
+                                            color: '#000000BF',
+                                            fontSize: '24px',
+                                            fontFamily: 'poppins',
+                                        }),
+                                    }}
+                                />
+
+                                <h2 className="font-poppins text-[#174D51] text-[22px] md:text-[26px] mb-6 text-left">
+                                    Do you need to <span className="font-bold">fly in and out of the same airport</span> (e.g., if you're leaving your car there)? *
+                                </h2>
+
+                                <div className="flex flex-col items-start gap-4 text-[16px] md:text-[18px] text-left font-poppins w-full mb-4">
+                                    <label className="flex items-start text-left w-full cursor-pointer">
+                                        <input
+                                            type="checkbox"
+                                            name="sameAirports"
+                                            className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-1 lg:mt-[6px]"
+                                            checked={checkboxValues.sameAirports}
+                                            onChange={handleCheckboxChange}
+                                        />
+                                        <span className="font-poppins text-[#5B5B5B] text-[16px] md:text-[18px] lg:text-[24px] leading-relaxed">Yes</span>
+                                    </label>
+                                    <label className="flex items-start text-left w-full cursor-pointer">
+                                        <input
+                                            type="checkbox"
+                                            name="anyAirports"
+                                            className="mr-4 w-5 h-5 md:w-6 md:h-6 text-[#5B5B5B] rounded-md shrink-0 mt-1 lg:mt-[6px]"
+                                            checked={checkboxValues.anyAirports}
+                                            onChange={handleCheckboxChange}
+                                        />
+                                        <span className="font-poppins text-[#5B5B5B] text-[16px] md:text-[18px] lg:text-[24px] leading-relaxed">No, I'm open to anywhere</span>
+                                    </label>
+                                </div>
+                            </>
+                        )}
+
+                        {(modeOfTravel === "Train" || modeOfTravel === "Road") && (
+                            <>
+                                <h2 className="font-poppins text-[#174D51] text-[22px] md:text-[26px] mb-6 text-left">
+                                    <span className="font-normal">Which</span> Country will you be traveling from? *
+                                </h2>
+                                <Select
+                                    options={countries.map((country) => ({
+                                        value: country.name,
+                                        label: country.name,
+                                    }))}
+                                    value={
+                                        selectedCountry
+                                            ? { value: selectedCountry, label: selectedCountry }
+                                            : null
+                                    }
+                                    onChange={(selectedOption) =>
+                                        handleCountryChange({ target: { value: selectedOption?.value || '' } })
+                                    }
+                                    placeholder="Select Country"
+                                    className="w-full max-w-[350px] text-left font-poppins mb-4"
+                                    styles={{
+                                        control: (base) => ({
+                                            ...base,
+                                            height: 'auto',
+                                            minHeight: '50px',
+                                            backgroundColor: '#FFFFFF',
+                                            border: '2px solid #000000B2',
+                                            borderRadius: '8px',
+                                            fontSize: '24px',
+                                            fontFamily: 'poppins',
+                                        }),
+                                        placeholder: (base) => ({
+                                            ...base,
+                                            color: '#000000BF',
+                                            fontSize: '24px',
+                                            fontFamily: 'poppins',
+                                        }),
+                                        singleValue: (base) => ({
+                                            ...base,
+                                            color: '#000000',
+                                            fontFamily: 'poppins',
+                                            fontSize: '24px',
+                                        }),
+                                        menu: (base) => ({
+                                            ...base,
+                                            fontFamily: 'poppins',
+                                            fontSize: '20px',
+                                        }),
+                                        option: (base, state) => ({
+                                            ...base,
+                                            backgroundColor: state.isFocused ? '#CCCCCC' : 'white',
+                                            color: '#000000',
+                                            cursor: 'pointer',
+                                            fontFamily: 'poppins',
+                                        }),
+                                    }}
+                                />
+
+                                <h2 className="font-poppins text-[#174D51] text-[22px] md:text-[26px] mb-6 text-left">
+                                    <span className="font-normal">Which</span> State will you be traveling from? *
+                                </h2>
+
+                                <Select
+                                    options={states.map((state) => ({
+                                        value: state.name,
+                                        label: state.name,
+                                    }))}
+                                    value={
+                                        selectedState
+                                            ? { value: selectedState, label: selectedState }
+                                            : null
+                                    }
+                                    onChange={(selectedOption) =>
+                                        handleStateChange({ target: { value: selectedOption?.value || '' } })
+                                    }
+                                    placeholder="Select State"
+                                    className="w-full max-w-[350px] text-left font-poppins mb-4"
+                                    styles={{
+                                        control: (base) => ({
+                                            ...base,
+                                            height: 'auto',
+                                            minHeight: '50px',
+                                            backgroundColor: '#FFFFFF',
+                                            border: '2px solid #000000B2',
+                                            borderRadius: '8px',
+                                            fontSize: '24px',
+                                            fontFamily: 'poppins',
+                                        }),
+                                        placeholder: (base) => ({
+                                            ...base,
+                                            color: '#000000BF',
+                                            fontSize: '24px',
+                                            fontFamily: 'poppins',
+                                        }),
+                                        singleValue: (base) => ({
+                                            ...base,
+                                            color: '#000000',
+                                            fontFamily: 'poppins',
+                                            fontSize: '24px',
+                                        }),
+                                        menu: (base) => ({
+                                            ...base,
+                                            fontFamily: 'poppins',
+                                            fontSize: '20px',
+                                        }),
+                                        option: (base, state) => ({
+                                            ...base,
+                                            backgroundColor: state.isFocused ? '#CCCCCC' : 'white',
+                                            color: '#000000',
+                                            cursor: 'pointer',
+                                            fontFamily: 'poppins',
+                                        }),
+                                    }}
+                                />
+
+                                <h2 className="font-poppins text-[#174D51] text-[22px] md:text-[26px] mb-6 text-left">
+                                    <span className="font-normal">Which</span> City will you be traveling from? *
+                                </h2>
+
+                                <Select
+                                    options={cities.map((city) => ({
+                                        value: city.name,
+                                        label: city.name,
+                                    }))}
+                                    value={
+                                        selectedCity
+                                            ? { value: selectedCity, label: selectedCity }
+                                            : null
+                                    }
+                                    onChange={(selectedOption) =>
+                                        handleCityChange({ target: { value: selectedOption?.value || '' } })
+                                    }
+                                    placeholder="Select City"
+                                    className="w-full max-w-[350px] text-left font-poppins"
+                                    styles={{
+                                        control: (base) => ({
+                                            ...base,
+                                            height: 'auto',
+                                            minHeight: '50px',
+                                            backgroundColor: '#FFFFFF',
+                                            border: '2px solid #000000B2',
+                                            borderRadius: '8px',
+                                            fontSize: '24px',
+                                            fontFamily: 'poppins',
+                                        }),
+                                        placeholder: (base) => ({
+                                            ...base,
+                                            color: '#000000BF',
+                                            fontSize: '24px',
+                                            fontFamily: 'poppins',
+                                        }),
+                                        singleValue: (base) => ({
+                                            ...base,
+                                            color: '#000000',
+                                            fontFamily: 'poppins',
+                                            fontSize: '24px',
+                                        }),
+                                        menu: (base) => ({
+                                            ...base,
+                                            fontFamily: 'poppins',
+                                            fontSize: '20px',
+                                        }),
+                                        option: (base, state) => ({
+                                            ...base,
+                                            backgroundColor: state.isFocused ? '#CCCCCC' : 'white',
+                                            color: '#000000',
+                                            cursor: 'pointer',
+                                            fontFamily: 'poppins',
+                                        }),
+                                    }}
+                                />
+                            </>
+                        )}
+
                         <button
                             onClick={() => handleNext()}
                             disabled={!page21validator()}
-                            className="bg-[#003566] text-white font-poppins text-[16px] md:text-[20px] px-8 py-3 rounded-lg flex items-center gap-2 shadow-md transition mt-2"
+                            className={`bg-[#003566] text-white font-poppins text-[16px] md:text-[20px] px-8 py-3 rounded-lg flex items-center gap-2 shadow-md transition ${(modeOfTravel === "Road" || modeOfTravel === "Train") ? "mt-40 mb-20" : "mt-4 mb-4"}`}
                         >
                             Next <FaArrowRightLong size={20} />
                         </button>
@@ -3779,6 +4039,13 @@ export default function Questionnaire() {
         }
     }, [selectedCountryCode]);
 
+    useEffect(() => {
+        if (selectedStateCode) {
+            const cityList = City.getCitiesOfState(selectedCountryCode, selectedStateCode);
+            setCities(cityList);
+        }
+    }, [selectedStateCode]);
+
     const hasFetchedAirports = useRef(false);
 
     useEffect(() => {
@@ -3816,9 +4083,12 @@ export default function Questionnaire() {
                         setFirstName(data.firstName || "");
                         setOtherAllergyDetails(data.otherAllergyDetails || "");
                         setAvoidDestination(data.avoidDestination || "");
+                        setModeOfTravel(data.modeOfTravel || "");
                         setSelectedCountry(data.selectedCountry || "");
                         setSelectedCountryCode(data.selectedCountryCode || "");
                         setSelectedState(data.selectedState || "");
+                        setSelectedStateCode(data.selectedStateCode || "");
+                        setSelectedCity(data.selectedCity || "");
                         setStayingDuration(data.stayingDuration || "");
                         setAirports(Array.isArray(data.airports) ? data.airports : []);
                         setSelectedAirports(Array.isArray(data.selectedAirports) ? data.selectedAirports : []);
@@ -3854,9 +4124,12 @@ export default function Questionnaire() {
         setFirstName("");
         setOtherAllergyDetails("");
         setAvoidDestination("");
+        setModeOfTravel("");
         setSelectedCountry("");
         setSelectedCountryCode("");
         setSelectedState("");
+        setSelectedStateCode("");
+        setSelectedCity("");
         setStayingDuration("");
         setAirports([]);
         setSelectedAirports([]);
@@ -3880,9 +4153,12 @@ export default function Questionnaire() {
                     firstName,
                     otherAllergyDetails,
                     avoidDestination,
+                    modeOfTravel,
                     selectedCountry,
                     selectedCountryCode,
                     selectedState,
+                    selectedStateCode,
+                    selectedCity,
                     stayingDuration,
                     airports,
                     selectedAirports,
@@ -3905,7 +4181,7 @@ export default function Questionnaire() {
         }, 1000); // Debounce for 1 second
 
         return () => clearTimeout(timeoutId);
-    }, [currentPageIndex, favouriteDestination, travelerCount, customTravelerCount, specialOccasion, firstName, otherAllergyDetails, avoidDestination, selectedCountry, selectedCountryCode, selectedState, stayingDuration, airports, selectedAirports, budget, phone, preferredStartDateValue, fixedStartDateValue, checkboxValues]);
+    }, [currentPageIndex, favouriteDestination, travelerCount, customTravelerCount, specialOccasion, firstName, otherAllergyDetails, avoidDestination, modeOfTravel, selectedCountry, selectedCountryCode, selectedState, selectedStateCode, selectedCity, stayingDuration, airports, selectedAirports, budget, phone, preferredStartDateValue, fixedStartDateValue, checkboxValues]);
 
     return (
         <div className="min-h-screen flex flex-col bg-white overflow-y-auto">
