@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useLayoutEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import Footer from "./Footer";
@@ -175,6 +175,127 @@ export default function Home() {
     }, 3000); // Delay of 3000ms (3s)
     return () => clearInterval(timer);
   }, []);
+
+  const sectionRef = useRef(null);
+  const cardRefs = useRef([]);
+  const carRef = useRef(null);
+
+  const [pathPoints, setPathPoints] = useState([]);
+
+  // ✅ Calculate positions after layout
+  useLayoutEffect(() => {
+    const calculatePositions = () => {
+      if (!sectionRef.current) return;
+
+      const sectionRect = sectionRef.current.getBoundingClientRect();
+      const sectionScrollTop = window.scrollY + sectionRect.top;
+      const sectionScrollLeft = window.scrollX + sectionRect.left;
+
+      const validCards = cardRefs.current.filter(Boolean);
+      console.log("Valid card refs count:", validCards.length);
+
+      if (validCards.length === 0) {
+        console.warn("No valid card refs found yet!");
+        return;
+      }
+
+      const points = validCards.map((el, idx) => {
+        const cardRect = el.getBoundingClientRect();
+        const absoluteTop = window.scrollY + cardRect.top;
+        const absoluteLeft = window.scrollX + cardRect.left;
+
+        // ✅ Now relative to section
+        const relativeY =
+          absoluteTop - sectionScrollTop + cardRect.height / 2;
+        const relativeX =
+          absoluteLeft -
+          sectionScrollLeft +
+          (idx % 2 === 0
+            ? cardRect.width * 0.75 // right side
+            : cardRect.width * 0.25); // left side
+
+        return { x: relativeX, y: relativeY };
+      });
+
+      const path = [];
+      for (let i = 0; i < points.length; i++) {
+        const current = points[i];
+        const next = points[i + 1];
+        path.push(current);
+
+        if (next) {
+          const midX = (current.x + next.x) / 2;
+          const midY = next.y - 80;
+          path.push({ x: midX, y: midY });
+        }
+      }
+      if (path.length > 0) path.push(path[0]); // loop
+
+      console.log("Calculated path points (section-relative):", path);
+      setPathPoints(path);
+    };
+
+
+    // Wait for layout & paint
+    requestAnimationFrame(() => calculatePositions());
+
+    // Also recalc on resize
+    window.addEventListener("resize", calculatePositions);
+
+    return () => window.removeEventListener("resize", calculatePositions);
+  }, []);
+
+  // ✅ Force a second recalculation after render (handles late layout)
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const evt = new Event("resize");
+      window.dispatchEvent(evt);
+    }, 300);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  // ✅ Animate car only when points exist
+  useEffect(() => {
+    if (pathPoints.length < 2) return;
+
+    let segmentIndex = 0;
+    let startTime = null;
+    const segmentDuration = 2000; // 2s per segment
+
+    const animate = (timestamp) => {
+      if (!startTime) startTime = timestamp;
+
+      const progress = (timestamp - startTime) / segmentDuration;
+      const t = Math.min(progress, 1);
+
+      const current = pathPoints[segmentIndex];
+      const next = pathPoints[(segmentIndex + 1) % pathPoints.length];
+
+      if (!current || !next) return;
+
+      const x = current.x + (next.x - current.x) * t;
+      const y = current.y + (next.y - current.y) * t;
+
+      // Direction angle for rotation
+      const dx = next.x - current.x;
+      const dy = next.y - current.y;
+      const angleDeg = Math.atan2(dy, dx) * (180 / Math.PI);
+
+      if (carRef.current) {
+        carRef.current.style.transform = `translate(${x}px, ${y}px) rotate(${angleDeg}deg)`;
+      }
+
+      if (progress >= 1) {
+        segmentIndex = (segmentIndex + 1) % (pathPoints.length - 1);
+        startTime = timestamp;
+      }
+
+      requestAnimationFrame(animate);
+    };
+
+    requestAnimationFrame(animate);
+  }, [pathPoints]);
 
   const [currentAdv, setCurrentAdv] = useState(0);
 
@@ -978,7 +1099,7 @@ export default function Home() {
       </div>
 
       {/* Adventure Steps Section */}
-      <section className="relative bg-cover bg-center overflow-hidden">
+      <section ref={sectionRef} className="relative bg-cover bg-center overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
@@ -988,11 +1109,61 @@ export default function Home() {
           }}
         ></div>
 
+        {/* ✅ SVG Path connecting all points */}
+        {pathPoints.length > 1 && (
+          <svg
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              pointerEvents: "none",
+              zIndex: 40,
+            }}
+          >
+            <polyline
+              points={pathPoints.map((p) => `${p.x},${p.y}`).join(" ")}
+              fill="none"
+              stroke="blue"
+              strokeWidth="2"
+              strokeDasharray="8 6"
+            />
+          </svg>
+        )}
+
+        {/* ✅ Moving Car */}
+        <img
+          ref={carRef}
+          src="/car.png"
+          alt="car"
+          className="absolute w-16 md:w-24 z-20 transition-transform duration-100"
+          style={{ transform: "translate(0,0)" }}
+        />
+
+        {/* ✅ DEBUG DOTS */}
+        {pathPoints.map((p, i) => (
+          <div
+            key={i}
+            style={{
+              position: "absolute",
+              left: `${p.x - 6}px`,
+              top: `${p.y - 6}px`,
+              width: "12px",
+              height: "12px",
+              background: "red",
+              borderRadius: "50%",
+              zIndex: 50,
+            }}
+          ></div>
+        ))}
+
         <div className="relative z-10">
           {/* Boxes */}
           {steps.map((step, idx) => (
             <div
               key={idx}
+              ref={(el) => (cardRefs.current[idx] = el)}
               className={`flex flex-col md:flex-row ${idx % 2 === 1 ? "md:flex-row-reverse" : ""} items-center gap-4 md:gap-10 mt-6 md:mt-12 px-4 md:px-12`}
             >
               <div
