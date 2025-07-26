@@ -888,6 +888,146 @@ export default function Home() {
     );
   };
 
+  const sectionRef = useRef(null);
+  const cardRefs = useRef([]);
+  const carRef = useRef(null);
+
+  const [pathPoints, setPathPoints] = useState([]);
+  const [cardDebugRects, setCardDebugRects] = useState([]);
+
+  const calculatePositions = () => {
+    if (!sectionRef.current) return;
+
+    const sectionRect = sectionRef.current.getBoundingClientRect();
+    const sectionScrollTop = window.scrollY + sectionRect.top;
+    const sectionScrollLeft = window.scrollX + sectionRect.left;
+
+    console.log("==== SECTION RECT ====");
+    console.log(sectionRect);
+    console.log(
+      "Section scroll-relative top/left:",
+      sectionScrollTop,
+      sectionScrollLeft
+    );
+
+    const validCards = cardRefs.current.filter(Boolean);
+    console.log("Valid card refs count:", validCards.length);
+
+    if (validCards.length === 0) {
+      console.warn("No valid card refs found yet!");
+      return;
+    }
+
+    const newDebugRects = [];
+    const points = validCards.map((el, idx) => {
+      const cardRect = el.getBoundingClientRect();
+      const absoluteTop = window.scrollY + cardRect.top;
+      const absoluteLeft = window.scrollX + cardRect.left;
+
+      console.log(`CARD ${idx} RECT:`, cardRect);
+      console.log(
+        `CARD ${idx} ABS top/left:`,
+        absoluteTop,
+        absoluteLeft
+      );
+
+      // ✅ Relative to section top-left
+      const relativeY =
+        absoluteTop - sectionScrollTop + cardRect.height / 2;
+      const relativeX =
+        absoluteLeft -
+        sectionScrollLeft +
+        (idx % 2 === 0
+          ? cardRect.width * 0.75 // right side
+          : cardRect.width * 0.25 // left side
+        );
+
+      // ✅ store for green debug rectangle
+      newDebugRects.push({
+        x: absoluteLeft - sectionScrollLeft,
+        y: absoluteTop - sectionScrollTop,
+        w: cardRect.width,
+        h: cardRect.height,
+      });
+
+      return { x: relativeX, y: relativeY };
+    });
+
+    setCardDebugRects(newDebugRects);
+
+    const path = [];
+    for (let i = 0; i < points.length; i++) {
+      const current = points[i];
+      const next = points[i + 1];
+      path.push(current);
+
+      if (next) {
+        const midX = (current.x + next.x) / 2;
+        const midY = next.y - 80;
+        path.push({ x: midX, y: midY });
+      }
+    }
+    if (path.length > 0) path.push(path[0]); // loop back
+
+    console.log("Calculated path points:", path);
+    setPathPoints(path);
+  };
+
+  // ✅ initial + resize recalculation
+  useLayoutEffect(() => {
+    requestAnimationFrame(() => calculatePositions());
+    window.addEventListener("resize", calculatePositions);
+    return () => window.removeEventListener("resize", calculatePositions);
+  }, []);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const evt = new Event("resize");
+      window.dispatchEvent(evt);
+    }, 300);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // ✅ Animate car along path
+  useEffect(() => {
+    if (pathPoints.length < 2) return;
+
+    let segmentIndex = 0;
+    let startTime = null;
+    const segmentDuration = 2000;
+
+    const animate = (timestamp) => {
+      if (!startTime) startTime = timestamp;
+
+      const progress = (timestamp - startTime) / segmentDuration;
+      const t = Math.min(progress, 1);
+
+      const current = pathPoints[segmentIndex];
+      const next = pathPoints[(segmentIndex + 1) % pathPoints.length];
+      if (!current || !next) return;
+
+      const x = current.x + (next.x - current.x) * t;
+      const y = current.y + (next.y - current.y) * t;
+
+      const dx = next.x - current.x;
+      const dy = next.y - current.y;
+      const angleDeg = Math.atan2(dy, dx) * (180 / Math.PI);
+
+      if (carRef.current) {
+        carRef.current.style.transform = `translate(${x}px, ${y}px) rotate(${angleDeg}deg)`;
+      }
+
+      if (progress >= 1) {
+        segmentIndex = (segmentIndex + 1) % (pathPoints.length - 1);
+        startTime = timestamp;
+      }
+
+      requestAnimationFrame(animate);
+    };
+
+    requestAnimationFrame(animate);
+  }, [pathPoints]);
+
   return (
 
     <section className="w-full">
@@ -988,7 +1128,7 @@ export default function Home() {
           }}
         ></div>
 
-        {/* ✅ SVG Path connecting all points */}
+        {/* ✅ SVG Path connecting points */}
         {pathPoints.length > 1 && (
           <svg
             style={{
@@ -1011,16 +1151,7 @@ export default function Home() {
           </svg>
         )}
 
-        {/* ✅ Moving Car */}
-        <img
-          ref={carRef}
-          src="/car.png"
-          alt="car"
-          className="absolute w-16 md:w-24 z-20 transition-transform duration-100"
-          style={{ transform: "translate(0,0)" }}
-        />
-
-        {/* ✅ DEBUG DOTS */}
+        {/* ✅ Red dots for each path point */}
         {pathPoints.map((p, i) => (
           <div
             key={i}
@@ -1036,6 +1167,15 @@ export default function Home() {
             }}
           ></div>
         ))}
+
+        {/* ✅ Moving Car */}
+        <img
+          ref={carRef}
+          src="/car.png"
+          alt="car"
+          className="absolute w-16 md:w-24 z-20 transition-transform duration-100"
+          style={{ transform: "translate(0,0)" }}
+        />
 
         <div className="relative z-10">
           {/* Boxes */}
