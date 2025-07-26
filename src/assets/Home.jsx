@@ -898,17 +898,23 @@ export default function Home() {
   const calculatePositions = () => {
     if (!sectionRef.current) return;
 
+    const viewportWidth = window.innerWidth;
+    console.log("Viewport width:", viewportWidth);
+
+    // ✅ Only enable path for md and larger
+    if (viewportWidth < 768) {
+      console.log("Skipping car path on small screens (<768px)");
+      setPathPoints([]);
+      setCardDebugRects([]);
+      return;
+    }
+
     const sectionRect = sectionRef.current.getBoundingClientRect();
     const sectionScrollTop = window.scrollY + sectionRect.top;
     const sectionScrollLeft = window.scrollX + sectionRect.left;
 
     console.log("==== SECTION RECT ====");
     console.log(sectionRect);
-    console.log(
-      "Section scroll-relative top/left:",
-      sectionScrollTop,
-      sectionScrollLeft
-    );
 
     const validCards = cardRefs.current.filter(Boolean);
     console.log("Valid card refs count:", validCards.length);
@@ -924,12 +930,7 @@ export default function Home() {
       const absoluteTop = window.scrollY + cardRect.top;
       const absoluteLeft = window.scrollX + cardRect.left;
 
-      console.log(`CARD ${idx} RECT:`, cardRect);
-      console.log(
-        `CARD ${idx} ABS top/left:`,
-        absoluteTop,
-        absoluteLeft
-      );
+      console.log(`CARD ${idx} width:`, cardRect.width);
 
       // ✅ Relative to section top-left
       const relativeY =
@@ -938,11 +939,11 @@ export default function Home() {
         absoluteLeft -
         sectionScrollLeft +
         (idx % 2 === 0
-          ? cardRect.width * 0.75 // right side
-          : cardRect.width * 0.25 // left side
+          ? cardRect.width * 0.75 // right side center
+          : cardRect.width * 0.25 // left side center
         );
 
-      // ✅ store for green debug rectangle
+      // ✅ store green debug rectangle
       newDebugRects.push({
         x: absoluteLeft - sectionScrollLeft,
         y: absoluteTop - sectionScrollTop,
@@ -963,11 +964,11 @@ export default function Home() {
 
       if (next) {
         const midX = (current.x + next.x) / 2;
-        const midY = next.y - 80;
+        const midY = next.y - 80; // slight curve upward
         path.push({ x: midX, y: midY });
       }
     }
-    if (path.length > 0) path.push(path[0]); // loop back
+    if (path.length > 0) path.push(path[0]); // loop
 
     console.log("Calculated path points:", path);
     setPathPoints(path);
@@ -988,7 +989,7 @@ export default function Home() {
     return () => clearTimeout(timer);
   }, []);
 
-  // ✅ Animate car along path
+  // ✅ Animate car along path (only when pathPoints exist)
   useEffect(() => {
     if (pathPoints.length < 2) return;
 
@@ -1128,64 +1129,84 @@ export default function Home() {
           }}
         ></div>
 
-        {/* ✅ SVG Path connecting points */}
-        {pathPoints.length > 1 && (
-          <svg
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-              pointerEvents: "none",
-              zIndex: 40,
-            }}
-          >
-            <polyline
-              points={pathPoints.map((p) => `${p.x},${p.y}`).join(" ")}
-              fill="none"
-              stroke="blue"
-              strokeWidth="2"
-              strokeDasharray="8 6"
+        {/* ✅ Only render car/path for md+ */}
+        {pathPoints.length > 0 && (
+          <>
+            {/* ✅ Green debug rectangles for each card */}
+            {cardDebugRects.map((rect, i) => (
+              <div
+                key={i}
+                style={{
+                  position: "absolute",
+                  left: `${rect.x}px`,
+                  top: `${rect.y}px`,
+                  width: `${rect.w}px`,
+                  height: `${rect.h}px`,
+                  border: "2px dashed limegreen",
+                  zIndex: 60,
+                  pointerEvents: "none",
+                }}
+              ></div>
+            ))}
+
+            {/* ✅ SVG Path connecting points */}
+            <svg
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
+                pointerEvents: "none",
+                zIndex: 40,
+              }}
+            >
+              <polyline
+                points={pathPoints.map((p) => `${p.x},${p.y}`).join(" ")}
+                fill="none"
+                stroke="blue"
+                strokeWidth="2"
+                strokeDasharray="8 6"
+              />
+            </svg>
+
+            {/* ✅ Red dots for each path point */}
+            {pathPoints.map((p, i) => (
+              <div
+                key={i}
+                style={{
+                  position: "absolute",
+                  left: `${p.x - 6}px`,
+                  top: `${p.y - 6}px`,
+                  width: "12px",
+                  height: "12px",
+                  background: "red",
+                  borderRadius: "50%",
+                  zIndex: 50,
+                }}
+              ></div>
+            ))}
+
+            {/* ✅ Moving Car */}
+            <img
+              ref={carRef}
+              src="/car.png"
+              alt="car"
+              className="absolute w-16 md:w-24 z-20 transition-transform duration-100"
+              style={{ transform: "translate(0,0)" }}
             />
-          </svg>
+          </>
         )}
-
-        {/* ✅ Red dots for each path point */}
-        {pathPoints.map((p, i) => (
-          <div
-            key={i}
-            style={{
-              position: "absolute",
-              left: `${p.x - 6}px`,
-              top: `${p.y - 6}px`,
-              width: "12px",
-              height: "12px",
-              background: "red",
-              borderRadius: "50%",
-              zIndex: 50,
-            }}
-          ></div>
-        ))}
-
-        {/* ✅ Moving Car */}
-        <img
-          ref={carRef}
-          src="/car.png"
-          alt="car"
-          className="absolute w-16 md:w-24 z-20 transition-transform duration-100"
-          style={{ transform: "translate(0,0)" }}
-        />
 
         <div className="relative z-10">
           {/* Boxes */}
           {steps.map((step, idx) => (
             <div
               key={idx}
-              ref={(el) => (cardRefs.current[idx] = el)}
               className={`flex flex-col md:flex-row ${idx % 2 === 1 ? "md:flex-row-reverse" : ""} items-center gap-4 md:gap-10 mt-6 md:mt-12 px-4 md:px-12`}
             >
               <div
+                ref={(el) => (cardRefs.current[idx] = el)}
                 className={`group bg-[#FFEFCE] hover:bg-[#003566] hover:border hover:border-2 hover:border-[#FFBE55] rounded-xl shadow-lg p-4 ${idx === 0
                   ? 'w-full md:w-[720px]'
                   : idx === 1
